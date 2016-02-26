@@ -1,0 +1,19 @@
+// Setup code (optional)
+// ...
+
+===
+
+// Declaration code (optional)
+// ...
+
+---
+
+// Body code (required)
+// ...
+
+Pipelines.Add("Markdown",
+	ReadFiles("*.md"),
+	FrontMatter(Yaml()),
+	Markdown(),
+	WriteFiles(".html")
+);
