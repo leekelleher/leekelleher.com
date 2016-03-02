@@ -1,19 +1,89 @@
-// Setup code (optional)
-// ...
-
 ===
 
-// Declaration code (optional)
-// ...
+using System.Xml.Linq;
+using System.Xml.XPath;
+
+public class XmlSource : IModule, IAsNewDocuments
+{
+	private string _xpath;
+	public XmlSource(string xpath)
+	{
+		_xpath = xpath;
+	}
+	
+	public IEnumerable<IDocument> Execute(IReadOnlyList<IDocument> inputs, IExecutionContext context)
+	{
+		if (inputs == null || inputs.Count == 0)
+			return inputs;
+
+		return inputs
+			.AsParallel()
+			.SelectMany(input =>
+			{
+				using(var stream = input.GetStream())
+				{
+					var xd = XDocument.Load(stream);
+					
+					return xd.Root
+						.XPathSelectElements(_xpath)
+						.Select(element =>
+						{
+							var reader = element.CreateReader();
+							reader.MoveToContent();
+							var innerXml = reader.ReadOuterXml();
+							
+							return context.GetDocument(innerXml, input.Metadata);
+						});
+				}
+			});
+	}
+}
+
+public static class Helpers
+{
+	public static string GetItemFilePath(IDocument doc, IExecutionContext context)
+	{
+		var value = @doc.Content;
+		var a = "<link>http://leekelleher.com/";
+		var b = "</link>";
+		
+		var posA = value.IndexOf(a);
+		if (posA == -1) return "";
+		
+		var posB = value.LastIndexOf(b);
+		if (posB == -1) return "";
+		
+		var adjustedPosA = posA + a.Length;
+		if (adjustedPosA >= posB) return "";
+		
+		var filepath = value
+			.Substring(adjustedPosA, posB - adjustedPosA)
+			.Replace("/", "\\");
+			
+		return filepath.Contains("?p=")
+			? filepath.Replace("?p=", "__drafts/post-")
+			: filepath + "default";
+	}
+}
+
 
 ---
 
-// Body code (required)
-// ...
+Pipelines.Add("Legacy_WordPress_Pages"
+	,ReadFiles("_wordpress/*.xml")
+	,new XmlSource("/rss/channel/item")
+	,Meta("RelativeFilePath", Helpers.GetItemFilePath)
+	,WriteFiles(".xml")
+	,Xslt("_xslt/wordpress-to-markdown.xslt")
+	,WriteFiles(".md")
+	,FrontMatter(Yaml())
+	,Markdown()
+	,WriteFiles(".html")
+);
 
-Pipelines.Add("Markdown",
-	ReadFiles("*.md"),
-	FrontMatter(Yaml()),
-	Markdown(),
-	WriteFiles(".html")
+Pipelines.Add("Content_Pages"
+	,ReadFiles("*.md")
+	,FrontMatter(Yaml())
+	,Markdown()
+	,WriteFiles(@doc.Get<string>("RelativeFilePathBase") == "index" ? "index.html" : @doc["RelativeFilePathBase"] + "\\index.html")
 );
