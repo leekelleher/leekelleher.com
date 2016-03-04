@@ -21,5 +21,5 @@ artifacts:
 notifications:
   - provider: Webhook
     url:
-        secure: pih2qub2g6Mac5TIpUmwoQIPh3fQuUW5SmOgBqqT20Y=
+      secure: pih2qub2g6Mac5TIpUmwoQIPh3fQuUW5SmOgBqqT20Y=
     on_build_success: true
