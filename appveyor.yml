@@ -17,9 +17,3 @@ artifacts:
   - path: output
     name: website
     type: zip
-
-notifications:
-  - provider: Webhook
-    url:
-      secure: pih2qub2g6Mac5TIpUmwoQIPh3fQuUW5SmOgBqqT20Y=
-    on_build_success: true
