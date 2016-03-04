@@ -12,22 +12,20 @@ link: <xsl:value-of select="link" />
 pubDate: <xsl:value-of select="pubDate" />
 guid: <xsl:value-of select="guid" />
 
-dc:
-  creator: <xsl:value-of select="dc:creator" />
+dc_creator: <xsl:value-of select="dc:creator" />
 
-wp:
-  post_id: <xsl:value-of select="wp:post_id" />
-  post_date: <xsl:value-of select="wp:post_date" />
-  post_date_gmt: <xsl:value-of select="wp:post_date_gmt" />
-  comment_status: <xsl:value-of select="wp:comment_status" />
-  ping_status: <xsl:value-of select="wp:ping_status" />
-  post_name: <xsl:value-of select="wp:post_name" />
-  status: <xsl:value-of select="wp:status" />
-  post_parent: <xsl:value-of select="wp:post_parent" />
-  menu_order: <xsl:value-of select="wp:menu_order" />
-  post_type: <xsl:value-of select="wp:post_type" />
-  post_password: <xsl:value-of select="wp:post_password" />
-  is_sticky: <xsl:value-of select="wp:is_sticky" />
+wp_post_id: <xsl:value-of select="wp:post_id" />
+wp_post_date: "<xsl:value-of select="wp:post_date" />"
+wp_post_date_gmt: "<xsl:value-of select="wp:post_date_gmt" />"
+wp_comment_status: "<xsl:value-of select="wp:comment_status" />"
+wp_ping_status: "<xsl:value-of select="wp:ping_status" />"
+wp_post_name: "<xsl:value-of select="wp:post_name" />"
+wp_status: "<xsl:value-of select="wp:status" />"
+wp_post_parent: <xsl:value-of select="wp:post_parent" />
+wp_menu_order: <xsl:value-of select="wp:menu_order" />
+wp_post_type: "<xsl:value-of select="wp:post_type" />"
+wp_post_password: "<xsl:value-of select="wp:post_password" />"
+wp_is_sticky: <xsl:value-of select="wp:is_sticky" />
 ---
 # <xsl:value-of select="title" />
 

@@ -1,5 +1,6 @@
 ===
 
+using System.Text;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
@@ -64,26 +65,150 @@ public static class Helpers
 			? filepath.Replace("?p=", "__drafts/post-")
 			: filepath + "default";
 	}
+	
+	public static string Excerpt(this HtmlHelper helper, string input, int count, string appender)
+	{
+		if (input == null)
+			return "";
+
+		var decoded = System.Web.HttpUtility.HtmlDecode(input);
+		var stripped = StripHtml(helper, decoded);
+		var excerpt = GetFirstWords(helper, stripped, count, appender);
+		
+		return excerpt;
+	}
+	
+	public static string Decode(this HtmlHelper helper, string input)
+	{
+		return System.Web.HttpUtility.HtmlDecode(input);
+	}
+	
+	public static string StripHtml(this HtmlHelper helper, string input)
+	{
+		var less = '<';
+		var greater = '>';
+		var sb = new StringBuilder(input.Length);
+		var inside = false;
+		for (var i = 0; i < input.Length; i++)
+		{
+			char let = input[i];
+			if (let == less)
+			{
+				inside = true;
+				continue;
+			}
+
+			if (let == greater)
+			{
+				inside = false;
+				continue;
+			}
+
+			if (inside == false)
+			{
+				sb.Append(let);
+			}
+		}
+
+		return sb.ToString();
+	}
+	
+	public static string GetFirstWords(this HtmlHelper helper, string input, int count, string appender)
+	{
+		if (string.IsNullOrEmpty(input))
+		{
+			return string.Empty;
+		}
+
+		var chars = new char[] { '\n', '\r', '\t', ' ' };
+		var words = input.Split(chars, StringSplitOptions.RemoveEmptyEntries);
+
+		if ((words == null) || (words.Length <= 0))
+		{
+			return string.Empty;
+		}
+
+		if (words.Length <= count)
+		{
+			return input;
+		}
+
+		var sb = new StringBuilder();
+
+		for (int i = 0; i < Math.Min(words.Length, count); i++)
+		{
+			sb.AppendFormat("{0}{1}", words[i], (i < (count - 1)) ? " " : appender);
+		}
+
+		return sb.ToString();
+	}
 }
 
 
 ---
 
-Pipelines.Add("Legacy_WordPress_Pages"
+Pipelines.Add("Legacy_WordPress_Posts"
 	,ReadFiles("_wordpress/*.xml")
 	,new XmlSource("/rss/channel/item")
 	,Meta("RelativeFilePath", Helpers.GetItemFilePath)
-	,WriteFiles(".xml")
+//	,WriteFiles(".xml")
 	,Xslt("_xslt/wordpress-to-markdown.xslt")
-	,WriteFiles(".md")
+//	,WriteFiles(".md")
 	,FrontMatter(Yaml())
 	,Markdown()
+	,Excerpt()
+	,Razor()
 	,WriteFiles(".html")
 );
+
+// Pipeline: New Blog Posts
+// Pipeline: RSS Feed
+// Pipeline: XML Sitemap
 
 Pipelines.Add("Content_Pages"
 	,ReadFiles("*.md")
 	,FrontMatter(Yaml())
 	,Markdown()
-	,WriteFiles(@doc.Get<string>("RelativeFilePathBase") == "index" ? "index.html" : @doc["RelativeFilePathBase"] + "\\index.html")
+	,Razor()
+	,WriteFiles(@doc["RelativeFilePathBase"] + "\\index.html")
+);
+
+Pipelines.Add("Archive_Pages"
+	,ReadFiles("archive.cshtml")
+	,Branch(
+		GroupBy(
+			@doc.Get<DateTime>("wp_post_date_gmt").ToString("yyyy")
+			,Documents("Legacy_WordPress_Posts")
+				.Where(@doc.Get<string>("wp_status") == "publish" && @doc.Get<string>("wp_post_type") == "post")
+		)
+		,Meta("HeadingFormat", "yyyy")
+		,Razor()
+		,WriteFiles(string.Format("{0}/index.html", @doc["GroupKey"]))
+	)
+	,Branch(
+		GroupBy(
+			@doc.Get<DateTime>("wp_post_date_gmt").ToString("yyyy/MM")
+			,Documents("Legacy_WordPress_Posts")
+				.Where(@doc.Get<string>("wp_status") == "publish" && @doc.Get<string>("wp_post_type") == "post")
+		)
+		,Meta("HeadingFormat", "MMMM yyyy")
+		,Razor()
+		,WriteFiles(string.Format("{0}/index.html", @doc["GroupKey"]))
+	)
+	,Branch(
+		GroupBy(
+			@doc.Get<DateTime>("wp_post_date_gmt").ToString("yyyy/MM/dd")
+			,Documents("Legacy_WordPress_Posts")
+				.Where(@doc.Get<string>("wp_status") == "publish" && @doc.Get<string>("wp_post_type") == "post")
+		)
+		,Meta("HeadingFormat", "dd MMMM yyyy")
+		,Razor()
+		,WriteFiles(string.Format("{0}/index.html", @doc["GroupKey"]))
+	)
+);
+
+Pipelines.Add("Homepage"
+	,ReadFiles("index.cshtml")
+	,Razor()
+	,WriteFiles(".html")
 );
