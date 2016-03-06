@@ -91,7 +91,7 @@ public static class Helpers
 // Pipeline: XML Sitemap
 
 Pipelines.Add("Content_Pages"
-	,ReadFiles("*.md")
+	,ReadFiles("pages/*.md")
 	,FrontMatter(Yaml())
 	,Markdown()
 	,Razor()
