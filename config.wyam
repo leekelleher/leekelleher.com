@@ -95,7 +95,7 @@ Pipelines.Add("Content_Pages"
 	,FrontMatter(Yaml())
 	,Markdown()
 	,Razor()
-	,WriteFiles(@doc["RelativeFilePathBase"] + "\\index.html")
+	,WriteFiles(".html")
 );
 
 //Pipelines.Add("Archive_Pages"
