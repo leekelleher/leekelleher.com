@@ -14,7 +14,8 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0dsq_thread_id: 1469281274
+wp_is_sticky: 0
+dsq_thread_id: '1469281274'
 categories:
   - linklog: "linklog"
   - mp3s: "mp3s"

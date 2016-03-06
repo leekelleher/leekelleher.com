@@ -26,8 +26,9 @@ wp_menu_order: <xsl:value-of select="wp:menu_order" />
 wp_post_type: "<xsl:value-of select="wp:post_type" />"
 wp_post_password: "<xsl:value-of select="wp:post_password" />"
 wp_is_sticky: <xsl:value-of select="wp:is_sticky" />
-<xsl:for-each select="wp:postmeta">
-<xsl:value-of select="wp:meta_key" />: <xsl:value-of select="wp:meta_value" /><xsl:if test="position() != last()"><xsl:text>&#xa;</xsl:text></xsl:if>
+<xsl:text>&#xa;</xsl:text>
+<xsl:for-each select="wp:postmeta[not(starts-with(wp:meta_key, '_'))]">
+<xsl:value-of select="wp:meta_key" />: '<xsl:value-of select="normalize-space(wp:meta_value)" />'<xsl:if test="position() != last()"><xsl:text>&#xa;</xsl:text></xsl:if>
 </xsl:for-each>
 categories:
 <xsl:for-each select="category">

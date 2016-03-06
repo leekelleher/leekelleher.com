@@ -15,6 +15,7 @@ wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
 wp_is_sticky: 0
+
 categories:
   - bbc: "bbc"
   - google: "google"

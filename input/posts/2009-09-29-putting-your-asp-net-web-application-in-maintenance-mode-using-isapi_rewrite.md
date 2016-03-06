@@ -14,18 +14,9 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0_edit_last: 2
-superawesome: false
-_oembed_f698b38f90faf2a8a061fbce21211b4d: {{unknown}}
-_oembed_feabe3d820c9da07d43ad680abc945cc: {{unknown}}
-_oembed_283869538079af558c825c0045504d07: {{unknown}}
-_tweet-4466099083: &lt;blockquote class="twitter-tweet" width="550"&gt;&lt;p&gt;i wish there was a way to use app_offline but still view from certain ip's&lt;/p&gt;&amp;mdash; Aaron Powell (@slace) &lt;a href="https://twitter.com/slace/status/4466099083" data-datetime="2009-09-29T08:53:10+00:00"&gt;September 29, 2009&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-_oembed_d0974883dccc8c72b0480d5ede02d083: &lt;blockquote class="twitter-tweet" width="500"&gt;&lt;p&gt;i wish there was a way to use app_offline but still view from certain ip&amp;#39;s&lt;/p&gt;&amp;mdash; Aaron Powell (@slace) &lt;a href="https://twitter.com/slace/status/4466099083"&gt;September 29, 2009&lt;/a&gt;&lt;/blockquote&gt;&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-_oembed_b3416bcc12203d63ea4cae73572f3a25: &lt;blockquote class="twitter-tweet" width="550"&gt;&lt;p&gt;i wish there was a way to use app_offline but still view from certain ip's&lt;/p&gt;&amp;mdash; Aaron Powell (@slace) &lt;a href="https://twitter.com/slace/status/4466099083" data-datetime="2009-09-29T08:53:10+00:00"&gt;September 29, 2009&lt;/a&gt;&lt;/blockquote&gt;&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-dsq_thread_id: 1053718910
-_oembed_time_d0974883dccc8c72b0480d5ede02d083: 1411589096
-_syntaxhighlighter_encoded: 1
+wp_is_sticky: 0
+superawesome: 'false'
+dsq_thread_id: '1053718910'
 categories:
   - app_offline: "App_Offline"
   - aspnet: "ASP.NET"

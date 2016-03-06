@@ -14,9 +14,8 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0_edit_last: 2
-dsq_thread_id: 1847572019
-_aioseop_description: Earlier this year I got a MacBook Pro, ran Windows 8 via Boot Camp - lovely machine; but it didn't work out so great - turns out that old habits die hard.
+wp_is_sticky: 0
+dsq_thread_id: '1847572019'
 categories:
   - apple: "apple"
   - blog: "blog"

@@ -14,10 +14,8 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0_edit_last: 2
-dsq_thread_id: 2472408903
-_aioseop_title: Deploy complex Property Editor with Umbraco Courier on UaaS
-_aioseop_description: Find out how I deployed a complex property-editor to Umbraco-as-a-Service using a custom Courier DataResolver.
+wp_is_sticky: 0
+dsq_thread_id: '2472408903'
 categories:
   - archetype: "Archetype"
   - blog: "blog"

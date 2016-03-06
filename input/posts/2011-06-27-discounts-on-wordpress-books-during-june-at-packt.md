@@ -14,12 +14,12 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0superawesome: false
-_edit_last: 2
-jabber_published: 1309174988
-email_notification: 1309174988
-tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";s:1:"0";s:6:"author";s:5:"51466";s:7:"blog_id";s:7:"2580820";s:9:"mod_stamp";s:19:"2011-06-27 11:43:06";}
-dsq_thread_id: 1074272400
+wp_is_sticky: 0
+superawesome: 'false'
+jabber_published: '1309174988'
+email_notification: '1309174988'
+tagazine-media: 'a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";s:1:"0";s:6:"author";s:5:"51466";s:7:"blog_id";s:7:"2580820";s:9:"mod_stamp";s:19:"2011-06-27 11:43:06";}'
+dsq_thread_id: '1074272400'
 categories:
   - books-2: "Books"
   - discount: "Discount"

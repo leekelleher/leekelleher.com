@@ -14,11 +14,11 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0superawesome: false
-_edit_last: 2
-jabber_published: 1314897492
-email_notification: 1314897494
-dsq_thread_id: 1053581928
+wp_is_sticky: 0
+superawesome: 'false'
+jabber_published: '1314897492'
+email_notification: '1314897494'
+dsq_thread_id: '1053581928'
 categories:
   - blog: "blog"
   - datatype: "DataType"

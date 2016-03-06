@@ -14,12 +14,12 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0superawesome: false
-_edit_last: 2
-jabber_published: 1309904128
-tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:1:{s:92:"http://leekelleher.files.wordpress.com/2011/07/wordpress-3-plugin-development-essentials.jpg";a:6:{s:8:"file_url";s:92:"http://leekelleher.files.wordpress.com/2011/07/wordpress-3-plugin-development-essentials.jpg";s:5:"width";s:3:"195";s:6:"height";s:3:"244";s:4:"type";s:5:"image";s:4:"area";s:5:"47580";s:9:"file_path";s:0:"";}}s:6:"videos";a:0:{}s:11:"image_count";s:1:"1";s:6:"author";s:5:"51466";s:7:"blog_id";s:7:"2580820";s:9:"mod_stamp";s:19:"2011-07-05 22:15:28";}
-email_notification: 1309904129
-dsq_thread_id: 1053520046
+wp_is_sticky: 0
+superawesome: 'false'
+jabber_published: '1309904128'
+tagazine-media: 'a:7:{s:7:"primary";s:0:"";s:6:"images";a:1:{s:92:"http://leekelleher.files.wordpress.com/2011/07/wordpress-3-plugin-development-essentials.jpg";a:6:{s:8:"file_url";s:92:"http://leekelleher.files.wordpress.com/2011/07/wordpress-3-plugin-development-essentials.jpg";s:5:"width";s:3:"195";s:6:"height";s:3:"244";s:4:"type";s:5:"image";s:4:"area";s:5:"47580";s:9:"file_path";s:0:"";}}s:6:"videos";a:0:{}s:11:"image_count";s:1:"1";s:6:"author";s:5:"51466";s:7:"blog_id";s:7:"2580820";s:9:"mod_stamp";s:19:"2011-07-05 22:15:28";}'
+email_notification: '1309904129'
+dsq_thread_id: '1053520046'
 categories:
   - blog: "blog"
   - book: "book"

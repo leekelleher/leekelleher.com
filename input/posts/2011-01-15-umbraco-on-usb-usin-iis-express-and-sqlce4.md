@@ -14,20 +14,11 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0superawesome: false
-_edit_last: 2
-jabber_published: 1295055703
-email_notification: 1295055704
-_oembed_b6cdcc029c6613310d4754f04c433006: {{unknown}}
-_oembed_47ccf36f79b39e2c91bb9486b2977bd3: {{unknown}}
-_oembed_8ffe12756e6ff11b387d0412292bf216: {{unknown}}
-_tweet-26060538500878337: &lt;blockquote class="twitter-tweet" width="550"&gt;&lt;p&gt;&lt;a href="https://twitter.com/search/%2523umbraco"&gt;#umbraco&lt;/a&gt; 4.6.1 + IIS Express 7.5 + SQL CE 4 + USB key = Success!&lt;/p&gt;&amp;mdash; Lee Kelleher (@leekelleher) &lt;a href="https://twitter.com/leekelleher/status/26060538500878337" data-datetime="2011-01-14T23:38:11+00:00"&gt;January 14, 2011&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-_oembed_d703d4901a3f7a148a910ff796a3d9bd: &lt;blockquote class="twitter-tweet" width="500"&gt;&lt;p&gt;&lt;a href="https://twitter.com/hashtag/umbraco?src=hash"&gt;#umbraco&lt;/a&gt; 4.6.1 + IIS Express 7.5 + SQL CE 4 + USB key = Success!&lt;/p&gt;&amp;mdash; Lee Kelleher (@leekelleher) &lt;a href="https://twitter.com/leekelleher/status/26060538500878337"&gt;January 14, 2011&lt;/a&gt;&lt;/blockquote&gt;&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-_oembed_b5d3cfb1206ddd7d4897956eb01ad02d: &lt;blockquote class="twitter-tweet" width="550"&gt;&lt;p&gt;&lt;a href="https://twitter.com/search/%23umbraco"&gt;#umbraco&lt;/a&gt; 4.6.1 + IIS Express 7.5 + SQL CE 4 + USB key = Success!&lt;/p&gt;&amp;mdash; Lee Kelleher (@leekelleher) &lt;a href="https://twitter.com/leekelleher/status/26060538500878337" data-datetime="2011-01-14T23:38:11+00:00"&gt;January 14, 2011&lt;/a&gt;&lt;/blockquote&gt;&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-dsq_thread_id: 1053293608
-_syntaxhighlighter_encoded: 1
-_oembed_time_d703d4901a3f7a148a910ff796a3d9bd: 1411588630
+wp_is_sticky: 0
+superawesome: 'false'
+jabber_published: '1295055703'
+email_notification: '1295055704'
+dsq_thread_id: '1053293608'
 categories:
   - net: ".NET"
   - blog: "blog"

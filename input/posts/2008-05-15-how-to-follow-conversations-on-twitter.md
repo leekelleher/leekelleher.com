@@ -14,16 +14,14 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0_edit_last: 2
-image_tag: &lt;img src="http://s3.amazonaws.com/twitter_production/profile_images/52793229/coding-horror-official-logo-small_normal.png?w=560" style="vertical-align:middle;"   alt=""    /&gt;
-image_size: a:6:{i:0;s:2:"48";i:1;s:2:"48";i:2;s:1:"3";i:3;s:22:"width="48" height="48"";s:4:"bits";s:1:"8";s:4:"mime";s:9:"image/png";}
-image_url: http://s3.amazonaws.com/twitter_production/profile_images/52793229/coding-horror-official-logo-small_normal.png
-image_md5: d41d8cd98f00b204e9800998ecf8427e
-image_colors_bg: a:11:{i:0;s:6:"000000";s:2:"+1";s:6:"262626";s:2:"+2";s:6:"404040";s:2:"+3";s:6:"808080";s:2:"+4";s:6:"bfbfbf";s:2:"+5";s:6:"e6e6e6";i:-1;s:6:"000000";i:-2;s:6:"000000";i:-3;s:6:"000000";i:-4;s:6:"000000";i:-5;s:6:"000000";}
-image_colors_fg: a:11:{i:0;s:6:"808080";s:2:"+1";s:6:"bfbfbf";s:2:"+2";s:6:"ffffff";s:2:"+3";s:6:"000000";s:2:"+4";s:6:"000000";s:2:"+5";s:6:"000000";i:-1;s:6:"808080";i:-2;s:6:"808080";i:-3;s:6:"808080";i:-4;s:6:"808080";i:-5;s:6:"808080";}
-dsq_thread_id: 1054584149
-_oembed_ea7e4cf8929a99d69b02bc98e5645cea: &lt;blockquote class="twitter-tweet" width="500"&gt;&lt;p&gt;I hate &lt;a href="https://twitter.com/hashtag/region?src=hash"&gt;#region&lt;/a&gt; so much. DIE &lt;a href="https://twitter.com/hashtag/REGION?src=hash"&gt;#REGION&lt;/a&gt; DIE!&lt;/p&gt;&amp;mdash; Jeff Atwood (@codinghorror) &lt;a href="https://twitter.com/codinghorror/status/811735028"&gt;May 15, 2008&lt;/a&gt;&lt;/blockquote&gt;&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-_oembed_time_ea7e4cf8929a99d69b02bc98e5645cea: 1411589845
+wp_is_sticky: 0
+image_tag: '&lt;img src="http://s3.amazonaws.com/twitter_production/profile_images/52793229/coding-horror-official-logo-small_normal.png?w=560" style="vertical-align:middle;" alt="" /&gt;'
+image_size: 'a:6:{i:0;s:2:"48";i:1;s:2:"48";i:2;s:1:"3";i:3;s:22:"width="48" height="48"";s:4:"bits";s:1:"8";s:4:"mime";s:9:"image/png";}'
+image_url: 'http://s3.amazonaws.com/twitter_production/profile_images/52793229/coding-horror-official-logo-small_normal.png'
+image_md5: 'd41d8cd98f00b204e9800998ecf8427e'
+image_colors_bg: 'a:11:{i:0;s:6:"000000";s:2:"+1";s:6:"262626";s:2:"+2";s:6:"404040";s:2:"+3";s:6:"808080";s:2:"+4";s:6:"bfbfbf";s:2:"+5";s:6:"e6e6e6";i:-1;s:6:"000000";i:-2;s:6:"000000";i:-3;s:6:"000000";i:-4;s:6:"000000";i:-5;s:6:"000000";}'
+image_colors_fg: 'a:11:{i:0;s:6:"808080";s:2:"+1";s:6:"bfbfbf";s:2:"+2";s:6:"ffffff";s:2:"+3";s:6:"000000";s:2:"+4";s:6:"000000";s:2:"+5";s:6:"000000";i:-1;s:6:"808080";i:-2;s:6:"808080";i:-3;s:6:"808080";i:-4;s:6:"808080";i:-5;s:6:"808080";}'
+dsq_thread_id: '1054584149'
 categories:
   - blog: "blog"
   - conversation: "conversation"

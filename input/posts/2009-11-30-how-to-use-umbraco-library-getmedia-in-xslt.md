@@ -14,10 +14,8 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0_edit_last: 2
-_wpas_done_twitter: 1
-dsq_thread_id: 1054323322
-_syntaxhighlighter_encoded: 1
+wp_is_sticky: 0
+dsq_thread_id: '1054323322'
 categories:
   - blog: "blog"
   - code: "code"

@@ -14,9 +14,8 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0_edit_last: 2
-dsq_thread_id: 1756382311
-_oembed_58d66f79867b480be171d1a6d5deee92: &lt;blockquote class="twitter-tweet" width="500"&gt;&lt;p&gt;.&lt;a href="https://twitter.com/hendyracher"&gt;@hendyracher&lt;/a&gt; Compare &lt;a href="https://twitter.com/search?q=%23uComponents&amp;amp;src=hash"&gt;#uComponents&lt;/a&gt; d/load stats to last year (46k) &lt;a href="http://t.co/TRn58axeai"&gt;http://t.co/TRn58axeai&lt;/a&gt;&amp;#10;Our &lt;a href="https://twitter.com/search?q=%23umbraco&amp;amp;src=hash"&gt;#umbraco&lt;/a&gt;: 50,000&amp;#10;CodePlex: 15,000&amp;#10;NuGet: 4,500&lt;/p&gt;&amp;mdash; Lee Kelleher (@leekelleher) &lt;a href="https://twitter.com/leekelleher/statuses/377733514034024448"&gt;September 11, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+wp_is_sticky: 0
+dsq_thread_id: '1756382311'
 categories:
   - blog: "blog"
   - codeplex: "CodePlex"

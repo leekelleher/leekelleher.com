@@ -14,9 +14,8 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0_edit_last: 2
-_oembed_ef40a57d2c4f84c28684553bc9f3e81b: {{unknown}}
-dsq_thread_id: 3213982942
+wp_is_sticky: 0
+dsq_thread_id: '3213982942'
 categories:
   - aspnet: "ASP.NET"
   - asp-net-vnext: "ASP.NET vNext"

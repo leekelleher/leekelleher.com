@@ -14,7 +14,8 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0dsq_thread_id: 2222847114
+wp_is_sticky: 0
+dsq_thread_id: '2222847114'
 categories:
   - linklog: "linklog"
   - popbitch: "popbitch"

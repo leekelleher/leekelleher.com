@@ -14,11 +14,8 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0_edit_last: 2
-_wpas_mess: Working with Umbraco 4.1's new XML schema in XSLT, (and how to convert it back to the legacy schema) http://bit.ly/dj2Itj
-_wpas_done_twitter: 1
-dsq_thread_id: 1053341498
-_syntaxhighlighter_encoded: 1
+wp_is_sticky: 0
+dsq_thread_id: '1053341498'
 categories:
   - blog: "blog"
   - legacy: "Legacy"

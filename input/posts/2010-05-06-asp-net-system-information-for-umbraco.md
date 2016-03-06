@@ -14,10 +14,10 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0_edit_last: 2
-superawesome: false
-email_notification: 1273158019
-dsq_thread_id: 1054584400
+wp_is_sticky: 0
+superawesome: 'false'
+email_notification: '1273158019'
+dsq_thread_id: '1054584400'
 categories:
   - aspnet: "ASP.NET"
   - blog: "blog"

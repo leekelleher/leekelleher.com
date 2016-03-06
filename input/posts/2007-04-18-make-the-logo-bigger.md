@@ -14,11 +14,9 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0enclosure: http://www.underconsideration.com/MaketheLogoBigger.mp3
-3298217
-audio/mpeg
-
-dsq_thread_id: 4233102139
+wp_is_sticky: 0
+enclosure: 'http://www.underconsideration.com/MaketheLogoBigger.mp3 3298217 audio/mpeg'
+dsq_thread_id: '4233102139'
 categories:
   - audio: "audio"
   - linklog: "linklog"

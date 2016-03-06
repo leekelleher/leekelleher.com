@@ -14,10 +14,9 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0_edit_last: 2
-superawesome: false
-dsq_thread_id: 1053754050
-_syntaxhighlighter_encoded: 1
+wp_is_sticky: 0
+superawesome: 'false'
+dsq_thread_id: '1053754050'
 categories:
   - blog: "blog"
   - browser: "browser"

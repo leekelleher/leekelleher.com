@@ -14,15 +14,12 @@ wp_post_parent: 0
 wp_menu_order: 0
 wp_post_type: "post"
 wp_post_password: ""
-wp_is_sticky: 0superawesome: false
-_edit_last: 2
-jabber_published: 1315388986
-tagazine-media: a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";s:1:"0";s:6:"author";s:5:"51466";s:7:"blog_id";s:7:"2580820";s:9:"mod_stamp";s:19:"2011-09-07 09:49:45";}
-email_notification: 1315388987
-_tweet-111363152922415104: &lt;blockquote class="twitter-tweet" width="550"&gt;&lt;p&gt;I just downloaded the 10,000th copy of uComponents. &lt;a href="http://t.co/P0x1JT5" title="http://is.gd/ZVxhfy"&gt;is.gd/ZVxhfy&lt;/a&gt; &lt;a href="https://twitter.com/search/%2523H5YR"&gt;#H5YR&lt;/a&gt; &lt;a href="https://twitter.com/search/%2523Umbraco"&gt;#Umbraco&lt;/a&gt;&lt;/p&gt;&amp;mdash; Douglas Robar(@drobar) &lt;a href="https://twitter.com/drobar/status/111363152922415104" data-datetime="2011-09-07T09:00:19+00:00"&gt;September 7, 2011&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-_oembed_b74f9cd8ee4c6fbcbea7c8ecda1bbc78: &lt;blockquote class="twitter-tweet" width="500"&gt;&lt;p&gt;I just downloaded the 10,000th copy of uComponents. &lt;a href="http://t.co/P0x1JT5" title="http://is.gd/ZVxhfy"&gt;is.gd/ZVxhfy&lt;/a&gt; &lt;a href="https://twitter.com/search/%23H5YR"&gt;#H5YR&lt;/a&gt; &lt;a href="https://twitter.com/search/%23Umbraco"&gt;#Umbraco&lt;/a&gt;&lt;/p&gt;&amp;mdash; Douglas Robar(@drobar) &lt;a href="https://twitter.com/drobar/status/111363152922415104" data-datetime="2011-09-07T09:00:19+00:00"&gt;September 7, 2011&lt;/a&gt;&lt;/blockquote&gt;&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-dsq_thread_id: 1065169897
+wp_is_sticky: 0
+superawesome: 'false'
+jabber_published: '1315388986'
+tagazine-media: 'a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";s:1:"0";s:6:"author";s:5:"51466";s:7:"blog_id";s:7:"2580820";s:9:"mod_stamp";s:19:"2011-09-07 09:49:45";}'
+email_notification: '1315388987'
+dsq_thread_id: '1065169897'
 categories:
   - blog: "blog"
   - codeplex: "CodePlex"
