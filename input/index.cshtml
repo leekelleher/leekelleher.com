@@ -1,7 +1,6 @@
 @using Wyam.Modules.Razor.Microsoft.AspNet.Html.Abstractions
 @{
-	var posts = Documents.FromPipeline("Legacy_WordPress_Posts")
-		.Where(x => x.Get<string>("wp_status") == "publish" && x.Get<string>("wp_post_type") == "post")
+	var posts = Documents.FromPipeline("Blog_Posts")
 		.OrderByDescending(x => x.Get<DateTime>("wp_post_date_gmt"))
 		.Take(10);
 
@@ -20,7 +19,7 @@
 	{
 		<li>
 			<div>
-				<h3><a href="/@(post.Get<string>("RelativeFilePath").Replace("\\", "/").Replace("/default.html", "/"))" rel="bookmark">@post["title"]</a></h3>
+				<h3><a href="/@(post.Get<string>("RelativeFilePath").Replace("\\", "/").Replace("/index.html", "/"))" rel="bookmark">@post["title"]</a></h3>
 				<p>@(excerpt(post))</p>
 				<p><span>Posted on <time datetime="@(post.Get<DateTime>("wp_post_date_gmt").ToString("yyyy-MM-ddTHH:mm"))">@(post.Get<DateTime>("wp_post_date_gmt").ToShortDateString())</time></span></p>
 			</div>
