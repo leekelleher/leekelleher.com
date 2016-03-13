@@ -1,5 +1,0 @@
-
----
-
-# leekelleher.com
-## About

@@ -1,157 +1,106 @@
 ===
-
-using System.Text;
-
-public static class Helpers
-{	
-	public static string Excerpt(this HtmlHelper helper, string input, int count, string appender)
-	{
-		if (input == null)
-			return "";
-
-		var decoded = System.Web.HttpUtility.HtmlDecode(input);
-		var stripped = StripHtml(helper, decoded);
-		var excerpt = GetFirstWords(helper, stripped, count, appender);
-		
-		return excerpt;
-	}
-	
-	public static string Decode(this HtmlHelper helper, string input)
-	{
-		return System.Web.HttpUtility.HtmlDecode(input);
-	}
-	
-	public static string StripHtml(this HtmlHelper helper, string input)
-	{
-		var less = '<';
-		var greater = '>';
-		var sb = new StringBuilder(input.Length);
-		var inside = false;
-		for (var i = 0; i < input.Length; i++)
-		{
-			char let = input[i];
-			if (let == less)
-			{
-				inside = true;
-				continue;
-			}
-
-			if (let == greater)
-			{
-				inside = false;
-				continue;
-			}
-
-			if (inside == false)
-			{
-				sb.Append(let);
-			}
-		}
-
-		return sb.ToString();
-	}
-	
-	public static string GetFirstWords(this HtmlHelper helper, string input, int count, string appender)
-	{
-		if (string.IsNullOrEmpty(input))
-		{
-			return string.Empty;
-		}
-
-		var chars = new char[] { '\n', '\r', '\t', ' ' };
-		var words = input.Split(chars, StringSplitOptions.RemoveEmptyEntries);
-
-		if ((words == null) || (words.Length <= 0))
-		{
-			return string.Empty;
-		}
-
-		if (words.Length <= count)
-		{
-			return input;
-		}
-
-		var sb = new StringBuilder();
-
-		for (int i = 0; i < Math.Min(words.Length, count); i++)
-		{
-			sb.AppendFormat("{0}{1}", words[i], (i < (count - 1)) ? " " : appender);
-		}
-
-		return sb.ToString();
-	}
-}
-
-
 ---
 
-// Pipeline: New Blog Posts
-Pipelines.Add("Blog_Posts"
-	,ReadFiles("posts/*.md")
-	,Meta("RelativeFilePath", (@doc, @ctx) => {
-		var path = @doc.Get<string>("RelativeFilePathBase").Replace("posts\\", "");
-		var parts = path.Split('-');
-		var newpath = new List<string>(parts.Take(3));
-		newpath.Add(string.Join("-", parts.Skip(3)));
-		newpath.Add("index");
-		return string.Join("/", newpath);
-	})
-	,FrontMatter(Yaml())
-	,Markdown()
-	,Razor()
-	,Excerpt("p")
-	,WriteFiles(".html")
+InitialMetadata["Hostname"] = "http://leekelleher.com";
+
+Pipelines.Add("Posts",
+	ReadFiles("_posts/*.md"),
+	FrontMatter(Yaml()),
+	ValidateMeta<DateTime>("date"),
+	Markdown(),
+	Excerpt(),
+	Razor()
+		.WithViewStart("_layouts/_post.cshtml"),
+	WriteFiles("." + @doc["permalink"] + "index.html")
 );
 
-
-// Pipeline: Archives (by date)
-
-Pipelines.Add("Archive_Pages"
-	,ReadFiles("archive.cshtml")
-	,Branch(
-		GroupBy(
-			@doc.Get<DateTime>("wp_post_date_gmt").ToString("yyyy")
-			,Documents("Blog_Posts")
+Pipelines.Add("Archives",
+	ReadFiles("archive.cshtml"),
+	Execute(@ctx.Documents
+		.Where(x => x.ContainsKey("date"))
+		.SelectMany(x => {
+			var items = new[]{ "yyyy", "yyyy/MM", "yyyy/MM/dd" };
+			return items.Select(d => new
+				{
+					DateFormat = d,
+					DateValue = x.Get<DateTime>("date").ToString(d)
+				}
+			);
+		})
+		.Distinct()
+		.Select(x => @ctx.GetDocument(@doc, new Dictionary<string, object>()
+			{
+				{ "ArchiveDateFormat", x.DateFormat },
+				{ "ArchiveDate", x.DateValue }
+			})
 		)
-		,Meta("HeadingFormat", "yyyy")
-		,Razor()
-		,WriteFiles(string.Format("{0}/index.html", @doc["GroupKey"]))
-	)
-	,Branch(
-		GroupBy(
-			@doc.Get<DateTime>("wp_post_date_gmt").ToString("yyyy/MM")
-			,Documents("Blog_Posts")
-		)
-		,Meta("HeadingFormat", "MMMM yyyy")
-		,Razor()
-		,WriteFiles(string.Format("{0}/index.html", @doc["GroupKey"]))
-	)
-	,Branch(
-		GroupBy(
-			@doc.Get<DateTime>("wp_post_date_gmt").ToString("yyyy/MM/dd")
-			,Documents("Blog_Posts")
-		)
-		,Meta("HeadingFormat", "dd MMMM yyyy")
-		,Razor()
-		,WriteFiles(string.Format("{0}/index.html", @doc["GroupKey"]))
-	)
+	),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	WriteFiles(@doc["ArchiveDate"] + "/index.html")
 );
 
-// Pipeline: Archives (by category/tag)
-// Pipeline: RSS Feed
-// Pipeline: XML Sitemap
-
-Pipelines.Add("Content_Pages"
-	,ReadFiles("pages/*.md")
-	,FrontMatter(Yaml())
-	,Markdown()
-		.EscapeAt(false)
-	,Razor()
-	,WriteFiles(@doc.Get<string>("RelativeFilePathBase").Replace("pages\\", "") + "\\index.html")
+Pipelines.Add("Tags",
+	ReadFiles("_layouts/tags.cshtml"),
+	FrontMatter(),
+	Execute(@ctx.Documents
+		.Where(x => x.ContainsKey("tags"))
+		.SelectMany(x => x.Get<string[]>("tags"))
+		.Distinct()
+		.Select(x => @ctx.GetDocument(@doc, new Dictionary<string, object>()
+			{ 
+				{ "Title", x },
+				{ "Tag", x.ToLowerInvariant().Replace(' ', '-') }
+			})
+		)
+	),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	WriteFiles("./tag/" + @doc.String("Tag") + "/index.html")
 );
 
-Pipelines.Add("Homepage"
-	,ReadFiles("index.cshtml")
-	,Razor()
-	,WriteFiles(".html")
+Pipelines.Add("Pages",
+	ReadFiles("_pages/*.md"),
+	FrontMatter(Yaml()),
+	Markdown()
+		.EscapeAt(false),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	WriteFiles(@doc.String("RelativeFilePathBase").Replace("_pages\\", "") + "\\index.html")
+);
+
+Pipelines.Add("Homepage",
+	ReadFiles("index.cshtml"),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	WriteFiles(".html")
+);
+
+Pipelines.Add("Feeds",
+	Documents("Posts"),
+	OrderBy(@doc.Get<DateTime>("date"))
+		.Descending(true),
+	Rss(siteRoot: "http://leekelleher.com",
+		outputRssFilePath: "feed/index.xml",
+		feedTitle: "Lee Kelleher",
+		feedDescription: "Umbraco Specialist"
+	)
+		.WithTitleMetaKey("title")
+		.WithDescriptionMetaKey("Excerpt")
+		.WithPublicationDateMetaKey("date")
+		.AssumePermalinks()
+		.WithLinkCustomizer(x => x.Replace("/index.html", "/")),
+	WriteFiles()
+);
+
+Pipelines.Add("XmlSitemap",
+	Documents(@ctx.Documents),
+	Meta("SitemapItem", new SitemapItem(@doc.String("permalink"))),
+	Sitemap((@doc, @ctx) => @doc["SitemapItem"]),
+	WriteFiles("sitemap.xml")
+);
+
+Pipelines.Add("Assets",
+	CopyFiles("_assets/*")
+		.To(x => x.Replace("input\\_assets\\", "output\\"))
 );

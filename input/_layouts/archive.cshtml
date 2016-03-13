@@ -1,0 +1,27 @@
+@{
+	var dateFormat = Model.String("ArchiveDateFormat");
+	var archiveDate = Model.String("ArchiveDate");
+	
+	var posts = Documents
+		.Where(x => x.ContainsKey("date") && x.Get<DateTime>("date").ToString(dateFormat) == archiveDate);
+
+	var displayFormat = string.Join(" ", dateFormat.Split('/').Reverse()).Replace("MM", "MMMM");
+	var heading = posts.First().Get<DateTime>("date").ToString(displayFormat);		
+}
+
+<header>
+	<h2>Blog archiveby date</h2>
+	<h3>@heading</h3>
+</header>
+
+<ul>
+	@foreach(var post in posts.OrderBy(x => x.Get<DateTime>("date")))
+	{
+		<li>
+			<div>
+				<h4><a href="@post["permalink"]" rel="bookmark">@post["title"]</a></h4>
+				<p><span>Posted on <time datetime="@(post.Get<DateTime>("date").ToString("yyyy-MM-ddTHH:mm"))">@(post.Get<DateTime>("date").ToShortDateString())</time></span></p>
+			</div>
+		</li>
+	}
+</ul>
