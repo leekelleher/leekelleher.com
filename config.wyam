@@ -8,7 +8,8 @@ Pipelines.Add("Posts",
 	FrontMatter(Yaml()),
 	ValidateMeta<DateTime>("date"),
 	Markdown(),
-	Excerpt(),
+	Excerpt()
+		.GetOuterHtml(false),
 	Razor()
 		.WithViewStart("_layouts/_post.cshtml"),
 	WriteFiles("." + @doc["permalink"] + "index.html")

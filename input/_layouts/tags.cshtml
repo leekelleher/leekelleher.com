@@ -1,26 +1,18 @@
 @{
-	var DocumentsByTag = Documents
+	var documentsByTag = Documents
 		.ContainsKey("tags")
 		.ToLookup<string>("tags");
 
 	var tag = Model.String("Title");
-	
-	var posts = DocumentsByTag[tag];
+
+	ViewData["PostListDocuments"] = documentsByTag[tag]
+		.OrderByDescending(x => x.Get<DateTime>("date"));
 }
 
-<header>
-	<h2>Blog archive by tag</h2>
-	<h3>@tag</h3>
-</header>
-
-<ul>
-	@foreach(var post in posts.OrderByDescending(x => x.Get<DateTime>("date")))
-	{
-		<li>
-			<div>
-				<h4><a href="@post["permalink"]" rel="bookmark">@post["title"]</a></h4>
-				<p><span>Posted on <time datetime="@(post.Get<DateTime>("date").ToString("yyyy-MM-ddTHH:mm"))">@(post.Get<DateTime>("date").ToShortDateString())</time></span></p>
-			</div>
-		</li>
-	}
-</ul>
+<section>
+	<header>
+		<h2>Blog archive by tag</h2>
+		<h3>@tag</h3>
+	</header>
+	@Html.Partial(@"_layouts\postListing")
+</section>

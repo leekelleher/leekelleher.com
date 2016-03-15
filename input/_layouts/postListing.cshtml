@@ -1,0 +1,36 @@
+@using Wyam.Modules.Razor.Microsoft.AspNet.Html.Abstractions
+@{
+	var posts = (IEnumerable<IDocument>)ViewData["PostListDocuments"];
+	
+	Func<IDocument, IHtmlContent> getTags = (doc) =>
+	{
+		if (!doc.ContainsKey("tags"))
+			return null;
+			
+		var tags = doc.Get<string[]>("tags");
+		var html = new System.Text.StringBuilder();
+
+		foreach (var tag in tags)
+		{
+			html.AppendFormat("<a href=\"/tag/{1}/\" rel=\"tag\">{0}</a> ", tag, tag.ToLowerInvariant().Replace(' ', '-'));
+		}
+
+		return Html.Raw(html.ToString());
+	};
+}
+
+<ul>
+	@foreach(var post in posts)
+	{
+		var date = post.Get<DateTime>("date");
+		
+		<li>
+			<div>
+				<h4><a href="@post["permalink"]" rel="bookmark">@post["title"]</a></h4>
+				<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToShortDateString()</time></span></p>
+				<p>@Html.Raw(post["Excerpt"])</p>
+				<p><span>Tags:</span> @getTags(post)</p>
+			</div>
+		</li>
+	}
+</ul>

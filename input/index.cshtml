@@ -1,28 +1,34 @@
-@using Wyam.Modules.Razor.Microsoft.AspNet.Html.Abstractions
 @{
 	var posts = Documents
+		.ContainsKey("date");
+
+	var years = posts
+		.Select(x => x.Get<DateTime>("date").Year)
+		.Distinct()
+		.OrderByDescending(x => x);
+
+	ViewData["PostListDocuments"] = posts
 		.OrderByDescending(x => x.Get<DateTime>("date"))
 		.Take(10);
-
-	Func<IDocument, IHtmlContent> excerpt = (doc) =>
-	{
-		return Html.Raw(""); //Html.Excerpt(doc.Get<string>("Excerpt"), 50, " [&hellip;]"));
-	};
 }
 
-<header>
-	<h2>Latest posts</h2>
-</header>
+<section>
+	<header>
+		<h2>Latest posts</h2>
+	</header>
+	@Html.Partial(@"_layouts\postListing")
+</section>
 
-<ul>
-	@foreach(var post in posts)
-	{
-		<li>
-			<div>
-				<h3><a href="@post["permalink"]" rel="bookmark">@post["title"]</a></h3>
-				<p>@(excerpt(post))</p>
-				<p><span>Posted on <time datetime="@(post.Get<DateTime>("date").ToString("yyyy-MM-ddTHH:mm"))">@(post.Get<DateTime>("date").ToShortDateString())</time></span></p>
-			</div>
-		</li>
-	}
-</ul>
+<section>
+	<header>
+		<h2>Archive</h2>
+	</header>
+	<ul>
+		@foreach (var year in years)
+		{
+			<li>
+				<a href="/@year/">@year</a>
+			</li>
+		}
+	</ul>
+</section>

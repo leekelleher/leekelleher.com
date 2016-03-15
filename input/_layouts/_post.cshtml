@@ -1,4 +1,4 @@
 @{
 	var layout = Model.Get<string>("layout", "_layout");
-	Layout = @"_layouts\" + layout + ".cshtml";
+	Layout = string.Format(@"_layouts\{0}.cshtml", layout);
 }
