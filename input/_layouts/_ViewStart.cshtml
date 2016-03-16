@@ -1,1 +1,4 @@
-@{Layout = @"_layouts\_layout.cshtml";}
+@{
+	var layout = Model.Get<string>("layout", "_layout");
+	Layout = string.Format(@"_layouts\{0}.cshtml", layout);
+}

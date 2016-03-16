@@ -11,7 +11,7 @@ Pipelines.Add("Posts",
 	Excerpt()
 		.GetOuterHtml(false),
 	Razor()
-		.WithViewStart("_layouts/_post.cshtml"),
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
 	WriteFiles("." + @doc["permalink"] + "index.html")
 );
 
@@ -82,7 +82,7 @@ Pipelines.Add("Feeds",
 	OrderBy(@doc.Get<DateTime>("date"))
 		.Descending(true),
 	Rss(siteRoot: "http://leekelleher.com",
-		outputRssFilePath: "feed/index.xml",
+		outputRssFilePath: "feed.xml",
 		feedTitle: "Lee Kelleher",
 		feedDescription: "Umbraco Specialist"
 	)

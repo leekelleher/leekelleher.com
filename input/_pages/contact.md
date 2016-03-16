@@ -14,3 +14,5 @@ For professional Umbraco services, please do [get in touch with me via Umbrella]
 
 <div id='contact-form-19'>
 </div>
+
+> _The contact form will return soon!_

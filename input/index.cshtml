@@ -9,7 +9,7 @@
 
 	ViewData["PostListDocuments"] = posts
 		.OrderByDescending(x => x.Get<DateTime>("date"))
-		.Take(10);
+		.Take(6);
 }
 
 <section>

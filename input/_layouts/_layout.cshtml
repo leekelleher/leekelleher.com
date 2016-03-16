@@ -5,8 +5,8 @@
 	<title>leekelleher.com</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<meta name="description"  content="The personal website of Lee Kelleher; Umbraco specialist" />
-	<meta name="keywords"  content="leekelleher,kelleher,umbraco,asp.net,c#,csharp,xslt,mvc,mvp" />
+	<meta name="description"  content="The personal website of Lee Kelleher; Umbraco specialist">
+	<meta name="keywords"  content="leekelleher,kelleher,umbraco,asp.net,c#,csharp,xslt,mvc,mvp">
 	
 	<link type="application/rss+xml" href="http://leekelleher.com/feed/" rel="alternate">
 </head>
@@ -15,6 +15,7 @@
 		<h1><a href="/">Lee Kelleher</a></h1>
 		<nav>
 			<ul>
+				<li><a href="/">Home</a></li>
 				<li><a href="/about/">About</a></li>
 				<li><a href="/tag/umbraco/">Umbraco</a></li>
 				<li><a href="/contact/">Contact</a></li>
@@ -22,11 +23,26 @@
 		</nav>
 	</header>
 	<main>
+		<aside>
+			<hr>
+			<blockquote>Wondering why you don't see any CSS on this page? <b>Don't worry, it's not broken.</b> <a href="/back-to-basics/">Read all about the reasons behind it here</a>.</blockquote>
+			<hr>
+		</aside>
 		@RenderBody()
 	</main>
 	<footer>
-		<div id="copyright" class="copyright">
-			<p class="license"><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_GB" title="All content is licensed under Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License"><img alt="Creative Commons Licence" src="http://i.creativecommons.org/l/by-nc-nd/3.0/80x15.png" /></a></p>
+		<div>
+			<h1>Follow me:</h1>
+			<nav>
+				<ul>
+					<li><a href="https://twitter.com/leekelleher">Twitter</a></li>
+					<li><a href="https://github.com/leekelleher">Github</a></li>
+					<li><a href="http://leekelleher.com/feed.xml">RSS</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div id="copyright">
+			<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_GB" title="All content is licensed under Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License"><img alt="Creative Commons Licence" src="http://i.creativecommons.org/l/by-nc-nd/3.0/80x15.png"></a></p>
 			<p>Copyright &copy; 2006-@DateTime.UtcNow.Year <a href="https://plus.google.com/101191195603583215493?rel=author" rel="author">Lee Kelleher</a></p>
 		</div>
 	</footer>

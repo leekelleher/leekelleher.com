@@ -1,6 +1,34 @@
-@{Layout = @"_layouts\_layout.cshtml";}
+@using Wyam.Modules.Razor.Microsoft.AspNet.Html.Abstractions
+@{
+	Layout = @"_layouts\_layout.cshtml";
+	
+	var date = Model.Get<DateTime>("date");
+	
+	Func<IDocument, IHtmlContent> getTags = (doc) =>
+	{
+		if (!doc.ContainsKey("tags"))
+			return null;
+			
+		var tags = doc.Get<string[]>("tags");
+		var html = new System.Text.StringBuilder();
 
-<article>
-	<h1>Post</h1>
-	@RenderBody()
-</article>
+		foreach (var tag in tags)
+		{
+			html.AppendFormat("<a href=\"/tag/{1}/\" rel=\"tag\">{0}</a> ", tag, tag.ToLowerInvariant().Replace(' ', '-'));
+		}
+
+		return Html.Raw(html.ToString());
+	};
+}
+
+<section>
+	<header>
+		<h1>@Model["title"]</h1>
+		<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToShortDateString()</time></span></p>
+		<p><span>Tags:</span> @getTags(Model)</p>
+	</header>
+
+	<article>
+		@RenderBody()
+	</article>
+</section>
