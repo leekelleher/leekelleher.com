@@ -7,6 +7,7 @@ Pipelines.Add("Posts",
 	ReadFiles("_posts/*.md"),
 	FrontMatter(Yaml()),
 	ValidateMeta<DateTime>("date"),
+	CopyMeta("permalink", "canonical"),
 	Markdown(),
 	Excerpt()
 		.GetOuterHtml(false),
@@ -36,6 +37,7 @@ Pipelines.Add("Archives",
 			})
 		)
 	),
+	CopyMeta("ArchiveDate", "canonical", "/{0}/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
 	WriteFiles(@doc["ArchiveDate"] + "/index.html")
@@ -55,6 +57,7 @@ Pipelines.Add("Tags",
 			})
 		)
 	),
+	CopyMeta("Tag", "canonical", "/tag/{0}/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
 	WriteFiles("./tag/" + @doc.String("Tag") + "/index.html")
@@ -65,6 +68,7 @@ Pipelines.Add("Pages",
 	FrontMatter(Yaml()),
 	Markdown()
 		.EscapeAt(false),
+	Meta("canonical", @doc.String("RelativeFilePathBase").Replace("_pages\\", "/").Replace("\\", "/") + "/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
 	WriteFiles(@doc.String("RelativeFilePathBase").Replace("_pages\\", "") + "\\index.html")
@@ -72,6 +76,7 @@ Pipelines.Add("Pages",
 
 Pipelines.Add("Homepage",
 	ReadFiles("index.cshtml"),
+	Meta("canonical", "/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
 	WriteFiles(".html")
@@ -91,14 +96,18 @@ Pipelines.Add("Feeds",
 		.WithPublicationDateMetaKey("date")
 		.AssumePermalinks()
 		.WithLinkCustomizer(x => x.Replace("/index.html", "/")),
+	Meta("canonical", "feed.xml"),
 	WriteFiles()
 );
 
 Pipelines.Add("XmlSitemap",
-	Documents(@ctx.Documents),
-	Meta("SitemapItem", new SitemapItem(@doc.String("permalink"))),
-	Sitemap((@doc, @ctx) => @doc["SitemapItem"]),
-	WriteFiles("sitemap.xml")
+	Documents(@ctx.Documents)
+		.Where(@doc.ContainsKey("canonical")),
+	OrderBy(@doc.String("canonical")),
+	Meta("SitemapItem", new SitemapItem(@doc.String("canonical")) { LastModUtc = @doc.Get<DateTime?>("date", null) }),
+	Sitemap(@doc["SitemapItem"]),
+	Meta("WritePath", "sitemap.xml"),
+	WriteFiles()
 );
 
 Pipelines.Add("Assets",
