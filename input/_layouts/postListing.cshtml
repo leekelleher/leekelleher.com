@@ -25,12 +25,16 @@
 		var date = post.Get<DateTime>("date");
 		
 		<li>
-			<div>
-				<h4><a href="@post["permalink"]" rel="bookmark">@post["title"]</a></h4>
-				<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToShortDateString()</time></span></p>
+			<h4><a href="@post["permalink"]" rel="bookmark">@post["title"]</a></h4>
+			<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToShortDateString()</time></span></p>
+			@if (post.ContainsKey("Excerpt"))
+			{
 				<p>@Html.Raw(post["Excerpt"])</p>
+			}
+			@if (post.ContainsKey("tags"))
+			{
 				<p><span>Tags:</span> @getTags(post)</p>
-			</div>
+			}
 		</li>
 	}
 </ul>

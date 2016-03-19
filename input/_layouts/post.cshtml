@@ -25,10 +25,11 @@
 	<header>
 		<h1>@Model["title"]</h1>
 		<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToShortDateString()</time></span></p>
-		<p><span>Tags:</span> @getTags(Model)</p>
 	</header>
-
 	<article>
 		@RenderBody()
 	</article>
+	<div>
+		<p><span>Tags:</span> @getTags(Model)</p>
+	</div>
 </section>

@@ -3,20 +3,52 @@
 	var archiveDate = Model.String("ArchiveDate");
 	
 	var posts = Documents
-		.ContainsKey("date")
-		.Where(x => x.Get<DateTime>("date").ToString(dateFormat) == archiveDate);
-
-	var displayFormat = string.Join(" ", dateFormat.Split('/').Reverse()).Replace("MM", "MMMM");
-	var heading = posts.First().Get<DateTime>("date").ToString(displayFormat);
+		.ContainsKey("date");
 	
-	ViewData["PostListDocuments"] = posts
+	var archivePosts = posts
+		.Where(x => x.Get<DateTime>("date").ToString(dateFormat) == archiveDate)
 		.OrderBy(x => x.Get<DateTime>("date"));
+	
+	var years = posts
+		.Select(x => x.Get<DateTime>("date").Year)
+		.Distinct()
+		.OrderByDescending(x => x);
 }
 
 <section>
 	<header>
 		<h2>Blog archive by date</h2>
-		<h3>@heading</h3>
 	</header>
-	@Html.Partial(@"_layouts\postListing")
+	<ul>
+	@foreach (var year in archivePosts.GroupBy(x => x.Get<DateTime>("date").Year))
+	{
+		<li>
+			<h3>@year.Key</h3>
+			<ul>
+				@foreach (var month in year.GroupBy(x => x.Get<DateTime>("date").ToString("MMMM")))
+				{
+					ViewData["PostListDocuments"] = month;
+					<li>
+						<h4>@month.Key</h4>
+						@Html.Partial(@"_layouts\postListing")
+					</li>
+				}
+			</ul>
+		</li>
+	}
+	</ul>
+</section>
+
+<section>
+	<header>
+		<h2>Year Archive</h2>
+	</header>
+	<ul>
+		@foreach (var year in years)
+		{
+			<li>
+				<a href="/@year/">@year</a>
+			</li>
+		}
+	</ul>
 </section>

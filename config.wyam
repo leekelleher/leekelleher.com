@@ -19,13 +19,14 @@ Pipelines.Add("Posts",
 Pipelines.Add("Archives",
 	ReadFiles("archive.cshtml"),
 	Execute(@ctx.Documents
-		.Where(x => x.ContainsKey("date"))
+		.ContainsKey("date")
 		.SelectMany(x => {
 			var items = new[]{ "yyyy", "yyyy/MM", "yyyy/MM/dd" };
 			return items.Select(d => new
 				{
 					DateFormat = d,
-					DateValue = x.Get<DateTime>("date").ToString(d)
+					DateValue = x.Get<DateTime>("date").ToString(d),
+					DateTitle = x.Get<DateTime>("date").ToString(string.Join(" ", d.Split('/').Reverse()).Replace("MM", "MMMM"))
 				}
 			);
 		})
@@ -33,7 +34,8 @@ Pipelines.Add("Archives",
 		.Select(x => @ctx.GetDocument(@doc, new Dictionary<string, object>()
 			{
 				{ "ArchiveDateFormat", x.DateFormat },
-				{ "ArchiveDate", x.DateValue }
+				{ "ArchiveDate", x.DateValue },
+				{ "title", "Archive for " + x.DateTitle }
 			})
 		)
 	),
@@ -52,15 +54,15 @@ Pipelines.Add("Tags",
 		.Distinct()
 		.Select(x => @ctx.GetDocument(@doc, new Dictionary<string, object>()
 			{ 
-				{ "Title", x },
-				{ "Tag", x.ToLowerInvariant().Replace(' ', '-') }
+				{ "title", x },
+				{ "tag", x.ToLowerInvariant().Replace(' ', '-') }
 			})
 		)
 	),
-	CopyMeta("Tag", "canonical", "/tag/{0}/"),
+	CopyMeta("tag", "canonical", "/tag/{0}/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
-	WriteFiles("./tag/" + @doc.String("Tag") + "/index.html")
+	WriteFiles("./tag/" + @doc.String("tag") + "/index.html")
 );
 
 Pipelines.Add("Pages",
@@ -87,7 +89,7 @@ Pipelines.Add("Feeds",
 	OrderBy(@doc.Get<DateTime>("date"))
 		.Descending(true),
 	Rss(siteRoot: "http://leekelleher.com",
-		outputRssFilePath: "feed.xml",
+		outputRssFilePath: "feed/index.xml",
 		feedTitle: "Lee Kelleher",
 		feedDescription: "Umbraco Specialist"
 	)
@@ -96,7 +98,6 @@ Pipelines.Add("Feeds",
 		.WithPublicationDateMetaKey("date")
 		.AssumePermalinks()
 		.WithLinkCustomizer(x => x.Replace("/index.html", "/")),
-	Meta("canonical", "feed.xml"),
 	WriteFiles()
 );
 
