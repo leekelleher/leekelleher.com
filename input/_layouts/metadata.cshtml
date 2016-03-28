@@ -1,0 +1,10 @@
+@{
+	var siteName = "Lee Kelleher - Umbraco Specialist";
+	var title = Model.ContainsKey("title") ? Model.String("title") + " | " + siteName : siteName;
+	var description = Model.String("Excerpt", "The personal website of Lee Kelleher; Umbraco specialist");
+	var keywords = Model.ContainsKey("tags") ? string.Join(",", Model.Get<string[]>("tags")).ToLower() : "leekelleher,kelleher,umbraco,asp.net,c#,csharp,xslt,mvc,mvp";
+}
+	<title>@title</title>
+
+	<meta name="description" content="@description">
+	<meta name="keywords" content="@keywords">

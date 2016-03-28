@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>@(Model.ContainsKey("title") ? Model.String("title") + " | " : "")Lee Kelleher - Umbraco Specialist</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<meta name="description" content="The personal website of Lee Kelleher; Umbraco specialist">
-	<meta name="keywords" content="leekelleher,kelleher,umbraco,asp.net,c#,csharp,xslt,mvc,mvp">
-
-	<link type="application/rss+xml" href="http://leekelleher.com/feed/" rel="alternate">
-	<link href="http://leekelleher.com@(Model.String("canonical", "/"))" rel="canonical">
+	@Html.Partial("_layouts/metadata.cshtml")
+	<link rel="alternate" href="http://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="http://leekelleher.com@(Model.String("canonical", "/"))">
 </head>
 <body>
 	<header>
@@ -43,7 +39,7 @@
 		</div>
 		<div>
 			<p><small><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_GB">All content is licensed under Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License</a></small></p>
-			<p><span rel="copyright">Copyright &copy; 2006-@DateTime.UtcNow.Year</span> <a href="https://plus.google.com/101191195603583215493?rel=author" rel="author">Lee Kelleher</a></p>
+			<p><span rel="copyright">Copyright &copy; 2006-@DateTime.UtcNow.Year</span> <a rel="author" href="https://plus.google.com/101191195603583215493?rel=author">Lee Kelleher</a></p>
 		</div>
 	</footer>
 </body>

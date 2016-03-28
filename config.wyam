@@ -9,8 +9,9 @@ Pipelines.Add("Posts",
 	ValidateMeta<DateTime>("date"),
 	CopyMeta("permalink", "canonical"),
 	Markdown(),
-	Excerpt()
-		.GetOuterHtml(false),
+	HtmlQuery("*:not(blockquote)>p")
+		.First()
+		.GetTextContent("Excerpt"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
 	WriteFiles("." + @doc["permalink"] + "index.html")
