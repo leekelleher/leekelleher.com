@@ -24,7 +24,7 @@
 <section>
 	<header>
 		<h1>@Model["title"]</h1>
-		<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToShortDateString()</time></span></p>
+		<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToString("dd/MM/yyyy")</time></span></p>
 	</header>
 	<article>
 		@RenderBody()

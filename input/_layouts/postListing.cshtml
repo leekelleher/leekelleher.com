@@ -26,7 +26,7 @@
 		
 		<li>
 			<h4><a href="@post["permalink"]" rel="bookmark">@post["title"]</a></h4>
-			<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToShortDateString()</time></span></p>
+			<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToString("dd/MM/yyyy")</time></span></p>
 			@if (post.ContainsKey("Excerpt"))
 			{
 				<p>@Html.Raw(post["Excerpt"])</p>
