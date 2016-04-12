@@ -1,7 +1,6 @@
 <?php
-header("HTTP/1.1 503 Service Temporarily Unavailable");
-header("Status: 503 Service Temporarily Unavailable");
-header("Retry-After: 600");
+header("HTTP/1.1 404 Not Found");
+header("Status: 404 Not Found");
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,12 +19,12 @@ header("Retry-After: 600");
 <body>
 	<div id="main">
 		<p>
-			<a href="http://www.flickr.com/photos/girliemac/6540643319/" title="503 - Service Unavailable by GirlieMac, on Flickr">
-				<img src="http://farm8.staticflickr.com/7157/6540643319_0f284d910d_o.jpg" width="750" height="600" alt="503 - Service Unavailable">
+			<a href="http://www.flickr.com/photos/girliemac/6508022985/" title="404 - Not Found by GirlieMac, on Flickr">
+				<img src="https://farm8.staticflickr.com/7172/6508022985_b22200ced0_b.jpg" width="750" height="600" alt="404 - Not Found">
 			</a>
 		</p>
 		<h1>lee<span>kelleher</span>.com</h1>
-		<h2>Down for essential maintenance, I'll be back soon!</h2>
+		<h2>The requested resource could not be found!</h2>
 	</div>
 </body>
 </html>

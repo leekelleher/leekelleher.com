@@ -32,7 +32,17 @@ Redirect 302 /2006/08/27/browser-capabilities-php-project/ https://github.com/Ga
 Redirect 302 /2006/08/27/php-standalone-get_browser-for-browscap/ http://alexandre.alapetite.fr/doc-alex/php-local-browscap/
 # END Redirects
 
-# BEGIN Rewrite for assets/favicons
+# # BEGIN Maintanence Mode
+# <IfModule mod_rewrite.c>
+# RewriteEngine On
+# RewriteBase /
+# RewriteCond %{REQUEST_URI} !/503.php$
+# RewriteCond %{REMOTE_ADDR} !^86\.31\.167\.101$
+# RewriteRule ^(.*)$ /503.php [R=302,L]
+# </IfModule>
+# # END Maintanence Mode
+
+# BEGIN Rewrite for Favicons
 <IfModule mod_rewrite.c>
 RewriteRule ^favicon\.ico$ assets/ico/favicon.ico [L]
 RewriteRule ^apple-touch-icon\.png$ assets/ico/apple-touch-icon.png [L]
@@ -44,6 +54,21 @@ RewriteRule ^apple-touch-icon-144x144\.png$ assets/ico/apple-touch-icon-144.png 
 </IfModule>
 # END Rewrite for Favicons
 
+# BEGIN Prevent Hacks
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} ^(.*)/CHANGELOG.txt$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/ckeditor/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/drupal/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/fckeditor/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/wordpress/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/wp-(.*)/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/wp-(.*).php$
+RewriteRule ^.*$ - [F,L]
+</IfModule>
+# END Prevent Hacks
+
 # BEGIN DreamHost
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -54,87 +79,43 @@ RewriteRule ^.*$ - [L]
 </IfModule>
 # END DreamHost
 
-# BEGIN WPSuperCache
+# BEGIN Page Not Found
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
-#If you serve pages from behind a proxy you may want to change 'RewriteCond %{HTTPS} on' to something more sensible
-AddDefaultCharset UTF-8
-RewriteCond %{REQUEST_URI} !^.*[^/]$
-RewriteCond %{REQUEST_URI} !^.*//.*$
-RewriteCond %{REQUEST_METHOD} !POST
-RewriteCond %{QUERY_STRING} !.*=.*
-RewriteCond %{HTTP:Cookie} !^.*(comment_author_|wordpress_logged_in|wp-postpass_).*$
-RewriteCond %{HTTP:X-Wap-Profile} !^[a-z0-9\"]+ [NC]
-RewriteCond %{HTTP:Profile} !^[a-z0-9\"]+ [NC]
-RewriteCond %{HTTP:Accept-Encoding} gzip
-RewriteCond %{HTTPS} on
-RewriteCond %{DOCUMENT_ROOT}/wordpress/wp-content/cache/supercache/%{SERVER_NAME}/$1/index-https.html.gz -f
-RewriteRule ^(.*) "/wordpress/wp-content/cache/supercache/%{SERVER_NAME}/$1/index-https.html.gz" [L]
-
-RewriteCond %{REQUEST_URI} !^.*[^/]$
-RewriteCond %{REQUEST_URI} !^.*//.*$
-RewriteCond %{REQUEST_METHOD} !POST
-RewriteCond %{QUERY_STRING} !.*=.*
-RewriteCond %{HTTP:Cookie} !^.*(comment_author_|wordpress_logged_in|wp-postpass_).*$
-RewriteCond %{HTTP:X-Wap-Profile} !^[a-z0-9\"]+ [NC]
-RewriteCond %{HTTP:Profile} !^[a-z0-9\"]+ [NC]
-RewriteCond %{HTTP:Accept-Encoding} gzip
-RewriteCond %{HTTPS} !on
-RewriteCond %{DOCUMENT_ROOT}/wordpress/wp-content/cache/supercache/%{SERVER_NAME}/$1/index.html.gz -f
-RewriteRule ^(.*) "/wordpress/wp-content/cache/supercache/%{SERVER_NAME}/$1/index.html.gz" [L]
-
-RewriteCond %{REQUEST_URI} !^.*[^/]$
-RewriteCond %{REQUEST_URI} !^.*//.*$
-RewriteCond %{REQUEST_METHOD} !POST
-RewriteCond %{QUERY_STRING} !.*=.*
-RewriteCond %{HTTP:Cookie} !^.*(comment_author_|wordpress_logged_in|wp-postpass_).*$
-RewriteCond %{HTTP:X-Wap-Profile} !^[a-z0-9\"]+ [NC]
-RewriteCond %{HTTP:Profile} !^[a-z0-9\"]+ [NC]
-RewriteCond %{HTTPS} on
-RewriteCond %{DOCUMENT_ROOT}/wordpress/wp-content/cache/supercache/%{SERVER_NAME}/$1/index-https.html -f
-RewriteRule ^(.*) "/wordpress/wp-content/cache/supercache/%{SERVER_NAME}/$1/index-https.html" [L]
-
-RewriteCond %{REQUEST_URI} !^.*[^/]$
-RewriteCond %{REQUEST_URI} !^.*//.*$
-RewriteCond %{REQUEST_METHOD} !POST
-RewriteCond %{QUERY_STRING} !.*=.*
-RewriteCond %{HTTP:Cookie} !^.*(comment_author_|wordpress_logged_in|wp-postpass_).*$
-RewriteCond %{HTTP:X-Wap-Profile} !^[a-z0-9\"]+ [NC]
-RewriteCond %{HTTP:Profile} !^[a-z0-9\"]+ [NC]
-RewriteCond %{HTTPS} !on
-RewriteCond %{DOCUMENT_ROOT}/wordpress/wp-content/cache/supercache/%{SERVER_NAME}/$1/index.html -f
-RewriteRule ^(.*) "/wordpress/wp-content/cache/supercache/%{SERVER_NAME}/$1/index.html" [L]
-</IfModule>
-# END WPSuperCache
-
-# BEGIN WordPress
-<IfModule mod_rewrite.c>
-RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+RewriteRule . /404.php [QSA,L]
 </IfModule>
-# END WordPress
+# END Page Not Found
 
-# BEGIN WordPress Security
-<IfModule mod_rewrite.c>
-RewriteCond %{REQUEST_URI} !^/(wp-login.php|wp-admin/|wp-content/plugins/|wp-includes/).* [NC]
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ ///.*\ HTTP/ [NC,OR]
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\?\=?(http|ftp|ssl|https):/.*\ HTTP/ [NC,OR]
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\?\?.*\ HTTP/ [NC,OR]
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.(asp|ini|dll).*\ HTTP/ [NC,OR]
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.(htpasswd|htaccess|aahtpasswd).*\ HTTP/ [NC]
-RewriteRule .* - [F,NS,L]
+# BEGIN Deflate/Gzip
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE text/javascript
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE image/x-icon
+AddOutputFilterByType DEFLATE image/svg+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/x-font
+AddOutputFilterByType DEFLATE application/x-font-truetype
+AddOutputFilterByType DEFLATE application/x-font-ttf
+AddOutputFilterByType DEFLATE application/x-font-otf
+AddOutputFilterByType DEFLATE application/x-font-opentype
+AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+AddOutputFilterByType DEFLATE font/ttf
+AddOutputFilterByType DEFLATE font/otf
+AddOutputFilterByType DEFLATE font/opentype
+
+# For Olders Browsers Which Can't Handle Compression
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 </IfModule>
-# END WordPress Security
-
-# # BEGIN Maintanence Mode
-# <IfModule mod_rewrite.c>
-# RewriteEngine On
-# RewriteBase /
-# RewriteCond %{REQUEST_URI} !/503.php$
-# RewriteCond %{REMOTE_ADDR} !^86\.31\.167\.101$
-# RewriteRule ^(.*)$ /503.php [R=302,L]
-# </IfModule>
-# # END Maintanence Mode
+# END Deflate/Gzip

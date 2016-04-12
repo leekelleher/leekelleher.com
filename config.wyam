@@ -97,6 +97,7 @@ Pipelines.Add("Feeds",
 		.WithTitleMetaKey("title")
 		.WithDescriptionMetaKey("Excerpt")
 		.WithPublicationDateMetaKey("date")
+		.WithLanguage("en-GB")
 		.AssumePermalinks()
 		.WithLinkCustomizer(x => x.Replace("/index.html", "/")),
 	WriteFiles()
