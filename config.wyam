@@ -1,4 +1,68 @@
 ===
+
+public static class MyHelper
+{
+	public static string GetFirstWords(string text, int count, string appender)
+	{
+		if (string.IsNullOrEmpty(text))
+		{
+			return string.Empty;
+		}
+
+		var chars = new char[] { '\n', '\r', '\t', ' ' };
+		var words = text.Split(chars, StringSplitOptions.RemoveEmptyEntries);
+
+		if ((words == null) || (words.Length <= 0))
+		{
+			return string.Empty;
+		}
+
+		if (words.Length <= count)
+		{
+			return text;
+		}
+
+		var sb = new System.Text.StringBuilder();
+
+		for (int i = 0; i < Math.Min(words.Length, count); i++)
+		{
+			sb.AppendFormat("{0}{1}", words[i], (i < (count - 1)) ? " " : appender);
+		}
+
+		return sb.ToString();
+	}
+
+    public static string StripHtml(string input)
+	{
+		var less = '<';
+		var greater = '>';
+		var sb = new System.Text.StringBuilder(input.Length);
+		var inside = false;
+		for (var i = 0; i < input.Length; i++)
+		{
+			char let = input[i];
+			if (let == less)
+			{
+				inside = true;
+				continue;
+			}
+
+			if (let == greater)
+			{
+				inside = false;
+				continue;
+			}
+
+			if (inside == false)
+			{
+				sb.Append(let);
+			}
+		}
+
+		return sb.ToString();
+	}
+}
+
 ---
 
 InitialMetadata["Hostname"] = "http://leekelleher.com";
@@ -9,9 +73,9 @@ Pipelines.Add("Posts",
 	ValidateMeta<DateTime>("date"),
 	CopyMeta("permalink", "canonical"),
 	Markdown(),
-	HtmlQuery("*:not(blockquote)>p")
-		.First()
-		.GetTextContent("Excerpt"),
+	Meta("Excerpt", @doc.ContainsKey("excerpt")
+		? @doc.String("excerpt")
+		: MyHelper.GetFirstWords(MyHelper.StripHtml(@doc.Content), 55, "&#8230;")),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
 	WriteFiles("." + @doc["permalink"] + "index.html")
