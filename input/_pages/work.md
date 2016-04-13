@@ -1,7 +1,6 @@
 ---
 id: 3
 title: Work
-date: 2006-08-24T15:22:59+00:00
 author: leekelleher
 layout: page
 ---

@@ -1,9 +1,8 @@
 ---
 id: 19
-title: Contact Me
-date: 2006-08-31T11:58:11+00:00
+title: Contact
 author: leekelleher
-layout: page
+layout: contactForm
 guid: http://leekelleher.com/contact/
 ---
 Hey there! If you are planning on getting in touch with me for Umbraco/uComponents support, please keep in mind that I do contribute to those projects in my own free (limited) time.
@@ -12,7 +11,3 @@ If you appreciate my support, or would like to buy me a beer &#8211; please cons
 
 For professional Umbraco services, please do [get in touch with me via Umbrella](http://umbrellainc.co.uk/), (we are [Umbraco Certified Partners](http://umbrellainc.co.uk/)).
 
-<div id='contact-form-19'>
-</div>
-
-> _The contact form will return soon!_

@@ -1,7 +1,6 @@
 ---
 id: 4
 title: Projects
-date: 2006-08-24T15:29:04+00:00
 author: leekelleher
 layout: page
 guid: http://www.leekelleher.com/wp/?page_id=4

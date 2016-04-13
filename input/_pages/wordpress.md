@@ -1,7 +1,6 @@
 ---
 id: 52
 title: WordPress
-date: 2006-10-03T16:15:43+00:00
 author: leekelleher
 layout: page
 guid: http://leekelleher.com/wordpress/

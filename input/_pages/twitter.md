@@ -1,7 +1,6 @@
 ---
 id: 422
 title: Twitter
-date: 2013-01-30T01:07:13+00:00
 author: leekelleher
 layout: page
 guid: http://leekelleher.com/?page_id=422
