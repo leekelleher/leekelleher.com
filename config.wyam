@@ -146,6 +146,7 @@ Pipelines.Add("Homepage",
 	Meta("canonical", "/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
 	WriteFiles(".html")
 );
 
