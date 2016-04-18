@@ -65,7 +65,7 @@ public static class MyHelper
 
 ---
 
-InitialMetadata["Hostname"] = "http://leekelleher.com";
+Settings.Host = "leekelleher.com";
 
 Pipelines.Add("Posts",
 	ReadFiles("_posts/*.md"),
@@ -82,7 +82,7 @@ Pipelines.Add("Posts",
 );
 
 Pipelines.Add("Archives",
-	ReadFiles("archive.cshtml"),
+	ReadFiles("_layouts/archive.cshtml"),
 	Execute(@ctx.Documents
 		.ContainsKey("date")
 		.SelectMany(x => {
@@ -135,10 +135,10 @@ Pipelines.Add("Pages",
 	FrontMatter(Yaml()),
 	Markdown()
 		.EscapeAt(false),
-	Meta("canonical", @doc.String("RelativeFilePathBase").Replace("_pages\\", "/").Replace("\\", "/") + "/"),
+	Meta("canonical", @doc.String("RelativeFilePathBase").Replace("_pages/", "/") + "/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
-	WriteFiles(@doc.String("RelativeFilePathBase").Replace("_pages\\", "") + "\\index.html")
+	WriteFiles(@doc.String("RelativeFilePathBase").Replace("_pages/", "") + "/index.html")
 );
 
 Pipelines.Add("Homepage",
@@ -153,8 +153,8 @@ Pipelines.Add("Feeds",
 	Documents("Posts"),
 	OrderBy(@doc.Get<DateTime>("date"))
 		.Descending(true),
-	Rss(siteRoot: "http://leekelleher.com",
-		outputRssFilePath: "feed/index.xml",
+	Rss(siteUri: "http://leekelleher.com",
+		rssPath: "feed/index.xml",
 		feedTitle: "Lee Kelleher",
 		feedDescription: "Umbraco Specialist"
 	)
@@ -163,7 +163,7 @@ Pipelines.Add("Feeds",
 		.WithPublicationDateMetaKey("date")
 		.WithLanguage("en-GB")
 		.AssumePermalinks()
-		.WithLinkCustomizer(x => x.Replace("/index.html", "/")),
+		.WithLinkCustomizer(x => x.FullPath.Replace("/index.html", "/")),
 	WriteFiles()
 );
 
@@ -171,13 +171,13 @@ Pipelines.Add("XmlSitemap",
 	Documents(@ctx.Documents)
 		.Where(@doc.ContainsKey("canonical")),
 	OrderBy(@doc.String("canonical")),
-	Meta("SitemapItem", new SitemapItem(@doc.String("canonical")) { LastModUtc = @doc.Get<DateTime?>("date", null) }),
-	Sitemap(@doc["SitemapItem"]),
+	Meta("SitemapItem", new SitemapItem("http://" + Settings.Host + @doc.String("canonical")) { LastModUtc = @doc.Get<DateTime?>("date", null) }),
+	Sitemap(),
 	Meta("WritePath", "sitemap.xml"),
 	WriteFiles()
 );
 
 Pipelines.Add("Assets",
 	CopyFiles("_assets/*")
-		.To(x => x.Replace("input\\_assets\\", "output\\"))
+		.To(x => x.Path.FullPath.Replace("input/_assets/", "output/"))
 );
