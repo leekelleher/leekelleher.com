@@ -131,7 +131,7 @@ Pipelines.Add("Tags",
 );
 
 Pipelines.Add("Pages",
-	ReadFiles("_pages/*.md"),
+	ReadFiles("_pages/**/*.md"),
 	FrontMatter(Yaml()),
 	Markdown()
 		.EscapeAt(false),

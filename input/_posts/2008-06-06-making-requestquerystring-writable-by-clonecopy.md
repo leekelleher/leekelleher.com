@@ -23,7 +23,9 @@ Unfortunately, the `Request.QueryString`&#8216;s `CopyTo` method assigns the val
 
 You need to copy the `Request.QueryString` object to a new `NameValueCollection` instance, here&#8217;s how:
 
-<pre class="brush: csharp; title: ; notranslate" title="">NameValueCollection qs = new NameValueCollection(Request.QueryString);</pre>
+```csharp
+NameValueCollection qs = new NameValueCollection(Request.QueryString);
+```
 
 Now you can add/remove the key/values to your hearts content!
 

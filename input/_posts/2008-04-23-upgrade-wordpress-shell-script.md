@@ -23,7 +23,8 @@ Now that I&#8217;ve found my new best friend ([the sourcecode short-code](http:/
 
 Here&#8217;s a quick Unix shell script that I use to upgrade my [WordPress](http://wordpress.org/) installations:
 
-<pre class="brush: python; title: ; notranslate" title="">#!/bin/sh
+```python
+#!/bin/sh
 # WordPress Update Script
 # Written by: Lee Kelleher
 # Released: 2008-04-23
@@ -39,7 +40,8 @@ tar -zxvf latest.tar.gz
 echo "Removing downloaded archive..."
 rm -f latest.tar.gz
 
-echo "WordPress Upgrade complete!"</pre>
+echo "WordPress Upgrade complete!"
+```
 
 It&#8217;s a very very basic script&#8230; if you&#8217;re looking for something more user-friendly, (with back-ups), then either take a read of the [WordPress Codex article](http://codex.wordpress.org/Installing_WordPress#Step_1:_Download_and_Extract), or download [a better Unix shell script](http://krell.cellsandbytes.net/2007/02/22/wordpress-upgrade-script/).
 

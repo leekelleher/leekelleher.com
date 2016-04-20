@@ -21,20 +21,22 @@ Most ASP.NET developers know that you can get a key/value pair string from the `
 
 So how do you take a `NameValueCollection` object and get a nicely formatted key/value pair string? (i.e. &#8220;`key1=value1&key2=value2`&#8220;) &#8230; Here&#8217;s a method I wrote a while ago:
 
-<pre class="brush: csharp; title: ; notranslate" title="">/// &lt;summary&gt;
+```csharp
+/// <summary>
 /// Constructs a QueryString (string).
 /// Consider this method to be the opposite of "System.Web.HttpUtility.ParseQueryString"
-/// &lt;/summary&gt;
-/// &lt;param name="nvc"&gt;NameValueCollection&lt;/param&gt;
-/// &lt;returns&gt;String&lt;/returns&gt;
+/// </summary>
+/// <param name="nvc">NameValueCollection</param>
+/// <returns>string</returns>
 public static String ConstructQueryString(NameValueCollection parameters)
 {
-	List&lt;String&gt; items = new List&lt;String&gt;();
+	List<string> items = new List<string>();
 
-	foreach (String name in parameters)
-		items.Add(String.Concat(name, "=", System.Web.HttpUtility.UrlEncode(parameters[name])));
+	foreach (string name in parameters)
+		items.Add(string.Concat(name, "=", System.Web.HttpUtility.UrlEncode(parameters[name])));
 
-	return String.Join("&", items.ToArray());
-}</pre>
+	return string.Join("&", items.ToArray());
+}
+```
 
 Just in case you didn&#8217;t know about the `System.Web.HttpUtility.ParseQueryString` method, it&#8217;s a quick way of converting a query (key/value pairs) string back into a `NameValueCollection`.

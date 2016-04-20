@@ -21,17 +21,19 @@ I feel like a complete n00b &#8230; I&#8217;ve only just found out how to mark-u
 
 It&#8217;s in their FAQs: [**How do I post source code?**](http://faq.wordpress.com/2007/09/03/how-do-i-post-source-code/)
 
-Essentially you use the short-code: `<strong>[</strong><strong>sourcecode language='css']...[/sourcecode</strong><strong>]</strong>`
+Essentially you use the short-code: `[sourcecode language='css']...[/sourcecode]`
 
 Here&#8217;s an example:
 
-<pre class="brush: csharp; title: ; notranslate" title="">// A "Hello World!" program in C#
+```csharp
+// A "Hello World!" program in C#
 class Hello
 {
    static void Main()
    {
       System.Console.WriteLine("Hello World!");
    }
-}</pre>
+}
+```
 
 I knew about WP.org plugins that did this, but I&#8217;ve been scratching my head on how do this on WP.com for ages now!

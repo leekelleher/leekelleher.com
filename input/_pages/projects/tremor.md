@@ -22,60 +22,24 @@ We only got to play 4 live gigs in total before we split up, we actually headlin
 
 Tremor were: Jeff Moore, Graeme Bourque, Lee Kelleher, Ian Dunn and [Paul Hagan](http://www.thescales.co.uk/).
 
-<div class="items">
-  <div class="item focus">
-    <h2>
-      Get Yourself a Mate Called Smith
-    </h2>
+## Get Yourself a Mate Called Smith
     
-    <p>
-      <img src="http://leekelleher.com/mp3/tremor/matesmith.jpg" width="350" height="350" alt="[Get Yourself a Mate Called Smith album cover]" title="Get Yourself a Mate Called Smith album cover" align="left" /><br /> Demo CD featuring Day At The End Of The World and This Time.
-    </p>
-    
-    <ul>
-      <li>
-        <a href="http://leekelleher.com/mp3/tremor/matesmith--day-at-the-end-of-the-world.mp3" rel="nofollow">Day At The End Of The World</a> (04:30 &bull; 4.16 MB)
-      </li>
-      <li>
-        <a href="http://leekelleher.com/mp3/tremor/matesmith--this-time.mp3" rel="nofollow">This Time</a> (04:09 &bull; 3.85 MB)
-      </li>
-    </ul>
-  </div>
-  
-  <div class="item focus">
-    <h2>
-      Live at Crash
-    </h2>
-    
-    <p>
-      <img src="http://leekelleher.com/mp3/tremor/livecrash.jpg" width="350" height="350" alt="[Live at Crash album cover]" title="Live at Crash album cover" align="right" /><br /> CD-EP featuring Out That Way, Somewhere and The Girl Next Door.
-    </p>
-    
-    <ul>
-      <li>
-        <a href="http://leekelleher.com/mp3/tremor/livecrash--another-planet.mp3" rel="nofollow">Another Planet</a></a> (03:00 &bull; 2.78 MB)
-      </li>
-      <li>
-        <a href="http://leekelleher.com/mp3/tremor/livecrash--girl-next-door.mp3" rel="nofollow">Girl Next Door</a> (03:10 &bull; 2.93 MB)
-      </li>
-      <li>
-        <a href="http://leekelleher.com/mp3/tremor/livecrash--day-at-the-end-of-the-world.mp3" rel="nofollow">Day At The End Of The World</a> (03:20 &bull; 3.09 MB)
-      </li>
-      <li>
-        <a href="http://leekelleher.com/mp3/tremor/livecrash--not-today.mp3" rel="nofollow">Not Today</a> (04:16 &bull; 3.94 MB)
-      </li>
-      <li>
-        <a href="http://leekelleher.com/mp3/tremor/livecrash--somewhere.mp3" rel="nofollow">Somewhere</a> (03:51 &bull; 3.56 MB)
-      </li>
-      <li>
-        <a href="http://leekelleher.com/mp3/tremor/livecrash--out-that-way.mp3" rel="nofollow">Out That Way</a> (03:33 &bull; 3.29 MB)
-      </li>
-      <li>
-        <a href="http://leekelleher.com/mp3/tremor/livecrash--lets-get-high.mp3" rel="nofollow">Let&#8217;s Get High</a> (03:08 &bull; 2.91 MB)
-      </li>
-      <li>
-        <a href="http://leekelleher.com/mp3/tremor/livecrash--this-time.mp3" rel="nofollow">This Time</a> (04:19 &bull; 3.99 MB)
-      </li>
-    </ul>
-  </div>
-</div>
+<img src="http://leekelleher.com/mp3/tremor/matesmith.jpg" width="350" height="350" alt="[Get Yourself a Mate Called Smith album cover]" title="Get Yourself a Mate Called Smith album cover"><br> Demo CD featuring Day At The End Of The World and This Time.
+
+* <a href="http://leekelleher.com/mp3/tremor/matesmith--day-at-the-end-of-the-world.mp3" rel="nofollow">Day At The End Of The World</a> (04:30 &bull; 4.16 MB)
+* <a href="http://leekelleher.com/mp3/tremor/matesmith--this-time.mp3" rel="nofollow">This Time</a> (04:09 &bull; 3.85 MB)
+
+---
+
+## Live at Crash
+
+<img src="http://leekelleher.com/mp3/tremor/livecrash.jpg" width="350" height="350" alt="[Live at Crash album cover]" title="Live at Crash album cover"><br> CD-EP featuring Out That Way, Somewhere and The Girl Next Door.
+
+* <a href="http://leekelleher.com/mp3/tremor/livecrash--another-planet.mp3" rel="nofollow">Another Planet</a></a> (03:00 &bull; 2.78 MB)
+* <a href="http://leekelleher.com/mp3/tremor/livecrash--girl-next-door.mp3" rel="nofollow">Girl Next Door</a> (03:10 &bull; 2.93 MB)
+* <a href="http://leekelleher.com/mp3/tremor/livecrash--day-at-the-end-of-the-world.mp3" rel="nofollow">Day At The End Of The World</a> (03:20 &bull; 3.09 MB)
+* <a href="http://leekelleher.com/mp3/tremor/livecrash--not-today.mp3" rel="nofollow">Not Today</a> (04:16 &bull; 3.94 MB)
+* <a href="http://leekelleher.com/mp3/tremor/livecrash--somewhere.mp3" rel="nofollow">Somewhere</a> (03:51 &bull; 3.56 MB)
+* <a href="http://leekelleher.com/mp3/tremor/livecrash--out-that-way.mp3" rel="nofollow">Out That Way</a> (03:33 &bull; 3.29 MB)
+* <a href="http://leekelleher.com/mp3/tremor/livecrash--lets-get-high.mp3" rel="nofollow">Let&#8217;s Get High</a> (03:08 &bull; 2.91 MB)
+* <a href="http://leekelleher.com/mp3/tremor/livecrash--this-time.mp3" rel="nofollow">This Time</a> (04:19 &bull; 3.99 MB)

@@ -2,7 +2,7 @@
 
 <section>
 	<header>
-		<h1>@Model["title"]</h1>
+		<h1>@Html.Raw(Model.String("title"))</h1>
 	</header>
 	<article>
 		@RenderBody()

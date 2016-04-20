@@ -26,39 +26,40 @@ Here&#8217;s where a front-end developer&#8217;s best friend comes in&#8230; use
 
 After 15 mins of building up the HTML output string in JavaScript, here&#8217;s the code:
 
-<pre class="brush: jscript; title: ; notranslate" title="">$(document).ready(function()
+```jscript
+$(document).ready(function()
 {
 	var $dob = $('input#ProfileEdit_DateOfBirth');
-	if ($dob.length &gt; 0) {
+	if ($dob.length > 0) {
 		var dob = $dob.val().split('-', 3);
-		var html = '&lt;select name="dob-day" id="dob-day" class="dob-date"&gt;';
-		for(var i = 1; i &lt;= 31; i++){
-			html += '&lt;option value="' + i + '"';
+		var html = '<select name="dob-day" id="dob-day" class="dob-date">';
+		for(var i = 1; i <= 31; i++){
+			html += '<option value="' + i + '"';
 			if (dob&#91;2&#93; == i)
 				html += ' selected="selected"';
-			html += '&gt;' + i + '&lt;/option&gt;';
+			html += '>' + i + '</option>';
 		}
-		html += '&lt;/select&gt; ';
+		html += '</select> ';
 
 		var months = new Array('January','February','March','April','May','June','July','August','September','October','November','December');
-		html += '&lt;select name="dob-month" id="dob-month" class="dob-date"&gt;';
-		for(var i = 1; i &lt;= 12; i++){
-			html += '&lt;option value="' + i + '"';
+		html += '<select name="dob-month" id="dob-month" class="dob-date">';
+		for(var i = 1; i <= 12; i++){
+			html += '<option value="' + i + '"';
 			if (dob&#91;1&#93; == i)
 				html += ' selected="selected"';
-			html += '&gt;' + months[i - 1] + '&lt;/option&gt;';
+			html += '>' + months[i - 1] + '</option>';
 		}
-		html += '&lt;/select&gt; ';
+		html += '</select> ';
 
 		var thisYear = new Date().getFullYear();
-		html += '&lt;select name="dob-year" id="dob-year" class="dob-date"&gt;';
-		for(var i = (thisYear - 16); i &gt;= (thisYear - 90); i--){
-			html += '&lt;option value="' + i + '"';
+		html += '<select name="dob-year" id="dob-year" class="dob-date">';
+		for(var i = (thisYear - 16); i >= (thisYear - 90); i--){
+			html += '<option value="' + i + '"';
 			if (dob&#91;0&#93; == i)
 				html += ' selected="selected"';
-			html += '&gt;' + i + '&lt;/option&gt;';
+			html += '>' + i + '</option>';
 		}
-		html += '&lt;/select&gt; ';
+		html += '</select> ';
 
 		$dob.after(html).css('display','none');
 
@@ -66,8 +67,9 @@ After 15 mins of building up the HTML output string in JavaScript, here&#8217;s 
 			$dob.val($('select#dob-year').val() + '-' + $('select#dob-month').val() + '-' + $('select#dob-day').val())
 		});
 	}
-});</pre>
+});
+```
 
-Any changes to the <select> elements trigger the jQuery .change() event, which are then updated back in the original text-input field.  The server-side code (in this case ASP.NET) is non the wiser.
+Any changes to the `<select>` elements trigger the jQuery .change() event, which are then updated back in the original text-input field.  The server-side code (in this case ASP.NET) is non the wiser.
 
 So there you go, that&#8217;s my quick-n-dirty approach to using jQuery to swap form fields.

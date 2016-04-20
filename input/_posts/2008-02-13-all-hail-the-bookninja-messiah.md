@@ -44,7 +44,9 @@ I needed to find a way of bulk converting them back to proper &#8220;pages&#8221
 
 I adapted the SQL to fit my needs:
 
-> **`UPDATE wp_posts SET post_type = "page" WHERE guid LIKE "%?page_id=%";`**
+```sql
+UPDATE wp_posts SET post_type = "page" WHERE guid LIKE "%?page_id=%";
+```
 
 With that, Bookninja was back to normal&#8230; George has dubbed me &#8220;**[The Bookninja Messiah](http://www.bookninja.com/?p=3737)**&#8220;! [Cue: Monty Python gag]
 
