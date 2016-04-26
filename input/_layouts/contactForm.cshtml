@@ -1,10 +1,10 @@
 @{Layout = @"_layouts\_layout.cshtml";}
 
-<section>
-	<header>
-		<h1>@Model["title"]</h1>
-	</header>
+<div>
 	<article>
+		<header>
+			<h1>@Model["title"]</h1>
+		</header>
 		@RenderBody()
 	</article>
 	<form action="http://code.leekelleher.com/forms/send-email.php" method="post">
@@ -12,11 +12,11 @@
 			<legend>Contact me</legend>
 			<p>
 				<label for="name">Name: </label>
-				<input type="text" name="name" id="name" placeholder="(required)" required aria-required="true">
+				<input type="text" name="name" id="name" placeholder="(required)" required>
 			</p>
 			<p>
 				<label for="email">Email: </label>
-				<input type="email" name="email" id="email" placeholder="(required)" required aria-required="true">
+				<input type="email" name="email" id="email" placeholder="(required)" required>
 			</p>
 			<p>
 				<label for="website">Website: </label>
@@ -24,7 +24,7 @@
 			</p>
 			<p>
 				<label for="comment">Comment: </label><br>
-				<textarea name="comment" id="comment" cols="72" rows="15" placeholder="(required)" required aria-required="true"></textarea>
+				<textarea name="comment" id="comment" cols="72" rows="15" placeholder="(required)" required></textarea>
 			</p>
 			<p>
 				<input type="submit" value="Send &#187;">
@@ -32,4 +32,4 @@
 			</p>
 		</fieldset>
 	</form>
-</section>
+</div>

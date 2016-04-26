@@ -21,16 +21,16 @@
 	};
 }
 
-<section>
-	<header>
-		<h1>@Html.Raw(Model.String("title"))</h1>
-		<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToString("dd/MM/yyyy")</time></span></p>
-	</header>
+<div>
 	<article>
+		<header>
+			<h1>@Html.Raw(Model.String("title"))</h1>
+			<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToString("dd/MM/yyyy")</time></span></p>
+		</header>
 		@RenderBody()
 	</article>
 	<aside>
 		<p><span>Tags:</span> @getTags(Model)</p>
 	</aside>
 	@Html.Partial("_layouts/disqusComments")
-</section>
+</div>

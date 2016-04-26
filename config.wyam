@@ -78,6 +78,7 @@ Pipelines.Add("Posts",
 		: MyHelper.GetFirstWords(MyHelper.StripHtml(@doc.Content), 55, "&#8230;")),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
 	WriteFiles("." + @doc["permalink"] + "index.html")
 );
 
@@ -107,6 +108,7 @@ Pipelines.Add("Archives",
 	CopyMeta("ArchiveDate", "canonical", "/{0}/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
 	WriteFiles(@doc["ArchiveDate"] + "/index.html")
 );
 
@@ -127,6 +129,7 @@ Pipelines.Add("Tags",
 	CopyMeta("tag", "canonical", "/tag/{0}/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
 	WriteFiles("./tag/" + @doc.String("tag") + "/index.html")
 );
 
@@ -165,6 +168,7 @@ Pipelines.Add("Feeds",
 		.WithLanguage("en-GB")
 		.AssumePermalinks()
 		.WithLinkCustomizer(x => x.FullPath.Replace("/index.html", "/")),
+	MinifyXml(),
 	WriteFiles()
 );
 
@@ -179,6 +183,6 @@ Pipelines.Add("XmlSitemap",
 );
 
 Pipelines.Add("Assets",
-	CopyFiles("_assets/*")
+	CopyFiles("_assets/**")
 		.To(x => x.Path.FullPath.Replace("input/_assets/", "output/"))
 );

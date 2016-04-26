@@ -17,7 +17,7 @@
 
 <section>
 	<header>
-		<h2>Blog archive by date</h2>
+		<h1>Blog archive by date</h1>
 	</header>
 	<ul>
 	@foreach (var year in archivePosts.GroupBy(x => x.Get<DateTime>("date").Year))

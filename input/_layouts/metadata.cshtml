@@ -4,7 +4,13 @@
 	var description = Model.String("Excerpt", "The personal website of Lee Kelleher; Umbraco specialist");
 	var keywords = Model.ContainsKey("tags") ? string.Join(",", Model.Get<string[]>("tags")).ToLower() : "leekelleher,kelleher,umbraco,asp.net,c#,csharp,xslt,mvc,mvp";
 }
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<title>@Html.Raw(title)</title>
 
 	<meta name="description" content="@description">
 	<meta name="keywords" content="@keywords">
+	<link rel="alternate" href="http://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="http://leekelleher.com@(Model.String("canonical", "/"))">
+	<meta name="generator" content="Wyam">
