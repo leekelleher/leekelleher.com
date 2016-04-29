@@ -62,7 +62,6 @@ RewriteCond %{REQUEST_URI} ^(.*)/CHANGELOG.txt$ [OR]
 RewriteCond %{REQUEST_URI} ^(.*)/ckeditor/(.*)$ [OR]
 RewriteCond %{REQUEST_URI} ^(.*)/drupal/(.*)$ [OR]
 RewriteCond %{REQUEST_URI} ^(.*)/fckeditor/(.*)$ [OR]
-RewriteCond %{REQUEST_URI} ^(.*)/wordpress/(.*)$ [OR]
 RewriteCond %{REQUEST_URI} ^(.*)/wp-(.*)/(.*)$ [OR]
 RewriteCond %{REQUEST_URI} ^(.*)/wp-(.*).php$
 RewriteRule ^.*$ - [F,L]
