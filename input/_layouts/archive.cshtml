@@ -17,31 +17,26 @@
 
 <section>
 	<header>
-		<h1>Blog archive by date</h1>
+		<h1>@Model.String("title")</h1>
 	</header>
 	<ul>
 	@foreach (var year in archivePosts.GroupBy(x => x.Get<DateTime>("date").Year))
 	{
-		<li>
-			<h3>@year.Key</h3>
-			<ul>
-				@foreach (var month in year.GroupBy(x => x.Get<DateTime>("date").ToString("MMMM")))
-				{
-					ViewData["PostListDocuments"] = month;
-					<li>
-						<h4>@month.Key</h4>
-						@Html.Partial("_layouts/postListing")
-					</li>
-				}
-			</ul>
-		</li>
+		foreach (var month in year.GroupBy(x => x.Get<DateTime>("date").ToString("MMMM")))
+		{
+			ViewData["PostListDocuments"] = month;
+			<li>
+				<h2>@month.Key @year.Key</h2>
+				@Html.Partial("_layouts/postListing")
+			</li>
+		}
 	}
 	</ul>
 </section>
 
 <section>
 	<header>
-		<h2>Year Archive</h2>
+		<h2>Year archive</h2>
 	</header>
 	<ul>
 		@foreach (var year in years)
@@ -51,4 +46,11 @@
 			</li>
 		}
 	</ul>
+</section>
+
+<section>
+	<header>
+		<h2>Tag archive</h2>
+	</header>
+	<p><a href="/tag/">View all tags</a>.</p>
 </section>

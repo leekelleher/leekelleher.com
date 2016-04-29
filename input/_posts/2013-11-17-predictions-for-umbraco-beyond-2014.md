@@ -1,6 +1,6 @@
 ---
 id: 661
-title: 'Predictions for Umbraco &#8211; beyond 2014'
+title: 'Predictions for Umbraco - beyond 2014'
 date: 2013-11-17T21:24:12+00:00
 author: leekelleher
 layout: post

@@ -19,9 +19,11 @@
 	@Html.Partial("_layouts/postListing")
 </section>
 
+<hr>
+
 <section>
 	<header>
-		<h2>Year Archive</h2>
+		<h2>Year archive</h2>
 	</header>
 	<ul>
 		@foreach (var year in years)
@@ -31,4 +33,11 @@
 			</li>
 		}
 	</ul>
+</section>
+
+<section>
+	<header>
+		<h2>Tag archive</h2>
+	</header>
+	<p><a href="/tag/">View all tags</a>.</p>
 </section>

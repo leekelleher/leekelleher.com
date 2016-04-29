@@ -25,7 +25,7 @@
 		var date = post.Get<DateTime>("date");
 		
 		<li>
-			<h4><a href="@post["permalink"]" rel="bookmark">@Html.Raw(post.String("title"))</a></h4>
+			<h3><a href="@post["permalink"]" rel="bookmark">@Html.Raw(post.String("title"))</a></h3>
 			<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToString("dd/MM/yyyy")</time></span></p>
 			@if (post.ContainsKey("Excerpt"))
 			{

@@ -101,7 +101,7 @@ Pipelines.Add("Archives",
 			{
 				{ "ArchiveDateFormat", x.DateFormat },
 				{ "ArchiveDate", x.DateValue },
-				{ "title", "Archive for " + x.DateTitle }
+				{ "title", "Archive for posts dated '" + x.DateTitle + "'" }
 			})
 		)
 	),
@@ -114,14 +114,14 @@ Pipelines.Add("Archives",
 
 Pipelines.Add("Tags",
 	ReadFiles("_layouts/tags.cshtml"),
-	FrontMatter(),
 	Execute(@ctx.Documents
 		.Where(x => x.ContainsKey("tags"))
 		.SelectMany(x => x.Get<string[]>("tags"))
 		.Distinct()
 		.Select(x => @ctx.GetDocument(@doc, new Dictionary<string, object>()
 			{ 
-				{ "title", x },
+				{ "title", "Archive for posts tagged with '" + x + "'" },
+				{ "displayTag", x },
 				{ "tag", x.ToLowerInvariant().Replace(' ', '-') }
 			})
 		)
@@ -131,6 +131,16 @@ Pipelines.Add("Tags",
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
 	MinifyHtml(),
 	WriteFiles("./tag/" + @doc.String("tag") + "/index.html")
+);
+
+Pipelines.Add("TagListing",
+	ReadFiles("_layouts/tagListing.cshtml"),
+	FrontMatter(Yaml()),
+	CopyMeta("permalink", "canonical"),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
+	WriteFiles("." + @doc["permalink"] + "index.html")
 );
 
 Pipelines.Add("Pages",
@@ -157,6 +167,7 @@ Pipelines.Add("Feeds",
 	Documents("Posts"),
 	OrderBy(@doc.Get<DateTime>("date"))
 		.Descending(true),
+	Take(10),
 	Rss(siteUri: "http://leekelleher.com",
 		rssPath: "feed/index.xml",
 		feedTitle: "Lee Kelleher",
@@ -166,7 +177,7 @@ Pipelines.Add("Feeds",
 		.WithDescriptionMetaKey("Excerpt")
 		.WithPublicationDateMetaKey("date")
 		.WithLanguage("en-GB")
-		.AssumePermalinks()
+//		.AssumePermalinks()
 		.WithLinkCustomizer(x => x.FullPath.Replace("/index.html", "/")),
 	MinifyXml(),
 	WriteFiles()

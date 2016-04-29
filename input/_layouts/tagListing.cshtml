@@ -1,0 +1,39 @@
+title: All Tags
+permalink: /tag/
+---
+@{
+	var documentsByTag = Documents
+		.ContainsKey("tags")
+		.ContainsKey("date")
+		.ToLookup<string>("tags")
+		.OrderBy(x => x.Key);
+	
+	var small = 80;
+	var big = 300;
+	var unit = "%";
+	
+	var min = documentsByTag.Min(x => x.Count());
+	var max = documentsByTag.Max(x => x.Count());
+	
+	var spread = max - min; 
+	if (spread <= 0)
+	{
+		spread = 1;
+	}
+	
+	var fontspread = big - small;
+	var fontstep = (double)spread / fontspread;
+}
+
+<h1>@Model.String("title")</h1>
+
+<div>
+	@foreach(var group in documentsByTag)
+	{
+		var count = group.Count();
+		var link = @group.Key.ToLowerInvariant().Replace(' ', '-');
+		var size = string.Concat(small + Math.Ceiling(count / fontstep), unit);
+		
+		<a href="/tag/@link/" rel="tag" title="@count posts filed under @group.Key" style="font-size: @size;">@group.Key</a>
+	}
+</div>

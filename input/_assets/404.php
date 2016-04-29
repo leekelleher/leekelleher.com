@@ -1,4 +1,22 @@
 <?php
+// Gather visitor information
+$ip          = getenv("REMOTE_ADDR");      // IP Address
+$server_name = getenv("SERVER_NAME");      // Server Name
+$request_uri = getenv("REQUEST_URI");      // Requested URI
+$http_ref    = getenv("HTTP_REFERER");     // HTTP Referer
+$http_agent  = getenv("HTTP_USER_AGENT");  // User Agent
+$error_date  = date(DATE_ATOM);  // Error Date
+
+$items       = array($error_date, $request_uri, $http_ref, $server_name, $ip, $http_agent);
+
+if(!file_exists('_data/404.csv')){
+	file_put_contents('_data/404.csv', '');
+}
+
+$file = fopen('_data/404.csv', 'a');
+fputcsv($file, $items, "\t");
+fclose($file);
+
 header("HTTP/1.1 404 Not Found");
 header("Status: 404 Not Found");
 ?>
