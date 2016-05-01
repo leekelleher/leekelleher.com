@@ -10,14 +10,14 @@
 			return null;
 			
 		var tags = doc.Get<string[]>("tags");
-		var html = new System.Text.StringBuilder();
+		var items = new List<string>();
 
 		foreach (var tag in tags)
 		{
-			html.AppendFormat("<a href=\"/tag/{1}/\" rel=\"tag\">{0}</a> ", tag, tag.ToLowerInvariant().Replace(' ', '-'));
+			items.Add(string.Format("<a href=\"/tag/{1}/\" rel=\"tag\">{0}</a>", tag, tag.ToLowerInvariant().Replace(' ', '-')));
 		}
 
-		return Html.Raw(html.ToString());
+		return Html.Raw(string.Join(", ", items));
 	};
 }
 

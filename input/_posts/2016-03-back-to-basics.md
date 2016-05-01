@@ -19,7 +19,7 @@ tags:
 
 When I decided to reboot my website, I started to spend time browsing themes and designs, while I found many decent ones, there wasn't any that I felt comfortable with. I didn't have much interest in designing my own - using the latest CSS framework, with a dozen dependencies. I was getting bogged down with the style/presentation.
 
-I wanted to bring my focus back to content; _I wanted to take back my website!_
+I wanted to bring my focus back to content; _I wanted full control of my website!_
 
 I decided to leave the CSS out of it, forget about JavaScript and web-fonts, let's focus on using HTML, pure and simple, structural and semantic.  The added bonus is that my website would be accessible, responsive, lightweight and fast!
 
