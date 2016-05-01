@@ -6,34 +6,51 @@ permalink: /tag/
 		.ContainsKey("tags")
 		.ContainsKey("date")
 		.ToLookup<string>("tags")
-		.OrderBy(x => x.Key);
-	
-	var small = 80;
-	var big = 300;
-	var unit = "%";
-	
-	var min = documentsByTag.Min(x => x.Count());
-	var max = documentsByTag.Max(x => x.Count());
-	
-	var spread = max - min; 
-	if (spread <= 0)
+		.OrderByDescending(x => x.Count())
+		.ThenBy(x => x.Key);
+
+	Func<int, string> cssClass = (count) =>
 	{
-		spread = 1;
-	}
-	
-	var fontspread = big - small;
-	var fontstep = (double)spread / fontspread;
+		if (count >= 25)
+		{
+			return "ultra-popular";
+		}
+		else if (count >= 20)
+		{
+			return "very-popular";
+		}
+		else if (count >= 15)
+		{
+			return "popular";
+		}
+		else if (count >= 10)
+		{
+			return "somewhat-popular";
+		}
+		else if (count >= 5)
+		{
+			return "not-very-popular";
+		}
+		
+		return "not-popular";
+	};
 }
 
-<h1>@Model.String("title")</h1>
-
-<div>
-	@foreach(var group in documentsByTag)
-	{
-		var count = group.Count();
-		var link = @group.Key.ToLowerInvariant().Replace(' ', '-');
-		var size = string.Concat(small + Math.Ceiling(count / fontstep), unit);
-		
-		<a href="/tag/@link/" rel="tag" title="@count posts filed under @group.Key" style="font-size: @size;">@group.Key</a>
-	}
-</div>
+<section>
+	<header>
+		<h1>@Model.String("title")</h1>
+		<p>Here is a listing of all the tags used on my blog posts; presented in descending order, from the most used to the least used.</p>
+	</header>
+	<ol>
+		@foreach(var group in documentsByTag)
+		{
+			var count = group.Count();
+			var link = @group.Key.ToLowerInvariant().Replace(' ', '-');
+			
+			<li class="@cssClass(count)">
+				<span>@count @(count == 1 ? "post is" : "posts are") tagged with </span>
+				<a href="/tag/@link/"><em>@group.Key</em></a>
+			</li>
+		}
+	</ol>
+</section>
