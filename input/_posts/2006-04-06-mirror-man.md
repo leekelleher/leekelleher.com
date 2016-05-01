@@ -19,8 +19,6 @@ tags:
 ---
 Finally got around to uploading one of my short films to [YouTube.com](http://youtube.com/). [Mirror Man](http://www.youtube.com/watch?v=SkkhCrffjmw) was filmed about 2 years ago and has been shown at the [FACT Centre, Liverpool](http://www.fact.co.uk/)&#8230; Now you can watch it online!
 
-<p align="center">
-  [youtube=http://youtube.com/watch?v=SkkhCrffjmw]
-</p>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/SkkhCrffjmw" frameborder="0" allowfullscreen></iframe>
 
 Hope you enjoy it!
