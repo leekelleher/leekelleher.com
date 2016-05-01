@@ -1,0 +1,199 @@
+===
+
+public static class MyHelper
+{
+	public static string GetFirstWords(string text, int count, string appender)
+	{
+		if (string.IsNullOrEmpty(text))
+		{
+			return string.Empty;
+		}
+
+		var chars = new char[] { '\n', '\r', '\t', ' ' };
+		var words = text.Split(chars, StringSplitOptions.RemoveEmptyEntries);
+
+		if ((words == null) || (words.Length <= 0))
+		{
+			return string.Empty;
+		}
+
+		if (words.Length <= count)
+		{
+			return text;
+		}
+
+		var sb = new System.Text.StringBuilder();
+
+		for (int i = 0; i < Math.Min(words.Length, count); i++)
+		{
+			sb.AppendFormat("{0}{1}", words[i], (i < (count - 1)) ? " " : appender);
+		}
+
+		return sb.ToString();
+	}
+
+    public static string StripHtml(string input)
+	{
+		var less = '<';
+		var greater = '>';
+		var sb = new System.Text.StringBuilder(input.Length);
+		var inside = false;
+		for (var i = 0; i < input.Length; i++)
+		{
+			char let = input[i];
+			if (let == less)
+			{
+				inside = true;
+				continue;
+			}
+
+			if (let == greater)
+			{
+				inside = false;
+				continue;
+			}
+
+			if (inside == false)
+			{
+				sb.Append(let);
+			}
+		}
+
+		return sb.ToString();
+	}
+}
+
+---
+
+Settings.Host = "leekelleher.com";
+
+Pipelines.Add("Posts",
+	ReadFiles("_posts/*.md"),
+	FrontMatter(Yaml()),
+	ValidateMeta<DateTime>("date"),
+	CopyMeta("permalink", "canonical"),
+	Markdown(),
+	Meta("Excerpt", @doc.ContainsKey("excerpt")
+		? @doc.String("excerpt")
+		: MyHelper.GetFirstWords(MyHelper.StripHtml(@doc.Content), 55, "&#8230;")),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
+	WriteFiles("." + @doc["permalink"] + "index.html")
+);
+
+Pipelines.Add("Archives",
+	ReadFiles("_layouts/archive.cshtml"),
+	Execute(@ctx.Documents
+		.ContainsKey("date")
+		.SelectMany(x => {
+			var items = new[]{ "yyyy", "yyyy/MM", "yyyy/MM/dd" };
+			return items.Select(d => new
+				{
+					DateFormat = d,
+					DateValue = x.Get<DateTime>("date").ToString(d),
+					DateTitle = x.Get<DateTime>("date").ToString(string.Join(" ", d.Split('/').Reverse()).Replace("MM", "MMMM"))
+				}
+			);
+		})
+		.Distinct()
+		.Select(x => @ctx.GetDocument(@doc, new Dictionary<string, object>()
+			{
+				{ "ArchiveDateFormat", x.DateFormat },
+				{ "ArchiveDate", x.DateValue },
+				{ "title", "Archive for posts dated '" + x.DateTitle + "'" }
+			})
+		)
+	),
+	CopyMeta("ArchiveDate", "canonical", "/{0}/"),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
+	WriteFiles(@doc["ArchiveDate"] + "/index.html")
+);
+
+Pipelines.Add("Tags",
+	ReadFiles("_layouts/tags.cshtml"),
+	Execute(@ctx.Documents
+		.Where(x => x.ContainsKey("tags"))
+		.SelectMany(x => x.Get<string[]>("tags"))
+		.Distinct()
+		.Select(x => @ctx.GetDocument(@doc, new Dictionary<string, object>()
+			{ 
+				{ "title", "Archive for posts tagged with '" + x + "'" },
+				{ "displayTag", x },
+				{ "tag", x.ToLowerInvariant().Replace(' ', '-') }
+			})
+		)
+	),
+	CopyMeta("tag", "canonical", "/tag/{0}/"),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
+	WriteFiles("./tag/" + @doc.String("tag") + "/index.html")
+);
+
+Pipelines.Add("TagListing",
+	ReadFiles("_layouts/tagListing.cshtml"),
+	FrontMatter(Yaml()),
+	CopyMeta("permalink", "canonical"),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
+	WriteFiles("." + @doc["permalink"] + "index.html")
+);
+
+Pipelines.Add("Pages",
+	ReadFiles("_pages/**/*.md"),
+	FrontMatter(Yaml()),
+	Markdown()
+		.EscapeAt(false),
+	Meta("canonical", @doc.String("RelativeFilePathBase").Replace("_pages/", "/") + "/"),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	WriteFiles(@doc.String("RelativeFilePathBase").Replace("_pages/", "") + "/index.html")
+);
+
+Pipelines.Add("Homepage",
+	ReadFiles("index.cshtml"),
+	Meta("canonical", "/"),
+	Razor()
+		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
+	WriteFiles(".html")
+);
+
+Pipelines.Add("Feeds",
+	Documents("Posts"),
+	OrderBy(@doc.Get<DateTime>("date"))
+		.Descending(true),
+	Take(10),
+	Rss(siteUri: "http://leekelleher.com",
+		rssPath: "feed/index.xml",
+		feedTitle: "Lee Kelleher",
+		feedDescription: "Umbraco Specialist"
+	)
+		.WithTitleMetaKey("title")
+		.WithDescriptionMetaKey("Excerpt")
+		.WithPublicationDateMetaKey("date")
+		.WithLanguage("en-GB")
+//		.AssumePermalinks()
+		.WithLinkCustomizer(x => x.FullPath.Replace("/index.html", "/")),
+	MinifyXml(),
+	WriteFiles()
+);
+
+Pipelines.Add("XmlSitemap",
+	Documents(@ctx.Documents)
+		.Where(@doc.ContainsKey("canonical")),
+	OrderBy(@doc.String("canonical")),
+	Meta("SitemapItem", new SitemapItem("http://" + Settings.Host + @doc.String("canonical")) { LastModUtc = @doc.Get<DateTime?>("date", null) }),
+	Sitemap(),
+	Meta("WritePath", "sitemap.xml"),
+	WriteFiles()
+);
+
+Pipelines.Add("Assets",
+	CopyFiles("_assets/**")
+		.To(x => x.Path.FullPath.Replace("input/_assets/", "output/"))
+);

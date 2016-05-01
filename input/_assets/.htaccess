@@ -1,0 +1,120 @@
+# BEGIN Redirects
+Redirect 301 /wp-login.php http://leekelleher.com/
+Redirect 301 /wp/wp-links-opml.php http://leekelleher.com/wordpress/wp-links-opml.php
+Redirect 301 /js/jquery.min.js http://leekelleher.com/assets/js/jquery.min.js
+Redirect 301 /feeds/ http://leekelleher.com/feed/
+Redirect 301 /feeds/index.php http://leekelleher.com/feed/
+Redirect 301 /zeitgeist/ http://leekelleher.com/
+Redirect 301 /woFamily http://leekelleher.com/
+Redirect 301 /mp3/opentape/ https://soundcloud.com/leekelleher
+Redirect 301 /2006/08/31/ducks-with-teeth/ http://leekelleher.com/
+Redirect 301 /2006/11/30/the-mii-lebowski/ http://leekelleher.com/
+Redirect 301 /2007/04/13/hats-for-cats/ http://leekelleher.com/
+
+RedirectMatch 301 /+((?!wordpress).*)/wp-login.php http://leekelleher.com/
+RedirectMatch 301 /linklog/(.*) http://leekelleher.com/$1
+RedirectMatch 301 /tags/(.*) http://leekelleher.com/tag/$1
+RedirectMatch 301 /(.*)/timthumb.php http://leekelleher.com/
+RedirectMatch 301 /ajax.googleapis.com/(.*)$ https://ajax.googleapis.com/$1
+RedirectMatch 301 /platform.twitter.com/(.*)$ https://platform.twitter.com/$1
+RedirectMatch 301 /search.twitter.com/(.*)$ https://twitter.com/$1
+RedirectMatch 301 /(.*)https:/twitter.com$ https://twitter.com/leekelleher
+RedirectMatch 301 /(.*)function.session-start$ http://php.net/manual/en/function.session-start.php
+RedirectMatch 301 /(.*)function.fopen$ http://php.net/manual/en/function.fopen.php
+RedirectMatch 301 /embed.js(.*) http://leekelleher.disqus.com/embed.js$1
+RedirectMatch 301 /2009/09/08/umbraco-ultimate-picker-xslt-example/(.+)$ http://leekelleher.com/2009/09/08/umbraco-ultimate-picker-xslt-example/
+
+Redirect 302 /tag/browsers/ http://leekelleher.com/
+Redirect 302 /2007/01/23/hooray-for-joel/ http://news.bbc.co.uk/1/hi/entertainment/6289933.stm
+Redirect 302 /2006/12/18/bushs-united-states-of-whatever/ http://www.johnrichie.com/V2/movies/moviePage.php?title=My%20US%20of%20Whateva&width=550&height=400&file=BUSH_FINAL.swf
+Redirect 302 /2006/11/03/scratchzilla/ http://www.youtube.com/watch?v=IqULTO4SOqU
+Redirect 302 /2006/08/27/browser-capabilities-php-project/ https://github.com/GaretJax/phpbrowscap
+Redirect 302 /2006/08/27/php-standalone-get_browser-for-browscap/ http://alexandre.alapetite.fr/doc-alex/php-local-browscap/
+# END Redirects
+
+# # BEGIN Maintanence Mode
+# <IfModule mod_rewrite.c>
+# RewriteEngine On
+# RewriteBase /
+# RewriteCond %{REQUEST_URI} !/503.php$
+# RewriteCond %{REMOTE_ADDR} !^86\.31\.167\.101$
+# RewriteRule ^(.*)$ /503.php [R=302,L]
+# </IfModule>
+# # END Maintanence Mode
+
+# BEGIN Rewrite for Favicons
+<IfModule mod_rewrite.c>
+RewriteRule ^favicon\.ico$ assets/ico/favicon.ico [L]
+RewriteRule ^apple-touch-icon\.png$ assets/ico/apple-touch-icon.png [L]
+RewriteRule ^apple-touch-icon-precomposed\.png$ assets/ico/apple-touch-icon-precomposed.png [L]
+RewriteRule ^apple-touch-icon-57x57\.png$ assets/ico/apple-touch-114-icon.png [L]
+RewriteRule ^apple-touch-icon-114x114\.png$ assets/ico/apple-touch-icon-114.png [L]
+RewriteRule ^apple-touch-icon-72x72\.png$ assets/ico/apple-touch-icon-144.png [L]
+RewriteRule ^apple-touch-icon-144x144\.png$ assets/ico/apple-touch-icon-144.png [L]
+</IfModule>
+# END Rewrite for Favicons
+
+# BEGIN Prevent Hacks
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} ^(.*)/CHANGELOG.txt$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/ckeditor/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/drupal/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/fckeditor/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/wp-(.*)/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/wp-(.*).php$
+RewriteRule ^.*$ - [F,L]
+</IfModule>
+# END Prevent Hacks
+
+# BEGIN DreamHost
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} ^/stats/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^/failed_auth.html$
+RewriteRule ^.*$ - [L]
+</IfModule>
+# END DreamHost
+
+# BEGIN Page Not Found
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /404.php [QSA,L]
+</IfModule>
+# END Page Not Found
+
+# BEGIN Deflate/Gzip
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE text/javascript
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE image/x-icon
+AddOutputFilterByType DEFLATE image/svg+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/x-font
+AddOutputFilterByType DEFLATE application/x-font-truetype
+AddOutputFilterByType DEFLATE application/x-font-ttf
+AddOutputFilterByType DEFLATE application/x-font-otf
+AddOutputFilterByType DEFLATE application/x-font-opentype
+AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+AddOutputFilterByType DEFLATE font/ttf
+AddOutputFilterByType DEFLATE font/otf
+AddOutputFilterByType DEFLATE font/opentype
+
+# For Olders Browsers Which Can't Handle Compression
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+# END Deflate/Gzip

@@ -1,0 +1,35 @@
+@{Layout = @"_layouts\_layout.cshtml";}
+
+<div>
+	<article>
+		<header>
+			<h1>@Model["title"]</h1>
+		</header>
+		@RenderBody()
+	</article>
+	<form action="http://code.leekelleher.com/forms/send-email.php" method="post">
+		<fieldset>
+			<legend>Contact me</legend>
+			<p>
+				<label for="name">Name: </label>
+				<input type="text" name="name" id="name" placeholder="(required)" required>
+			</p>
+			<p>
+				<label for="email">Email: </label>
+				<input type="email" name="email" id="email" placeholder="(required)" required>
+			</p>
+			<p>
+				<label for="website">Website: </label>
+				<input type="url" name="website" id="website" placeholder="(optional)">
+			</p>
+			<p>
+				<label for="comment">Comment: </label><br>
+				<textarea name="comment" id="comment" cols="72" rows="15" placeholder="(required)" required></textarea>
+			</p>
+			<p>
+				<input type="submit" value="Send &#187;">
+				<input type="hidden" name="redirect" value="http://tmp.leekelleher.com/contact/thank-you/">
+			</p>
+		</fieldset>
+	</form>
+</div>

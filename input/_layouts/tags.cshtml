@@ -1,0 +1,18 @@
+@{
+	var documentsByTag = Documents
+		.ContainsKey("tags")
+		.ContainsKey("date")
+		.ToLookup<string>("tags");
+
+	var tag = Model.String("displayTag");
+
+	ViewData["PostListDocuments"] = documentsByTag[tag]
+		.OrderByDescending(x => x.Get<DateTime>("date"));
+}
+
+<section>
+	<header>
+		<h1>@Model.String("title")</h1>
+	</header>
+	@Html.Partial("_layouts/postListing")
+</section>

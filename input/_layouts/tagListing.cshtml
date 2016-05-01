@@ -1,0 +1,56 @@
+title: All Tags
+permalink: /tag/
+---
+@{
+	var documentsByTag = Documents
+		.ContainsKey("tags")
+		.ContainsKey("date")
+		.ToLookup<string>("tags")
+		.OrderByDescending(x => x.Count())
+		.ThenBy(x => x.Key);
+
+	Func<int, string> cssClass = (count) =>
+	{
+		if (count >= 25)
+		{
+			return "ultra-popular";
+		}
+		else if (count >= 20)
+		{
+			return "very-popular";
+		}
+		else if (count >= 15)
+		{
+			return "popular";
+		}
+		else if (count >= 10)
+		{
+			return "somewhat-popular";
+		}
+		else if (count >= 5)
+		{
+			return "not-very-popular";
+		}
+		
+		return "not-popular";
+	};
+}
+
+<section>
+	<header>
+		<h1>@Model.String("title")</h1>
+		<p>Here is a listing of all the tags used on my blog posts; presented in descending order, from the most used to the least used.</p>
+	</header>
+	<ol>
+		@foreach(var group in documentsByTag)
+		{
+			var count = group.Count();
+			var link = @group.Key.ToLowerInvariant().Replace(' ', '-');
+			
+			<li class="@cssClass(count)">
+				<span>@count @(count == 1 ? "post is" : "posts are") tagged with </span>
+				<a href="/tag/@link/"><em>@group.Key</em></a>
+			</li>
+		}
+	</ol>
+</section>

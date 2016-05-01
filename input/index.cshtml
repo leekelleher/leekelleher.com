@@ -1,0 +1,43 @@
+@{
+	var posts = Documents
+		.ContainsKey("date");
+
+	var years = posts
+		.Select(x => x.Get<DateTime>("date").Year)
+		.Distinct()
+		.OrderByDescending(x => x);
+
+	ViewData["PostListDocuments"] = posts
+		.OrderByDescending(x => x.Get<DateTime>("date"))
+		.Take(6);
+}
+
+<section>
+	<header>
+		<h2>Latest posts</h2>
+	</header>
+	@Html.Partial("_layouts/postListing")
+</section>
+
+<hr>
+
+<section>
+	<header>
+		<h2>Year archive</h2>
+	</header>
+	<ul>
+		@foreach (var year in years)
+		{
+			<li>
+				<a href="/@year/">@year</a>
+			</li>
+		}
+	</ul>
+</section>
+
+<section>
+	<header>
+		<h2>Tag archive</h2>
+	</header>
+	<p><a href="/tag/">View all tags</a>.</p>
+</section>

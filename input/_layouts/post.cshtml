@@ -1,0 +1,36 @@
+@using Wyam.Modules.Razor.Microsoft.AspNet.Html.Abstractions
+@{
+	Layout = @"_layouts\_layout.cshtml";
+	
+	var date = Model.Get<DateTime>("date");
+	
+	Func<IDocument, IHtmlContent> getTags = (doc) =>
+	{
+		if (!doc.ContainsKey("tags"))
+			return null;
+			
+		var tags = doc.Get<string[]>("tags");
+		var html = new System.Text.StringBuilder();
+
+		foreach (var tag in tags)
+		{
+			html.AppendFormat("<a href=\"/tag/{1}/\" rel=\"tag\">{0}</a> ", tag, tag.ToLowerInvariant().Replace(' ', '-'));
+		}
+
+		return Html.Raw(html.ToString());
+	};
+}
+
+<div>
+	<article>
+		<header>
+			<h1>@Html.Raw(Model.String("title"))</h1>
+			<p><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToString("dd/MM/yyyy")</time></span></p>
+		</header>
+		@RenderBody()
+	</article>
+	<aside>
+		<p><span>Tags:</span> @getTags(Model)</p>
+	</aside>
+	@Html.Partial("_layouts/disqusComments")
+</div>
