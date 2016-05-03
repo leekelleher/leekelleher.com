@@ -5,7 +5,7 @@ author: leekelleher
 layout: page
 guid: http://leekelleher.com/?page_id=422
 ---
-Hello! Thanks for following the link from my Twitter profile. I guess you&#8217;d like to know a little more about me and [my Twitter account](https://twitter.com/leekelleher)?
+Hello! Thanks for following the link from my Twitter profile. I guess you'd like to know a little more about me and [my Twitter account](https://twitter.com/leekelleher)?
 
 In recent years I have built up a reputation as an [Umbraco specialist](http://umbrellainc.co.uk). I am involved with the Umbraco project at many levels, from organising local events/meet-ups, developing packages and contributing to the core product. So the majority of my tweets will be on [Umbraco](http://our.umbraco.org) related subjects.
 
