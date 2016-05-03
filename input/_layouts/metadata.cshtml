@@ -3,6 +3,7 @@
 	var title = Model.ContainsKey("title") ? Model.String("title") + " | " + siteName : siteName;
 	var description = Model.String("Excerpt", "The personal website of Lee Kelleher; Umbraco specialist");
 	var keywords = Model.ContainsKey("tags") ? string.Join(",", Model.Get<string[]>("tags")).ToLower() : "leekelleher,kelleher,umbraco,asp.net,c#,csharp,xslt,mvc,mvp";
+	var css = Model.ContainsKey("css") ? Model.Get<string[]>("css") : null;
 }
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +12,14 @@
 
 	<meta name="description" content="@description">
 	<meta name="keywords" content="@keywords">
+	<meta name="generator" content="Wyam">
 	<link rel="alternate" href="http://leekelleher.com/feed/" type="application/rss+xml">
 	<link rel="canonical" href="http://leekelleher.com@(Model.String("canonical", "/"))">
-	<meta name="generator" content="Wyam">
+
+@if(css != null)
+{
+	foreach(var item in css)
+	{
+	<link rel="stylesheet" href="@item">
+	}
+}

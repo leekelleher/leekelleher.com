@@ -4,6 +4,8 @@ title: Contact
 author: leekelleher
 layout: contactForm
 guid: http://leekelleher.com/contact/
+css:
+  - /assets/css/form.css
 ---
 Hey there! If you are planning on getting in touch with me for Umbraco/uComponents support, please keep in mind that I do contribute to those projects in my own free (limited) time.
 
