@@ -1,4 +1,8 @@
-===
+#n -p Wyam.Modules.Html
+#n -p Wyam.Modules.Markdown
+#n -p Wyam.Modules.Minification
+#n -p Wyam.Modules.Razor
+#n -p Wyam.Modules.Yaml
 
 public static class MyHelper
 {
