@@ -197,7 +197,13 @@ Pipelines.Add("XmlSitemap",
 	WriteFiles()
 );
 
+Pipelines.Add("CssMinification",
+    ReadFiles("_assets/assets/css/*.css"),
+    MinifyCss(),
+    WriteFiles(@doc.String("RelativeFilePathBase").Replace("_assets/", "") + ".css")
+);
+
 Pipelines.Add("Assets",
-	CopyFiles("_assets/**")
+	CopyFiles("_assets/**/*{!.cshtml,!.md,!.css,}")
 		.To(x => x.Path.FullPath.Replace("input/_assets/", "output/"))
 );
