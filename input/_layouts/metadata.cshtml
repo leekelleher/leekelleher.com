@@ -3,6 +3,7 @@
 	var title = Model.ContainsKey("title") ? Model.String("title") + " | " + siteName : siteName;
 	var description = Model.String("Excerpt", "The personal website of Lee Kelleher; Umbraco specialist");
 	var keywords = Model.ContainsKey("tags") ? string.Join(",", Model.Get<string[]>("tags")).ToLower() : "leekelleher,kelleher,umbraco,asp.net,c#,csharp,xslt,mvc,mvp";
+	var url = string.Concat("http://leekelleher.com", Model.String("canonical", "/"));
 	var css = Model.ContainsKey("css") ? Model.Get<string[]>("css") : null;
 }
 	<meta charset="utf-8">
@@ -13,8 +14,16 @@
 	<meta name="description" content="@description">
 	<meta name="keywords" content="@keywords">
 	<meta name="generator" content="Wyam">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@("@leekelleher")">
+	<meta name="twitter:url" property="og:url" content="@url">
+	<meta name="twitter:title" property="og:title" content="@Model.String("title", siteName)">
+	<meta name="twitter:description" property="og:description" content="@description">
+	<meta name="twitter:image" property="og:image" content="http://leekelleher.com/assets/img/northbynorthwest_300x300.jpg">
+
 	<link rel="alternate" href="http://leekelleher.com/feed/" type="application/rss+xml">
-	<link rel="canonical" href="http://leekelleher.com@(Model.String("canonical", "/"))">
+	<link rel="canonical" href="@url">
 
 @if(css != null)
 {

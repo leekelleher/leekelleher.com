@@ -121,7 +121,7 @@ Pipelines.Add("Tags",
 	Execute(@ctx.Documents
 		.Where(x => x.ContainsKey("tags"))
 		.SelectMany(x => x.Get<string[]>("tags"))
-		.Distinct()
+		.Distinct(StringComparer.CurrentCultureIgnoreCase)
 		.Select(x => @ctx.GetDocument(@doc, new Dictionary<string, object>()
 			{ 
 				{ "title", "Archive for posts tagged with '" + x + "'" },
