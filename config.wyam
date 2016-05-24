@@ -1,4 +1,5 @@
 #n -p Wyam.Modules.Html
+#n -p Wyam.Modules.Less
 #n -p Wyam.Modules.Markdown
 #n -p Wyam.Modules.Minification
 #n -p Wyam.Modules.Razor
@@ -197,13 +198,14 @@ Pipelines.Add("XmlSitemap",
 	WriteFiles()
 );
 
-Pipelines.Add("CssMinification",
-    ReadFiles("_assets/assets/css/*.css"),
+Pipelines.Add("Less",
+    ReadFiles("_assets/assets/css/*.less"),
+	Less(),
     MinifyCss(),
     WriteFiles(@doc.String("RelativeFilePathBase").Replace("_assets/", "") + ".css")
 );
 
 Pipelines.Add("Assets",
-	CopyFiles("_assets/**/*{!.cshtml,!.md,!.css,}")
+	CopyFiles("_assets/**/*{!.cshtml,!.md,!.less,}")
 		.To(x => x.Path.FullPath.Replace("input/_assets/", "output/"))
 );

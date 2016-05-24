@@ -4,10 +4,10 @@ date: 2016-05-24T22:35:00+00:00
 layout: post
 permalink: /2016/05/open-graph-facebook-twitter-metadata/
 tags:
-  - metadata
+  - Metadata
   - Open Graph
   - Facebook
-  - twitter
+  - Twitter
 ---
 
 One of the motivators for going "[back to basics](/2016/03/back-to-basics/)" on my blog was to focus on the markup semantics and laying a solid foundation.
