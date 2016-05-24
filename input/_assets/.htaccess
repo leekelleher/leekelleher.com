@@ -118,3 +118,6 @@ BrowserMatch ^Mozilla/4\.0[678] no-gzip
 BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 </IfModule>
 # END Deflate/Gzip
+
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php

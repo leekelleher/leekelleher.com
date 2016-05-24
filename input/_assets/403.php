@@ -1,12 +1,11 @@
 <?php
-header("HTTP/1.1 503 Service Temporarily Unavailable");
-header("Status: 503 Service Temporarily Unavailable");
-header("Retry-After: 600");
+header("HTTP/1.1 403 Forbidden");
+header("Status: 403 Forbidden");
 ?>
 <!doctype html>
 <html lang="en">
 <head>
-	<title>503 Service Temporarily Unavailable - leekelleher.com</title>
+	<title>403 Forbidden - leekelleher.com</title>
 	<meta name="robots" content="none">
 	<style type="text/css">
 		body {background-color:#000;color:#fff;font-family:sans-serif;font-size:small;margin:0;padding:0;}
@@ -20,12 +19,12 @@ header("Retry-After: 600");
 <body>
 	<div id="main">
 		<p>
-			<a href="http://www.flickr.com/photos/girliemac/6540643319/" title="503 - Service Unavailable by GirlieMac, on Flickr">
-				<img src="http://farm8.staticflickr.com/7157/6540643319_0f284d910d_o.jpg" width="750" height="600" alt="503 - Service Unavailable">
+			<a href="https://www.flickr.com/photos/girliemac/6508023617/" title="403 - Forbidden by GirlieMac, on Flickr">
+				<img src="https://c2.staticflickr.com/8/7173/6508023617_f3ffc34e17_b.jpg" width="750" height="600" alt="403 - Forbidden">
 			</a>
 		</p>
 		<h1>lee<span>kelleher</span>.com</h1>
-		<h2>Down for essential maintenance, I'll be back soon!</h2>
+		<h2>Not allowed to request this resource!</h2>
 	</div>
 </body>
 </html>
