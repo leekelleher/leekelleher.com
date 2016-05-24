@@ -17,9 +17,10 @@ tags:
   - QueryString
   - snippet
 ---
-Most ASP.NET developers know that you can get a key/value pair string from the `Request.QueryString` object (via the `.ToString()` method). However that functionality isn&#8217;t the same for a generic `NameValueCollection` object (of which `Request.QueryString` is derived from).
 
-So how do you take a `NameValueCollection` object and get a nicely formatted key/value pair string? (i.e. &#8220;`key1=value1&key2=value2`&#8220;) &#8230; Here&#8217;s a method I wrote a while ago:
+Most ASP.NET developers know that you can get a key/value pair string from the `Request.QueryString` object (via the `.ToString()` method). However that functionality isn't the same for a generic `NameValueCollection` object (of which `Request.QueryString` is derived from).
+
+So how do you take a `NameValueCollection` object and get a nicely formatted key/value pair string? (i.e. "`key1=value1&key2=value2`") ... Here's a method I wrote a while ago:
 
 ```csharp
 /// <summary>
@@ -39,4 +40,4 @@ public static String ConstructQueryString(NameValueCollection parameters)
 }
 ```
 
-Just in case you didn&#8217;t know about the `System.Web.HttpUtility.ParseQueryString` method, it&#8217;s a quick way of converting a query (key/value pairs) string back into a `NameValueCollection`.
+Just in case you didn't know about the `System.Web.HttpUtility.ParseQueryString` method, it's a quick way of converting a query (key/value pairs) string back into a `NameValueCollection`.

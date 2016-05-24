@@ -1,2 +1,3 @@
-.wyam
+*.orig
 output
+tools

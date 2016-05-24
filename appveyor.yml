@@ -3,18 +3,10 @@ branches:
     - master
     
 install:
-  - mkdir .wyam
   - mkdir output
-  # Fetch the latest version of Wyam 
-  - "curl -s https://raw.githubusercontent.com/Wyamio/Wyam/master/RELEASE -o .wyam\\wyamversion.txt"
-  - set /P WYAMVERSION=< .wyam\wyamversion.txt
-  - echo %WYAMVERSION%
-  # Get and unzip the latest version of Wyam
-  - ps: Start-FileDownload "https://github.com/Wyamio/Wyam/releases/download/$env:WYAMVERSION/Wyam-$env:WYAMVERSION.zip" -FileName ".wyam\Wyam.zip"
-  - 7z x .wyam\Wyam.zip -o.wyam -r
 
 build_script:
-  - .wyam\Wyam.exe
+  - ps: .\build.ps1 -Target "AppVeyor"
 
 artifacts:
   - path: output

@@ -17,11 +17,12 @@ tags:
   - QueryString
   - snippet
 ---
-Every now and then I completely forget that the `Request.QueryString` (and `Request.Form`) object is read-only. Today I had a bit of functionality where I needed to remove a key/value from the collection &#8211; but the `Remove()` method (of the `NameValueCollection` object) throws an exception.
 
-Unfortunately, the `Request.QueryString`&#8216;s `CopyTo` method assigns the values to an `ARRAY`, not a `NameValueCollection` &#8211; losing functionality and flexibility.
+Every now and then I completely forget that the `Request.QueryString` (and `Request.Form`) object is read-only. Today I had a bit of functionality where I needed to remove a key/value from the collection - but the `Remove()` method (of the `NameValueCollection` object) throws an exception.
 
-You need to copy the `Request.QueryString` object to a new `NameValueCollection` instance, here&#8217;s how:
+Unfortunately, the `Request.QueryString`'s `CopyTo` method assigns the values to an `ARRAY`, not a `NameValueCollection` - losing functionality and flexibility.
+
+You need to copy the `Request.QueryString` object to a new `NameValueCollection` instance, here's how:
 
 ```csharp
 NameValueCollection qs = new NameValueCollection(Request.QueryString);

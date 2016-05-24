@@ -23,7 +23,7 @@ header("Status: 404 Not Found");
 <!doctype html>
 <html lang="en">
 <head>
-	<title>leekelleher.com</title>
+	<title>404 Not Found - leekelleher.com</title>
 	<meta name="robots" content="none">
 	<style type="text/css">
 		body {background-color:#000;color:#fff;font-family:sans-serif;font-size:small;margin:0;padding:0;}
