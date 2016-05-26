@@ -4,6 +4,9 @@
 #n -p Wyam.Modules.Razor
 #n -p Wyam.Modules.Yaml
 
+#an "System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+#an "System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+
 public static class MyHelper
 {
 	public static string GetFirstWords(string text, int count, string appender)
@@ -77,6 +80,7 @@ Pipelines.Add("Posts",
 	ValidateMeta<DateTime>("date"),
 	CopyMeta("permalink", "canonical"),
 	Markdown(),
+	Meta("PostContent", @doc.Content),
 	Meta("Excerpt", @doc.ContainsKey("excerpt")
 		? @doc.String("excerpt")
 		: MyHelper.GetFirstWords(MyHelper.StripHtml(@doc.Content), 55, "&#8230;")),
@@ -168,21 +172,9 @@ Pipelines.Add("Homepage",
 );
 
 Pipelines.Add("Feeds",
-	Documents("Posts"),
-	OrderBy(@doc.Get<DateTime>("date"))
-		.Descending(true),
-	Take(10),
-	Rss(siteUri: "http://leekelleher.com",
-		rssPath: "feed/index.xml",
-		feedTitle: "Lee Kelleher",
-		feedDescription: "Umbraco Specialist"
-	)
-		.WithTitleMetaKey("title")
-		.WithDescriptionMetaKey("Excerpt")
-		.WithPublicationDateMetaKey("date")
-		.WithLanguage("en-GB")
-//		.AssumePermalinks()
-		.WithLinkCustomizer(x => x.FullPath.Replace("/index.html", "/")),
+	ReadFiles("feed.cshtml"),
+	FrontMatter(Yaml()),
+	Razor(),
 	MinifyXml(),
 	WriteFiles()
 );
