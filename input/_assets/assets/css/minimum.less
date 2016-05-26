@@ -1,0 +1,29 @@
+@copy:    Georgia, serif;
+@heading: Arial, Helvetica, sans-serif;
+@code:    "Lucida Console", Monaco, monospace;
+
+body {
+	font-family: @copy;
+	max-width: 100em;
+}
+
+header{
+	nav {
+		li {
+			margin-bottom: 1em;
+		}
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: @heading;
+}
+
+a[rel=tag] {
+	font-family: @code;
+	font-size: small;
+}
+
+.email-confirmation {
+	display: none;
+}

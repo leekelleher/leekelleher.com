@@ -1,8 +1,12 @@
 #n -p Wyam.Modules.Html
+#n -p Wyam.Modules.Less
 #n -p Wyam.Modules.Markdown
 #n -p Wyam.Modules.Minification
 #n -p Wyam.Modules.Razor
 #n -p Wyam.Modules.Yaml
+
+#an "System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+#an "System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
 
 public static class MyHelper
 {
@@ -77,6 +81,7 @@ Pipelines.Add("Posts",
 	ValidateMeta<DateTime>("date"),
 	CopyMeta("permalink", "canonical"),
 	Markdown(),
+	Meta("PostContent", @doc.Content),
 	Meta("Excerpt", @doc.ContainsKey("excerpt")
 		? @doc.String("excerpt")
 		: MyHelper.GetFirstWords(MyHelper.StripHtml(@doc.Content), 55, "&#8230;")),
@@ -168,21 +173,9 @@ Pipelines.Add("Homepage",
 );
 
 Pipelines.Add("Feeds",
-	Documents("Posts"),
-	OrderBy(@doc.Get<DateTime>("date"))
-		.Descending(true),
-	Take(10),
-	Rss(siteUri: "http://leekelleher.com",
-		rssPath: "feed/index.xml",
-		feedTitle: "Lee Kelleher",
-		feedDescription: "Umbraco Specialist"
-	)
-		.WithTitleMetaKey("title")
-		.WithDescriptionMetaKey("Excerpt")
-		.WithPublicationDateMetaKey("date")
-		.WithLanguage("en-GB")
-//		.AssumePermalinks()
-		.WithLinkCustomizer(x => x.FullPath.Replace("/index.html", "/")),
+	ReadFiles("feed.cshtml"),
+	FrontMatter(Yaml()),
+	Razor(),
 	MinifyXml(),
 	WriteFiles()
 );
@@ -197,7 +190,14 @@ Pipelines.Add("XmlSitemap",
 	WriteFiles()
 );
 
+Pipelines.Add("Less",
+    ReadFiles("_assets/assets/css/*.less"),
+	Less(),
+    MinifyCss(),
+    WriteFiles(@doc.String("RelativeFilePathBase").Replace("_assets/", "") + ".css")
+);
+
 Pipelines.Add("Assets",
-	CopyFiles("_assets/**")
+	CopyFiles("_assets/**/*{!.cshtml,!.md,!.less,}")
 		.To(x => x.Path.FullPath.Replace("input/_assets/", "output/"))
 );
