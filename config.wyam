@@ -1,9 +1,9 @@
-#n -p Wyam.Modules.Html
-#n -p Wyam.Modules.Less
-#n -p Wyam.Modules.Markdown
-#n -p Wyam.Modules.Minification
-#n -p Wyam.Modules.Razor
-#n -p Wyam.Modules.Yaml
+#n -p Wyam.Html
+#n -p Wyam.Less
+#n -p Wyam.Markdown
+#n -p Wyam.Minification
+#n -p Wyam.Razor
+#n -p Wyam.Yaml
 
 #an "System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
 #an "System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
@@ -74,6 +74,13 @@ public static class MyHelper
 ---
 
 Settings.Host = "leekelleher.com";
+
+Pipelines.Add("Less",
+    ReadFiles("_assets/assets/css/*.less"),
+	Less(),
+    MinifyCss(),
+    WriteFiles(@doc.String("RelativeFilePathBase").Replace("_assets/", "") + ".css")
+);
 
 Pipelines.Add("Posts",
 	ReadFiles("_posts/*.md"),
@@ -168,7 +175,7 @@ Pipelines.Add("Homepage",
 	Meta("canonical", "/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
-	MinifyHtml(),
+	//MinifyHtml(),
 	WriteFiles(".html")
 );
 
@@ -188,13 +195,6 @@ Pipelines.Add("XmlSitemap",
 	Sitemap(),
 	Meta("WritePath", "sitemap.xml"),
 	WriteFiles()
-);
-
-Pipelines.Add("Less",
-    ReadFiles("_assets/assets/css/*.less"),
-	Less(),
-    MinifyCss(),
-    WriteFiles(@doc.String("RelativeFilePathBase").Replace("_assets/", "") + ".css")
 );
 
 Pipelines.Add("Assets",
