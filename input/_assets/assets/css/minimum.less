@@ -2,16 +2,30 @@
 @heading: Arial, Helvetica, sans-serif;
 @code:    "Lucida Console", Monaco, monospace;
 
+.section-border() {
+	border-bottom: grey inset 1px;
+	margin-bottom: 2em;
+	padding-bottom: 1em;
+}
+
+.list-item-spacing() {
+	li {
+		margin-bottom: 1em;
+	}
+}
+
 body {
 	font-family: @copy;
 	max-width: 100em;
+	
+	> header {
+		.section-border();
+	}
 }
 
 header, footer {
 	nav {
-		li {
-			margin-bottom: 1em;
-		}
+		.list-item-spacing();
 	}
 }
 
@@ -25,12 +39,14 @@ a[rel=tag] {
 }
 
 main {
+	.section-border();
+	
 	section {
-		ul {
-			li {
-				margin-bottom: 1em;
-			}
-		}
+		.list-item-spacing();
+	}
+	
+	> section:first-child {
+		.section-border();
 	}
 }
 
