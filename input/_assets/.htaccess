@@ -119,5 +119,16 @@ BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 </IfModule>
 # END Deflate/Gzip
 
+# BEGIN Expires
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 10 days"
+    ExpiresByType image/gif "access plus 3 month"
+    ExpiresByType image/png "access plus 3 month"
+    ExpiresByType image/jpeg "access plus 3 month"
+    ExpiresByType application/x-icon "access plus 1 year"
+</IfModule>
+# END Expires
+
 ErrorDocument 403 /403.php
 ErrorDocument 404 /404.php

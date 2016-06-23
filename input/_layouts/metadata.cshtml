@@ -4,11 +4,9 @@
 	var description = Model.String("Excerpt", "The personal website of Lee Kelleher; Umbraco specialist");
 	var keywords = Model.ContainsKey("tags") ? string.Join(",", Model.Get<string[]>("tags")).ToLower() : "leekelleher,kelleher,umbraco,asp.net,c#,csharp,xslt,mvc,mvp";
 	var url = string.Concat("http://leekelleher.com", Model.String("canonical", "/"));
-	var css = new List<string>() { "/assets/css/minimum.css" };
-	if (Model.ContainsKey("css"))
-	{
-		css.AddRange(Model.Get<string[]>("css"));
-	}
+	var internalCss = Documents.FromPipeline("LessCss");
+	var externalCss = Model.ContainsKey("css") ? Model.Get<string[]>("css") : null;
+	
 }
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,9 +26,18 @@
 
 	<link rel="alternate" href="http://leekelleher.com/feed/" type="application/rss+xml">
 	<link rel="canonical" href="@url">
-@if(css != null)
+@if(internalCss != null)
 {
-	foreach(var item in css)
+	<style type="text/css">
+	@foreach(var item in internalCss)
+	{
+		@Html.Raw(item.Content)
+	}
+	</style>
+}
+@if(externalCss != null)
+{
+	foreach(var item in externalCss)
 	{
 	<link rel="stylesheet" href="@item">
 	}

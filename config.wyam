@@ -75,7 +75,7 @@ public static class MyHelper
 
 Settings.Host = "leekelleher.com";
 
-Pipelines.Add("Less",
+Pipelines.Add("LessCss",
     ReadFiles("_assets/assets/css/*.less"),
 	Less(),
     MinifyCss(),
@@ -175,7 +175,7 @@ Pipelines.Add("Homepage",
 	Meta("canonical", "/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
-	//MinifyHtml(),
+	MinifyHtml(),
 	WriteFiles(".html")
 );
 
