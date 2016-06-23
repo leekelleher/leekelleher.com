@@ -167,6 +167,7 @@ Pipelines.Add("Pages",
 	Meta("canonical", @doc.String("RelativeFilePathBase").Replace("_pages/", "/") + "/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
+	MinifyHtml(),
 	WriteFiles(@doc.String("RelativeFilePathBase").Replace("_pages/", "") + "/index.html")
 );
 
