@@ -15,7 +15,7 @@
 }
 
 body {
-	background-color: floralwhite;
+	background-color: whitesmoke;
 	font-family: @copy;
 	max-width: 100em;
 	margin: 10px;
@@ -32,6 +32,10 @@ body {
 			font-weight: bold;
 			margin: 0;
 			padding: 0 0 0.25em 0;
+			
+			a:visited {
+				color: inherit;
+			}
 		}
 		
 		> nav {
@@ -46,14 +50,6 @@ body {
 				}
 			}
 		}
-		
-		a {
-			text-decoration: none;
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-		
 	}
 }
 
@@ -65,6 +61,23 @@ header {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: @heading;
+}
+
+a {
+	color: navy;
+	text-decoration: none;
+	
+	&:visited {
+		color: darkmagenta;
+	}
+	
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&:active {
+		color: firebrick;
+	}
 }
 
 a[rel=tag] {
@@ -85,6 +98,10 @@ main {
 	
 	p {
 		line-height: 1.75em;
+		
+		a {
+			text-decoration: underline;
+		}
 	}
 }
 
