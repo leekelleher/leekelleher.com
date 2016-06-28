@@ -5,10 +5,10 @@ layout: post
 permalink: /2016/06/github-activity-patterns-star-and-fork/
 tags:
   - GitHub
-  - "Open Source"
+  - Open Source
 ---
 
-Confession time, I check my GitHub activity feed dashboard pretty much as I check my Twitter timeline. I know a lot of people who ignore their GitHub dashboard, but for me I find it a great source of information... to see who is working on what; if there are any new Umbraco related open-source projects; and also if anyone has starred or forked one of my projects.
+Confession time, I check my GitHub activity feed dashboard as much as I check my Twitter timeline. I know a lot of people who ignore their GitHub dashboard, but for me I find it a great source of information... to see who is working on what; if there are any new Umbraco related open-source projects; and also if anyone has starred or forked one of my projects.
 
 Over the past few years I've noticed patterns emerge on the activity feed, sometimes there'll be a tweet about a new Umbraco package and I'll see a spate of people starring the project's repository, but then other times there are patterns that I can't explain, here's an example.
 
@@ -24,10 +24,10 @@ Then I see the next line...
 
 The same `someone` has starred the project. I let out a sigh and resign myself that there will be no contribution.
 
-I can't say that I understand this pattern of "**Star &amp; Fork**", but it has become quite common. Each time I see it, I've never had a subsequent contribute on that project.
+I can't say that I understand this pattern of "**Star &amp; Fork**", but it has become quite common. Each time I see it, I've never had a subsequent contribution on that project.
 
 Maybe `someone` is starring the project as a bookmark, then forking it to keep a copy of the code for themselves?  Either way it's an interesting pattern.
 
-If you have any ideas on this, or have noticed other GitHub activity patterns, let me know in the comments.
+If you have any ideas on this, or have noticed other curious GitHub activity patterns, let me know in the comments.
 
 
