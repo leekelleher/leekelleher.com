@@ -1,20 +1,20 @@
 # BEGIN Redirects
-Redirect 301 /wp-login.php http://leekelleher.com/
-Redirect 301 /wp/wp-links-opml.php http://leekelleher.com/wordpress/wp-links-opml.php
-Redirect 301 /js/jquery.min.js http://leekelleher.com/assets/js/jquery.min.js
-Redirect 301 /feeds/ http://leekelleher.com/feed/
-Redirect 301 /feeds/index.php http://leekelleher.com/feed/
-Redirect 301 /zeitgeist/ http://leekelleher.com/
-Redirect 301 /woFamily http://leekelleher.com/
+Redirect 301 /wp-login.php https://leekelleher.com/
+Redirect 301 /wp/wp-links-opml.php https://leekelleher.com/wordpress/wp-links-opml.php
+Redirect 301 /js/jquery.min.js https://leekelleher.com/assets/js/jquery.min.js
+Redirect 301 /feeds/ https://leekelleher.com/feed/
+Redirect 301 /feeds/index.php https://leekelleher.com/feed/
+Redirect 301 /zeitgeist/ https://leekelleher.com/
+Redirect 301 /woFamily https://leekelleher.com/
 Redirect 301 /mp3/opentape/ https://soundcloud.com/leekelleher
-Redirect 301 /2006/08/31/ducks-with-teeth/ http://leekelleher.com/
-Redirect 301 /2006/11/30/the-mii-lebowski/ http://leekelleher.com/
-Redirect 301 /2007/04/13/hats-for-cats/ http://leekelleher.com/
+Redirect 301 /2006/08/31/ducks-with-teeth/ https://leekelleher.com/
+Redirect 301 /2006/11/30/the-mii-lebowski/ https://leekelleher.com/
+Redirect 301 /2007/04/13/hats-for-cats/ https://leekelleher.com/
 
-RedirectMatch 301 /+((?!wordpress).*)/wp-login.php http://leekelleher.com/
-RedirectMatch 301 /linklog/(.*) http://leekelleher.com/$1
-RedirectMatch 301 /tags/(.*) http://leekelleher.com/tag/$1
-RedirectMatch 301 /(.*)/timthumb.php http://leekelleher.com/
+RedirectMatch 301 /+((?!wordpress).*)/wp-login.php https://leekelleher.com/
+RedirectMatch 301 /linklog/(.*) https://leekelleher.com/$1
+RedirectMatch 301 /tags/(.*) https://leekelleher.com/tag/$1
+RedirectMatch 301 /(.*)/timthumb.php https://leekelleher.com/
 RedirectMatch 301 /ajax.googleapis.com/(.*)$ https://ajax.googleapis.com/$1
 RedirectMatch 301 /platform.twitter.com/(.*)$ https://platform.twitter.com/$1
 RedirectMatch 301 /search.twitter.com/(.*)$ https://twitter.com/$1
@@ -22,9 +22,8 @@ RedirectMatch 301 /(.*)https:/twitter.com$ https://twitter.com/leekelleher
 RedirectMatch 301 /(.*)function.session-start$ http://php.net/manual/en/function.session-start.php
 RedirectMatch 301 /(.*)function.fopen$ http://php.net/manual/en/function.fopen.php
 RedirectMatch 301 /embed.js(.*) http://leekelleher.disqus.com/embed.js$1
-RedirectMatch 301 /2009/09/08/umbraco-ultimate-picker-xslt-example/(.+)$ http://leekelleher.com/2009/09/08/umbraco-ultimate-picker-xslt-example/
 
-Redirect 302 /tag/browsers/ http://leekelleher.com/
+Redirect 302 /tag/browsers/ https://leekelleher.com/
 Redirect 302 /2007/01/23/hooray-for-joel/ http://news.bbc.co.uk/1/hi/entertainment/6289933.stm
 Redirect 302 /2006/12/18/bushs-united-states-of-whatever/ http://www.johnrichie.com/V2/movies/moviePage.php?title=My%20US%20of%20Whateva&width=550&height=400&file=BUSH_FINAL.swf
 Redirect 302 /2006/11/03/scratchzilla/ http://www.youtube.com/watch?v=IqULTO4SOqU
@@ -70,7 +69,8 @@ RewriteCond %{REQUEST_URI} ^(.*)/CHANGELOG.txt$ [OR]
 RewriteCond %{REQUEST_URI} ^(.*)/ckeditor/(.*)$ [OR]
 RewriteCond %{REQUEST_URI} ^(.*)/drupal/(.*)$ [OR]
 RewriteCond %{REQUEST_URI} ^(.*)/fckeditor/(.*)$ [OR]
-RewriteCond %{REQUEST_URI} ^(.*)/wp-(.*)/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/wp-admin/(.*)$ [OR]
+RewriteCond %{REQUEST_URI} ^(.*)/wp-includes/(.*)$ [OR]
 RewriteCond %{REQUEST_URI} ^(.*)/wp-(.*).php$
 RewriteRule ^.*$ - [F,L]
 </IfModule>
