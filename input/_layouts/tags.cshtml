@@ -1,8 +1,8 @@
 @{
 	var documentsByTag = Documents
-		.ContainsKey("tags")
-		.ContainsKey("date")
-		.ToLookup<string>("tags");
+		.WhereContainsKey("tags")
+		.WhereContainsKey("date")
+		.ToLookupMany<string>("tags", StringComparer.CurrentCultureIgnoreCase);
 
 	var tag = Model.String("displayTag");
 

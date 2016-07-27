@@ -5,8 +5,9 @@
 #n -p Wyam.Razor
 #n -p Wyam.Yaml
 
-#an "System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-#an "System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+#a "System.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+#a "System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+#a "System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
 
 public static class MyHelper
 {
@@ -101,7 +102,7 @@ Pipelines.Add("Posts",
 Pipelines.Add("Archives",
 	ReadFiles("_layouts/archive.cshtml"),
 	Execute(@ctx.Documents
-		.ContainsKey("date")
+		.WhereContainsKey("date")
 		.SelectMany(x => {
 			var items = new[]{ "yyyy", "yyyy/MM", "yyyy/MM/dd" };
 			return items.Select(d => new
@@ -131,11 +132,11 @@ Pipelines.Add("Archives",
 Pipelines.Add("Tags",
 	ReadFiles("_layouts/tags.cshtml"),
 	Execute(@ctx.Documents
-		.Where(x => x.ContainsKey("tags"))
+		.WhereContainsKey("tags")
 		.SelectMany(x => x.Get<string[]>("tags"))
 		.Distinct(StringComparer.CurrentCultureIgnoreCase)
 		.Select(x => @ctx.GetDocument(@doc, new Dictionary<string, object>()
-			{ 
+			{
 				{ "title", "Archive for posts tagged with '" + x + "'" },
 				{ "displayTag", x },
 				{ "tag", x.ToLowerInvariant().Replace(' ', '-') }

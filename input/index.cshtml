@@ -1,6 +1,6 @@
 @{
 	var posts = Documents
-		.ContainsKey("date");
+		.WhereContainsKey("date");
 
 	var years = posts
 		.Select(x => x.Get<DateTime>("date").Year)

@@ -3,7 +3,7 @@
 	var archiveDate = Model.String("ArchiveDate");
 	
 	var posts = Documents
-		.ContainsKey("date");
+		.WhereContainsKey("date");
 	
 	var archivePosts = posts
 		.Where(x => x.Get<DateTime>("date").ToString(dateFormat) == archiveDate)

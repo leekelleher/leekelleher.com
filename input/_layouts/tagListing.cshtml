@@ -3,9 +3,9 @@ permalink: /tag/
 ---
 @{
 	var documentsByTag = Documents
-		.ContainsKey("tags")
-		.ContainsKey("date")
-		.ToLookup<string>("tags")
+		.WhereContainsKey("tags")
+		.WhereContainsKey("date")
+		.ToLookupMany<string>("tags", StringComparer.CurrentCultureIgnoreCase)
 		.OrderByDescending(x => x.Count())
 		.ThenBy(x => x.Key);
 
@@ -38,7 +38,7 @@ permalink: /tag/
 
 <section>
 	<header>
-		<h1>@Model.String("title")</h1>
+		@Model.String("title")</h1>
 		<p>Here is a listing of all the tags used on my blog posts; presented in descending order, from the most used to the least used.</p>
 	</header>
 	<ol>

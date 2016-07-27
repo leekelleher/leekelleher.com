@@ -16,7 +16,7 @@ WritePath: feed\index.xml
 		Generator = "Wyam",
 		ImageUrl = new Uri("http://leekelleher.com/assets/img/northbynorthwest_300x300.jpg"),
 		Items = Documents
-			.ContainsKey("date")
+			.WhereContainsKey("date")
 			.Where(x => x.ContainsKey("date"))
 			.OrderByDescending(x => x.Get<DateTime>("date"))
 			.Take(10)
