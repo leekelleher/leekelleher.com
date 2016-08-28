@@ -1,7 +1,7 @@
 @{
 	var postId = Model.Get("id", 0);
-	var disqusId = postId > 0 ? string.Format("{1} http://{0}/?p={1}", "leekelleher.com", postId) : "";
-	var disqusUrl = "http://" + "leekelleher.com" + Model.String("canonical", "/");
+	var disqusId = postId > 0 ? string.Format("{1} https://{0}/?p={1}", "leekelleher.com", postId) : "";
+	var disqusUrl = "https://" + "leekelleher.com" + Model.String("canonical", "/");
 }
 <div id="disqus_thread"></div>
 <script>
