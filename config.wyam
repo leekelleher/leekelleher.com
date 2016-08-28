@@ -72,8 +72,6 @@ public static class MyHelper
 	}
 }
 
----
-
 Settings.Host = "leekelleher.com";
 
 Pipelines.Add("LessCss",
