@@ -191,8 +191,9 @@ Pipelines.Add("XmlSitemap",
 	Documents(@ctx.Documents)
 		.Where(@doc.ContainsKey("canonical")),
 	OrderBy(@doc.String("canonical")),
-	Meta("SitemapItem", new SitemapItem("https://" + Settings.Host + @doc.String("canonical")) { LastModUtc = @doc.Get<DateTime?>("date", null) }),
+	Meta("SitemapItem", new SitemapItem("http://" + Settings.Host + @doc.String("canonical")) { LastModUtc = @doc.Get<DateTime?>("date", null) }),
 	Sitemap(),
+	Replace("http://", "https://"),
 	Meta("WritePath", "sitemap.xml"),
 	WriteFiles()
 );
