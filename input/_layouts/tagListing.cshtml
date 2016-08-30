@@ -2,12 +2,28 @@ title: All Tags
 permalink: /tag/
 ---
 @{
-	var documentsByTag = Documents
+	var docs = Documents
 		.WhereContainsKey("tags")
-		.WhereContainsKey("date")
-		.ToLookupMany<string>("tags", StringComparer.CurrentCultureIgnoreCase)
-		.OrderByDescending(x => x.Count())
-		.ThenBy(x => x.Key);
+		.WhereContainsKey("date");
+	
+	var documentsByTag = new Dictionary<string, List<IDocument>>(StringComparer.InvariantCultureIgnoreCase);
+	
+	foreach (var doc in docs)
+	{
+		var tags = doc.Get<string[]>("tags");
+		
+		foreach (var tag in tags)
+		{
+			if (!documentsByTag.ContainsKey(tag))
+			{
+				documentsByTag.Add(tag, new List<IDocument>() { doc });
+			}
+			else
+			{
+				documentsByTag[tag].Add(doc);
+			}
+		}
+	}
 
 	Func<int, string> cssClass = (count) =>
 	{
@@ -29,7 +45,7 @@ permalink: /tag/
 		}
 		else if (count >= 5)
 		{
-			return "not-very-popular";
+			return "less-popular";
 		}
 		
 		return "not-popular";
@@ -42,10 +58,10 @@ permalink: /tag/
 		<p>Here is a listing of all the tags used on my blog posts; presented in descending order, from the most used to the least used.</p>
 	</header>
 	<ol>
-		@foreach(var group in documentsByTag)
+		@foreach(var group in documentsByTag.OrderByDescending(x => x.Value.Count).ThenBy(x => x.Key))
 		{
-			var count = group.Count();
-			var link = @group.Key.ToLowerInvariant().Replace(' ', '-');
+			var count = group.Value.Count();
+			var link = @MyHelper.CleanTag(group.Key);
 			
 			<li class="@cssClass(count)">
 				<span>@count @(count == 1 ? "post is" : "posts are") tagged with </span>

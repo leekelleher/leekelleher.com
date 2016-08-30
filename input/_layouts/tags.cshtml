@@ -1,18 +1,22 @@
 @{
-	var documentsByTag = Documents
-		.WhereContainsKey("tags")
-		.WhereContainsKey("date")
-		.ToLookupMany<string>("tags", StringComparer.CurrentCultureIgnoreCase);
-
 	var tag = Model.String("displayTag");
 
-	ViewData["PostListDocuments"] = documentsByTag[tag]
+	var documentsWithTag = Documents
+		.WhereContainsKey("tags")
+		.WhereContainsKey("date")
+		.Where(x => x.Get<string[]>("tags").Contains(tag, StringComparer.InvariantCultureIgnoreCase));
+
+	ViewData["PostListDocuments"] = documentsWithTag
 		.OrderByDescending(x => x.Get<DateTime>("date"));
 }
 
 <section>
 	<header>
 		<h1>@Model.String("title")</h1>
+		@if (string.Equals(tag, "Umbraco", StringComparison.InvariantCultureIgnoreCase))
+		{
+			<p>If you would like to be notified of my latest Umbraco posts, please <a href="/tag/umbraco/feed/">subscribe to my Umbraco RSS feed</a>.</p>
+		}
 	</header>
 	@Html.Partial("_layouts/postListing")
 </section>

@@ -70,6 +70,14 @@ public static class MyHelper
 
 		return sb.ToString();
 	}
+
+	public static string CleanTag(string rawTag)
+	{
+		return rawTag
+			.ToLowerInvariant()
+			.Replace(' ', '-')
+			.Replace("c#", "c-sharp");
+	}
 }
 
 Settings.Host = "leekelleher.com";
@@ -132,12 +140,12 @@ Pipelines.Add("Tags",
 	Execute(@ctx.Documents
 		.WhereContainsKey("tags")
 		.SelectMany(x => x.Get<string[]>("tags"))
-		.Distinct(StringComparer.CurrentCultureIgnoreCase)
+		.Distinct(StringComparer.InvariantCultureIgnoreCase)
 		.Select(x => @ctx.GetDocument(@doc, new Dictionary<string, object>()
 			{
 				{ "title", "Archive for posts tagged with '" + x + "'" },
 				{ "displayTag", x },
-				{ "tag", x.ToLowerInvariant().Replace(' ', '-') }
+				{ "tag", MyHelper.CleanTag(x) }
 			})
 		)
 	),

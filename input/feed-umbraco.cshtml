@@ -15,8 +15,8 @@ WritePath: tag\umbraco\feed\index.xml
 		.ToLookupMany<string>("tags", StringComparer.CurrentCultureIgnoreCase);
 	
 	var baseUri = new Uri("https://leekelleher.com");
-	var feedTitle = "Lee Kelleher";
-	var feedDescription = "Latest blog posts by Lee Kelleher - Umbraco Specialist";
+	var feedTitle = "Lee Kelleher - Umbraco";
+	var feedDescription = "Latest Umbraco posts by Lee Kelleher - Umbraco Specialist";
 	var feed = new SyndicationFeed(feedTitle, feedDescription, baseUri)
 	{
 		Generator = "Wyam",
