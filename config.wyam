@@ -180,7 +180,7 @@ Pipelines.Add("Homepage",
 );
 
 Pipelines.Add("Feeds",
-	ReadFiles("feed.cshtml"),
+	ReadFiles("feed-*.cshtml"),
 	FrontMatter(Yaml()),
 	Razor(),
 	MinifyXml(),

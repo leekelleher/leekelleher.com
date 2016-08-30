@@ -1,4 +1,4 @@
-WritePath: feed\index.xml
+WritePath: tag\umbraco\feed\index.xml
 ---
 @using System.ServiceModel.Syndication;
 @using System.IO;
@@ -7,15 +7,21 @@ WritePath: feed\index.xml
 @using AngleSharp.Parser.Html;
 @{
 	Layout = string.Empty;
+
+	var tag = "Umbraco";
+	var documentsByTag = Documents
+		.WhereContainsKey("tags")
+		.WhereContainsKey("date")
+		.ToLookupMany<string>("tags", StringComparer.CurrentCultureIgnoreCase);
 	
-	var baseUri = new Uri("http://leekelleher.com");
+	var baseUri = new Uri("https://leekelleher.com");
 	var feedTitle = "Lee Kelleher";
 	var feedDescription = "Latest blog posts by Lee Kelleher - Umbraco Specialist";
 	var feed = new SyndicationFeed(feedTitle, feedDescription, baseUri)
 	{
 		Generator = "Wyam",
-		ImageUrl = new Uri("http://leekelleher.com/assets/img/northbynorthwest_300x300.jpg"),
-		Items = Documents
+		ImageUrl = new Uri("https://leekelleher.com/assets/img/northbynorthwest_300x300.jpg"),
+		Items = documentsByTag[tag]
 			.WhereContainsKey("date")
 			.Where(x => x.ContainsKey("date"))
 			.OrderByDescending(x => x.Get<DateTime>("date"))
@@ -23,7 +29,8 @@ WritePath: feed\index.xml
 			.Select(x => {
 				var postTitle = x.String("title");
 				var postContent = x.String("PostContent", x.String("Excerpt"));
-				var postUri = new Uri(Context.GetLink(x, true));
+				var builder = new UriBuilder(Context.GetLink(x, true)) { Scheme = Uri.UriSchemeHttps, Port = -1 };
+				var postUri = builder.Uri;
 				
 				return new SyndicationItem(postTitle, postContent, postUri)
 				{
@@ -36,7 +43,7 @@ WritePath: feed\index.xml
 		LastUpdatedTime = DateTime.UtcNow
 	};
 
-	feed.Links.Add(new SyndicationLink(new Uri(baseUri, "feed/")) { RelationshipType = "self" });
+	feed.Links.Add(new SyndicationLink(new Uri(baseUri, "tag/umbraco/feed/")) { RelationshipType = "self" });
 
 	using (var writer = new XmlTextWriter(Output))
 	{
