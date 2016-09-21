@@ -1,8 +1,7 @@
-@using Wyam.Razor.Microsoft.AspNet.Html.Abstractions
 @{
 	var posts = (IEnumerable<IDocument>)ViewData["PostListDocuments"];
 	
-	Func<IDocument, IHtmlContent> getTags = (doc) =>
+	Func<IDocument, object> getTags = (doc) =>
 	{
 		if (!doc.ContainsKey("tags"))
 			return null;
