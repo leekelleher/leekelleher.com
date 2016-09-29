@@ -38,34 +38,36 @@ To do this&#8230;
   2. Find the macro for XSLTsearch, (via the Umbraco back-office), change the &#8220;Use XSLT file&#8221; to &#8220;_SearchResults.xslt_&#8221; (e.g. the one you&#8217;ve just created).
   3. Copy-n-paste the following snippet, (or get [the full XSLT from my gist](https://gist.github.com/1879072)):
 
-<pre class="brush: xml; title: ; notranslate" title="">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE xsl:stylesheet [
-	&lt;!ENTITY nbsp "&#x00A0;"&gt;
-]&gt;
-&lt;xsl:stylesheet
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xsl:stylesheet [
+	<!ENTITY nbsp "&#x00A0;">
+]>
+<xsl:stylesheet
 	version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:msxml="urn:schemas-microsoft-com:xslt"
 	xmlns:umbraco.library="urn:umbraco.library"
 	xmlns:PS.XSLTsearch="urn:PS.XSLTsearch"
-	exclude-result-prefixes="msxml umbraco.library PS.XSLTsearch"&gt;
-	&lt;xsl:import href="XSLTsearch.xslt"/&gt;
+	exclude-result-prefixes="msxml umbraco.library PS.XSLTsearch">
+	<xsl:import href="XSLTsearch.xslt"/>
 
-	&lt;xsl:template match="/" priority="2"&gt;
-		&lt;xsl:variable name="searchResults"&gt;
-			&lt;xsl:call-template name="search"&gt;
-				&lt;xsl:with-param name="items" select="$currentPage/ancestor-or-self::*[@level = 1]"/&gt;
-			&lt;/xsl:call-template&gt;
-		&lt;/xsl:variable&gt;
-		&lt;xsl:variable name="results" select="msxml:node-set($searchResults)"/&gt;
+	<xsl:template match="/" priority="2">
+		<xsl:variable name="searchResults">
+			<xsl:call-template name="search">
+				<xsl:with-param name="items" select="$currentPage/ancestor-or-self::*[@level = 1]"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:variable name="results" select="msxml:node-set($searchResults)"/>
 
-		&lt;xmp&gt;
-			&lt;xsl:copy-of select="$results"/&gt;
-		&lt;/xmp&gt;
+		<xmp>
+			<xsl:copy-of select="$results"/>
+		</xmp>
 
-	&lt;/xsl:template&gt;
+	</xsl:template>
 
-&lt;/xsl:stylesheet&gt;</pre>
+</xsl:stylesheet>
+```
 
 _This is a snippet for my blog post, to get my full customised XSLT example, see here:_ <https://gist.github.com/1879072>
 
@@ -83,7 +85,9 @@ My use of the <[xmp](http://www.w3.org/TR/REC-html32#xmp)> tag is for debug purp
 
 From here you can do an xsl:apply-templates on the $result node-set and manipulate the search results however you desire.
 
-<pre class="brush: xml; title: ; notranslate" title="">&lt;xsl:apply-templates select="$results/div" /&gt;</pre>
+```xml
+<xsl:apply-templates select="$results/div" />
+```
 
 * * *
 
@@ -91,13 +95,17 @@ Another advantage of taking this approach is to be able to manipulate the XPath 
 
 Let&#8217;s say that you only wanted to search against your news articles; we could modify the XPath expression to something like this&#8230;
 
-<pre class="brush: xml; title: ; notranslate" title="">&lt;xsl:with-param name="items" select="$currentPage/ancestor-or-self::*[@level = 1]/descendant::NewsArticle[@isDoc]"/&gt;</pre>
+```xml
+<xsl:with-param name="items" select="$currentPage/ancestor-or-self::*[@level = 1]/descendant::NewsArticle[@isDoc]"/>
+```
 
 _This XPath navigates all the way up the tree to the homepage node (level 1), then back down collecting <span style="text-decoration: underline;">all</span> the &#8216;NewsArticle&#8217; nodes._
 
 Or how&#8217;s about  something more advanced? We would like only news articles published in the last 30 days.
 
-<pre class="brush: xml; title: ; notranslate" title="">&lt;xsl:with-param name="items" select="$currentPage/ancestor-or-self::*[@level = 1]/descendant::NewsArticle[@isDoc and umbraco.library:DateGreaterThanOrEqualToday(umbraco.library:DateAdd(@createDate, 'd', 30))]"/&gt;</pre>
+```xml
+<xsl:with-param name="items" select="$currentPage/ancestor-or-self::*[@level = 1]/descendant::NewsArticle[@isDoc and umbraco.library:DateGreaterThanOrEqualToday(umbraco.library:DateAdd(@createDate, 'd', 30))]"/>
+```
 
 * * *
 
