@@ -7,6 +7,10 @@
 		.Distinct()
 		.OrderByDescending(x => x);
 
+	//
+	// TODO: [LK] Get a list of all the dates - group by year, then by month
+	//
+
 	ViewData["PostListDocuments"] = posts
 		.OrderByDescending(x => x.Get<DateTime>("date"))
 		.Take(6);

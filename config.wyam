@@ -163,7 +163,7 @@ Pipelines.Add("Posts",
 	Meta("PostContent", @doc.Content),
 	Meta("Excerpt", @doc.ContainsKey("excerpt")
 		? @doc.String("excerpt")
-		: MyHelper.GetFirstWords(MyHelper.StripHtml(@doc.Content), 55, "&#8230;")),
+		: MyHelper.GetFirstWords(MyHelper.StripHtml(@doc.Content), 75, "&#8230;")),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
 	MinifyHtml(),
