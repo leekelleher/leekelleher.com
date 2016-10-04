@@ -2,6 +2,12 @@
 @heading: @copy;
 @code:    Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
+.container() {
+	width: 60%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
 .section-border() {
 	border-bottom: rgba(238, 238, 238, 1) inset 1px;
 	margin-bottom: 2em;
@@ -24,9 +30,6 @@ body {
 	font-family: @copy;
 	font-size: 20px;
 	color: #333;
-	
-	max-width: 100em;
-	margin: 10px;
 	
 	> header {
 		.section-border();
@@ -150,25 +153,22 @@ hr {
 	background: transparent;
 	border: 0;
 	border-bottom: 1px solid #ddd;
-}
-
-hr::before {
-	display: table;
-	content: "";
-}
-
-hr::after {
-	display: table;
-	clear: both;
-	content: "";
+	
+	&::before {
+		content: "";
+		display: table;
+	}
+	
+	&::after {
+		clear: both;
+		content: "";
+		display: table;
+	}
 }
 
 main {
 	.section-border();
-	
-	width: 980px;
-	margin-right: auto;
-	margin-left: auto;
+	.container();
 	
 	.listing {
 		list-style: none;
@@ -211,52 +211,49 @@ main {
 		font-size: 85%;
 		background-color: rgba(0,0,0,0.04);
 		border-radius: 3px;
-	}
-
-	code::before,
-	code::after {
-		letter-spacing: -0.2em;
-		content: "\00a0";
+		
+		&::before,
+		&::after {
+			content:"\00a0";
+			letter-spacing:-0.2em;
+		}
 	}
 
 	pre {
 		word-wrap: normal;
-	}
-
-	pre>code {
-		padding: 0;
-		margin: 0;
-		font-size: 100%;
-		word-break: normal;
-		white-space: pre;
-		background: transparent;
-		border: 0;
-	}
-
-	pre {
 		padding: 16px;
 		overflow: auto;
 		font-size: 85%;
 		line-height: 1.45;
 		background-color: #f7f7f7;
 		border-radius: 3px;
-	}
+		
+		> code {
+			padding: 0;
+			margin: 0;
+			font-size: 100%;
+			word-break: normal;
+			white-space: pre;
+			background: transparent;
+			border: 0;
+		}
 
-	pre code {
-		display: inline;
-		max-width: auto;
-		padding: 0;
-		margin: 0;
-		overflow: visible;
-		line-height: inherit;
-		word-wrap: normal;
-		background-color: transparent;
-		border: 0;
-	}
-
-	pre code::before,
-	pre code::after {
-		content: normal;
+		code {
+			display: inline;
+			max-width: auto;
+			padding: 0;
+			margin: 0;
+			overflow: visible;
+			line-height: inherit;
+			word-wrap: normal;
+			background-color: transparent;
+			border: 0;
+			
+			&::before,
+			&::after {
+				content:normal;
+			}
+		}
 	}
 	
 	kbd {
@@ -278,6 +275,11 @@ main {
 
 		strong {
 			font-weight: bolder;
+		}
+		
+		img:only-child {
+			display: block;
+			margin: auto;
 		}
 	}
 	
@@ -348,17 +350,37 @@ main {
 }
 
 footer {
-	width: 980px;
-	margin-right: auto;
-	margin-left: auto;
+	.container();
 	margin-bottom: 2em;
 	
 	p {
 		line-height: 1.1em;
-		font-size: 14px;
+		font-size: 75%;
 	}
 }
 
 .email-confirmation {
 	display: none;
+}
+
+.years {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	
+	a {
+		padding-right: 1em;
+	}
+}
+
+.months {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: inline;
+	font-size: 75%;
+	
+	> li {
+		display: inline;
+	}
 }

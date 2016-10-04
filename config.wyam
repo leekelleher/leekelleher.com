@@ -244,16 +244,17 @@ Pipelines.Add("Pages",
 );
 
 Pipelines.Add("Homepage",
-	ReadFiles("index.cshtml"),
+	ReadFiles("_layouts/index.cshtml"),
+	FrontMatter(Yaml()),
 	Meta("canonical", "/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
 	MinifyHtml(),
-	WriteFiles(".html")
+	WriteFiles()
 );
 
 Pipelines.Add("Feeds",
-	ReadFiles("feed-*.cshtml"),
+	ReadFiles("_layouts/feed-*.cshtml"),
 	FrontMatter(Yaml()),
 	Razor(),
 	MinifyXml(),
