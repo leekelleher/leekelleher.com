@@ -1,25 +1,18 @@
 @{
 	var dateFormat = Model.String("ArchiveDateFormat");
 	var archiveDate = Model.String("ArchiveDate");
-	
-	var posts = Documents
-		.WhereContainsKey("date");
-	
-	var archivePosts = posts
+
+	var archivePosts = Documents
+		.WhereContainsKey("date")
 		.Where(x => x.Get<DateTime>("date").ToString(dateFormat) == archiveDate)
 		.OrderBy(x => x.Get<DateTime>("date"));
-	
-	var years = posts
-		.Select(x => x.Get<DateTime>("date").Year)
-		.Distinct()
-		.OrderByDescending(x => x);
 }
 
 <section>
 	<header>
 		<h1>@Model.String("title")</h1>
 	</header>
-	<ul>
+	<ol class="listing">
 	@foreach (var year in archivePosts.GroupBy(x => x.Get<DateTime>("date").Year))
 	{
 		foreach (var month in year.GroupBy(x => x.Get<DateTime>("date").ToString("MMMM")))
@@ -31,26 +24,7 @@
 			</li>
 		}
 	}
-	</ul>
+	</ol>
 </section>
 
-<section>
-	<header>
-		<h2>Year archive</h2>
-	</header>
-	<ul>
-		@foreach (var year in years)
-		{
-			<li>
-				<a href="/@year/">@year</a>
-			</li>
-		}
-	</ul>
-</section>
-
-<section>
-	<header>
-		<h2>Tag archive</h2>
-	</header>
-	<p><a href="/tag/">View all tags</a>.</p>
-</section>
+@Html.Partial("_layouts/archiveListing")

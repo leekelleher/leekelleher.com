@@ -1,0 +1,18 @@
+WritePath: index.html
+---
+@{
+	var posts = Documents
+		.WhereContainsKey("date")
+		.OrderByDescending(x => x.Get<DateTime>("date"));
+
+	ViewData["PostListDocuments"] = posts.Take(6);
+}
+
+<section id="latest">
+	<header>
+		<h2>Latest posts</h2>
+	</header>
+	@Html.Partial("_layouts/postListing")
+</section>
+
+@Html.Partial("_layouts/archiveListing")
