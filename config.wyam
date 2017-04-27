@@ -132,7 +132,7 @@ HtmlParser htmlParser = new HtmlParser();
 CodeColorizer colorizer = new CodeColorizer();
 
 Settings[Keys.Host] = "leekelleher.com";
-Settings[Keys.LinksUseHttps] = false;
+Settings[Keys.LinksUseHttps] = true;
 
 Pipelines.Add("LessCss",
     ReadFiles("_assets/assets/css/*.less"),
