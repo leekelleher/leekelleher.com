@@ -27,9 +27,7 @@ So how do you take a `NameValueCollection` object and get a nicely formatted key
 /// Constructs a QueryString (string).
 /// Consider this method to be the opposite of "System.Web.HttpUtility.ParseQueryString"
 /// </summary>
-/// <param name="nvc">NameValueCollection</param>
-/// <returns>string</returns>
-public static String ConstructQueryString(NameValueCollection parameters)
+public static string ConstructQueryString(NameValueCollection parameters)
 {
 	List<string> items = new List<string>();
 

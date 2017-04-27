@@ -131,8 +131,8 @@ public static class MyHelper
 HtmlParser htmlParser = new HtmlParser();
 CodeColorizer colorizer = new CodeColorizer();
 
-Settings.Host = "leekelleher.com";
-Settings.LinksUseHttps = true;
+Settings[Keys.Host] = "leekelleher.com";
+Settings[Keys.LinksUseHttps] = false;
 
 Pipelines.Add("LessCss",
     ReadFiles("_assets/assets/css/*.less"),
@@ -265,7 +265,7 @@ Pipelines.Add("XmlSitemap",
 	Documents(@ctx.Documents)
 		.Where(@doc.ContainsKey("canonical")),
 	OrderBy(@doc.String("canonical")),
-	Meta("SitemapItem", new SitemapItem("https://" + Settings.Host + @doc.String("canonical")) { LastModUtc = @doc.Get<DateTime?>("date", null) }),
+	Meta("SitemapItem", new SitemapItem("https://" + Settings[Keys.Host] + @doc.String("canonical")) { LastModUtc = @doc.Get<DateTime?>("date", null) }),
 	Sitemap(),
 	Meta("WritePath", "sitemap.xml"),
 	WriteFiles()
