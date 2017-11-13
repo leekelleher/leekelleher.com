@@ -8,7 +8,9 @@ layout: page
 
 ## What I'm doing now?
 
-* Playing bass in a local covers band, (_after 17 years since I was last in a band_).
-* Bought a new house, _so, up to my neck in paperwork, mortgages and logistics_.
-* Involved with a multitude of Carlsberg projects, (_on [Umbraco Cloud](https://umbraco.com/)_).
-* Struggling to find time for developing new Umbraco packages.
+* Playing bass guitar in a local covers band, (_after 17 years since I was last in a band_).
+* Getting the new house in order, (moved in 3 months ago).
+* Taking time out from some Carlsberg projects.
+* Finding time to get excited for developing new Umbraco packages.
+
+<small>_This update was made on 13<sup>th</sup> November 2017._</small>
