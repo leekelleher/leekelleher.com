@@ -93,9 +93,7 @@ Then in the &#8220;`/config/Dashboard.config`&#8221; configuration file, I added
 Now in the Umbraco back-end the developer area looks like this.
 
 <p style="text-align:center;">
-  <a href="http://leekelleher.com/wordpress/wp-content/uploads/2009/04/umbraco-development-2009-04-23-19-26-30.png"><img class="size-medium wp-image-118 aligncenter" title="ELMAH in Umbraco" src="http://leekelleher.com/wordpress/wp-content/uploads/2009/04/umbraco-development-2009-04-23-19-26-30.png?w=300" alt="ELMAH in Umbraco" width="300" height="225" /></a>
+  <a href="/wordpress/wp-content/uploads/2009/04/umbraco-development-2009-04-23-19-26-30.png"><img class="size-medium wp-image-118 aligncenter" title="ELMAH in Umbraco" src="/wordpress/wp-content/uploads/2009/04/umbraco-development-2009-04-23-19-26-30.png?w=300" alt="ELMAH in Umbraco" width="300" height="225" /></a>
 </p>
 
 I have been very impressed with how well ELMAH functions.  Aside from the essential email notifications, the RSS feeds are a great bonus!
-
-[<img class="alignright" src="http://www.dotnetkicks.com/Services/Images/KickItImageGenerator.ashx?url=http%3a%2f%2fblog.leekelleher.com%2f2009%2f04%2f23%2fintegrating-elmah-with-umbraco%2f&fgcolor=000000&bgcolor=FFFFFF&cbgcolor=CCCCFF" border="0" alt="kick it on DotNetKicks.com" />](http://www.dotnetkicks.com/kick/?url=http%3a%2f%2fblog.leekelleher.com%2f2009%2f04%2f23%2fintegrating-elmah-with-umbraco%2f)
