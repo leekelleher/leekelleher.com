@@ -12,6 +12,6 @@ layout: page
 * Playing bass guitar in a local covers band.
 * Taking a little time out from Carlsberg projects.
 * Finding time to get excited for developing new Umbraco packages.
-* Still getting the (new) house in order, (moved in 6 months ago).
+* Still getting the (new) house in order, (moved in 12 months ago).
 
-<small>_This update was made on 23<sup>rd</sup> January 2018._</small>
+<small>_This update was made on 23<sup>rd</sup> July 2018._</small>

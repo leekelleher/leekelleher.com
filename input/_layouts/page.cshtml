@@ -1,10 +1,12 @@
 @{Layout = @"~/_layouts/_layout.cshtml";}
 
 <div>
-	<article>
+	<article class="h-entry">
 		<header>
-			<h1>@Html.Raw(Model.String("title"))</h1>
+			<h1 class="p-name">@Html.Raw(Model.String("title"))</h1>
 		</header>
-		@RenderBody()
+		<div class="e-content">
+			@RenderBody()
+		</div>
 	</article>
 </div>

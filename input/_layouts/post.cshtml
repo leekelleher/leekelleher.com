@@ -21,12 +21,14 @@
 }
 
 <div>
-	<article>
+	<article class="h-entry">
 		<header>
-			<h1>@Html.Raw(Model.String("title"))</h1>
-			<p class="date"><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToString("dd/MM/yyyy")</time></span></p>
+			<h1 class="p-name">@Html.Raw(Model.String("title"))</h1>
+			<p class="date"><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")" class="dt-published">@date.ToString("dd/MM/yyyy")</time></span></p>
 		</header>
-		@RenderBody()
+		<div class="e-content">
+			@RenderBody()
+		</div>
 	</article>
 	<aside>
 		<p class="tags"><span>Tags:</span> @getTags(Model)</p>
