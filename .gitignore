@@ -1,5 +1,5 @@
 *.orig
-output
-tools
+build/tools
+build/packages.xml
 config.wyam.*
-packages.xml
+output

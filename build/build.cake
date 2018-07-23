@@ -26,7 +26,9 @@ Task("Build")
     {
         Wyam(new WyamSettings
         {
-        });        
+            InputPaths = new[] { new DirectoryPath("../input") },
+            OutputPath = new DirectoryPath("../output")
+        });
     });
     
 Task("Preview")
@@ -34,6 +36,8 @@ Task("Preview")
     {
         Wyam(new WyamSettings
         {
+            InputPaths = new[] { new DirectoryPath("../input") },
+            OutputPath = new DirectoryPath("../output"),
             Preview = true,
             Watch = true
         });        
@@ -44,7 +48,7 @@ Task("Preview")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Preview");    
+    .IsDependentOn("Preview");
     
 Task("AppVeyor")
     .IsDependentOn("Build");

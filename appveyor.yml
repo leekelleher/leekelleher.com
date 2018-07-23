@@ -6,7 +6,7 @@ install:
   - mkdir output
 
 build_script:
-  - ps: .\build.ps1 -Target "AppVeyor"
+  - ps: .\build\build.ps1 -Target "AppVeyor"
 
 artifacts:
   - path: output
