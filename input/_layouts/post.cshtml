@@ -2,6 +2,7 @@
 	Layout = @"~/_layouts/_layout.cshtml";
 	
 	var date = Model.Get<DateTime>("date");
+	var readingTime = Model.Get<ReadingTimeMeta>(ReadingTimeKeys.ReadingTime);
 	
 	Func<IDocument, object> getTags = (doc) =>
 	{
@@ -24,7 +25,10 @@
 	<article class="h-entry">
 		<header>
 			<h1 class="p-name">@Html.Raw(Model.String("title"))</h1>
-			<p class="date"><span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")" class="dt-published">@date.ToString("dd/MM/yyyy")</time></span></p>
+			<p class="meta">
+				<span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")" class="dt-published">@date.ToString("dd/MM/yyyy")</time>.</span>
+				<span>Estimated read time:  @(readingTime.Minutes <= 1 ? "under a minute" : $"{readingTime.Minutes.ToString("#,#")} minutes") (@(readingTime.Words.ToString("#,#")) words)</span>
+			</p>
 		</header>
 		<div class="e-content">
 			@RenderBody()

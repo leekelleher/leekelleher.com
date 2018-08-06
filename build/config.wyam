@@ -3,6 +3,7 @@
 #n -p Wyam.Markdown
 #n -p Wyam.Minification
 #n -p Wyam.Razor
+#n -p Wyam.ReadingTime
 #n -p Wyam.Yaml
 #n ColorCode
 
@@ -147,6 +148,7 @@ Pipelines.Add("Posts",
 	ValidateMeta<DateTime>("date"),
 	CopyMeta("permalink", "canonical"),
 	Markdown(),
+	ReadingTime(wordsPerMinute: 175),
 	Execute((doc, ctx) =>
 	{
 		// Parse the document content and get each code element
