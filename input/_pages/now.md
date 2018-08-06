@@ -8,10 +8,10 @@ layout: page
 
 ## What I'm doing now?
 
-* Organising **FortyFest&trade;**
 * Playing bass guitar in a local covers band.
+* Preparing (slowly) for CodeCabin 18.
 * Taking a little time out from Carlsberg projects.
-* Finding time to get excited for developing new Umbraco packages.
+* Tinkering around with UMCO / Umbraco packages.
 * Still getting the (new) house in order, (moved in 12 months ago).
 
-<small>_This update was made on 23<sup>rd</sup> July 2018._</small>
+<small>_This update was made on 08<sup>th</sup> August 2018._</small>
