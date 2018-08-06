@@ -1,4 +1,7 @@
-@{Layout = @"~/_layouts/_layout.cshtml";}
+@{
+	Layout = @"~/_layouts/_layout.cshtml";
+	var canonical = string.Concat("https://leekelleher.com", Model.String("canonical", "/"));
+}
 
 <div>
 	<article class="h-entry">
@@ -8,5 +11,8 @@
 		<div class="e-content">
 			@RenderBody()
 		</div>
+		<aside>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="@canonical">@canonical</a></p>
+		</aside>
 	</article>
 </div>

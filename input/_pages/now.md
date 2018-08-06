@@ -8,10 +8,10 @@ layout: page
 
 ## What I'm doing now?
 
-* Playing bass guitar in a local covers band.
-* Preparing (slowly) for CodeCabin 18.
+* Playing bass guitar in [a local covers band](https://thedysfunctions.uk/).
+* Preparing (slowly) for [CodeCabin 18](https://codecab.in/).
 * Taking a little time out from Carlsberg projects.
-* Tinkering around with UMCO / Umbraco packages.
+* Tinkering around with new [UMCO / Umbraco packages](https://github.com/umco).
 * Still getting the (new) house in order, (moved in 12 months ago).
 
-<small>_This update was made on 08<sup>th</sup> August 2018._</small>
+<small>_This update was made on 31<sup>st</sup> August 2018._</small>

@@ -3,6 +3,7 @@
 	
 	var date = Model.Get<DateTime>("date");
 	var readingTime = Model.Get<ReadingTimeMeta>(ReadingTimeKeys.ReadingTime);
+	var canonical = string.Concat("https://leekelleher.com", Model.String("canonical", "/"));
 	
 	Func<IDocument, object> getTags = (doc) =>
 	{
@@ -14,7 +15,7 @@
 
 		foreach (var tag in tags)
 		{
-			items.Add(string.Format("<a href=\"/tag/{1}/\" rel=\"tag\">{0}</a>", tag, tag.ToLowerInvariant().Replace(' ', '-')));
+			items.Add(string.Format("<a href=\"/tag/{1}/\" rel=\"tag\" class=\"p-category\">{0}</a>", tag, tag.ToLowerInvariant().Replace(' ', '-')));
 		}
 
 		return Html.Raw(string.Join(", ", items));
@@ -26,16 +27,17 @@
 		<header>
 			<h1 class="p-name">@Html.Raw(Model.String("title"))</h1>
 			<p class="meta">
-				<span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")" class="dt-published">@date.ToString("dd/MM/yyyy")</time>.</span>
-				<span>Estimated read time:  @(readingTime.Minutes <= 1 ? "under a minute" : $"{readingTime.Minutes.ToString("#,#")} minutes") (@(readingTime.Words.ToString("#,#")) words)</span>
+				<span>Posted on <a class="u-url" href="@canonical"><time datetime="@date.ToString("yyyy-MM-ddTHH:mm%K")" class="dt-published">@date.ToString("dd/MM/yyyy")</time></a>.</span>
+				<span>Estimated read time: @(readingTime.Minutes <= 1 ? "under a minute" : $"{readingTime.Minutes.ToString("#,#")} minutes") (@(readingTime.Words.ToString("#,#")) words)</span>
 			</p>
 		</header>
 		<div class="e-content">
 			@RenderBody()
 		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> @getTags(Model)</p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="@canonical">@canonical</a></p>
+		</aside>
 	</article>
-	<aside>
-		<p class="tags"><span>Tags:</span> @getTags(Model)</p>
-	</aside>
 	@Html.Partial("~/_layouts/disqusComments.cshtml")
 </div>

@@ -11,7 +11,7 @@
 
 		foreach (var tag in tags)
 		{
-			items.Add(string.Format("<a href=\"/tag/{1}/\" rel=\"tag\">{0}</a>", tag, MyHelper.CleanTag(tag)));
+			items.Add(string.Format("<a href=\"/tag/{1}/\" rel=\"tag\" class=\"p-category\">{0}</a>", tag, MyHelper.CleanTag(tag)));
 		}
 
 		return Html.Raw(string.Join(", ", items));
@@ -27,7 +27,7 @@
 		<li>
 			<h3><a href="@post["permalink"]" rel="bookmark">@Html.Raw(post.String("title"))</a></h3>
 			<p class="meta">
-				<span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm")">@date.ToString("dd/MM/yyyy")</time>.</span>
+				<span>Posted on <time datetime="@date.ToString("yyyy-MM-ddTHH:mm%K")">@date.ToString("dd/MM/yyyy")</time>.</span>
 				<span>Estimated read time:  @(readingTime.Minutes <= 1 ? "under a minute" : $"{readingTime.Minutes.ToString("#,#")} minutes") (@(readingTime.Words.ToString("#,#")) words)</span>
 			</p>
 			@if (post.ContainsKey("Excerpt"))
