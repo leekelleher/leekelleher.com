@@ -3,8 +3,8 @@ title: Now
 layout: page
 ---
 
-> _This is [a now page](http://nownownow.com/about), and if you have your own site, [you should make one](http://nownownow.com/about), too._<br>
-> _Inspiration for the "**Now**" page comes from Derek Sivers: <http://sivers.org/now>_
+> _This is [a now page](https://nownownow.com/about), and if you have your own site, [you should make one](https://nownownow.com/about), too._<br>
+> _Inspiration for the "**Now**" page comes from Derek Sivers: <https://sivers.org/now>_
 
 ## What I'm doing now?
 

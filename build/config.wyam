@@ -139,7 +139,7 @@ Pipelines.Add("LessCss",
     ReadFiles("_assets/assets/css/*.less"),
 	Less(),
     MinifyCss(),
-    WriteFiles(@doc.String("RelativeFilePathBase").Replace("_assets/", "") + ".css")
+    WriteFiles(@doc.String("RelativeFilePathBase").Replace("_assets/", "") + ".css").UseWriteMetadata(false)
 );
 
 Pipelines.Add("Posts",

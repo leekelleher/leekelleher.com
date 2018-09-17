@@ -34,6 +34,7 @@ body {
 	color: #333;
 	
 	> header {
+		.container();
 		.section-border();
 		
 		background: url(/assets/img/nxnw_80x80.png) no-repeat;
@@ -363,8 +364,32 @@ footer {
 	}
 }
 
-.email-confirmation {
-	display: none;
+form {
+	.email-confirmation {
+		display: none;
+	}
+
+	label {
+		display: inline-block;
+		vertical-align: top;
+		width: 12%;
+	}
+
+	input, textarea {
+		color: #333;
+		display: inline-block;
+		font-family: @copy;
+		font-size: 20px;
+		line-height: 1.75em;
+		padding: 0 5px;
+		width: 58%;
+	}
+	
+	input[type=submit] {
+		margin-left: 12%;
+		padding: 5px 15px;
+		width: auto;
+	}
 }
 
 .years {

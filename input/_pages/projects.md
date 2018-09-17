@@ -11,7 +11,7 @@ This section of my site gives you a little look at some of those projects. If yo
 
 ## [Greasemonkey](/projects/greasemonkey/)
 
-Recently I have developed a few <a href="https://addons.mozilla.org/en-US/firefox/addon/748">Greasemonkey</a> user-scripts, mainly focusing on the use of <a href="http://www.flickr.com/groups/api/discuss/72157594497877875/">machine-tags on Flickr</a>.
+Recently I have developed a few <a href="https://addons.mozilla.org/en-US/firefox/addon/748">Greasemonkey</a> user-scripts, mainly focusing on the use of <a href="https://www.flickr.com/groups/api/discuss/72157594497877875/">machine-tags on Flickr</a>.
 
 * <a href="/projects/greasemonkey/imdb-tags/">IMDb Tags on Flickr</a>
 * <a href="/projects/greasemonkey/lastfm-tags/">Last.fm Event Tags on Flickr</a>
