@@ -33,30 +33,33 @@ body {
 	font-size: 20px;
 	color: #333;
 	
-	> header {
+	>header {
 		.container();
 		.section-border();
 		
 		background: url(/assets/img/nxnw_80x80.png) no-repeat;
-		padding-left: 90px;
 		
-		> p {
+		>p {
 			font-family: @heading;
 			font-size: xx-large;
 			font-weight: bold;
 			margin: 0;
 			padding: 0 0 0.25em 0;
+			padding-left: 90px;
 			
 			a:visited {
 				
 			}
 		}
 		
-		> nav {
+		>nav {
+			.list-item-spacing();
+			
 			ul {
 				list-style-type: none;
 				margin: 0;
 				padding: 0;
+				padding-left: 90px;
 				
 				li {
 					display: inline;
@@ -64,12 +67,6 @@ body {
 				}
 			}
 		}
-	}
-}
-
-header {
-	nav {
-		.list-item-spacing();
 	}
 }
 
@@ -131,15 +128,9 @@ a {
 	}
 }
 
-.date,
-.meta,
-.tags {
+.date, .meta, .tags {
 	font-size: small;
 	line-height: 1em;
-}
-
-.tags {
-	font-family: @code;
 }
 
 img {
@@ -202,9 +193,7 @@ main {
 		margin-bottom: 0;
 	}
 	
-	code,
-	kbd,
-	pre {
+	code, kbd, pre {
 		font-family: @code;
 	}
 	
@@ -288,8 +277,7 @@ main {
 		}
 	}
 	
-	ul,
-	ol {
+	ul, ol {
 		padding-left: 2em;
 	}
 
@@ -350,8 +338,6 @@ main {
 	table tr:nth-child(2n) {
 		background-color: #f8f8f8;
 	}
-	
-	
 }
 
 footer {
@@ -409,14 +395,33 @@ form {
 	display: inline;
 	font-size: 75%;
 	
-	> li {
+	>li {
 		display: inline;
 	}
 }
 
 @media screen and (max-width: 880px)
 {
-	main, footer {
-		width: 90%;
+	body {
+		>header, main, footer {
+			width: 90%;
+		}
+	}
+	
+	form {
+		label {
+			display: inherit;
+			vertical-align: unset;
+			width: auto;
+		}
+		
+		input, textarea {
+			display: block;
+			width: 90%;
+		}
+		
+		input[type=submit] {
+			margin-left: 0;
+		}
 	}
 }

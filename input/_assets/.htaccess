@@ -4,7 +4,7 @@ Redirect 301 /wp/wp-links-opml.php https://leekelleher.com/wordpress/wp-links-op
 Redirect 301 /js/jquery.min.js https://leekelleher.com/assets/js/jquery.min.js
 Redirect 301 /feeds/ https://leekelleher.com/feed/
 Redirect 301 /feeds/index.php https://leekelleher.com/feed/
-Redirect 301 /zeitgeist/ https://leekelleher.com/
+Redirect 301 /zeitgeist/ https://leekelleher.com/now/
 Redirect 301 /woFamily https://leekelleher.com/
 Redirect 301 /mp3/opentape/ https://soundcloud.com/leekelleher
 Redirect 301 /2006/08/31/ducks-with-teeth/ https://leekelleher.com/
