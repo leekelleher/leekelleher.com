@@ -129,14 +129,23 @@ BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 
 # BEGIN Expires
 <IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresDefault "access plus 10 days"
-    ExpiresByType image/gif "access plus 3 month"
-    ExpiresByType image/png "access plus 3 month"
-    ExpiresByType image/jpeg "access plus 3 month"
-    ExpiresByType application/x-icon "access plus 1 year"
+ExpiresActive On
+ExpiresDefault "access plus 10 days"
+ExpiresByType image/gif "access plus 3 month"
+ExpiresByType image/png "access plus 3 month"
+ExpiresByType image/jpeg "access plus 3 month"
+ExpiresByType application/x-icon "access plus 1 year"
 </IfModule>
 # END Expires
+
+# BEGIN Security Headers
+<IfModule mod_headers.c>
+Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
+Header set X-Content-Type-Options nosniff
+Header always append X-Frame-Options SAMEORIGIN
+Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+# END Security Headers
 
 ErrorDocument 403 /403.php
 ErrorDocument 404 /404.php
