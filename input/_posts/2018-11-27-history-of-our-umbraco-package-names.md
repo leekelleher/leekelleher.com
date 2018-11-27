@@ -8,6 +8,7 @@ tags:
   - Community
   - Package
   - Open Source
+  - UMCO
 image: /assets/media/umb-collab.jpg
 excerpt: Have you ever looked in your /bin folder and wondered why a bunch of Umbraco package assemblies are prefixed with "Our.Umbraco."? Let's find out about the history of that naming convention!
 ---
@@ -16,7 +17,7 @@ Earlier this year, [Callum asked the question](https://twitter.com/callumbwhyte/
 
 > Can someone explain the history behind the "Our.Umbraco.X" naming convention for packages? It seems it's used by only a few now #umbraco
 
-I [replied at the time](https://twitter.com/leekelleher/status/820727834536767488) - but felt an explanation longer than a couple of tweets would be nice, (and findable for future reference). I have a draft of this post sitting around for a while now, thought best to publish it!
+I [replied at the time](https://twitter.com/leekelleher/status/820727834536767488) - but felt an explanation longer than a couple of tweets would be nice, (and findable for future reference). I had a draft of this post sitting around for a while now, thought best to publish it!
 
 <a href="https://www.flickr.com/photos/rikhelsen/6269167834/in/album-72157627950157764/" title="Umbraco community hacking"><img src="/assets/media/umb-collab.jpg" alt="IMG_4590"></a>
 
@@ -36,8 +37,14 @@ Ironically, we never changed the [uComponents](https://our.umbraco.com/packages/
 
 The idea was that these packages were **made by the Umbraco community, for the Umbraco community**.
 
-Interestingly, I didn't push this naming convention much, but started to notice that some other package developers started to use it. It had become an unspoken guideline.
+I didn't push this naming convention, but interestingly I noticed other package developers had started to use it. It had become an unspoken guideline.
 
-More recently, the packages that I've collaborated on with Matt Brailsford have generally come from working together at my company **Umbrella** (where Matt has freelanced with us). However, when we start coding and setting up namespaces, if we used **"Umbrella.Umbraco.*"** it didn't feel quite right. We knew from the start that certain back-office extensions have the potential to be released as fully-fledged Umbraco packages - we always start out with that mindset&hellip; **"for the community"**.
+More recently, the packages that I've collaborated on with [Matt Brailsford](https://twitter.com/mattbrailsford) have generally come from working together at my company **Umbrella** (where Matt has freelanced with us). However, when we started coding and setting up namespaces, if we used **"Umbrella.Umbraco.*"** it wouldn't feel quite right. We knew from the outset that certain back-office extensions had the potential to be released as fully-fledged Umbraco packages - we always start out with that mindset&hellip; **"for the community"**.
 
 So, if you ever look in your website's `/bin` folder and see a bunch of "Our.Umbraco.*" assemblies, then you now know they were developed with the community in mind and are a sign of thoughtful, well-crafted Umbraco packages.
+
+---
+
+`<plug>` The Umbraco packages that Matt and I collaborate together on are released under the banner of **UMCO**. If you enjoy using any of [our UMCO packages](https://github.com/umco) on your commercial Umbraco projects, [please do consider supporting our work](https://www.patreon.com/bePatron?u=4312563). `</plug>`
+
+<a href="https://www.patreon.com/bePatron?u=4312563"><img src="/assets/media/umco_patreon.png" alt="Become a UMCO Patron!" /></a>
