@@ -15,7 +15,7 @@
 
 		foreach (var tag in tags)
 		{
-			items.Add(string.Format("<a href=\"/tag/{1}/\" rel=\"tag\" class=\"p-category\">{0}</a>", tag, tag.ToLowerInvariant().Replace(' ', '-')));
+			items.Add(string.Format("<a href=\"/tag/{1}/\" rel=\"tag\" class=\"p-category\">{0}</a>", tag, MyHelper.CleanTag(tag)));
 		}
 
 		return Html.Raw(string.Join(", ", items));
