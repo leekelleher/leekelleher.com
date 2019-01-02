@@ -8,8 +8,6 @@ guid: http://blog.leekelleher.com/?p=134
 permalink: /2009/07/16/add-youtube-plugin-to-umbraco-tinymce/
 dsq_thread_id:
   - 1054078020
-categories:
-  - blog
 tags:
   - plug-in
   - TinyMCE

@@ -8,17 +8,11 @@ guid: http://leekelleher.wordpress.com/?p=17
 permalink: /2008/03/13/scrobbling-my-bbc-radio-listening-on-lastfm/
 dsq_thread_id:
   - 1054584047
-categories:
-  - blog
 tags:
-  - bbc
-  - desktop
-  - last.fm
-  - radio
-  - scrobbling
-  - vista
-  - widget
-  - yahoo
+  - BBC
+  - Last.fm
+  - music
+  - Yahoo
 ---
 A couple of months ago I&#8217;d heard that the [BBC Radio Labs](http://www.bbc.co.uk/radio/labs/) had developed a desktop widget that [scrobbled the songs you listen to on BBC Radio](http://www.bbc.co.uk/blogs/radiolabs/2007/12/scrobbling_your_bbc_radio_list.shtml) (currently only available for Radio 1, Radio 2, 6 Music and 1 Xtra) [[via Last.fm](http://blog.last.fm/2007/12/19/scrobble-what-you-listen-to-on-bbc-radio)]
 

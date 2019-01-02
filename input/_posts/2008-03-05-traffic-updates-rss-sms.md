@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=12
 permalink: /2008/03/05/traffic-updates-rss-sms/
 dsq_thread_id:
   - 1054584102
-categories:
-  - blog
 tags:
   - data
   - email

@@ -10,21 +10,12 @@ tagazine-media:
   - 'a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";s:1:"0";s:6:"author";s:5:"51466";s:7:"blog_id";s:7:"2580820";s:9:"mod_stamp";s:19:"2008-04-14 16:22:10";}'
 dsq_thread_id:
   - 1053360020
-categories:
-  - blog
 tags:
-  - csv
-  - data
-  - excel
-  - google
-  - microsoft
-  - office
-  - online
-  - text
-  - web
-  - web-application
-  - work
-  - xml
+  - code
+  - CSV
+  - Excel
+  - webdev
+  - XML
 ---
 There&#8217;s a bit a functionality on one of the projects that I&#8217;m working on where I need to do a lookup. The data I&#8217;ve been given is in an Excel spreadsheet &#8211; which I needed to convert to XML (as ultimately the data will be stored in a CMS that handles XML better).
 

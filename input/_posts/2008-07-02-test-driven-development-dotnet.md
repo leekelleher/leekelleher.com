@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=47
 permalink: /2008/07/02/test-driven-development-dotnet/
 dsq_thread_id:
   - 1053542426
-categories:
-  - blog
 tags:
   - .NET
   - development

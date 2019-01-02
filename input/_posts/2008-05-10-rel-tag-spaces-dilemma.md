@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=32
 permalink: /2008/05/10/rel-tag-spaces-dilemma/
 dsq_thread_id:
   - 1054583715
-categories:
-  - blog
 tags:
   - ASP.NET
   - firefox

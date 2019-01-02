@@ -8,15 +8,14 @@ guid: http://leekelleher.com/linklog/2007/06/12/greasemonkey-userscripts/
 permalink: /2007/06/12/greasemonkey-userscripts/
 dsq_thread_id:
   - 1813581889
-categories:
-  - apis
+tags:
+  - APIs
   - code
-  - flickr
+  - Flickr
   - greasemonkey
   - hacks
-  - imdb
-  - lastfm
-  - linklog
+  - IMDb
+  - Last.fm
   - open source
   - webdev
 ---

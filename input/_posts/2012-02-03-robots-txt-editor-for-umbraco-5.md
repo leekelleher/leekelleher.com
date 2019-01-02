@@ -6,8 +6,6 @@ author: leekelleher
 layout: post
 guid: http://leekelleher.com/?p=351
 permalink: /2012/02/03/robots-txt-editor-for-umbraco-5/
-categories:
-  - blog
 tags:
   - ASP.NET
   - Developer

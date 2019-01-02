@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=35
 permalink: /2008/06/06/making-requestquerystring-writable-by-clonecopy/
 dsq_thread_id:
   - 1056051575
-categories:
-  - blog
 tags:
   - ASP.NET
   - 'C#'

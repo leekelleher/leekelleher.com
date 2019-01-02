@@ -8,9 +8,8 @@ guid: http://leekelleher.com/linklog/2007/03/20/dodgy-missed-phonecalls/
 permalink: /2007/03/20/dodgy-missed-phonecalls/
 dsq_thread_id:
   - 1113157610
-categories:
-  - lee
-  - linklog
+tags:
+  - Lee
   - rants
   - spam
 ---

@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=9
 permalink: /2008/02/15/social-networks-are-like-pubs/
 dsq_thread_id:
   - 1054584037
-categories:
-  - blog
 tags:
   - b3ta
   - blog

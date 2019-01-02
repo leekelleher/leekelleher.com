@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=15
 permalink: /2008/03/09/introducing-pez/
 dsq_thread_id:
   - 1054584042
-categories:
-  - blog
 tags:
   - bogdind
   - open source

@@ -8,10 +8,9 @@ guid: http://leekelleher.com/linklog/2007/04/20/dodgy-png-colour-rendering/
 permalink: /2007/04/20/dodgy-png-colour-rendering/
 dsq_thread_id:
   - 1441518748
-categories:
-  - browsers
+tags:
+  - browser
   - firefox
-  - linklog
   - webdesign
   - webdev
 ---

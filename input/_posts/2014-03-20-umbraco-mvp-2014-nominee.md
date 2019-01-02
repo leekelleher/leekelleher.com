@@ -8,8 +8,6 @@ guid: http://leekelleher.com/?p=1336
 permalink: /2014/03/20/umbraco-mvp-2014-nominee/
 dsq_thread_id:
   - 2472673412
-categories:
-  - blog
 tags:
   - CodeGarden
   - MVP

@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=10
 permalink: /2008/02/19/daddys-little-girl/
 dsq_thread_id:
   - 1456584523
-categories:
-  - blog
 tags:
   - baby
   - Katelyn

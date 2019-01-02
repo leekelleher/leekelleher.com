@@ -8,11 +8,8 @@ guid: http://leekelleher.com/linklog/2006/11/03/google-reader/
 permalink: /2006/11/03/google-reader/
 dsq_thread_id:
   - 1329372127
-categories:
-  - applications
-  - blogs
+tags:
   - google
-  - linklog
   - rss
   - web
 ---

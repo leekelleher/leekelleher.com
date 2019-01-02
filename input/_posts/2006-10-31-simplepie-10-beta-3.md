@@ -6,11 +6,8 @@ author: leekelleher
 layout: post
 guid: http://leekelleher.com/linklog/2006/10/31/simplepie-10-beta-3/
 permalink: /2006/10/31/simplepie-10-beta-3/
-dsq_thread_id:
-  - 
-categories:
+tags:
   - britlitblogs
-  - linklog
   - php
   - readysteadybook
   - rss

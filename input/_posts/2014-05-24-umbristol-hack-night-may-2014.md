@@ -8,8 +8,6 @@ guid: http://leekelleher.com/?p=1543
 permalink: /2014/05/24/umbristol-hack-night-may-2014/
 dsq_thread_id:
   - 2709876026
-categories:
-  - blog
 tags:
   - Archetype
   - CodeGarden

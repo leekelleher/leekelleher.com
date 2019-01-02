@@ -8,8 +8,6 @@ guid: http://leekelleher.com/?p=530
 permalink: /2013/09/13/downgrading-ucomponents/
 dsq_thread_id:
   - 1756255433
-categories:
-  - blog
 tags:
   - uComponents
   - Umbraco

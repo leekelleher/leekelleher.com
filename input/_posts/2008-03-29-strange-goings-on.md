@@ -8,15 +8,10 @@ guid: http://leekelleher.wordpress.com/?p=61
 permalink: /2008/03/29/strange-goings-on/
 dsq_thread_id:
   - 1324464734
-categories:
-  - blog
 tags:
   - Celebrity
-  - flickr
-  - Look-alike
-  - SpamBot
-  - Strange
-  - Weird
+  - Flickr
+  - oddity
 ---
 The first time it happened I thought it was odd. After the second time I seemed very weird. Now that it&#8217;s happened a third time &#8211; I&#8217;m just baffled!
 

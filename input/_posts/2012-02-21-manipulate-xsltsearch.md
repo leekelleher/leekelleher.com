@@ -8,10 +8,7 @@ guid: http://leekelleher.com/?p=355
 permalink: /2012/02/21/manipulate-xsltsearch/
 dsq_thread_id:
   - 1053301475
-categories:
-  - blog
 tags:
-  - Template
   - Umbraco
   - XSLT
   - XSLTsearch

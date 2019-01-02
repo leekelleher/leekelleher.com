@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=5
 permalink: /2008/02/01/mozilla-prism-bringing-web-apps-to-the-desktop/
 dsq_thread_id:
   - 1072309941
-categories:
-  - blog
 tags:
   - calendar
   - desktop

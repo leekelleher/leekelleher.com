@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=11
 permalink: /2008/02/24/fatherhood/
 dsq_thread_id:
   - 1918764910
-categories:
-  - blog
 tags:
   - baby
   - Katelyn

@@ -8,14 +8,10 @@ guid: http://blog.leekelleher.com/?p=197
 permalink: /2010/04/02/working-with-xslt-using-new-xml-schema-in-umbraco-4-1/
 dsq_thread_id:
   - 1053341498
-categories:
-  - blog
 tags:
-  - Legacy
-  - Transform
+  - code
   - Umbraco
-  - xml
-  - XML Schema
+  - XML
   - XSLT
 ---
 Most of the Umbraco community are aware that the XML schema in the upcoming Umbraco 4.1 release has changed.

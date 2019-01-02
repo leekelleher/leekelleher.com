@@ -8,10 +8,8 @@ guid: http://leekelleher.com/linklog/2007/06/19/itunes-remote-web-control/
 permalink: /2007/06/19/itunes-remote-web-control/
 dsq_thread_id:
   - 1063232000
-categories:
-  - applications
-  - itunes
-  - linklog
+tags:
+  - iTunes
   - mp3s
   - music
   - open source

@@ -16,8 +16,6 @@ email_notification:
   - 1315388987
 dsq_thread_id:
   - 1065169897
-categories:
-  - blog
 tags:
   - CodePlex
   - community

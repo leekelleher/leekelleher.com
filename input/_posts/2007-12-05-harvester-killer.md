@@ -8,14 +8,13 @@ guid: http://leekelleher.com/linklog/2007/12/05/harvester-killer/
 permalink: /2007/12/05/harvester-killer/
 dsq_thread_id:
   - 1231602360
-categories:
+tags:
   - bots
   - email
   - hacks
   - html
   - javascript
-  - linklog
   - seo
   - spam
 ---
-<A HREF="http://www.spamhelp.org/harvesterkiller/">Fight SpamBots!</A>
+[Fight SpamBots!](http://www.spamhelp.org/harvesterkiller/)

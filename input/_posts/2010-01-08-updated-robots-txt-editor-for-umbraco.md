@@ -8,8 +8,6 @@ guid: http://blog.leekelleher.com/?p=192
 permalink: /2010/01/08/updated-robots-txt-editor-for-umbraco/
 dsq_thread_id:
   - 1054640897
-categories:
-  - blog
 tags:
   - ASP.NET
   - Developer

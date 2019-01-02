@@ -8,12 +8,8 @@ guid: http://leekelleher.com/linklog/2007/03/12/twittering-along/
 permalink: /2007/03/12/twittering-along/
 dsq_thread_id:
   - 
-categories:
-  - apis
-  - applications
-  - blogs
+tags:
   - lee
-  - linklog
   - twitter
   - web
 ---

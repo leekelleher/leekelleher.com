@@ -8,8 +8,6 @@ guid: http://leekelleher.com/?p=661
 permalink: /2013/11/17/predictions-for-umbraco-beyond-2014/
 dsq_thread_id:
   - 1974520622
-categories:
-  - blog
 tags:
   - CMS
   - node.js

@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=7
 permalink: /2008/02/13/all-hail-the-bookninja-messiah/
 dsq_thread_id:
   - 1054583967
-categories:
-  - blog
 tags:
   - akismet
   - bookninja

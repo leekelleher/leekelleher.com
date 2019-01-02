@@ -8,8 +8,6 @@ guid: http://blog.leekelleher.com/?p=105
 permalink: /2009/01/29/tagged-by-techn0tic/
 dsq_thread_id:
   - 1054584208
-categories:
-  - blog
 tags:
   - facts
   - Film

@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=18
 permalink: /2008/03/14/ie-view-lite-132-not-compatible-with-firefox-20/
 dsq_thread_id:
   - 1054584113
-categories:
-  - blog
 tags:
   - add-ons
   - backward compatibility

@@ -8,10 +8,7 @@ guid: http://leekelleher.com/linklog/2007/03/13/post-updates-to-twitter-right-fr
 permalink: /2007/03/13/post-updates-to-twitter-right-from-your-firefox-search-bar/
 dsq_thread_id:
   - 
-categories:
-  - apis
-  - geek
-  - linklog
+tags:
   - search
   - twitter
 ---

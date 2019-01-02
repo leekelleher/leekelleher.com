@@ -8,8 +8,6 @@ guid: http://blog.leekelleher.com/?p=112
 permalink: /2009/04/14/umbraco-package-ascx-usercontrol-file-editor-tree/
 dsq_thread_id:
   - 1054583982
-categories:
-  - blog
 tags:
   - ASCX
   - ASP.NET

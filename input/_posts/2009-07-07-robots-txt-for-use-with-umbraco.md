@@ -8,8 +8,6 @@ guid: http://blog.leekelleher.com/?p=132
 permalink: /2009/07/07/robots-txt-for-use-with-umbraco/
 dsq_thread_id:
   - 1054584002
-categories:
-  - blog
 tags:
   - Robots.txt
   - SEO

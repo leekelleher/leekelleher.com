@@ -8,8 +8,6 @@ guid: http://blog.leekelleher.com/?p=129
 permalink: /2009/06/29/source-code-released-for-user-control-file-tree-umbraco-package/
 dsq_thread_id:
   - 1054076927
-categories:
-  - blog
 tags:
   - ASCX
   - ASP.NET

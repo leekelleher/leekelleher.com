@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=6
 permalink: /2008/02/13/wordpress-postphp-is-blank-after-publishing/
 dsq_thread_id:
   - 1054583959
-categories:
-  - blog
 tags:
   - bookninja
   - google

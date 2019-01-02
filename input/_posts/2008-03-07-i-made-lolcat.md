@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=13
 permalink: /2008/03/07/i-made-lolcat/
 dsq_thread_id:
   - 1057441667
-categories:
-  - blog
 tags:
   - cats
   - distraction

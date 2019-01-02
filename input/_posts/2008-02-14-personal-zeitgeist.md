@@ -8,19 +8,14 @@ guid: http://leekelleher.wordpress.com/?p=8
 permalink: /2008/02/14/personal-zeitgeist/
 dsq_thread_id:
   - 1054584031
-categories:
-  - blog
 tags:
-  - favicon
-  - flickr
-  - last.fm
-  - openid
-  - opml
-  - Personal Websites
-  - simplepie
+  - Flickr
+  - Last.fm
+  - OpenId
+  - OPML
+  - PHP
   - WordPress
-  - xfn
-  - zeitgeist
+  - XFN
 ---
 I&#8217;ve finally started work on my [zeitgeist](http://leekelleher.com/zeitgeist/) page. My personal projects have been on the back-burner, [as I&#8217;ve (obviously) had other things to think about!](http://www.lee-and-lucy.com/travelblog/2008/02/11/eager-anticipation/)
 

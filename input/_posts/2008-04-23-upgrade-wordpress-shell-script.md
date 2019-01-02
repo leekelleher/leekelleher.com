@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=28
 permalink: /2008/04/23/upgrade-wordpress-shell-script/
 dsq_thread_id:
   - 1108279514
-categories:
-  - blog
 tags:
   - code
   - Shell Script

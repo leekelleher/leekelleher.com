@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=36
 permalink: /2008/06/06/how-to-convert-namevaluecollection-to-a-query-string/
 dsq_thread_id:
   - 1053590679
-categories:
-  - blog
 tags:
   - ASP.NET
   - 'C#'

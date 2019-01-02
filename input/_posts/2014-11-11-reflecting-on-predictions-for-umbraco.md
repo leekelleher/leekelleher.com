@@ -8,8 +8,6 @@ guid: http://leekelleher.com/?p=2077
 permalink: /2014/11/11/reflecting-on-predictions-for-umbraco/
 dsq_thread_id:
   - 3213982942
-categories:
-  - blog
 tags:
   - ASP.NET
   - ASP.NET vNext

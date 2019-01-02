@@ -8,10 +8,8 @@ guid: http://leekelleher.com/linklog/2007/03/16/wordpress-plugin-directory/
 permalink: /2007/03/16/wordpress-plugin-directory/
 dsq_thread_id:
   - 
-categories:
-  - blogs
+tags:
   - code
-  - linklog
   - open source
   - wordpress
 ---

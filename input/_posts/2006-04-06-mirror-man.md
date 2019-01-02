@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=67
 permalink: /2006/04/06/mirror-man/
 dsq_thread_id:
   - 1160860241
-categories:
-  - blog
 tags:
   - FACT
   - Film

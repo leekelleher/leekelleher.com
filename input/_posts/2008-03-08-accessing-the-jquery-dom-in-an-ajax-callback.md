@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=14
 permalink: /2008/03/08/accessing-the-jquery-dom-in-an-ajax-callback/
 dsq_thread_id:
   - 1056092774
-categories:
-  - blog
 tags:
   - ajax
   - dom

@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=49
 permalink: /2008/07/02/how-to-prevent-hotlinking-to-flv-files-flash-videos/
 dsq_thread_id:
   - 1054584193
-categories:
-  - blog
 tags:
   - flash
   - flv

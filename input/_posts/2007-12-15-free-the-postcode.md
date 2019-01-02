@@ -8,9 +8,8 @@ guid: http://leekelleher.com/linklog/2007/12/15/free-the-postcode/
 permalink: /2007/12/15/free-the-postcode/
 dsq_thread_id:
   - 1231602320
-categories:
-  - apis
-  - linklog
+tags:
+  - APIs
   - maps
   - open source
   - web

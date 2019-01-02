@@ -8,8 +8,6 @@ guid: http://blog.leekelleher.com/?p=188
 permalink: /2009/11/30/how-to-use-umbraco-library-getmedia-in-xslt/
 dsq_thread_id:
   - 1054323322
-categories:
-  - blog
 tags:
   - code
   - GetMedia

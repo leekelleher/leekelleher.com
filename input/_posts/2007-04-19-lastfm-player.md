@@ -8,10 +8,8 @@ guid: http://leekelleher.com/linklog/2007/04/19/lastfm-player/
 permalink: /2007/04/19/lastfm-player/
 dsq_thread_id:
   - 1132067030
-categories:
-  - lastfm
-  - lee
-  - linklog
+tags:
+  - Last.fm
   - mp3s
   - music
 ---

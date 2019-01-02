@@ -8,16 +8,13 @@ guid: http://blog.leekelleher.com/?p=109
 permalink: /2009/02/23/convert-xmlreader-to-string/
 dsq_thread_id:
   - 1053808840
-categories:
-  - blog
 tags:
   - ASP.NET
   - 'C#'
-  - Microsoft Data Access Application Blocks
-  - sql
+  - SQL
   - StringBuilder
   - Umbraco
-  - xml
+  - XML
   - XmlReader
 ---
 

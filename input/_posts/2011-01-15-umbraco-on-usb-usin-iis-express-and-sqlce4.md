@@ -14,8 +14,6 @@ email_notification:
   - 1295055704
 dsq_thread_id:
   - 1053293608
-categories:
-  - blog
 tags:
   - .NET
   - IIS

@@ -10,8 +10,6 @@ superawesome:
   - 'false'
 dsq_thread_id:
   - 1053787189
-categories:
-  - blog
 tags:
   - ASP.NET
   - ELMAH

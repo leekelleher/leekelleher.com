@@ -8,8 +8,6 @@ guid: http://blog.leekelleher.com/?p=93
 permalink: /2008/12/17/using-jquery-to-swap-form-fields/
 dsq_thread_id:
   - 1062356226
-categories:
-  - blog
 tags:
   - code
   - HTML

@@ -8,14 +8,12 @@ guid: http://leekelleher.wordpress.com/?p=42
 permalink: /2008/07/02/lastfm-web-services/
 dsq_thread_id:
   - 1284321109
-categories:
-  - blog
 tags:
   - .NET
-  - api
+  - APIs
   - 'C#'
-  - flickr
-  - last.fm
+  - Flickr
+  - Last.fm
   - open source
 ---
 [<img class="alignright" src="http://cdn.last.fm/depth/advertising/lastfm/badge_red_rev.gif" alt="Last.fm" width="150" height="60" />](http://www.last.fm/) Last weekend, [the good folk at Last.fm revealed version 2.0 of their public API](http://blog.last.fm/2008/06/27/developers-developers-developers):

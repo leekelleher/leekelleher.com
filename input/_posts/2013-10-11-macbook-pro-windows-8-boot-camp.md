@@ -8,8 +8,6 @@ guid: http://leekelleher.com/?p=544
 permalink: /2013/10/11/macbook-pro-windows-8-boot-camp/
 dsq_thread_id:
   - 1847572019
-categories:
-  - blog
 tags:
   - apple
   - boot camp

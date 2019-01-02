@@ -10,8 +10,6 @@ superawesome:
   - 'false'
 dsq_thread_id:
   - 1054584326
-categories:
-  - blog
 tags:
   - book
   - book review

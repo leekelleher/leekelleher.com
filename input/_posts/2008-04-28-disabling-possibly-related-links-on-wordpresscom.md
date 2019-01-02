@@ -8,14 +8,7 @@ guid: http://leekelleher.wordpress.com/?p=31
 permalink: /2008/04/28/disabling-possibly-related-links-on-wordpresscom/
 dsq_thread_id:
   - 1054584137
-categories:
-  - blog
 tags:
-  - blogging
-  - feature
-  - Possibly Related
-  - rant
-  - Related Posts
   - WordPress
   - WordPress.com
 ---

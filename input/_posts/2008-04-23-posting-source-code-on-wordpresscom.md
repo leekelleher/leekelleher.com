@@ -8,14 +8,10 @@ guid: http://leekelleher.wordpress.com/?p=26
 permalink: /2008/04/23/posting-source-code-on-wordpresscom/
 dsq_thread_id:
   - 1055344502
-categories:
-  - blog
 tags:
   - code
-  - short code
-  - snippet
-  - source
   - WordPress
+  - WordPress.com
 ---
 I feel like a complete n00b &#8230; I&#8217;ve only just found out how to mark-up source-code snippets on WordPress.com
 

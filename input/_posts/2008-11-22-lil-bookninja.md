@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=88
 permalink: /2008/11/22/lil-bookninja/
 dsq_thread_id:
   - 1458231804
-categories:
-  - blog
 tags:
   - baby
   - bookninja

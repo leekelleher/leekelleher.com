@@ -10,8 +10,6 @@ superawesome:
   - 'false'
 dsq_thread_id:
   - 1053754050
-categories:
-  - blog
 tags:
   - browser
   - code

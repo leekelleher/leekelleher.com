@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=69
 permalink: /2006/03/08/readysteadybook-all-the-hard-work-starting-to-pay-off/
 dsq_thread_id:
   - 1291880910
-categories:
-  - blog
 tags:
   - Books
   - List

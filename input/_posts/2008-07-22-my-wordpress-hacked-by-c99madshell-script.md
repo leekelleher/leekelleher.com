@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=71
 permalink: /2008/07/22/my-wordpress-hacked-by-c99madshell-script/
 dsq_thread_id:
   - 1053564204
-categories:
-  - blog
 tags:
   - c99madshell
   - google

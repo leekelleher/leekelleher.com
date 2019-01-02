@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=57
 permalink: /2008/07/18/hindsight-its-is-a-wonderful-thing/
 dsq_thread_id:
   - 1054584108
-categories:
-  - blog
 tags:
   - Hacked
   - Travelblog

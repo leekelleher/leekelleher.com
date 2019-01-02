@@ -8,8 +8,6 @@ guid: http://leekelleher.com/?p=1376
 permalink: /2014/03/25/ucomponents-futures-umbraco-7/
 dsq_thread_id:
   - 2509993078
-categories:
-  - blog
 tags:
   - AngularJS
   - Belle

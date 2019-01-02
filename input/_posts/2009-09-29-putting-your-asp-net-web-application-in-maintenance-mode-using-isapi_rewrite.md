@@ -10,8 +10,6 @@ superawesome:
   - 'false'
 dsq_thread_id:
   - 1053718910
-categories:
-  - blog
 tags:
   - App_Offline
   - ASP.NET

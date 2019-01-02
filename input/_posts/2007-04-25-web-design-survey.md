@@ -8,8 +8,7 @@ guid: http://leekelleher.com/linklog/2007/04/25/web-design-survey/
 permalink: /2007/04/25/web-design-survey/
 dsq_thread_id:
   - 1828105889
-categories:
-  - linklog
+tags:
   - webdesign
 ---
 Just took the [_A List Apart_&#8216;s Web Design Survey](http://alistapart.com/articles/webdesignsurvey)&#8230; they want to know more about people who make websites.

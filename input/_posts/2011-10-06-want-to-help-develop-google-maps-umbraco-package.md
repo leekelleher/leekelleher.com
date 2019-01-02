@@ -14,8 +14,6 @@ email_notification:
   - 1317899069
 dsq_thread_id:
   - 1053378046
-categories:
-  - blog
 tags:
   - DataType
   - Google Maps

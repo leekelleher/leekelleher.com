@@ -8,8 +8,6 @@ guid: http://blog.leekelleher.com/?p=126
 permalink: /2009/06/29/mysql-data-source-support-for-elmah/
 dsq_thread_id:
   - 1054584228
-categories:
-  - blog
 tags:
   - .NET
   - 'C#'

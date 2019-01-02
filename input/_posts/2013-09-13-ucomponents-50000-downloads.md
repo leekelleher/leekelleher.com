@@ -8,8 +8,6 @@ guid: http://leekelleher.com/?p=525
 permalink: /2013/09/13/ucomponents-50000-downloads/
 dsq_thread_id:
   - 1756382311
-categories:
-  - blog
 tags:
   - CodePlex
   - community

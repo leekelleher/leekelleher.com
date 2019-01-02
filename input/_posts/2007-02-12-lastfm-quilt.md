@@ -8,14 +8,11 @@ guid: http://leekelleher.com/linklog/2007/02/12/lastfm-quilt/
 permalink: /2007/02/12/lastfm-quilt/
 dsq_thread_id:
   - 3508866207
-categories:
-  - blogs
-  - flash
-  - lastfm
-  - linklog
+tags:
+  - Last.fm
   - myspace
 ---
-If you use [Last.fm](http://www.last.fm/user/vertino/) and have a [blog](http://vertino.wordpress.com/) (or [MySpace](http://myspace.com/vertino)), then you can put one of these shiny new [album-art quilts](http://www.last.fm/tools/quilts/) on it!<!--more-->
+If you use [Last.fm](http://www.last.fm/user/vertino/) and have a [blog](http://vertino.wordpress.com/) (or [MySpace](http://myspace.com/vertino)), then you can put one of these shiny new [album-art quilts](http://www.last.fm/tools/quilts/) on it!
 
 <div class="lastfm_quilt lastfm_quilt_horizontal lastfm_quilt_black">
   <a class="lastfm_quilt_albums_wide" title="Top albums" href="http://www.last.fm/user/vertino/"></a>

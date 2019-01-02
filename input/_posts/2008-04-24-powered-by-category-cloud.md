@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=30
 permalink: /2008/04/24/powered-by-category-cloud/
 dsq_thread_id:
   - 2464463006
-categories:
-  - blog
 tags:
   - Category Cloud
   - extension

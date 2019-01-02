@@ -14,8 +14,6 @@ email_notification:
   - 1314897494
 dsq_thread_id:
   - 1053581928
-categories:
-  - blog
 tags:
   - DataType
   - Macro

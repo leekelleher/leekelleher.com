@@ -84,7 +84,8 @@ public static class MyHelper
 		return rawTag
 			.ToLowerInvariant()
 			.Replace(' ', '-')
-			.Replace("c#", "c-sharp");
+			.Replace("c#", "c-sharp")
+			.Replace("last.fm", "lastfm");
 	}
 	
 	public static string Highlight(CodeColorizer colorizer, string input, string className, HtmlParser htmlParser)

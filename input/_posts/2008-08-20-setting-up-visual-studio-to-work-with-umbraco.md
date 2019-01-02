@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=81
 permalink: /2008/08/20/setting-up-visual-studio-to-work-with-umbraco/
 dsq_thread_id:
   - 1053483457
-categories:
-  - blog
 tags:
   - ASP.NET
   - CMS

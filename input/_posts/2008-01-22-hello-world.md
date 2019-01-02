@@ -8,8 +8,6 @@ guid: http://leekelleher.com/linklog/2008/01/22/hello-world/
 permalink: /2008/01/22/hello-world/
 dsq_thread_id:
   - 1678094833
-categories:
-  - blog
 tags:
   - del.icio.us
   - digg

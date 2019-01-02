@@ -14,8 +14,6 @@ email_notification:
   - 1281541365
 dsq_thread_id:
   - 1054182353
-categories:
-  - blog
 tags:
   - code
   - GetMedia

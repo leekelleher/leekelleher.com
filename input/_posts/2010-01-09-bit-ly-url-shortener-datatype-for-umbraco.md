@@ -8,8 +8,6 @@ guid: http://blog.leekelleher.com/?p=194
 permalink: /2010/01/09/bit-ly-url-shortener-datatype-for-umbraco/
 dsq_thread_id:
   - 1062957273
-categories:
-  - blog
 tags:
   - Bit.ly
   - DataType

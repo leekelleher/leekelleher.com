@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=90
 permalink: /2008/11/24/populating-multiple-dropdownlist-controls-with-generic-listitem-array/
 dsq_thread_id:
   - 1054583733
-categories:
-  - blog
 tags:
   - array
   - ASP.NET

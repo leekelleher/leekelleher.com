@@ -8,10 +8,7 @@ guid: http://leekelleher.com/linklog/2007/04/01/google-tisp-free-wireless-broadb
 permalink: /2007/04/01/google-tisp-free-wireless-broadband/
 dsq_thread_id:
   - 1663974364
-categories:
-  - funny
-  - geek
+tags:
   - google
-  - linklog
 ---
 [Want **free** in-home wireless broadband from Google? Check out TiSP!](http://www.google.com/tisp/)

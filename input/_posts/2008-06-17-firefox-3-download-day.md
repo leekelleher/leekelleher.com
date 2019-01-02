@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=40
 permalink: /2008/06/17/firefox-3-download-day/
 dsq_thread_id:
   - 1219758901
-categories:
-  - blog
 tags:
   - download
   - firefox

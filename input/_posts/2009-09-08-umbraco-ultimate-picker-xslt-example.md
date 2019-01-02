@@ -8,13 +8,7 @@ guid: http://blog.leekelleher.com/?p=157
 permalink: /2009/09/08/umbraco-ultimate-picker-xslt-example/
 dsq_thread_id:
   - 1053346907
-categories:
-  - blog
 tags:
-  - Data Types
-  - Template
-  - Tutorial
-  - Ultimate Picker
   - Umbraco
   - XSLT
 ---

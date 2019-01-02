@@ -8,8 +8,8 @@ guid: http://leekelleher.com/linklog/2007/01/04/brit-lit-blogs-relaunched/
 permalink: /2007/01/04/brit-lit-blogs-relaunched/
 dsq_thread_id:
   - 
-categories:
-  - books
+tags:
+  - britlitblogs
   - readysteadybook
   - webdev
 ---

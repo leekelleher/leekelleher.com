@@ -8,10 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=23
 permalink: /2008/04/15/new-richard-westbrook-site/
 dsq_thread_id:
   - 1086783563
-categories:
-  - blog
-tags:
-  - blog
   - bodenko
   - buzzword
   - crush design

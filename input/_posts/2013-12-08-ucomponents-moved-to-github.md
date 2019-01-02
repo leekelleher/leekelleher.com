@@ -8,8 +8,6 @@ guid: http://leekelleher.com/?p=748
 permalink: /2013/12/08/ucomponents-moved-to-github/
 dsq_thread_id:
   - 2036344333
-categories:
-  - blog
 tags:
   - CodePlex
   - GitHub

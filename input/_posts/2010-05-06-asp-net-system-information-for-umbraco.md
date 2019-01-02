@@ -12,8 +12,6 @@ email_notification:
   - 1273158019
 dsq_thread_id:
   - 1054584400
-categories:
-  - blog
 tags:
   - ASP.NET
   - Information

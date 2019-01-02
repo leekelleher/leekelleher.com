@@ -8,8 +8,6 @@ guid: http://leekelleher.com/?p=1038
 permalink: /2014/03/20/deploying-complex-property-editors-archetype-with-umbraco-courier-on-uaas/
 dsq_thread_id:
   - 2472408903
-categories:
-  - blog
 tags:
   - Archetype
   - Courier

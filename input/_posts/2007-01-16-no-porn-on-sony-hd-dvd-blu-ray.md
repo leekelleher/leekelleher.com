@@ -8,11 +8,8 @@ guid: http://leekelleher.com/linklog/2007/01/16/no-porn-on-sony-hd-dvd-blu-ray/
 permalink: /2007/01/16/no-porn-on-sony-hd-dvd-blu-ray/
 dsq_thread_id:
   - 1133821148
-categories:
-  - dvds
-  - linklog
+tags:
+  - Sony
   - porn
-  - rants
-  - video
 ---
 I thought Sony would have learnt from their mistakes of [Betamax](http://en.wikipedia.org/wiki/Betamax)&#8230; but it seems that [Sony doesn&#8217;t allow XXX-rated movies to be released on Blu-ray!](http://www.sgknox.com/2007/01/11/no-porn-on-blu-ray/)

@@ -16,8 +16,6 @@ email_notification:
   - 1309904129
 dsq_thread_id:
   - 1053520046
-categories:
-  - blog
 tags:
   - book
   - book review

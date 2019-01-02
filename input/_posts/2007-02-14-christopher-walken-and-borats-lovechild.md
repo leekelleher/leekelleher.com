@@ -8,10 +8,7 @@ guid: http://leekelleher.com/linklog/2007/02/14/christopher-walken-and-borats-lo
 permalink: /2007/02/14/christopher-walken-and-borats-lovechild/
 dsq_thread_id:
   - 1586508930
-categories:
-  - funny
-  - seo
-  - video
-  - youtube
+tags:
+  - oddity
 ---
 [Internet Marketing gone bad&#8230;](http://www.youtube.com/watch?v=jtb7BGF8p_I) presented by [the lovechild of Borat and Christopher Walken!](http://www.youtube.com/watch?v=wvXexRlYH40)

@@ -14,7 +14,7 @@ permalink: /tag/
 		
 		foreach (var tag in tags)
 		{
-			if (!documentsByTag.ContainsKey(tag))
+			if (documentsByTag.ContainsKey(tag) == false)
 			{
 				documentsByTag.Add(tag, new List<IDocument>() { doc });
 			}

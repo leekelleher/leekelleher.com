@@ -8,15 +8,13 @@ guid: http://leekelleher.com/linklog/2006/11/16/yahoo-and-msn-will-use-googles-s
 permalink: /2006/11/16/yahoo-and-msn-will-use-googles-sitemap-protocol/
 dsq_thread_id:
   - 
-categories:
-  - google
-  - linklog
-  - msn
+tags:
+  - Google
+  - MSN
   - search
-  - seo
-  - sitemap
+  - SEO
   - webdev
-  - xml
-  - yahoo
+  - XML
+  - Yahoo
 ---
 Yahoo and MSN are uniting with Google to [provide support for the Sitemap Protocol!](http://googlewebmastercentral.blogspot.com/2006/11/joint-support-for-sitemap-protocol.html) ([more info here &#8211; sitemaps.org](http://www.sitemaps.org/))

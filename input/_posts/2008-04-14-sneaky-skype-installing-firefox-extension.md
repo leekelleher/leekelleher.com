@@ -8,8 +8,6 @@ guid: http://leekelleher.wordpress.com/?p=22
 permalink: /2008/04/14/sneaky-skype-installing-firefox-extension/
 dsq_thread_id:
   - 1054583708
-categories:
-  - blog
 tags:
   - apple
   - extension
