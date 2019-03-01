@@ -8,9 +8,11 @@ layout: page
 
 ## What I'm doing now?
 
+* Parenting struggles with kids and managing devices &amp; technologies.
+* Working hard to win new projects at [Umbrella](https://umbrellainc.co.uk/), after 5 intense years of Carlsberg projects.
+* Preparing a talk for [Umbraco Spark conference](https://umbracospark.com/).
+* Mentoring Umbraco community developers.
+* Figuring out how to deal with the Umbraco package ecosystem for Umbraco v8.
 * Playing bass guitar in [a local covers band](https://thedysfunctions.uk/).
-* Finding a better work/life balance, after 5 intense years of Carlsberg projects.
-* Tinkering around with new [UMCO / Umbraco packages](https://github.com/umco).
-* Still getting the (new) house in order, (moved in over 12 months ago).
 
-<small>_This update was made on 26<sup>th</sup> November 2018._</small>
+<small>_This update was made on 1<sup>st</sup> March 2019._</small>
