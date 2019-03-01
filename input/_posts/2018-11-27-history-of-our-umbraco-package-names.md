@@ -42,9 +42,3 @@ I didn't push this naming convention, but interestingly I noticed other package 
 More recently, the packages that I've collaborated on with [Matt Brailsford](https://twitter.com/mattbrailsford) have generally come from working together at my company **Umbrella** (where Matt has freelanced with us). However, when we started coding and setting up namespaces, if we used **"Umbrella.Umbraco.*"** it wouldn't feel quite right. We knew from the outset that certain back-office extensions had the potential to be released as fully-fledged Umbraco packages - we always start out with that mindset&hellip; **"for the community"**.
 
 So, if you ever look in your website's `/bin` folder and see a bunch of "Our.Umbraco.*" assemblies, then you now know they were developed with the community in mind and are a sign of thoughtful, well-crafted Umbraco packages.
-
----
-
-`<plug>` The Umbraco packages that Matt and I collaborate together on are released under the banner of **UMCO**. If you enjoy using any of [our UMCO packages](https://github.com/umco) on your commercial Umbraco projects, [please do consider supporting our work](https://www.patreon.com/bePatron?u=4312563). `</plug>`
-
-<a href="https://www.patreon.com/bePatron?u=4312563"><img src="/assets/media/umco_patreon.png" alt="Become a UMCO Patron!" /></a>
