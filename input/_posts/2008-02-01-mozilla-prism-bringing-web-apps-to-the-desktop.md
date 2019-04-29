@@ -11,11 +11,11 @@ dsq_thread_id:
 tags:
   - calendar
   - desktop
-  - firefox
-  - gmail
-  - google
+  - Firefox
+  - Gmail
+  - Google
   - hta
-  - mozilla
+  - Mozilla
   - prism
   - reader
   - web-application

@@ -13,9 +13,9 @@ tags:
   - backward compatibility
   - browser
   - extension
-  - firefox
-  - internet explorer
-  - mozilla
+  - Firefox
+  - Internet Explorer
+  - Mozilla
 ---
 I used all sorts of add-ons and extensions for Firefox, (I&#8217;ll get around to writing a blog post on that soon too). Since I do a lot of web-development, I switch between Firefox and Internet Explorer frequently during a build.
 

@@ -10,9 +10,9 @@ dsq_thread_id:
   - 1219758901
 tags:
   - download
-  - firefox
+  - Firefox
   - Guinness World Record
-  - mozilla
+  - Mozilla
 ---
 <p style="text-align:center;">
   <a href="http://www.spreadfirefox.com/node&id=192858&t=264"><img class="aligncenter" src="http://www.spreadfirefox.com/files/images/affiliates_banners/dday_badge_fox.png" border="0" alt="Download Day" /></a>

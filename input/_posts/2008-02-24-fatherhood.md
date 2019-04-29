@@ -11,7 +11,7 @@ dsq_thread_id:
 tags:
   - baby
   - Katelyn
-  - kelleher
+  - Kelleher
   - Lee
   - Personal Websites
   - pez

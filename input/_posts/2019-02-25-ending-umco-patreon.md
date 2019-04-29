@@ -30,6 +30,6 @@ I'm cross-posting here for posterity...
 > 
 > We'd like to thank everyone for their support...
 
-To add to this, we still aim on being very active in the Umbraco community, Umbraco core, package development, umBristol meetups... and CodeCabin!
+To add to this, we still aim on being very active in the Umbraco community, Umbraco core, package development, [umBristol meetups](https://umbristol.co.uk)... and CodeCabin!
 
-Speaking of which, this year's CodeCabin is open for applications! Visit <https://codecab.in/>!
+Speaking of which, this year's **CodeCabin** is open for applications! Visit <https://codecab.in/>!
