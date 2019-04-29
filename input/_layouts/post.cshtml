@@ -24,10 +24,14 @@
 	
 	var posting = new Schema.NET.BlogPosting
 	{
+		MainEntityOfPage = new Uri(canonical),
 		Headline = Model.String("title"),
 		Url = new Uri(canonical),
 		DateCreated = new DateTimeOffset(date),
+		DateModified = new DateTimeOffset(date),
+		DatePublished = new DateTimeOffset(date),
 		Author = new Schema.NET.Person { Name = "Lee Kelleher", Url = new Uri(baseUrl) },
+		Publisher = new Schema.NET.Person { Name = "Lee Kelleher", Url = new Uri(baseUrl) },
 		Description = Model.String("Excerpt"),
 		ArticleBody = MyHelper.StripHtml(Model.String("PostContent")),
 		Image = new Uri(string.Concat(baseUrl, Model.String("image", "/assets/img/nxnw_300x300.jpg"))),
