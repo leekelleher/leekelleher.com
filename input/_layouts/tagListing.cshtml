@@ -1,4 +1,4 @@
-title: All Tags
+title: Tags
 permalink: /tag/
 ---
 @{
@@ -54,7 +54,27 @@ permalink: /tag/
 
 <section>
 	<header>
-		@Model.String("title")</h1>
+		<h1>@Model.String("title")</h1>
+		<h2>Tag Cloud</h2>
+		<p>Here is featured tag cloud weighted by popularity, presented in alphabetical order.</p>
+	</header>
+	<ol class="tagcloud">
+		@foreach(var group in documentsByTag.Where(x => x.Value.Count > 1).OrderBy(x => x.Key))
+		{
+			var count = group.Value.Count();
+			var link = @MyHelper.CleanTag(group.Key);
+			
+			<li class="@cssClass(count)" title="@count posts are tagged with @group.Key">
+				<span>@count @(count == 1 ? "post is" : "posts are") tagged with </span>
+				<a href="/tag/@link/"><em>@group.Key</em></a>
+			</li>
+		}
+	</ol>
+</section>
+
+<section>
+	<header>
+		<h2>All Tags</h2>
 		<p>Here is a listing of all the tags used on my blog posts; presented in descending order, from the most used to the least used.</p>
 	</header>
 	<ol>
