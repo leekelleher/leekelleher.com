@@ -1,9 +1,10 @@
 @{
 	Layout = @"~/_layouts/_layout.cshtml";
 	
+	var baseUrl = "https://leekelleher.com";
 	var date = Model.Get<DateTime>("date");
 	var readingTime = Model.Get<ReadingTimeMeta>(ReadingTimeKeys.ReadingTime);
-	var canonical = string.Concat("https://leekelleher.com", Model.String("canonical", "/"));
+	var canonical = string.Concat(baseUrl, Model.String("canonical", "/"));
 	
 	Func<IDocument, object> getTags = (doc) =>
 	{
@@ -20,7 +21,21 @@
 
 		return Html.Raw(string.Join(", ", items));
 	};
+	
+	var posting = new Schema.NET.BlogPosting
+	{
+		Headline = Model.String("title"),
+		Url = new Uri(canonical),
+		DateCreated = new DateTimeOffset(date),
+		Author = new Schema.NET.Person { Name = "Lee Kelleher", Url = new Uri(baseUrl) },
+		Description = Model.String("Excerpt"),
+		ArticleBody = MyHelper.StripHtml(Model.String("PostContent")),
+		Image = new Uri(string.Concat(baseUrl, Model.String("image", "/assets/img/nxnw_300x300.jpg"))),
+		WordCount = Convert.ToInt32(readingTime.Words),
+	};
 }
+
+<script type="application/ld+json">@Html.Raw(posting.ToHtmlEscapedString())</script>
 
 <div>
 	<article class="h-entry">

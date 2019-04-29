@@ -1,6 +1,26 @@
 WritePath: index.html
 ---
 @{
+	var baseUrl = "https://leekelleher.com";
+	var name = "Lee Kelleher";
+	var jobTitle = "Umbraco Specialist";
+	var person = new Schema.NET.Person
+	{
+		Name = name,
+		Url = new Uri(baseUrl),
+		JobTitle = jobTitle,
+		Gender = Schema.NET.GenderType.Male,
+		Image = new Uri($"{baseUrl}/assets/img/nxnw_300x300.jpg"),
+		SameAs = new[]
+		{
+			new Uri("https://twitter.com/leekelleher"),
+			new Uri("https://github.com/leekelleher"),
+			new Uri("https://www.facebook.com/leekelleher"),
+			new Uri("https://www.linkedin.com/in/leekelleher/"),
+			new Uri("https://our.umbraco.com/members/leekelleher/"),
+			new Uri("https://stackoverflow.com/users/12787/leekelleher"),
+		}
+	};
 	var numberOfPosts = 6;
 	var posts = Documents
 		.WhereContainsKey("date")
@@ -8,6 +28,8 @@ WritePath: index.html
 
 	ViewData["PostListDocuments"] = posts.Take(numberOfPosts);
 }
+
+<script type="application/ld+json">@Html.Raw(person.ToHtmlEscapedString())</script>
 
 <section id="latest">
 	<header>

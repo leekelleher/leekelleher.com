@@ -1,13 +1,15 @@
 @{
-	var siteName = "Lee Kelleher - Umbraco Specialist";
+	var baseUrl = "https://leekelleher.com";
+	var name = "Lee Kelleher";
+	var jobTitle = "Umbraco Specialist";
+	var siteName = $"{name} - {jobTitle}";
 	var title = Model.ContainsKey("title") ? Model.String("title") + " | " + siteName : siteName;
-	var description = Model.String("Excerpt", "The personal website of Lee Kelleher; Umbraco specialist");
+	var description = Model.String("Excerpt", $"The personal website of {name}; {jobTitle}");
 	var keywords = Model.ContainsKey("tags") ? string.Join(",", Model.Get<string[]>("tags")).ToLower() : "leekelleher,kelleher,umbraco,asp.net,c#,csharp,xslt,mvc,mvp";
-	var url = string.Concat("https://leekelleher.com", Model.String("canonical", "/"));
-	var image = string.Concat("https://leekelleher.com", Model.String("image", "/assets/img/northbynorthwest_300x300.jpg"));
+	var url = string.Concat(baseUrl, Model.String("canonical", "/"));
+	var image = string.Concat(baseUrl, Model.String("image", "/assets/img/nxnw_300x300.jpg"));
 	var internalCss = Documents.FromPipeline("LessCss");
 	var externalCss = Model.ContainsKey("css") ? Model.Get<string[]>("css") : null;
-	
 }
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +32,7 @@
 	<meta name="twitter:description" property="og:description" content="@description">
 	<meta name="twitter:image" property="og:image" content="@image">
 
-	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="alternate" href="@baseUrl/feed/" type="application/rss+xml">
 	<link rel="canonical" href="@url">
 	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
 	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">

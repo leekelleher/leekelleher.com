@@ -6,6 +6,7 @@
 #n -p Wyam.ReadingTime
 #n -p Wyam.Yaml
 #n ColorCode
+#n Schema.NET
 #n System.ServiceModel.Syndication
 
 #a "System.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
