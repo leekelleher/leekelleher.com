@@ -1,11 +1,12 @@
 WritePath: index.html
 ---
 @{
+	var numberOfPosts = 6;
 	var posts = Documents
 		.WhereContainsKey("date")
 		.OrderByDescending(x => x.Get<DateTime>("date"));
 
-	ViewData["PostListDocuments"] = posts.Take(6);
+	ViewData["PostListDocuments"] = posts.Take(numberOfPosts);
 }
 
 <section id="latest">
