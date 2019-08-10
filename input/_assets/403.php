@@ -19,8 +19,8 @@ header("Status: 403 Forbidden");
 <body>
 	<div id="main">
 		<p>
-			<a href="https://www.flickr.com/photos/girliemac/6508023617/" title="403 - Forbidden by GirlieMac, on Flickr">
-				<img src="https://c2.staticflickr.com/8/7173/6508023617_f3ffc34e17_b.jpg" width="750" height="600" alt="403 - Forbidden">
+			<a href="https://http.cat/403" title="403 - Forbidden by GirlieMac, on Flickr">
+				<img src="https://http.cat/403.jpg" width="750" height="600" alt="403 - Forbidden">
 			</a>
 		</p>
 		<h1>lee<span>kelleher</span>.com</h1>

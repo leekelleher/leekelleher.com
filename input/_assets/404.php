@@ -37,8 +37,8 @@ header("Status: 404 Not Found");
 <body>
 	<div id="main">
 		<p>
-			<a href="http://www.flickr.com/photos/girliemac/6508022985/" title="404 - Not Found by GirlieMac, on Flickr">
-				<img src="https://farm8.staticflickr.com/7172/6508022985_b22200ced0_b.jpg" width="750" height="600" alt="404 - Not Found">
+			<a href="https://http.cat/404" title="404 - Not Found by GirlieMac, on Flickr">
+				<img src="https://http.cat/404.jpg" width="750" height="600" alt="404 - Not Found">
 			</a>
 		</p>
 		<h1>lee<span>kelleher</span>.com</h1>
