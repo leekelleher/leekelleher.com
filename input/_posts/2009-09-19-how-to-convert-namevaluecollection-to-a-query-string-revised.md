@@ -20,22 +20,23 @@ Following on from a comment on my previous post about [converting a NameValueCol
 
 I have also added extra parameters so that you can define your own delimiter (since the [HTTP specification](http://en.wikipedia.org/wiki/Query_string#Structure) says that you can use both ampersands `&` and semicolons `;`) and there is an option for omitting keys with empty values.
 
-<pre class="brush: csharp; title: ; notranslate" title="">/// &lt;summary&gt;
+```csharp
+/// <summary>
 /// Constructs a NameValueCollection into a query string.
-/// &lt;/summary&gt;
-/// &lt;remarks&gt;Consider this method to be the opposite of "System.Web.HttpUtility.ParseQueryString"&lt;/remarks&gt;
-/// &lt;param name="parameters"&gt;The NameValueCollection&lt;/param&gt;
-/// &lt;param name="delimiter"&gt;The String to delimit the key/value pairs&lt;/param&gt;
-/// &lt;returns&gt;A key/value structured query string, delimited by the specified String&lt;/returns&gt;
+/// </summary>
+/// <remarks>Consider this method to be the opposite of "System.Web.HttpUtility.ParseQueryString"</remarks>
+/// <param name="parameters">The NameValueCollection</param>
+/// <param name="delimiter">The String to delimit the key/value pairs</param>
+/// <returns>A key/value structured query string, delimited by the specified String</returns>
 public static String ConstructQueryString(NameValueCollection parameters, String delimiter, Boolean omitEmpty)
 {
 	if (String.IsNullOrEmpty(delimiter))
 		delimiter = "&";
 
 	Char equals = '=';
-	List&lt;String&gt; items = new List&lt;String&gt;();
+	List<String> items = new List<String>();
 
-	for (int i = 0; i &lt; parameters.Count; i++)
+	for (int i = 0; i < parameters.Count; i++)
 	{
 		foreach (String value in parameters.GetValues(i))
 		{
@@ -46,4 +47,5 @@ public static String ConstructQueryString(NameValueCollection parameters, String
 	}
 
 	return String.Join(delimiter, items.ToArray());
-}</pre>
+}
+```
