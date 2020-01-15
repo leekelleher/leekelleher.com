@@ -173,7 +173,7 @@ Pipelines.Add("Posts",
 		: MyHelper.GetFirstWords(MyHelper.StripHtml(@doc.Content), 75, "&#8230;")),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
-	MinifyHtml(),
+	//MinifyHtml(),
 	WriteFiles("." + @doc["permalink"] + "index.html")
 );
 
@@ -203,7 +203,7 @@ Pipelines.Add("Archives",
 	CopyMeta("ArchiveDate", "canonical", "/{0}/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
-	MinifyHtml(),
+	//MinifyHtml(),
 	WriteFiles(@doc["ArchiveDate"] + "/index.html")
 );
 
@@ -224,7 +224,7 @@ Pipelines.Add("Tags",
 	CopyMeta("tag", "canonical", "/tag/{0}/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
-	MinifyHtml(),
+	//MinifyHtml(),
 	WriteFiles("./tag/" + @doc.String("tag") + "/index.html")
 );
 
@@ -234,7 +234,7 @@ Pipelines.Add("TagListing",
 	CopyMeta("permalink", "canonical"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
-	MinifyHtml(),
+	//MinifyHtml(),
 	WriteFiles("." + @doc["permalink"] + "index.html")
 );
 
@@ -246,7 +246,7 @@ Pipelines.Add("Pages",
 	Meta("canonical", @doc.String("RelativeFilePathBase").Replace("_pages/", "/") + "/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
-	MinifyHtml(),
+	//MinifyHtml(),
 	WriteFiles(@doc.String("RelativeFilePathBase").Replace("_pages/", "") + "/index.html")
 );
 
@@ -256,7 +256,7 @@ Pipelines.Add("Homepage",
 	Meta("canonical", "/"),
 	Razor()
 		.WithViewStart("_layouts/_ViewStart.cshtml"),
-	MinifyHtml(),
+	//MinifyHtml(),
 	WriteFiles()
 );
 
