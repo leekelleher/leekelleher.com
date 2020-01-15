@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en" prefix="og: http://ogp.me/ns#">
-<head>
-	@Html.Partial("~/_layouts/metadata.cshtml")
-</head>
+<head>@Html.Partial("~/_layouts/metadata.cshtml")</head>
 <body>
 	<header role="banner">
 		<p><a href="/" rel="home">Lee Kelleher</a></p>
@@ -14,9 +12,7 @@
 			</ul>
 		</nav>
 	</header>
-	<main>
-		@RenderBody()
-	</main>
+	<main>@RenderBody()</main>
 	<footer role="contentinfo">
 		<div>
 			<p>For comments or questions, feel free to ask me on <a href="https://mastodon.social/@@leekelleher" rel="me">Mastodon</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, on <a href="https://github.com/leekelleher" rel="me">GitHub</a>, or, via <a href="/contact/">my contact page</a>.</p>
