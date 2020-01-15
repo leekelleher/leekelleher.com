@@ -8,7 +8,6 @@
 	var keywords = Model.ContainsKey("tags") ? string.Join(",", Model.Get<string[]>("tags")).ToLower() : "leekelleher,kelleher,umbraco,asp.net,c#,csharp,xslt,mvc,mvp";
 	var url = string.Concat(baseUrl, Model.String("canonical", "/"));
 	var image = string.Concat(baseUrl, Model.String("image", "/assets/img/nxnw_300x300.jpg"));
-	var internalCss = Documents.FromPipeline("LessCss");
 	var externalCss = Model.ContainsKey("css") ? Model.Get<string[]>("css") : null;
 }
 	<meta charset="utf-8">
@@ -31,15 +30,7 @@
 	<link rel="canonical" href="@url">
 	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
 	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
-@if(internalCss != null)
-{
-	<style type="text/css">
-	@foreach(var item in internalCss)
-	{
-		@Html.Raw(item.Content)
-	}
-	</style>
-}
+	<link rel="stylesheet" href="/assets/css/minimum.css">
 @if(externalCss != null)
 {
 	foreach(var item in externalCss)
