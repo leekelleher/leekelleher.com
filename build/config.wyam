@@ -5,7 +5,7 @@
 #n -p Wyam.Razor
 #n -p Wyam.ReadingTime
 #n -p Wyam.Yaml
-#n ColorCode
+#n ColorCode.HTML
 #n System.ServiceModel.Syndication
 
 #a "System.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
@@ -88,38 +88,42 @@ public static class MyHelper
 			.Replace("last.fm", "lastfm");
 	}
 	
-	public static string Highlight(CodeColorizer colorizer, string input, string className, HtmlParser htmlParser)
+	public static string Highlight(string input, string className, HtmlParser htmlParser)
 	{
 		try
 		{
+			HtmlFormatter formatter = new HtmlFormatter();
 			string output = string.Empty;
+			
+			input = input.Replace("&lt;", "<").Replace("&gt;", ">").Replace("&amp;", "&");
 			
 			switch (className)
 			{
 				case "language-js":
+				case "language-jscript":
 				case "language-javascript":
-					output = colorizer.Colorize(input, Languages.JavaScript);
+					output = formatter.GetHtmlString(input, Languages.JavaScript);
 					break;
 				case "language-html":
-					output = colorizer.Colorize(input.Replace("&lt;", "<").Replace("&gt;", ">").Replace("&amp;", "&"), Languages.Html);
+					output = formatter.GetHtmlString(input, Languages.Html);
 					break;
 				case "language-csharp":
-					output = colorizer.Colorize(input, Languages.CSharp);
+					output = formatter.GetHtmlString(input, Languages.CSharp);
 					break;
 				case "language-sql":
-					output = colorizer.Colorize(input, Languages.Sql);
+					output = formatter.GetHtmlString(input, Languages.Sql);
 					break;
 				case "language-xml":
-					output = colorizer.Colorize(input.Replace("&lt;", "<").Replace("&gt;", ">").Replace("&amp;", "&"), Languages.Xml);
+					output = formatter.GetHtmlString(input, Languages.Xml);
 					break;
 				case "language-php":
-					output = colorizer.Colorize(input, Languages.Php);
+					output = formatter.GetHtmlString(input, Languages.Php);
 					break;
 				case "language-css":
-					output = colorizer.Colorize(input, Languages.Css);
+					output = formatter.GetHtmlString(input, Languages.Css);
 					break;
 				case "language-powershell":
-					output = colorizer.Colorize(input, Languages.PowerShell);
+					output = formatter.GetHtmlString(input, Languages.PowerShell);
 					break;
 			}
 			
@@ -132,7 +136,6 @@ public static class MyHelper
 }
 
 HtmlParser htmlParser = new HtmlParser();
-CodeColorizer colorizer = new CodeColorizer();
 
 Settings[Keys.Host] = "leekelleher.com";
 Settings[Keys.LinksUseHttps] = true;
@@ -158,7 +161,7 @@ Pipelines.Add("Posts",
 		foreach(IElement codeElement in htmlDocument.QuerySelectorAll("pre code"))
 		{
 			// Highlight and replace the inner HTML of the code element
-			codeElement.InnerHtml = MyHelper.Highlight(colorizer, codeElement.InnerHtml, codeElement.ClassName, htmlParser);
+			codeElement.InnerHtml = MyHelper.Highlight(codeElement.InnerHtml, codeElement.ClassName, htmlParser);
 		}
 		// Replace the content of the input document with the new HTML
 		return htmlDocument.Body.InnerHtml;
