@@ -5,12 +5,13 @@ layout: page
 
 ## What I'm doing now?
 
-* Working hard to win new projects at [Umbrella](https://umbrellainc.co.uk/), after 5 intense years of Carlsberg projects.
-* Mentoring Umbraco community developers.
-* Figuring out how to deal with the Umbraco package ecosystem for Umbraco v8.
-* Playing bass guitar in [a local covers band](https://thedysfunctions.uk/).
+* Preparing to record an EP with my "dad band", [The Dysfunctions](https://thedysfunctions.uk/).
+* Trying out a new local social idea... **Album Club!** _Think a book club for significant music/albums._
+* Continued development on my upcoming Umbraco package, [Contentment](https://github.com/leekelleher/umbraco-contentment).
+* Writing a presentation for [Umbraco Spark](https://umbracospark.com/) conference, _(about Contentment)_.
+* ...and continued busyness at [Umbrella](https://umbrellainc.co.uk/).
 
-<small>_This update was made on 29<sup>th</sup> April 2019._</small>
+<small>_This update was made on 15<sup>th</sup> January 2020._</small>
 
 <hr>
 
