@@ -1,7 +1,7 @@
 @{
 	var baseUrl = "https://leekelleher.com";
 	var name = "Lee Kelleher";
-	var jobTitle = "Umbraco Specialist";
+	var jobTitle = "Umbraco Consultant";
 	var siteName = $"{name} - {jobTitle}";
 	var title = Model.ContainsKey("title") ? Model.String("title") + " | " + siteName : siteName;
 	var description = Model.String("Excerpt", $"The personal website of {name}; {jobTitle}");
