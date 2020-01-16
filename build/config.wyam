@@ -49,7 +49,7 @@ public static class MyHelper
 		return sb.ToString();
 	}
 
-    public static string StripHtml(string input)
+	public static string StripHtml(string input)
 	{
 		var less = '<';
 		var greater = '>';
@@ -141,10 +141,11 @@ Settings[Keys.Host] = "leekelleher.com";
 Settings[Keys.LinksUseHttps] = true;
 
 Pipelines.Add("LessCss",
-    ReadFiles("_assets/assets/css/*.less"),
+	ReadFiles("_assets/assets/css/*.less"),
 	Less(),
-    MinifyCss(),
-    WriteFiles(@doc.String("RelativeFilePathBase").Replace("_assets/", "") + ".css").UseWriteMetadata(false)
+	MinifyCss(),
+	Meta("WritePath", "assets/css/style.css"),
+	WriteFiles()
 );
 
 Pipelines.Add("Posts",
