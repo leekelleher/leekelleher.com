@@ -15,7 +15,7 @@
 		<h1>@Model.String("title")</h1>
 		@if (string.Equals(tag, "Umbraco", StringComparison.InvariantCultureIgnoreCase))
 		{
-			<p>If you would like to be notified of my latest Umbraco posts, please <a href="/tag/umbraco/feed/">subscribe to my Umbraco RSS feed</a>.</p>
+			<p style="background-color: lightyellow;border: solid 2px orange;padding: 5px 10px;text-align: center;">If you would like to be notified of my latest Umbraco posts, please <a href="/tag/umbraco/feed/">subscribe to my Umbraco RSS feed</a>.</p>
 		}
 	</header>
 	@Html.Partial("~/_layouts/postListing.cshtml")
