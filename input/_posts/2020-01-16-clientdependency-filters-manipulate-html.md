@@ -1,6 +1,6 @@
 ---
 title: "Using ClientDependency Filters to manipulate HTML"
-date: 2020-01-16T13:37:00+00:00
+date: 2020-01-16T10:37:00+00:00
 layout: post
 permalink: /2020/01/clientdependency-filters-manipulate-html/
 tags:
@@ -19,7 +19,7 @@ Given the original `ResponseFilterStream` code was originally posted over 10 yea
 
 As I started to implement this approach, I recalled that the ClientDependency library _(which ships with Umbraco)_ uses a `HttpModule` to manipulate the HTML output to insert references to its bundled CSS & JS assets. So, thought it best to look at the source-code.
 
-...and as it happens, [`ClientDependencyModule`](https://github.com/Shazwazza/ClientDependency/blob/v1.9.8/ClientDependency.Core/Module/ClientDependencyModule.cs) has a lovely undocumented feature in there... its very own `IFilter` interface.  This enables you to piggyback ClientDependency's `HttpModule` and manipulate the HTML with your own code!
+...and as it happens, [`ClientDependencyModule`](https://github.com/Shazwazza/ClientDependency/blob/v1.9.8/ClientDependency.Core/Module/ClientDependencyModule.cs) has a lovely undocumented feature in there... its very own [`IFilter`](https://github.com/Shazwazza/ClientDependency/blob/v1.9.8/ClientDependency.Core/Module/IFilter.cs) interface.  This enables you to piggyback ClientDependency's `HttpModule` and manipulate the HTML with your own code!
 
 After [a small bit of reverse-engineering](https://github.com/Shazwazza/ClientDependency/blob/v1.9.8/ClientDependency.Core/Module/ClientDependencyModule.cs#L126-L142), _(I know, I know, it's all open-source ... so I mean "researching")_, I had a working prototype! Here's a reduced example (for Umbraco v8) ...
 
@@ -29,7 +29,7 @@ using System.Web;
 using ClientDependency.Core.Config;
 using ClientDependency.Core.Module;
 using Umbraco.Core;
-using Umbraco.Core.Composing;
+using Umbraco.Web.Composing;
 
 namespace Umbraco.Community.Web
 {
@@ -48,15 +48,7 @@ namespace Umbraco.Community.Web
 
         public bool CanExecute()
         {
-            // ClientDependency checks if the CurrentHandler is an `MvcHandler` type...
-            // https://github.com/Shazwazza/ClientDependency/blob/v1.9.8/ClientDependency.Mvc/MvcFilter.cs#L31
-            // that is a generic MVC request, covering both frontend and backoffice.
-            // Which I only want to run this on frontend requests.
-            // Fortunately, Umbraco does have an `UmbracoMvcHandler` for frontend requests.
-            // Unfortunately, `UmbracoMvcHandler` is marked as internal...
-            // https://github.com/umbraco/Umbraco-CMS/blob/release-8.5.1/src/Umbraco.Web/Mvc/UmbracoMvcHandler.cs#L17
-            // so I can't explicitly check the type, I have to compare the string.
-            return CurrentContext.CurrentHandler?.GetType().Name == "UmbracoMvcHandler";
+            return Current.UmbracoContext?.IsFrontEndUmbracoRequest == true;
         }
 
         public void SetHttpContext(HttpContextBase ctx) => CurrentContext = ctx;
@@ -80,4 +72,4 @@ namespace Umbraco.Community.Web
 }
 ```
 
-Examples of things you could do with this, could be: minify the HTML markup; inject external scripts before the closing `</body>` tag, (e.g. [instant.page](https://instant.page/); protect/encode email address (a la [Safe Mail Link](https://our.umbraco.com/packages/website-utilities/safe-mail-link)); or a super-quick way to rename a product across an entire website?
+Examples of things you could do with this, could be: minify the HTML markup; inject external scripts before the closing `</body>` tag, (e.g. [instant.page](https://instant.page/)); protect/encode email address (a la [Safe Mail Link](https://our.umbraco.com/packages/website-utilities/safe-mail-link)); or a super-quick way to rename a product across an entire website?
