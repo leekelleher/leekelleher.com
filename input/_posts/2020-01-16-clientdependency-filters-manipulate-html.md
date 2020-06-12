@@ -13,7 +13,7 @@ On a recent Umbraco project, I needed to be able to manipulate the HTML contents
 
 Typically, on Umbraco projects you'd do whatever you need do within Razor templating, but in my case, I had to do after the entire page markup was built. _(I won't go into details, as the requirement is specific to my client project.)_
 
-My initial thought for the solution was using a `Request.Filter`. I'd done this previously in my ASP.NET WebForms days - even open open-sourced a packaged called [Safe Mail Link](https://our.umbraco.com/packages/website-utilities/safe-mail-link) that utilised this approach, _(it would encode/protect any email addresses found in the markup)_. The guts of the `Request.Filter` came from [Rick Strahl's `ResponseFilterStream` blog post](https://weblog.west-wind.com/posts/2009/nov/13/capturing-and-transforming-aspnet-output-with-responsefilter).
+My initial thought for the solution was using a `Request.Filter`. I'd done this previously in my ASP.NET WebForms days - even open-sourced a packaged called [Safe Mail Link](https://our.umbraco.com/packages/website-utilities/safe-mail-link) that utilised this approach, _(it would encode/protect any email addresses found in the markup)_. The guts of the `Request.Filter` came from [Rick Strahl's `ResponseFilterStream` blog post](https://weblog.west-wind.com/posts/2009/nov/13/capturing-and-transforming-aspnet-output-with-responsefilter).
 
 Given the original `ResponseFilterStream` code was originally posted over 10 years ago, _(wow!)_ I wasn't sure whether the approach would work with latest Umbraco _(v8 is ASP.NET MVC 5)_. Turns out, it does!
 

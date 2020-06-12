@@ -5,13 +5,12 @@ layout: page
 
 ## What I'm doing now?
 
-* Preparing to record an EP with my "dad band", [The Dysfunctions](https://thedysfunctions.uk/).
-* Trying out a new local social idea... [**Album Club!**](/2020/01/album-club/) _Think a book club for significant music/albums._
-* Continued development on my upcoming Umbraco package, [Contentment](https://github.com/leekelleher/umbraco-contentment).
-* Writing a presentation for [Umbraco Spark](https://umbracospark.com/) conference, _(about Contentment)_.
-* ...and continued busyness at [Umbrella](https://umbrellainc.co.uk/).
+* Generally dealing with life in 2020, COVID-19 lockdown and Brexit shenanigans.
+* Release a single (and video) with my "dad band", [The Dysfunctions](https://thedysfunctions.uk/).
+* Released a beta version of my new Umbraco package, [Contentment](https://github.com/leekelleher/umbraco-contentment).
+* ...and coming up with new buiness ideas within [Umbrella](https://umbrellainc.co.uk/).
 
-<small>_This update was made on 23<sup>rd</sup> January 2020._</small>
+<small>_This update was made on 12<sup>th</sup> June 2020._</small>
 
 <hr>
 
