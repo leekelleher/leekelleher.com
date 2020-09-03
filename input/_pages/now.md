@@ -5,12 +5,11 @@ layout: page
 
 ## What I'm doing now?
 
+* GitHub Sponsors. [You can sponsor me to support my open source work](https://github.com/sponsors/leekelleher).
+* Developing new features for [my Umbraco package, Contentment](https://github.com/leekelleher/umbraco-contentment).
 * Generally dealing with life in 2020, COVID-19 lockdown and Brexit shenanigans.
-* Release a single (and video) with my "dad band", [The Dysfunctions](https://thedysfunctions.uk/).
-* Released a beta version of my new Umbraco package, [Contentment](https://github.com/leekelleher/umbraco-contentment).
-* ...and coming up with new buiness ideas within [Umbrella](https://umbrellainc.co.uk/).
 
-<small>_This update was made on 12<sup>th</sup> June 2020._</small>
+<small>_This update was made on 3<sup>rd</sup> September 2020._</small>
 
 <hr>
 
