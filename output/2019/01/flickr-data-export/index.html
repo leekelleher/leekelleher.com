@@ -1,0 +1,77 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Exporting my Flickr Data | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Flickr have announced they are limiting free accounts to 1,000 photos. Meaning my older photos would be deleted. Given my travelblog links to many of my old photos, I&#x27;d have to either upgrade to a Pro account, or find a way to export all my Flickr data.">
+	<meta name="keywords" content="flickr">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2019/01/flickr-data-export/">
+	<meta name="twitter:title" property="og:title" content="Exporting my Flickr Data">
+	<meta name="twitter:description" property="og:description" content="Flickr have announced they are limiting free accounts to 1,000 photos. Meaning my older photos would be deleted. Given my travelblog links to many of my old photos, I&#x27;d have to either upgrade to a Pro account, or find a way to export all my Flickr data.">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/media/flickr.png">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2019/01/flickr-data-export/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Exporting my Flickr Data</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2019/01/flickr-data-export/"><time datetime="2019-01-06T10:05&#x2B;00:00" class="dt-published">06/01/2019</time></a>.</span>
+				<span>Estimated read time: 5 minutes (623 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Flickr, recently acquired again, (this time by SmugMug), announced there would be <a href="https://www.flickr.com/lookingahead">changes to their account tiers</a>.</p>
+<p>In a nutshell, free accounts would be limited to 1,000 photos. The footnote on this is that if you have an existing account that goes over the limit, from February 5th 2019, they will systematically deleted photos over this limit, starting from oldest to newest.</p>
+<blockquote>
+<p>Side-note, I later learned there's an extra condition on this... <a href="http://blog.flickr.net/2018/11/07/the-commons-the-past-is-100-part-of-our-future/">photos licensed under Creative Commons are protected from this restriction</a>.</p>
+</blockquote>
+<p>I'm totally fine with the photo limit, I understand the business reasons, it's a more sustainable approach. Unfortunately, it's the deletion of existing old photos that bothers me.</p>
+<p>As far as I recall, the original (independently owned) Flickr free tier limit of 250 photos would never deleted any photos that went over the limit. Instead, they'd be hidden from the photostream, so not discoverable, but still available for direct links - I guess for anyone wanting to upgrade their account to the Pro tier to unlock the restriction, or idealistically for the sake of archival and preservation?</p>
+<p>I signed up to Flickr in 2005, upgrading to a Pro account when I needed to, (primarily to share photos from <a href="https://www.lee-and-lucy.com/travelblog/category/world-tour-200203/">my "world tour" travelblog</a>). I used to really enjoy using the platform, I got involved with the community aspects, even attended a few local Flickrmeets!</p>
+<p>Over the years, Flickr's user experience deteriorated, I didn't enjoy using it as much, it became obvious that the original team had left the building. Around the same time there was a rise in Facebook usage, e.g. when your parents actively start using it, it made sense to use Facebook than Flickr. <em>(Although using Facebook today raises its own set of ethical dilemmas!)</em></p>
+<p>At the time of writing, I have <a href="https://www.flickr.com/photos/leekelleher">2,855 photos on my free account</a>. Most of those have direct links from my travelblog. Meaning after February 5th, they'll be broken images &amp; links.</p>
+<p>Since I no longer use Flickr as my primary photo storage, I'm reluctant to upgrade back to the Pro account. I'll be looking at other options to display photos on my (old) travelblog.</p>
+<p>Of course to do this I'd need to get all my Flickr data. I wasn't so much concerned about the photos themselves, I already had those backed up, the gold for me was <strong>all the metadata!</strong> Specifically the albums and tags. I looked at various ways to retrieve this using their API, but it turns out that I was over-thinking it, as I discovered that Flickr offer a simple Data Export tool.</p>
+<p>On <a href="https://www.flickr.com/account">my account page</a>, there's a panel called "Your Flickr Data", along with a button saying "Request your data". I pressed it, then within 24-hours I had an email with links to download all my data.</p>
+<p>In total there were 7 zip files available to download. The first contained all my data in JSON format: profile info, contacts, favourites, followers, groups, albums, flickrmail, and metadata for each individual photo (including comments and tags)! The remaining 6 zip files were all the photo and video files. Everything I wanted.</p>
+<p>Now that I have all the JSON data locally, I'll look to getting it into a relational database of some kind, then use that on my travelblog. I haven't developed anything yet, but at least I'm happier now that I have my data available.</p>
+<p>In terms of my future usage of Flickr, I'm happy to keep my free account, I'll still like to comment on &amp; fav friend's photos, etc. I wish SmugMug all the best with Flickr, the revised tiers should be a more sustainable model for them. I only wonder if mass deletion of legacy data is a blow for Internet preservation?</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/flickr/" rel="tag" class="p-category">Flickr</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2019/01/flickr-data-export/">https://leekelleher.com/2019/01/flickr-data-export/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

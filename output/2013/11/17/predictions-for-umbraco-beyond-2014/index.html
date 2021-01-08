@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Predictions for Umbraco - beyond 2014 | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="With Umbraco 7 release imminent, the community will be eager to see its adoption. For those who have been following the progress of its development, the entire back-office has been re-built from the ground up &#x2013; from UX concepts to the introduction of the AngularJS framework. &amp;nbsp;(For technical details, see the Belle documentation website.) The introduction of AngularJS is a major shift for Umbraco &#x2013; it is also a bold statement &#x2013; that web-technology is&amp;#8230;">
+	<meta name="keywords" content="cms,node.js,nosql,predictions,umbraco">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2013/11/17/predictions-for-umbraco-beyond-2014/">
+	<meta name="twitter:title" property="og:title" content="Predictions for Umbraco - beyond 2014">
+	<meta name="twitter:description" property="og:description" content="With Umbraco 7 release imminent, the community will be eager to see its adoption. For those who have been following the progress of its development, the entire back-office has been re-built from the ground up &#x2013; from UX concepts to the introduction of the AngularJS framework. &amp;nbsp;(For technical details, see the Belle documentation website.) The introduction of AngularJS is a major shift for Umbraco &#x2013; it is also a bold statement &#x2013; that web-technology is&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2013/11/17/predictions-for-umbraco-beyond-2014/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Predictions for Umbraco - beyond 2014</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2013/11/17/predictions-for-umbraco-beyond-2014/"><time datetime="2013-11-17T21:24&#x2B;00:00" class="dt-published">17/11/2013</time></a>.</span>
+				<span>Estimated read time: 4 minutes (596 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>With <a href="http://our.umbraco.org/contribute/releases/700">Umbraco 7</a> release imminent, the community will be eager to see its adoption. For those who have been following the progress of its development, the entire back-office has been re-built from the ground up – from UX concepts to the introduction of the <a href="http://angularjs.org/">AngularJS framework</a>. &nbsp;(For technical details, see <a href="http://umbraco.github.io/Belle/">the Belle documentation website</a>.)</p>
+<p>The introduction of AngularJS is a major shift for Umbraco – it is also a bold statement – that <em>web-technology is moving forwards and we are embracing it!</em></p>
+<p>The consequence is that any 3rd-party back-office add-ons using WebForm-based DataTypes (or Macro Params)<a href="http://leekelleher.com/2013/11/17/predictions-for-umbraco-beyond-2014/#comment-1127790087">*</a> would no longer be supported.&nbsp;The impact of this on future adoption is be unknown, we’ll wait and see how package developers deal with refactoring/upgrading their Property Editor codebases.</p>
+<p>This isn’t all doom and gloom, personally I have high hopes for Umbraco 7 – my point is that technology progresses, despite the backlash; despite the risks involved.</p>
+<p>Seeing the use of AngularJS in the Umbraco back-office, I started to think how else could Umbraco progress, beyond the boundaries of the .NET framework/MS-stack. &nbsp;Here are my predictions for Umbraco, not for the immediate future, but say a 5-year future.</p>
+<h3>node.js</h3>
+<p>With the introduction of AngularJS in the back-office, all of the “server-side” is handled by ASP.NET Web API. &nbsp;This means that the CMS&nbsp;business-logic has been abstracted way from the back-office UI. Which leads to the question, could it be replaced? &nbsp;Enter <a href="http://nodejs.org/">node.js</a>. Node.js is a platform built on top of Chrome’s JavaScript runtime – meaning that it is a very fast, scalable and robust architecture. &nbsp;The main advantage of using node.js for Umbraco’s business-logic would opening it up to cross-platform (OS) support. Along with exposure to a vast number of JavaScript application developers.</p>
+<p>Just think, running the same code on the server and the client? There are a lot of geek-romantic ideas of&nbsp;<a href="http://blog.nodejitsu.com/scaling-isomorphic-javascript-code">isomorphic JavaScript</a> <a href="http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/">floating about</a>.</p>
+<p>(You’ll see from the <a href="http://umbraco.github.io/Belle/">Belle documentation website</a>, node.js can already be used for mocking the data-layer.)</p>
+<h3>NoSQL (document database)</h3>
+<p>Following the idea of Umbraco being cross-platform, the database component is a dilemma. SQL Server has served us very well, it is a great relational-database – of course, it is the de facto choice on the MS-stack.</p>
+<p>If we take a step back and look at the nature of Umbraco, how flexible the schemas for content &amp; media are defined – this could be represented in a document database.</p>
+<p>I don’t have any predictions of which NoSQL/document-database could be used, (there are so many! mongodb, redis, RavenDB – to name a few); but it’s a topic worth exploring.</p>
+<h3>The&nbsp;bifurcation of Umbraco</h3>
+<p>There’s a great post on&nbsp;Gadgetopia called&nbsp;<a href="http://gadgetopia.com/post/7208">The Bifurcation of Content Management and Delivery</a>, which discusses the concept of separating the content-management (WCMS) from the content-delivery (WCDS). &nbsp;In terms of Umbraco, I think we’ll see a demand for separating the “front-end” from the “back-office”. There’ll be teams who will love the editorial experience that Umbraco offers, but are not willing to be forced to use the front-end technology/framework. &nbsp;One potential solution would be for the default Umbraco to ship with its own detachable front-end “runtime” – becoming even more of a Lego analogy.</p>
+<p>&nbsp;</p>
+<p>Finishing up with a little note… these are all my own personal predictions, they don’t represent my company, (<a href="http://www.umbrellainc.co.uk/">Umbrella</a>), nor do I have any “insider knowledge” from the Umbraco core team or HQ. They are just things that I’d been thinking about and wanted to get them “out there”. &nbsp;Let’s discuss, collaborate and most of all progress! :-)</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/cms/" rel="tag" class="p-category">CMS</a>, <a href="/tag/node.js/" rel="tag" class="p-category">node.js</a>, <a href="/tag/nosql/" rel="tag" class="p-category">NoSQL</a>, <a href="/tag/predictions/" rel="tag" class="p-category">predictions</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2013/11/17/predictions-for-umbraco-beyond-2014/">https://leekelleher.com/2013/11/17/predictions-for-umbraco-beyond-2014/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

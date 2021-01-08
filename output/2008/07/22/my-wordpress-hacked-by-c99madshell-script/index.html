@@ -1,0 +1,77 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My WordPress hacked by c99madshell script | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="After all the excitement of last Friday&#x2019;s attempted hack on my travelblog, and the subsequent upgrade to WordPress 2.6 &#x2013; I thought everything was under control.&amp;nbsp; Boy was I wrong! A few hours ago I received a blog comment (from a Mr Andrew Wong) on the travelblog: http://www.lee-and-lucy.com/travelblog/index.php?p=5817 check this out!! I clicked the link, my jaw dropped!&amp;nbsp; It wasn&#x2019;t an attempted hack, it was a very successful hack&#x2026; I felt violated -in a digital&amp;#8230;">
+	<meta name="keywords" content="c99madshell,google,hacked,php,spam,travelblog,upgrade,wordpress">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/07/22/my-wordpress-hacked-by-c99madshell-script/">
+	<meta name="twitter:title" property="og:title" content="My WordPress hacked by c99madshell script">
+	<meta name="twitter:description" property="og:description" content="After all the excitement of last Friday&#x2019;s attempted hack on my travelblog, and the subsequent upgrade to WordPress 2.6 &#x2013; I thought everything was under control.&amp;nbsp; Boy was I wrong! A few hours ago I received a blog comment (from a Mr Andrew Wong) on the travelblog: http://www.lee-and-lucy.com/travelblog/index.php?p=5817 check this out!! I clicked the link, my jaw dropped!&amp;nbsp; It wasn&#x2019;t an attempted hack, it was a very successful hack&#x2026; I felt violated -in a digital&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/07/22/my-wordpress-hacked-by-c99madshell-script/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">My WordPress hacked by c99madshell script</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/07/22/my-wordpress-hacked-by-c99madshell-script/"><time datetime="2008-07-22T01:35&#x2B;01:00" class="dt-published">22/07/2008</time></a>.</span>
+				<span>Estimated read time: 3 minutes (363 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>After all the excitement of last Friday’s attempted hack on my <a href="http://www.lee-and-lucy.com/">travelblog</a>, and the subsequent upgrade to <a href="http://wordpress.org/development/2008/07/wordpress-26-tyner/">WordPress 2.6</a> – I thought everything was under control.&nbsp; <em><strong>Boy was I wrong!</strong></em></p>
+<p>A few hours ago I received a blog comment (from a Mr Andrew Wong) on the <a href="http://www.lee-and-lucy.com/travelblog/2008/07/19/attempted-hack/">travelblog</a>:</p>
+<blockquote>
+<p>http://www.lee-and-lucy.com/travelblog/index.php?p=5817</p>
+</blockquote>
+<blockquote>
+<p>check this out!!</p>
+</blockquote>
+<p>I clicked the link, my jaw dropped!&nbsp; It wasn’t an attempted hack, it was a very successful hack… I felt violated -in a digital sense.&nbsp; The threat was far from over!</p>
+<p>From looking through the WordPress management screens, I couldn’t find a blog post with the ID #5817.&nbsp; I opened up phpMyAdmin to see if it was in the database; nope, nada, nothing!</p>
+<p>I wanted to see the extend of the problem, so I googled “<a href="http://www.google.co.uk/search?q=site:lee-and-lucy.com">site:lee-and-lucy.com</a>“, and found a “lot” of pages… oh yes, LOTS OF SPAM!</p>
+<p><a href="http://www.google.co.uk/search?q=site:lee-and-lucy.com"><img class="aligncenter size-full wp-image-76" src="http://leekelleher.com/wordpress/wp-content/uploads/2008/07/clipboard01.png" alt="" width="551" height="300"></a></p>
+<p>To say the least, <a href="http://twitter.com/leekelleher/statuses/864498898">I was furious</a>!&nbsp; I wanted to; <em>a.</em> resolve this asap; <em>b.</em> find out how this happened; <em>c.</em> cause pain to this would-be hacker!&nbsp; Obviously, option <em>c.</em> goes against my good karma nature, but they digitally violated my site; sticking spam in places that spam should never go!!! <em><strong>Furious I tell you!</strong></em></p>
+<p>Digging through my WordPress files, I find a PHP script in my theme folder called “<code>simple.php</code>“; it contains a nested “<code>eval(gzinflate(base64_encode()))</code>” string.&nbsp; Very suspect. I try to manually decrypt the string, (replacing the eval with an echo), but it’s nested a few levels deep… so <a href="http://uk3.php.net/manual/en/function.eval.php#59862">I found a snippet of code that would easily decode/decrypt it</a>.</p>
+<p>The script turned out to be a modified version of <a href="http://www.derekfountain.org/security_c99madshell.php">c99madshell</a>, specifically focused on <a href="http://wordpress.org/tags/c99madshell">WordPress hi-jacks</a>.&nbsp; The script tries to inject a small trojan code into one of the core WP files (for me it was the “<code>wp-blog-header.php</code>“).&nbsp; I removed the hi-jacked code, along with the “<code>simple.php</code>” file (from my theme folder) – then re-upgraded to the latest WordPress (2.6) … just to overwrite any other tampered files.</p>
+<p>Hopefully this should be the end of this matter (until next time) ….&nbsp; I’ll be keeping a careful eye on my WordPress installations now on.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/c99madshell/" rel="tag" class="p-category">c99madshell</a>, <a href="/tag/google/" rel="tag" class="p-category">google</a>, <a href="/tag/hacked/" rel="tag" class="p-category">Hacked</a>, <a href="/tag/php/" rel="tag" class="p-category">php</a>, <a href="/tag/spam/" rel="tag" class="p-category">spam</a>, <a href="/tag/travelblog/" rel="tag" class="p-category">Travelblog</a>, <a href="/tag/upgrade/" rel="tag" class="p-category">Upgrade</a>, <a href="/tag/wordpress/" rel="tag" class="p-category">WordPress</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/07/22/my-wordpress-hacked-by-c99madshell-script/">https://leekelleher.com/2008/07/22/my-wordpress-hacked-by-c99madshell-script/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

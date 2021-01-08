@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to prevent hotlinking to FLV files? (Flash Videos) | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="My friend Shane (from DVD House of Horrors) is having a hard time trying to stop other websites hotlinking to his horror movie clips.&amp;nbsp; The site is running Joomla on a Linux server, so he&#x2019;s been down the usual .htaccess routes to prevent remote hotlinking. However the problem with FLV files is that they aren&#x2019;t requested directly by the web-browser, but rather the Flash video player (a .swf file).&amp;nbsp; This causes a problem for the&amp;#8230;">
+	<meta name="keywords" content="flash,flv,hotlinking,htaccess,http_referer">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/07/02/how-to-prevent-hotlinking-to-flv-files-flash-videos/">
+	<meta name="twitter:title" property="og:title" content="How to prevent hotlinking to FLV files? (Flash Videos)">
+	<meta name="twitter:description" property="og:description" content="My friend Shane (from DVD House of Horrors) is having a hard time trying to stop other websites hotlinking to his horror movie clips.&amp;nbsp; The site is running Joomla on a Linux server, so he&#x2019;s been down the usual .htaccess routes to prevent remote hotlinking. However the problem with FLV files is that they aren&#x2019;t requested directly by the web-browser, but rather the Flash video player (a .swf file).&amp;nbsp; This causes a problem for the&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/07/02/how-to-prevent-hotlinking-to-flv-files-flash-videos/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">How to prevent hotlinking to FLV files? (Flash Videos)</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/07/02/how-to-prevent-hotlinking-to-flv-files-flash-videos/"><time datetime="2008-07-02T14:07&#x2B;01:00" class="dt-published">02/07/2008</time></a>.</span>
+				<span>Estimated read time: under a minute (181 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>My friend Shane (from <a href="http://dvdhouseofhorror.net/">DVD House of Horrors</a>) is having a hard time trying to stop other websites hotlinking to his horror movie clips.&nbsp; The site is running Joomla on a Linux server, so he’s been down the usual .htaccess routes to <a href="http://forum.powweb.com/showthread.php?t=79757">prevent remote hotlinking</a>.</p>
+<p>However the problem with FLV files is that they aren’t requested directly by the web-browser, but rather the Flash video player (a .swf file).&nbsp; This causes a problem for the .htacces rules as there is no <a href="http://en.wikipedia.org/wiki/HTTP_referer">HTTP_REFERER</a> value to restrict against.</p>
+<p>This is causing an unnecessary hit on Shane’s bandwidth costs… so he’s desperately looking for an answer.</p>
+<p>Any ideas are most welcome. Thanks.</p>
+<p><span style="text-decoration:underline;"><strong>Update:</strong></span> It seems that a lot of people have this same problem… so I suggested to Shane to turn the situation around by using the hotlinking as an advert for his site.&nbsp; <a href="http://dvdhouseofhorror.net/blog/?p=78">All his video clips are watermarked with the DVD House of Horrors logo.</a></p>
+<p>I’m curious why the developers of the Flash video players don’t send a HTTP_REFERER value, but then again that’s also easy to spoof.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/flash/" rel="tag" class="p-category">flash</a>, <a href="/tag/flv/" rel="tag" class="p-category">flv</a>, <a href="/tag/hotlinking/" rel="tag" class="p-category">hotlinking</a>, <a href="/tag/htaccess/" rel="tag" class="p-category">htaccess</a>, <a href="/tag/http_referer/" rel="tag" class="p-category">HTTP_REFERER</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/07/02/how-to-prevent-hotlinking-to-flv-files-flash-videos/">https://leekelleher.com/2008/07/02/how-to-prevent-hotlinking-to-flv-files-flash-videos/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

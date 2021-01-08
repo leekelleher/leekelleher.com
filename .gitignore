@@ -3,4 +3,3 @@ build/tools
 build/packages.xml
 config.wyam.*
 input/_assets/.code
-output

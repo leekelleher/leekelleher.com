@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Downgrading uComponents | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="A question was asked on the Our Umbraco forum about how to downgrade a version of uComponents (from v5.4.0 to v4.1.0 &#x2013; as they were using Umbraco v4.7.2). There may well be other reasons that you would want to downgrade uComponents to a previous version &#x2013; whether that be for Umbraco compatibility or maybe even you don&#x2019;t use the package any more and just want to uninstall it. Firstly, DO NOT uninstall the package from&amp;#8230;">
+	<meta name="keywords" content="ucomponents,umbraco">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2013/09/13/downgrading-ucomponents/">
+	<meta name="twitter:title" property="og:title" content="Downgrading uComponents">
+	<meta name="twitter:description" property="og:description" content="A question was asked on the Our Umbraco forum about how to downgrade a version of uComponents (from v5.4.0 to v4.1.0 &#x2013; as they were using Umbraco v4.7.2). There may well be other reasons that you would want to downgrade uComponents to a previous version &#x2013; whether that be for Umbraco compatibility or maybe even you don&#x2019;t use the package any more and just want to uninstall it. Firstly, DO NOT uninstall the package from&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2013/09/13/downgrading-ucomponents/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Downgrading uComponents</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2013/09/13/downgrading-ucomponents/"><time datetime="2013-09-13T17:45&#x2B;01:00" class="dt-published">13/09/2013</time></a>.</span>
+				<span>Estimated read time: 2 minutes (251 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>A question was asked on the Our Umbraco forum about how to downgrade a version of uComponents (<a href="http://our.umbraco.org/projects/backoffice-extensions/ucomponents/questionssuggestions/44702-uninstalling-when-2-versions-installed">from v5.4.0 to v4.1.0 – as they were using Umbraco v4.7.2</a>).</p>
+<p>There may well be other reasons that you would want to downgrade uComponents to a previous version – whether that be for Umbraco compatibility or maybe even you don’t use the package any more and just want to uninstall it.</p>
+<p>Firstly, <strong>DO NOT</strong> uninstall the package from within the back-office, as that will start to remove any data-types you have created (that use a uComponents editor/control), which subsequently will remove any content that used those data-types. So unless you want that to happen, don’t “uninstall the package”!</p>
+<p>Here are the steps that you should take to downgrade from v5.x to v4.x (this can also apply to earlier version too):</p>
+<ol>
+<li>Make a back-up of your “/bin” folder (specifically all the “uComponents.*.dll” files) – just in case it all goes wrong</li>
+<li>Delete all the “uComponents.*.dll”s <strong>EXCEPT</strong> for “uComponents.Core.dll” file.</li>
+<li>Within the back-office, reinstall uComponents v4.x</li>
+<li>Ta-dah! All is good in the world again</li>
+</ol>
+<p>Now, there is one outstanding problem, that is the back-office will still list multiple versions of uComponents as installed. However that is just for display purposes; in reality you will only have v4.x installed. To fix this, you will have to manually edit the “/App_Data/packages/installed/installedPackages.config” XML file and remove the entry for “uComponents 5.x”. Save the file, check the back-office and the only the correctly installed version (v4.x) should appear.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/ucomponents/" rel="tag" class="p-category">uComponents</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2013/09/13/downgrading-ucomponents/">https://leekelleher.com/2013/09/13/downgrading-ucomponents/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

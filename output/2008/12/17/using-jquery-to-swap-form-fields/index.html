@@ -1,0 +1,114 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Using jQuery to swap form fields | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Due to an technical decision early on in my project, the date-of-birth field on a profile edit page in a single text-input element. &amp;nbsp;My client would now like the date-of-birth to be 3 dropdown lists, (day, month and year). &amp;nbsp;The amount of work involved making changes to both the back and front ends would take at least a day. (It sounds a lot, but you know it would). Here&#x2019;s where a front-end developer&#x2019;s best friend&amp;#8230;">
+	<meta name="keywords" content="code,html,javascript,jquery">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/12/17/using-jquery-to-swap-form-fields/">
+	<meta name="twitter:title" property="og:title" content="Using jQuery to swap form fields">
+	<meta name="twitter:description" property="og:description" content="Due to an technical decision early on in my project, the date-of-birth field on a profile edit page in a single text-input element. &amp;nbsp;My client would now like the date-of-birth to be 3 dropdown lists, (day, month and year). &amp;nbsp;The amount of work involved making changes to both the back and front ends would take at least a day. (It sounds a lot, but you know it would). Here&#x2019;s where a front-end developer&#x2019;s best friend&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/12/17/using-jquery-to-swap-form-fields/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Using jQuery to swap form fields</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/12/17/using-jquery-to-swap-form-fields/"><time datetime="2008-12-17T19:47&#x2B;00:00" class="dt-published">17/12/2008</time></a>.</span>
+				<span>Estimated read time: 2 minutes (341 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Due to an technical decision early on in my project, the date-of-birth field on a profile edit page in a single text-input element. &nbsp;My client would now like the date-of-birth to be 3 dropdown lists, (day, month and year). &nbsp;The amount of work involved making changes to both the back and front ends would take at least a day. (It sounds a lot, but you know it would).</p>
+<p>Here’s where a front-end developer’s best friend comes in… use <a href="http://jquery.com/">jQuery</a> to:</p>
+<ol>
+<li>create the 3 dropdown lists</li>
+<li>hide the original text-input field</li>
+<li>update any changes [to the dropdown lists] back to the original text-input.</li>
+</ol>
+<p>After 15 mins of building up the HTML output string in JavaScript, here’s the code:</p>
+<pre><code class="language-jscript">$(document).ready(<span style="color:#0000FF;">function</span>()
+{
+	<span style="color:#0000FF;">var</span> $dob = $(<span style="color:#A31515;">'input#ProfileEdit_DateOfBirth'</span>);
+	<span style="color:#0000FF;">if</span> ($dob.length &gt; 0) {
+		<span style="color:#0000FF;">var</span> dob = $dob.val().split(<span style="color:#A31515;">'-'</span>, 3);
+		<span style="color:#0000FF;">var</span> html = <span style="color:#A31515;">'&lt;select name="dob-day" id="dob-day" class="dob-date"&gt;'</span>;
+		<span style="color:#0000FF;">for</span>(<span style="color:#0000FF;">var</span> i = 1; i &lt;= 31; i++){
+			html += <span style="color:#A31515;">'&lt;option value="'</span> + i + <span style="color:#A31515;">'"'</span>;
+			<span style="color:#0000FF;">if</span> (dob&amp;#91;2&amp;#93; == i)
+				html += <span style="color:#A31515;">' selected="selected"'</span>;
+			html += <span style="color:#A31515;">'&gt;'</span> + i + <span style="color:#A31515;">'&lt;/option&gt;'</span>;
+		}
+		html += <span style="color:#A31515;">'&lt;/select&gt; '</span>;
+
+		<span style="color:#0000FF;">var</span> months = <span style="color:#0000FF;">new</span> Array(<span style="color:#A31515;">'January'</span>,<span style="color:#A31515;">'February'</span>,<span style="color:#A31515;">'March'</span>,<span style="color:#A31515;">'April'</span>,<span style="color:#A31515;">'May'</span>,<span style="color:#A31515;">'June'</span>,<span style="color:#A31515;">'July'</span>,<span style="color:#A31515;">'August'</span>,<span style="color:#A31515;">'September'</span>,<span style="color:#A31515;">'October'</span>,<span style="color:#A31515;">'November'</span>,<span style="color:#A31515;">'December'</span>);
+		html += <span style="color:#A31515;">'&lt;select name="dob-month" id="dob-month" class="dob-date"&gt;'</span>;
+		<span style="color:#0000FF;">for</span>(<span style="color:#0000FF;">var</span> i = 1; i &lt;= 12; i++){
+			html += <span style="color:#A31515;">'&lt;option value="'</span> + i + <span style="color:#A31515;">'"'</span>;
+			<span style="color:#0000FF;">if</span> (dob&amp;#91;1&amp;#93; == i)
+				html += <span style="color:#A31515;">' selected="selected"'</span>;
+			html += <span style="color:#A31515;">'&gt;'</span> + months[i - 1] + <span style="color:#A31515;">'&lt;/option&gt;'</span>;
+		}
+		html += <span style="color:#A31515;">'&lt;/select&gt; '</span>;
+
+		<span style="color:#0000FF;">var</span> thisYear = <span style="color:#0000FF;">new</span> Date().getFullYear();
+		html += <span style="color:#A31515;">'&lt;select name="dob-year" id="dob-year" class="dob-date"&gt;'</span>;
+		<span style="color:#0000FF;">for</span>(<span style="color:#0000FF;">var</span> i = (thisYear - 16); i &gt;= (thisYear - 90); i--){
+			html += <span style="color:#A31515;">'&lt;option value="'</span> + i + <span style="color:#A31515;">'"'</span>;
+			<span style="color:#0000FF;">if</span> (dob&amp;#91;0&amp;#93; == i)
+				html += <span style="color:#A31515;">' selected="selected"'</span>;
+			html += <span style="color:#A31515;">'&gt;'</span> + i + <span style="color:#A31515;">'&lt;/option&gt;'</span>;
+		}
+		html += <span style="color:#A31515;">'&lt;/select&gt; '</span>;
+
+		$dob.after(html).css(<span style="color:#A31515;">'display'</span>,<span style="color:#A31515;">'none'</span>);
+
+		$(<span style="color:#A31515;">'select.dob-date'</span>).change(<span style="color:#0000FF;">function</span>(){
+			$dob.val($(<span style="color:#A31515;">'select#dob-year'</span>).val() + <span style="color:#A31515;">'-'</span> + $(<span style="color:#A31515;">'select#dob-month'</span>).val() + <span style="color:#A31515;">'-'</span> + $(<span style="color:#A31515;">'select#dob-day'</span>).val())
+		});
+	}
+});
+
+</code></pre>
+<p>Any changes to the <code>&lt;select&gt;</code> elements trigger the jQuery .change() event, which are then updated back in the original text-input field. &nbsp;The server-side code (in this case ASP.NET) is non the wiser.</p>
+<p>So there you go, that’s my quick-n-dirty approach to using jQuery to swap form fields.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/code/" rel="tag" class="p-category">code</a>, <a href="/tag/html/" rel="tag" class="p-category">HTML</a>, <a href="/tag/javascript/" rel="tag" class="p-category">javascript</a>, <a href="/tag/jquery/" rel="tag" class="p-category">jquery</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/12/17/using-jquery-to-swap-form-fields/">https://leekelleher.com/2008/12/17/using-jquery-to-swap-form-fields/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

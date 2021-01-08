@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Accessing the jQuery DOM in an Ajax callback | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Whilst developing the admin pages for Pez, I wanted to add some nice features to the UI. My first choice for a JavaScript framework is jQuery. I&#x2019;ve used other frameworks before, (like mootools, script.aculo.us and YUI), but I just seem to get on better with jQuery, (although mootools is a very close second). Last night I was playing around with the Ajax/jQuery.get() method &#x2013; it was the first time I&#x2019;d used it, and was having&amp;#8230;">
+	<meta name="keywords" content="ajax,dom,javascript,jquery,pez">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/03/08/accessing-the-jquery-dom-in-an-ajax-callback/">
+	<meta name="twitter:title" property="og:title" content="Accessing the jQuery DOM in an Ajax callback">
+	<meta name="twitter:description" property="og:description" content="Whilst developing the admin pages for Pez, I wanted to add some nice features to the UI. My first choice for a JavaScript framework is jQuery. I&#x2019;ve used other frameworks before, (like mootools, script.aculo.us and YUI), but I just seem to get on better with jQuery, (although mootools is a very close second). Last night I was playing around with the Ajax/jQuery.get() method &#x2013; it was the first time I&#x2019;d used it, and was having&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/03/08/accessing-the-jquery-dom-in-an-ajax-callback/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Accessing the jQuery DOM in an Ajax callback</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/03/08/accessing-the-jquery-dom-in-an-ajax-callback/"><time datetime="2008-03-08T14:13&#x2B;00:00" class="dt-published">08/03/2008</time></a>.</span>
+				<span>Estimated read time: 2 minutes (297 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Whilst developing the admin pages for <a href="http://code.google.com/p/pez/">Pez</a>, I wanted to add some nice features to the UI. My first choice for a JavaScript framework is <a href="http://jquery.com/">jQuery</a>. I’ve used other frameworks before, (like <a href="http://mootools.net/">mootools</a>, <a href="http://script.aculo.us/">script.aculo.us</a> and <a href="http://developer.yahoo.com/yui/">YUI</a>), but I just seem to get on better with jQuery, (although mootools is a very close second).</p>
+<p>Last night I was playing around with the <a href="http://docs.jquery.com/Ajax/jQuery.get">Ajax/jQuery.get()</a> method – it was the first time I’d used it, and was having some difficulty understanding how access the jQuery DOM object in the callback function.</p>
+<p>At first I was taking the wrong approach, I was trying to do this all in the onClick event of an anchor link:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">onclick="javascript:$.get('index.php', { key: $('#source-input-id').val() }, function(data){ $('#target-input-id').val(data); });"</pre>
+<p>But that didn’t work … and I’m not fully sure why … but anyway, I carry on …</p>
+<p>I started to look at the <a href="http://remysharp.com/2007/04/12/jquerys-this-demystified/"><strong>this</strong></a> keyword to see if that would help. <a href="http://www.learningjquery.com/2007/08/what-is-this">Learning jQuery’s <em>What is this?</em></a> post clarified a lot of my confusions, (in that with the Ajax callbacks, the <strong>this</strong> keyword/object is outside the jQuery DOM, but contains details of the call itself), however I was still no closer to the solution I wanted.</p>
+<p>At this point I changed how I was using the <code>&lt;strong&gt;$.get()&lt;/strong&gt;</code> method. I created a wrapper function for jQuery calls:</p>
+<pre class="brush: jscript; title: ; notranslate" title="">function get_value()
+{
+    $.get('index.php', { key: $('#source-input-id').val() }, function(data){
+        $('#target-input-id').val(data);
+    });
+}</pre>
+<p>This approach meant that I could reference the jQuery DOM object from within the Ajax callback function.</p>
+<p>There is probably a hundred other ways of doing this using jQuery – or could be even simpler with another JS framework – but I got it working nicely in the end… Happy Days!</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/ajax/" rel="tag" class="p-category">ajax</a>, <a href="/tag/dom/" rel="tag" class="p-category">dom</a>, <a href="/tag/javascript/" rel="tag" class="p-category">javascript</a>, <a href="/tag/jquery/" rel="tag" class="p-category">jquery</a>, <a href="/tag/pez/" rel="tag" class="p-category">pez</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/03/08/accessing-the-jquery-dom-in-an-ajax-callback/">https://leekelleher.com/2008/03/08/accessing-the-jquery-dom-in-an-ajax-callback/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

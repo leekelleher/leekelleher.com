@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Deploying complex Property Editors (Archetype) with Umbraco Courier on UaaS | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="TL;DR; I wrote a Courier DataResolver for the Archetype property-editor. The code is currently only available on GitHub and has only been tested against Umbraco-as-a-Service. We&#x2019;re very fortunate that with our latest project at Umbrella we are getting to develop with cutting-edge Umbraco technologies: Umbraco v7, Umbraco as a Service (UaaS) and the Archetype property-editor. If you haven&#x2019;t yet heard about UaaS yet, then be sure to catch-up with the recent&amp;nbsp;uHangout episode where Niels Hartvig&amp;#8230;">
+	<meta name="keywords" content="archetype,courier,dataresolvers,uaas,ucomponents,uhangout,umbraco,umbrella">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2014/03/20/deploying-complex-property-editors-archetype-with-umbraco-courier-on-uaas/">
+	<meta name="twitter:title" property="og:title" content="Deploying complex Property Editors (Archetype) with Umbraco Courier on UaaS">
+	<meta name="twitter:description" property="og:description" content="TL;DR; I wrote a Courier DataResolver for the Archetype property-editor. The code is currently only available on GitHub and has only been tested against Umbraco-as-a-Service. We&#x2019;re very fortunate that with our latest project at Umbrella we are getting to develop with cutting-edge Umbraco technologies: Umbraco v7, Umbraco as a Service (UaaS) and the Archetype property-editor. If you haven&#x2019;t yet heard about UaaS yet, then be sure to catch-up with the recent&amp;nbsp;uHangout episode where Niels Hartvig&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2014/03/20/deploying-complex-property-editors-archetype-with-umbraco-courier-on-uaas/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Deploying complex Property Editors (Archetype) with Umbraco Courier on UaaS</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2014/03/20/deploying-complex-property-editors-archetype-with-umbraco-courier-on-uaas/"><time datetime="2014-03-20T22:41&#x2B;00:00" class="dt-published">20/03/2014</time></a>.</span>
+				<span>Estimated read time: 5 minutes (711 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p><em>TL;DR;</em> I wrote a Courier DataResolver for the Archetype property-editor. The code is currently only <a href="https://github.com/leekelleher/Archetype.Courier">available on GitHub</a> and has only been tested against Umbraco-as-a-Service.</p>
+<!--more-->
+<hr>
+<p>We’re very fortunate that with our latest project at <a href="http://www.umbrellainc.co.uk/">Umbrella</a> we are getting to develop with cutting-edge Umbraco technologies: <a href="http://our.umbraco.org/download">Umbraco v7</a>, <a href="https://www.umbraco.io">Umbraco as a Service</a> (UaaS) and the <a href="http://imulus.github.io/Archetype/">Archetype property-editor</a>.</p>
+<p>If you haven’t yet heard about UaaS yet, then be sure to catch-up with the recent&nbsp;<a href="https://plus.google.com/u/0/events/cqfvk55ami6fio1norg3apjgs58">uHangout episode where Niels Hartvig explains all</a>.</p>
+<p>Initially starting development with v7 was quite daunting, as with my past experience of v4/v6 I had a wealth of data-types and packages at my disposal; the most vital one being <a href="http://ucomponents.org">uComponents</a>! What would I do without the Multi-UrlPicker?! <em>Enter Archetype!</em></p>
+<p>In a nutshell,&nbsp;<a href="http://our.umbraco.org/projects/backoffice-extensions/archetype">Archetype</a> is a new v7 property-editor that wraps around other data-types. This can either be as a single fieldset or grouped into multiple fieldsets. If you’re familiar with <a href="http://ucomponents.org/data-types/datatype-grid/">DataType Grid</a>, or Embedded Content – it’s like those, but made with tiger blood! &nbsp;Check out&nbsp;<a href="http://www.youtube.com/watch?v=R7l-QKSDZgM">Kevin Giszewski’s video demo showcasing Archetype’s features</a>.<a dir="ltr" href="https://www.youtube.com/user/gizmogeekstv" data-sessionlink="feature=watch&amp;ei=XFgrU-P-MMjI0QXoo4DQAw" data-ytid="UChlB-wD_eeXZkDkCUjcn1pw" data-name="watch"><br> </a></p>
+<p>Here’s an example of how we’re using Archetype as a pseudo Multi-UrlPicker on our Umbraco website:</p>
+<p style="text-align: center;">
+  <a href="http://leekelleher.com/wordpress/wp-content/uploads/2014/03/archetype-multi-urlpicker.png"><img class="aligncenter  wp-image-1327" src="http://leekelleher.com/wordpress/wp-content/uploads/2014/03/archetype-multi-urlpicker.png" alt="archetype-multi-urlpicker" width="100%" srcset="http://leekelleher.com/wordpress/wp-content/uploads/2014/03/archetype-multi-urlpicker-300x105.png 300w, http://leekelleher.com/wordpress/wp-content/uploads/2014/03/archetype-multi-urlpicker-1024x360.png 1024w, http://leekelleher.com/wordpress/wp-content/uploads/2014/03/archetype-multi-urlpicker.png 1199w" sizes="(max-width: 1199px) 100vw, 1199px"></a>
+</p>
+<p>We found this works well and our content editors are happy with the interface.</p>
+<p>All was well and good in our local development environment, then when we pushed our content changes up to our UaaS environment — we hit major issues with the node Id values inside our Archetype’s nested Content Pickers!</p>
+<p>For those of you who have done team-development and multi-environment deployments with Umbraco may have experienced a similar situation; this usually leads to a lot of swearing and tearing out hair!</p>
+<p><em>“Now! Have no fear. Have no fear!” said the cat.”</em>&nbsp; There is a solution and it’s name <strong>Courier</strong>!</p>
+<p>At this point, I have to admit that my past experience with Courier had been pretty hit &amp; miss — sometimes it worked, sometimes it failed. Looking back I think maybe I’d expected too much from it.</p>
+<p>Since Courier is one of the underpinning features of UaaS, I thought it wise to wipe the slate clean, let’s put the past behind us!</p>
+<p>I read up about <a href="https://github.com/umbraco/Courier/blob/master/Documentation/Developer%20Documentation/Data%20Resolvers.md">Courier’s DataResolvers</a> and&nbsp;how to develop one for your own property-editor — from packing up a data-type’s prevalue options to extracting a content node’s property value.</p>
+<p>The key point to remember, is that whenever you have a custom property-editor that can store a node Id (of any type – Content, Media, etc), you should consider developing a Courier DataResolver for it. &nbsp;<em>I wish that someone had told me this during our main uComponents development!</em></p>
+<p>Due to the complex nature of Archetype, the DataResolver needed to handle both the prevalue options and the node’s property values. &nbsp;The prevalue options were easy to resolve, as I knew these only referenced other data-type Ids. &nbsp;The node’s property values were much more trickier, as these could&nbsp;potentially&nbsp;reference <strong><em><strong>any</strong></em>** node type (e.g. Content, Media, etc) and use **<em><strong>any</strong></em></strong>&nbsp;type of data structure (e.g. JSON, XML, etc).</p>
+<p>I had to think of a smart solution.</p>
+<p>OK, so here’s the part where I moan about Courier being closed-source and not being able to dig into the API&nbsp;<em>… yadda, yadda, yadda …</em>&nbsp;ultimately I said hello to my old friend .NET Reflector and cracked open the assemblies. (<em>I probably broke a license agreement in doing this – apologies! My motive was knowledge, not profit.</em>)</p>
+<p>From the assemblies I investigated how the&nbsp;<code>ResolutionManager</code> worked – this was key as I wanted to use it to pass the inner/nested values from an Archetype to it – meaning that Courier itself would attempt to resolve any node Ids! &nbsp;<em>Happy days!</em> &nbsp; (This even applied to any Archetypes that were nested within an Archetype … <em>think about that for a minute.</em>)</p>
+<hr>
+<p>If you are interested in seeing <a href="https://github.com/imulus/Archetype/blob/master/app/Umbraco/Archetype.Courier/DataResolvers/ArchetypeDataResolver.cs">the full source-code for the Archetype DataResolver, it is available on my GitHub repository</a>.</p>
+<p>For other <a href="https://github.com/umbraco/Courier/tree/master/Providers/Umbraco.Courier.DataResolvers">examples of DataResolvers, there are examples on Umbraco’s Courier repository</a>&nbsp;– yup, it’s not all closed-source! ;-)</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/archetype/" rel="tag" class="p-category">Archetype</a>, <a href="/tag/courier/" rel="tag" class="p-category">Courier</a>, <a href="/tag/dataresolvers/" rel="tag" class="p-category">DataResolvers</a>, <a href="/tag/uaas/" rel="tag" class="p-category">UaaS</a>, <a href="/tag/ucomponents/" rel="tag" class="p-category">uComponents</a>, <a href="/tag/uhangout/" rel="tag" class="p-category">uHangout</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/umbrella/" rel="tag" class="p-category">Umbrella</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2014/03/20/deploying-complex-property-editors-archetype-with-umbraco-courier-on-uaas/">https://leekelleher.com/2014/03/20/deploying-complex-property-editors-archetype-with-umbraco-courier-on-uaas/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

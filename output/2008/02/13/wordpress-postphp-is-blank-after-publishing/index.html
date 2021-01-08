@@ -1,0 +1,69 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>WordPress: &#8220;post.php&#8221; is blank after publishing | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Whilst I was helping out Bookninja earlier this week, I came across a strange problem in WordPress. Every time we tried to publish a new blog post (or page), there would be a pause, then the page would go blank. (This was on the &#x201C;post.php&#x201D; page) I spent a long time trying to figure out what the issue was&#x2026; even longer googling it! Several pages into the Google results, I found the answer! Thank you&amp;#8230;">
+	<meta name="keywords" content="bookninja,google,php,ping,trouble-shooting,wordpress">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/02/13/wordpress-postphp-is-blank-after-publishing/">
+	<meta name="twitter:title" property="og:title" content="WordPress: &amp;#8220;post.php&amp;#8221; is blank after publishing">
+	<meta name="twitter:description" property="og:description" content="Whilst I was helping out Bookninja earlier this week, I came across a strange problem in WordPress. Every time we tried to publish a new blog post (or page), there would be a pause, then the page would go blank. (This was on the &#x201C;post.php&#x201D; page) I spent a long time trying to figure out what the issue was&#x2026; even longer googling it! Several pages into the Google results, I found the answer! Thank you&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/02/13/wordpress-postphp-is-blank-after-publishing/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">WordPress: &#8220;post.php&#8221; is blank after publishing</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/02/13/wordpress-postphp-is-blank-after-publishing/"><time datetime="2008-02-13T19:31&#x2B;00:00" class="dt-published">13/02/2008</time></a>.</span>
+				<span>Estimated read time: under a minute (127 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Whilst I was helping out <a href="http://www.bookninja.com/">Bookninja</a> earlier this week, I came across a strange problem in WordPress.</p>
+<p>Every time we tried to publish a new blog post (or page), there would be a pause, then the page would go blank.</p>
+<p>(This was on the “<code>post.php</code>” page)</p>
+<p>I spent a long time trying to figure out what the issue was… even longer googling it!</p>
+<p>Several pages into the Google results, I found the answer! Thank you <a href="http://www.seandeasy.com/">Sean Deasy</a>!</p>
+<p><a href="http://www.seandeasy.com/wordpress-posting-issue-solved-at-last/">WordPress posting issue solved at last :)</a></p>
+<p>It seems that Bookninja’s hijacker added a rogue URL to the notification/ping-list (http://www.newsisfree.com/RPCCloud), who knows why it was put there, but it was definitely the cause of the blank “<code>post.php</code>” issue!</p>
+<p>After removing the rogue URL, everything was working fine again!</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/bookninja/" rel="tag" class="p-category">bookninja</a>, <a href="/tag/google/" rel="tag" class="p-category">google</a>, <a href="/tag/php/" rel="tag" class="p-category">php</a>, <a href="/tag/ping/" rel="tag" class="p-category">ping</a>, <a href="/tag/trouble-shooting/" rel="tag" class="p-category">trouble-shooting</a>, <a href="/tag/wordpress/" rel="tag" class="p-category">WordPress</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/02/13/wordpress-postphp-is-blank-after-publishing/">https://leekelleher.com/2008/02/13/wordpress-postphp-is-blank-after-publishing/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

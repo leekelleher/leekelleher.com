@@ -1,0 +1,79 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to convert NameValueCollection to a (Query) String | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Most ASP.NET developers know that you can get a key/value pair string from the Request.QueryString object (via the .ToString() method). However that functionality isn&#x27;t the same for a generic NameValueCollection object (of which Request.QueryString is derived from). So how do you take a NameValueCollection object and get a nicely formatted key/value pair string? (i.e. &quot;key1=value1&amp;amp;key2=value2&quot;) ... Here&#x27;s a method I wrote a while ago: /// &amp;lt;summary&amp;gt; /// Constructs a QueryString (string). /// Consider this method&amp;#8230;">
+	<meta name="keywords" content="asp.net,c#,code,querystring,snippet">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/06/06/how-to-convert-namevaluecollection-to-a-query-string/">
+	<meta name="twitter:title" property="og:title" content="How to convert NameValueCollection to a (Query) String">
+	<meta name="twitter:description" property="og:description" content="Most ASP.NET developers know that you can get a key/value pair string from the Request.QueryString object (via the .ToString() method). However that functionality isn&#x27;t the same for a generic NameValueCollection object (of which Request.QueryString is derived from). So how do you take a NameValueCollection object and get a nicely formatted key/value pair string? (i.e. &quot;key1=value1&amp;amp;key2=value2&quot;) ... Here&#x27;s a method I wrote a while ago: /// &amp;lt;summary&amp;gt; /// Constructs a QueryString (string). /// Consider this method&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/06/06/how-to-convert-namevaluecollection-to-a-query-string/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">How to convert NameValueCollection to a (Query) String</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/06/06/how-to-convert-namevaluecollection-to-a-query-string/"><time datetime="2008-06-06T14:22&#x2B;01:00" class="dt-published">06/06/2008</time></a>.</span>
+				<span>Estimated read time: under a minute (132 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Most ASP.NET developers know that you can get a key/value pair string from the <code>Request.QueryString</code> object (via the <code>.ToString()</code> method). However that functionality isn't the same for a generic <code>NameValueCollection</code> object (of which <code>Request.QueryString</code> is derived from).</p>
+<p>So how do you take a <code>NameValueCollection</code> object and get a nicely formatted key/value pair string? (i.e. "<code>key1=value1&amp;key2=value2</code>") ... Here's a method I wrote a while ago:</p>
+<pre><code class="language-csharp"><span style="color:#808080;">///</span> <span style="color:#808080;">&lt;summary&gt;</span>
+<span style="color:#808080;">///</span><span style="color:#008000;"> Constructs a QueryString (string).</span>
+<span style="color:#808080;">///</span><span style="color:#008000;"> Consider this method to be the opposite of "System.Web.HttpUtility.ParseQueryString"</span>
+<span style="color:#808080;">///</span> <span style="color:#808080;">&lt;/summary&gt;</span>
+<span style="color:#0000FF;">public</span> <span style="color:#0000FF;">static</span> <span style="color:#0000FF;">string</span> ConstructQueryString(NameValueCollection parameters)
+{
+	List&lt;<span style="color:#0000FF;">string</span>&gt; items = <span style="color:#0000FF;">new</span> List&lt;<span style="color:#0000FF;">string</span>&gt;();
+
+	<span style="color:#0000FF;">foreach</span> (<span style="color:#0000FF;">string</span> name <span style="color:#0000FF;">in</span> parameters)
+		items.Add(<span style="color:#0000FF;">string</span>.Concat(name, <span style="color:#A31515;">"="</span>, System.Web.HttpUtility.UrlEncode(parameters[name])));
+
+	<span style="color:#0000FF;">return</span> <span style="color:#0000FF;">string</span>.Join(<span style="color:#A31515;">"&amp;"</span>, items.ToArray());
+}
+
+</code></pre>
+<p>Just in case you didn't know about the <code>System.Web.HttpUtility.ParseQueryString</code> method, it's a quick way of converting a query (key/value pairs) string back into a <code>NameValueCollection</code>.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/asp.net/" rel="tag" class="p-category">ASP.NET</a>, <a href="/tag/c-sharp/" rel="tag" class="p-category">C#</a>, <a href="/tag/code/" rel="tag" class="p-category">code</a>, <a href="/tag/querystring/" rel="tag" class="p-category">QueryString</a>, <a href="/tag/snippet/" rel="tag" class="p-category">snippet</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/06/06/how-to-convert-namevaluecollection-to-a-query-string/">https://leekelleher.com/2008/06/06/how-to-convert-namevaluecollection-to-a-query-string/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

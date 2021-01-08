@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to use umbraco.library GetMedia in XSLT for Umbraco v4.5 | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="This is a quick follow-up on my previous blog post: &#x201C;How to use umbraco.library GetMedia in XSLT&#x201C;. &amp;nbsp;At the request of fellow Umbraco South-West UK developer, Dan, that I should update the code snippets for the new XML schema in Umbraco v4.5&#x2B; First a quick notice; if you are using v4.5.0, then please upgrade to v4.5.1, as there was a tiny bug in GetMedia that caused great confusion and headaches &#x2013; you have been advised!&amp;#8230;">
+	<meta name="keywords" content="code,getmedia,snippet,umbraco,xslt">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2010/08/11/how-to-use-umbraco-library-getmedia-in-xslt-for-umbraco-v4-5/">
+	<meta name="twitter:title" property="og:title" content="How to use umbraco.library GetMedia in XSLT for Umbraco v4.5">
+	<meta name="twitter:description" property="og:description" content="This is a quick follow-up on my previous blog post: &#x201C;How to use umbraco.library GetMedia in XSLT&#x201C;. &amp;nbsp;At the request of fellow Umbraco South-West UK developer, Dan, that I should update the code snippets for the new XML schema in Umbraco v4.5&#x2B; First a quick notice; if you are using v4.5.0, then please upgrade to v4.5.1, as there was a tiny bug in GetMedia that caused great confusion and headaches &#x2013; you have been advised!&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2010/08/11/how-to-use-umbraco-library-getmedia-in-xslt-for-umbraco-v4-5/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">How to use umbraco.library GetMedia in XSLT for Umbraco v4.5</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2010/08/11/how-to-use-umbraco-library-getmedia-in-xslt-for-umbraco-v4-5/"><time datetime="2010-08-11T16:42&#x2B;01:00" class="dt-published">11/08/2010</time></a>.</span>
+				<span>Estimated read time: under a minute (138 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>This is a quick follow-up on my previous blog post: “<a href="http://blog.leekelleher.com/2009/11/30/how-to-use-umbraco-library-getmedia-in-xslt/">How to use umbraco.library GetMedia in XSLT</a>“. &nbsp;At the request of fellow <a href="http://our.umbraco.org/events/umbraco-south-west-uk-user-meetup-(july-2010)">Umbraco South-West UK</a> developer, <a href="http://our.umbraco.org/member/5585">Dan</a>, that I should update the code snippets for the new XML schema in Umbraco v4.5+</p>
+<p>First a quick notice; if you are using v4.5.0, then please <a href="http://umbraco.codeplex.com/releases/view/48015">upgrade to v4.5.1</a>, as there was <a href="http://umbraco.codeplex.com/workitem/28147">a tiny bug in GetMedia</a> that caused great confusion and headaches – you have been advised!</p>
+<p>Without further ado, the updated XSLT snippet that you came here for…</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;xsl:template match="/"&gt;
+	&lt;xsl:variable name="mediaId" select="number($currentPage/mediaId)" /&gt;
+	&lt;xsl:if test="$mediaId &gt; 0"&gt;
+		&lt;xsl:variable name="mediaNode" select="umbraco.library:GetMedia($mediaId, 0)" /&gt;
+		&lt;xsl:if test="$mediaNode/umbracoFile"&gt;
+			&lt;img src="{$mediaNode/umbracoFile}" alt="[image]" height="{umbracoHeight}" width="{umbracoWidth}" /&gt;
+		&lt;/xsl:if&gt;
+	&lt;/xsl:if&gt;
+&lt;/xsl:template&gt;</pre>
+<p>Any questions? <a href="http://our.umbraco.org/">Come join us over at Our Umbraco…</a> we are a friendly bunch!</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/code/" rel="tag" class="p-category">code</a>, <a href="/tag/getmedia/" rel="tag" class="p-category">GetMedia</a>, <a href="/tag/snippet/" rel="tag" class="p-category">snippet</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/xslt/" rel="tag" class="p-category">XSLT</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2010/08/11/how-to-use-umbraco-library-getmedia-in-xslt-for-umbraco-v4-5/">https://leekelleher.com/2010/08/11/how-to-use-umbraco-library-getmedia-in-xslt-for-umbraco-v4-5/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

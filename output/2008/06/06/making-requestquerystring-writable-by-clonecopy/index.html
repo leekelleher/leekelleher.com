@@ -1,0 +1,69 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Making Request.QueryString writable (by clone/copy) | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Every now and then I completely forget that the Request.QueryString (and Request.Form) object is read-only. Today I had a bit of functionality where I needed to remove a key/value from the collection - but the Remove() method (of the NameValueCollection object) throws an exception. Unfortunately, the Request.QueryString&#x27;s CopyTo method assigns the values to an ARRAY, not a NameValueCollection - losing functionality and flexibility. You need to copy the Request.QueryString object to a new NameValueCollection instance,&amp;#8230;">
+	<meta name="keywords" content="asp.net,c#,code,querystring,snippet">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/06/06/making-requestquerystring-writable-by-clonecopy/">
+	<meta name="twitter:title" property="og:title" content="Making Request.QueryString writable (by clone/copy)">
+	<meta name="twitter:description" property="og:description" content="Every now and then I completely forget that the Request.QueryString (and Request.Form) object is read-only. Today I had a bit of functionality where I needed to remove a key/value from the collection - but the Remove() method (of the NameValueCollection object) throws an exception. Unfortunately, the Request.QueryString&#x27;s CopyTo method assigns the values to an ARRAY, not a NameValueCollection - losing functionality and flexibility. You need to copy the Request.QueryString object to a new NameValueCollection instance,&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/06/06/making-requestquerystring-writable-by-clonecopy/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Making Request.QueryString writable (by clone/copy)</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/06/06/making-requestquerystring-writable-by-clonecopy/"><time datetime="2008-06-06T14:09&#x2B;01:00" class="dt-published">06/06/2008</time></a>.</span>
+				<span>Estimated read time: under a minute (102 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Every now and then I completely forget that the <code>Request.QueryString</code> (and <code>Request.Form</code>) object is read-only. Today I had a bit of functionality where I needed to remove a key/value from the collection - but the <code>Remove()</code> method (of the <code>NameValueCollection</code> object) throws an exception.</p>
+<p>Unfortunately, the <code>Request.QueryString</code>'s <code>CopyTo</code> method assigns the values to an <code>ARRAY</code>, not a <code>NameValueCollection</code> - losing functionality and flexibility.</p>
+<p>You need to copy the <code>Request.QueryString</code> object to a new <code>NameValueCollection</code> instance, here's how:</p>
+<pre><code class="language-csharp">NameValueCollection qs = <span style="color:#0000FF;">new</span> NameValueCollection(Request.QueryString);
+
+</code></pre>
+<p>Now you can add/remove the key/values to your hearts content!</p>
+<p>Oh, yeah, remember to import the <code>System.Collections.Specialized</code> namespace too!</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/asp.net/" rel="tag" class="p-category">ASP.NET</a>, <a href="/tag/c-sharp/" rel="tag" class="p-category">C#</a>, <a href="/tag/code/" rel="tag" class="p-category">code</a>, <a href="/tag/querystring/" rel="tag" class="p-category">QueryString</a>, <a href="/tag/snippet/" rel="tag" class="p-category">snippet</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/06/06/making-requestquerystring-writable-by-clonecopy/">https://leekelleher.com/2008/06/06/making-requestquerystring-writable-by-clonecopy/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

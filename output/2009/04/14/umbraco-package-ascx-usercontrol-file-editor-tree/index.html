@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Umbraco Package &#8211; User Control File Tree | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="A few months ago, Tim Geyssens (aka Umbraco rockstar) released a package that gave you access to the *.config files in the /config/ folder. This has been a lifesaver in those few times where I have only had web-access to an Umbraco install and needed to tweak some config settings. Recently I found myself in the same situation, but this time I needed to quickly update a few text changes to an ASCX user-control. Due&amp;#8230;">
+	<meta name="keywords" content="ascx,asp.net,developer,umbraco,user controls">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2009/04/14/umbraco-package-ascx-usercontrol-file-editor-tree/">
+	<meta name="twitter:title" property="og:title" content="Umbraco Package &amp;#8211; User Control File Tree">
+	<meta name="twitter:description" property="og:description" content="A few months ago, Tim Geyssens (aka Umbraco rockstar) released a package that gave you access to the *.config files in the /config/ folder. This has been a lifesaver in those few times where I have only had web-access to an Umbraco install and needed to tweak some config settings. Recently I found myself in the same situation, but this time I needed to quickly update a few text changes to an ASCX user-control. Due&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2009/04/14/umbraco-package-ascx-usercontrol-file-editor-tree/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Umbraco Package &#8211; User Control File Tree</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2009/04/14/umbraco-package-ascx-usercontrol-file-editor-tree/"><time datetime="2009-04-15T00:46&#x2B;01:00" class="dt-published">15/04/2009</time></a>.</span>
+				<span>Estimated read time: 2 minutes (309 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>A few months ago, Tim Geyssens (aka <a href="http://www.nibble.be/">Umbraco rockstar</a>) released a package that gave you <a href="http://www.nibble.be/?p=53">access to the *.config files in the /config/ folder</a>. This has been a lifesaver in those few times where I have only had web-access to an Umbraco install and needed to tweak some config settings.</p>
+<p>Recently I found myself in the same situation, but this time I needed to quickly update a few text changes to an ASCX user-control. Due to the nature of the .NET user-controls in <a href="http://umbraco.org/">Umbraco</a>, there is no native way of accessing/editing those files via the admin back-end.</p>
+<p>… well, not until now …</p>
+<p>Following on from Tim’s lead with the Config Tree package, I have developed a “User Control File Tree” for the developer section.</p>
+<p>This package displays all the user-control files (from the /usercontrols/ folder), allowing you to edit the front-end ASCX code/mark-up. &nbsp;(There is no way to edit the code-behind using this package). &nbsp;If the user-control contains any inline code (C#/VB.NET), then you will be able to edit it. &nbsp;Keep in mind that there is no validation when editing the user-controls – so please be careful!</p>
+<p><a href="http://code.leekelleher.com/umbraco/User_Control_Files_Tree_1.0.zip">You can download the <strong>User Control File Tree</strong> package from here.</a></p>
+<p>I created the package using Umbraco 4’s built-in Create Package Wizard. Please note that this package has been designed to work with <strong><span style="text-decoration:underline;">v4</span> (and above)</strong>, apologies to v3 users.</p>
+<p>To install the package, go to the Developer section of your Umbraco back-end, expand the “Packages” folder, click on “Install local package”, select the “User_Control_Files_Tree_1.0.zip” (from wherever you saved it) and press the “Load Package” button. &nbsp;Follow a few more on-screen steps and you’ll be done in no time!</p>
+<p>If you have any problems with it, please do let me know – either by leaving a comment here or posting a thread on the <a href="http://forum.umbraco.org/">Umbraco forum</a>.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/ascx/" rel="tag" class="p-category">ASCX</a>, <a href="/tag/asp.net/" rel="tag" class="p-category">ASP.NET</a>, <a href="/tag/developer/" rel="tag" class="p-category">Developer</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/user-controls/" rel="tag" class="p-category">User Controls</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2009/04/14/umbraco-package-ascx-usercontrol-file-editor-tree/">https://leekelleher.com/2009/04/14/umbraco-package-ascx-usercontrol-file-editor-tree/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

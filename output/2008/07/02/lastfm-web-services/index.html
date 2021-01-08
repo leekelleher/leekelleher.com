@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Last.fm Web Services | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Last weekend, the good folk at Last.fm revealed version 2.0 of their public API: The new API introduces a user authentication protocol which for the first time allows applications to create user sessions, bringing both read and write services to web apps, desktop apps and mobile devices. Take our new tagging API&#x2019;s. Developers can both pull and apply tags to music content from any application on any platform now. The same goes for sharing &#x2013;&amp;#8230;">
+	<meta name="keywords" content=".net,apis,c#,flickr,last.fm,open source">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/07/02/lastfm-web-services/">
+	<meta name="twitter:title" property="og:title" content="Last.fm Web Services">
+	<meta name="twitter:description" property="og:description" content="Last weekend, the good folk at Last.fm revealed version 2.0 of their public API: The new API introduces a user authentication protocol which for the first time allows applications to create user sessions, bringing both read and write services to web apps, desktop apps and mobile devices. Take our new tagging API&#x2019;s. Developers can both pull and apply tags to music content from any application on any platform now. The same goes for sharing &#x2013;&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/07/02/lastfm-web-services/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Last.fm Web Services</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/07/02/lastfm-web-services/"><time datetime="2008-07-02T02:29&#x2B;01:00" class="dt-published">02/07/2008</time></a>.</span>
+				<span>Estimated read time: 3 minutes (369 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p><a href="http://www.last.fm/"><img class="alignright" src="http://cdn.last.fm/depth/advertising/lastfm/badge_red_rev.gif" alt="Last.fm" width="150" height="60"></a> Last weekend, <a href="http://blog.last.fm/2008/06/27/developers-developers-developers">the good folk at Last.fm revealed version 2.0 of their public API</a>:</p>
+<blockquote>
+<p>The new API introduces a user authentication protocol which for the first time allows applications to create user sessions, bringing both read and write services to web apps, desktop apps and mobile devices.</p>
+<p>Take our new tagging API’s. Developers can both pull and apply tags to music content from any application on any platform now. The same goes for sharing – developers can build Last.fm sharing support into any app.</p>
+<p>There are also new search, playlist, event and geo API’s being rolled out today, with lots more stuff planned in the coming weeks and months.</p>
+</blockquote>
+<p>At first glance, I noticed that there were a couple of key features (to me) were missing – <a href="http://www.last.fm/group/Last.fm+Web+Services/forum/21604/_/426605">namely the “Get Similar Tracks”</a> – the Last.fm staff reminded me that <em>they are planning to roll out more features in the coming weeks and months!</em> OK, okay… I’ll be more patient!</p>
+<p>The new API feels and works like the Flickr API; with very similar convensions of the method/call names and authentication/token process.&nbsp; This isn’t a bad thing – just that I feel they should be leading the crowd, rather than following it.&nbsp; (The <a href="http://beta.last.fm/home">beta version</a> of the upcoming Last.fm site <a href="http://www.last.fm/group/Last.fm+Beta/forum/95114/_/427221">is being critisised for being a “facebook clone”</a>!)</p>
+<p>Regardless of my negative comments, I’m actually a fan of the <a href="http://www.last.fm/api">new API</a> – being more structured and scalable.&nbsp; I’m considering writing a .NET wrapper library (C#) for it too!&nbsp; As I’ve got plans for a small iTunes/Last.fm playlist app, that would require it; (all open-source, of course).</p>
+<p>Since the new API follows similar Flickr API convensions, it seems to make sense that I could/should base my Last.fm .NET wrapper on it’s Flickr counter-part…. <a href="http://www.wackylabs.net/flickr/flickr-api/">Flickr.NET API</a>.&nbsp; The library is developed in a decent way – deserializing XML objects into the appropriate classes.&nbsp; It feels a lot nicer to develop with, rather than messing around with XPath node selections!</p>
+<p>Not sure when I’ll get the time to develop the library, as my contract work is as busy as ever!! Hopefully things will calm down in a couple of weeks!</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/.net/" rel="tag" class="p-category">.NET</a>, <a href="/tag/apis/" rel="tag" class="p-category">APIs</a>, <a href="/tag/c-sharp/" rel="tag" class="p-category">C#</a>, <a href="/tag/flickr/" rel="tag" class="p-category">Flickr</a>, <a href="/tag/lastfm/" rel="tag" class="p-category">Last.fm</a>, <a href="/tag/open-source/" rel="tag" class="p-category">open source</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/07/02/lastfm-web-services/">https://leekelleher.com/2008/07/02/lastfm-web-services/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

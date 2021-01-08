@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>All hail &#8220;The Bookninja Messiah&#8221;! | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Earlier this week I&#x2019;d heard that Bookninja had been hijacked, they needed some help to get their WordPress back in working order. Mark suggested that I offered my services, so I did. George explained what the problems since the hijack: Unable to publish blog posts and pages; (a blank page appeared when he tried to publish) All the pages had been delete, or disappeared. Akismet was turned off&#x2026; opening the floodgates to lots of unwanted&amp;#8230;">
+	<meta name="keywords" content="akismet,bookninja,google,messiah,pages,posts,readysteadybook,spam,sql,wordpress">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/02/13/all-hail-the-bookninja-messiah/">
+	<meta name="twitter:title" property="og:title" content="All hail &amp;#8220;The Bookninja Messiah&amp;#8221;!">
+	<meta name="twitter:description" property="og:description" content="Earlier this week I&#x2019;d heard that Bookninja had been hijacked, they needed some help to get their WordPress back in working order. Mark suggested that I offered my services, so I did. George explained what the problems since the hijack: Unable to publish blog posts and pages; (a blank page appeared when he tried to publish) All the pages had been delete, or disappeared. Akismet was turned off&#x2026; opening the floodgates to lots of unwanted&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/02/13/all-hail-the-bookninja-messiah/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">All hail &#8220;The Bookninja Messiah&#8221;!</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/02/13/all-hail-the-bookninja-messiah/"><time datetime="2008-02-13T20:50&#x2B;00:00" class="dt-published">13/02/2008</time></a>.</span>
+				<span>Estimated read time: 2 minutes (333 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Earlier this week I’d heard that <a href="http://www.bookninja.com/">Bookninja</a> had been hijacked, they needed some help to get their WordPress back in working order. <a href="http://www.readysteadybook.com/Contributor.aspx?name=markthwaite">Mark</a> suggested that I offered my services, so I did.</p>
+<p><a href="http://www.georgemurray.ca/">George</a> explained what the problems since the hijack:</p>
+<ol>
+<li>Unable to publish blog posts and pages; (a blank page appeared when he tried to publish)</li>
+<li>All the pages had been delete, or disappeared.</li>
+<li>Akismet was turned off… opening the floodgates to lots of unwanted casino and porn comment spam!</li>
+</ol>
+<p>Previously, Bookninja was running an earlier version of WordPress – <a href="http://wordpress.org/development/2006/03/security-202/">one that had a known exploit/vulnerability</a> – so George quickly upgraded to the latest version. (This is all beside the point now).</p>
+<p>George sorted out the comment spam and got Askimet back up and running.</p>
+<p><a href="http://leekelleher.wordpress.com/2008/02/13/wordpress-postphp-is-blank-after-publishing/">The blank page after publishing took a while to figure out, but I got there in the end!</a> (It was a rogue URL in the notification/ping-list).</p>
+<p>With the mysteriously vanishing pages (<a href="http://codex.wordpress.org/Pages#What_is_a_Page.3F">as opposed to posts</a>), my initial reaction was that they had been deleted from the database. I was about to break the bad news to George, but I thought I’d take a quick look at the database to make doubly-sure.</p>
+<p>Low-and-behold, I found them! But something weird had happened… All the WordPress pages had been converted into blog posts! This caused an issue because the permalink structure was using “<code>?page_id=</code>” querystring – which meant that all the page links would be broken.</p>
+<p>I needed to find a way of bulk converting them back to proper “pages”. Good old Google pointed me towards a blog post by <a href="http://netthink.com/">Jesse Caulfield</a> that had a bit of SQL that would <a href="http://netthink.com/archives/113">Convert a Post to Page</a>.</p>
+<p>I adapted the SQL to fit my needs:</p>
+<pre><code class="language-sql"><span style="color:#0000FF;">UPDATE</span> wp_posts <span style="color:#0000FF;">SET</span> post_type = <span style="color:#A31515;">"page"</span> <span style="color:#0000FF;">WHERE</span> guid <span style="color:#0000FF;">LIKE</span> <span style="color:#A31515;">"%?page_id=%"</span>;
+
+</code></pre>
+<p>With that, Bookninja was back to normal… George has dubbed me “<strong><a href="http://www.bookninja.com/?p=3737">The Bookninja Messiah</a></strong>“! [Cue: Monty Python gag]</p>
+<p>Now the hunt is on for the hijacker!</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/akismet/" rel="tag" class="p-category">akismet</a>, <a href="/tag/bookninja/" rel="tag" class="p-category">bookninja</a>, <a href="/tag/google/" rel="tag" class="p-category">google</a>, <a href="/tag/messiah/" rel="tag" class="p-category">messiah</a>, <a href="/tag/pages/" rel="tag" class="p-category">pages</a>, <a href="/tag/posts/" rel="tag" class="p-category">posts</a>, <a href="/tag/readysteadybook/" rel="tag" class="p-category">readysteadybook</a>, <a href="/tag/spam/" rel="tag" class="p-category">spam</a>, <a href="/tag/sql/" rel="tag" class="p-category">sql</a>, <a href="/tag/wordpress/" rel="tag" class="p-category">WordPress</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/02/13/all-hail-the-bookninja-messiah/">https://leekelleher.com/2008/02/13/all-hail-the-bookninja-messiah/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

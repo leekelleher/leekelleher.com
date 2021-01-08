@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Setting up Visual Studio to work with Umbraco | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Over the last 12 months I have been involved with developing several Umbraco-powered websites. During that time I&#x2019;ve experienced many development frustrations; specifically with debugging and version control. A while back I read Paul Sterling&#x2019;s blog post on &#x201C;Working with Umbraco in Visual Studio&#x201D; &#x2013; I used this as my basis.&amp;nbsp; I have added to his orignal suggestions: Have a clean, working copy of Umbraco &#x2013; using the installer &#x2013; on your machine.&amp;nbsp; I am&amp;#8230;">
+	<meta name="keywords" content="asp.net,cms,umbraco,visual studio,vs.net 2008">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/08/20/setting-up-visual-studio-to-work-with-umbraco/">
+	<meta name="twitter:title" property="og:title" content="Setting up Visual Studio to work with Umbraco">
+	<meta name="twitter:description" property="og:description" content="Over the last 12 months I have been involved with developing several Umbraco-powered websites. During that time I&#x2019;ve experienced many development frustrations; specifically with debugging and version control. A while back I read Paul Sterling&#x2019;s blog post on &#x201C;Working with Umbraco in Visual Studio&#x201D; &#x2013; I used this as my basis.&amp;nbsp; I have added to his orignal suggestions: Have a clean, working copy of Umbraco &#x2013; using the installer &#x2013; on your machine.&amp;nbsp; I am&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/08/20/setting-up-visual-studio-to-work-with-umbraco/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Setting up Visual Studio to work with Umbraco</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/08/20/setting-up-visual-studio-to-work-with-umbraco/"><time datetime="2008-08-20T19:17&#x2B;01:00" class="dt-published">20/08/2008</time></a>.</span>
+				<span>Estimated read time: 4 minutes (482 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Over the last 12 months I have been involved with developing several <a href="http://umbraco.org/">Umbraco</a>-powered websites. During that time I’ve experienced many development frustrations; specifically with debugging and version control.</p>
+<p>A while back I read Paul Sterling’s blog post on “<a href="http://www.motusconnect.com/blog/2007/12/10/working%20with%20umbraco%20in%20visual%20studio.aspx">Working with Umbraco in Visual Studio</a>” – I used this as my basis.&nbsp; I have added to his orignal suggestions:</p>
+<ol>
+<li>Have a clean, working copy of Umbraco – using the installer – on your machine.&nbsp; I am using: <code>C:\inetpub\wwwroot\umbraco</code> for my working copy of the site.</li>
+<li>My Visual Studio solution/project will be kept under version-control.&nbsp; Since I use Subversion, (with <a href="http://tortoisesvn.net/">TortoiseSVN</a> and <a href="http://www.visualsvn.com/visualsvn/">VisualSVN</a>), I prefer to keep all my code under: <code>C:SVN</code></li>
+<li>In the Visual Studio project, I create the following folders:
+<ol>
+<li><code>/_templates</code></li>
+<li><code>/css</code></li>
+<li><code>/scripts</code></li>
+<li><code>/usercontrols</code></li>
+<li><code>/xslt</code></li>
+</ol>
+</li>
+</ol>
+<p>These folders reflect the files that will be used in my Umbraco site.&nbsp; The “<code>/_templates</code>” folder is used to store a text-based version of Umbraco templates, so that I can keep them under version-control; as I’ve had a situation in the past where someone copied over the wrong template – not very pretty.</p>
+<ol start="4">
+<li>In Visual Studio, create a post-build event [from Project &gt; Properties &gt; Build Events] to copy all your working files across to your Umbraco installation.</li>
+</ol>
+<pre><code class="language-bash">XCOPY "$(ProjectDir)bin\$(ProjectName)\*.*" "C:\Inetpub\wwwroot\umbraco\bin" /y
+XCOPY "$(ProjectDir)usercontrols\*.ascx" "C:\Inetpub\wwwroot\umbraco\usercontrols" /y
+XCOPY "$(ProjectDir)xslt\*.xslt" "C:\Inetpub\wwwroot\umbraco\xslt" /y
+XCOPY "$(ProjectDir)scripts\*.js" "C:\Inetpub\wwwroot\umbraco\scripts" /y
+</code></pre>
+<p>You may notice that I am not copying across the <code>*.css</code> stylesheet files across to Umbraco.&nbsp; The reason for this is that the current version of Umbraco (v3.0.3) stores the contents of the CSS files in the database, and not on the file-system.</p>
+<p>You can either set the “Run the post-build event” whichever option you prefer.</p>
+<ol start="5">
+<li>Once your files have been copied across to Umbraco, you can debug your code in Visual Studio:
+<ol>
+<li>Open the site (usually http://localhost/) in your web-browser.</li>
+<li>In Visual Studio select the Debug &gt; Attach to Process menu.</li>
+<li>Select the ASP.NET worker process from the list – this is usually called “<code>aspnet_wp.exe</code>” or “<code>w3wp.exe</code>” – then press OK.</li></ol></li>
+</ol>
+
+
+<p>It’s important to note that I am developing on Visual Studio 2008; but the same prinicple should apply to VS.NET 2005. (<strong><span style="text-decoration:underline;">Update</span></strong>: It isn’t so straight-forward in VS.NET 2005, <a href="http://blog.leekelleher.com/2008/08/20/setting-up-visual-studio-to-work-with-umbraco/#comment-110">see Brad’s comment for further details</a>.)</p>
+<p>I’m still looking at ways to improve my development set-up with Umbraco/Visual Studio, so if anyone has any tips – please pass them my way!&nbsp; I’m especially interested in ways of dynamically updating the stylesheets/templates via the Umbraco API.</p>
+<p><em><strong><span style="text-decoration:underline;">Update:</span></strong> I originally wrote this post for use with Umbraco v3. If you are looking for a v4 post,</em> <a href="http://our.umbraco.org/wiki/codegarden-2009/open-space-minutes/working-in-visual-studio-when-developing-umbraco-solutions"><em>check out the CG09 session write-up over at Our Umbraco</em></a><em>. The main difference is that you wont need the <strong>/_templates/</strong> folder, just replace it with the <strong>/masterpages/</strong> folder, and add it to the post-build events.</em></p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/asp.net/" rel="tag" class="p-category">ASP.NET</a>, <a href="/tag/cms/" rel="tag" class="p-category">CMS</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/visual-studio/" rel="tag" class="p-category">Visual Studio</a>, <a href="/tag/vs.net-2008/" rel="tag" class="p-category">VS.NET 2008</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/08/20/setting-up-visual-studio-to-work-with-umbraco/">https://leekelleher.com/2008/08/20/setting-up-visual-studio-to-work-with-umbraco/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

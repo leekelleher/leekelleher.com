@@ -1,0 +1,111 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to use umbraco.library GetMedia in XSLT | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="From time to time I notice a reoccurring post over at the Our Umbraco forum; how to display an image (from the Media section) in XSLT? A quick answer can be found on the Our Umbraco wiki for the umbraco.library GetMedia method. For most uses, the last example in the wiki works great. &amp;nbsp;But I want to show you a &#x201C;super safe&#x201D; way of dealing with GetMedia in XSLT. Where I find a lot of&amp;#8230;">
+	<meta name="keywords" content="code,getmedia,snippet,umbraco,xslt">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2009/11/30/how-to-use-umbraco-library-getmedia-in-xslt/">
+	<meta name="twitter:title" property="og:title" content="How to use umbraco.library GetMedia in XSLT">
+	<meta name="twitter:description" property="og:description" content="From time to time I notice a reoccurring post over at the Our Umbraco forum; how to display an image (from the Media section) in XSLT? A quick answer can be found on the Our Umbraco wiki for the umbraco.library GetMedia method. For most uses, the last example in the wiki works great. &amp;nbsp;But I want to show you a &#x201C;super safe&#x201D; way of dealing with GetMedia in XSLT. Where I find a lot of&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2009/11/30/how-to-use-umbraco-library-getmedia-in-xslt/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">How to use umbraco.library GetMedia in XSLT</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2009/11/30/how-to-use-umbraco-library-getmedia-in-xslt/"><time datetime="2009-11-30T14:33&#x2B;00:00" class="dt-published">30/11/2009</time></a>.</span>
+				<span>Estimated read time: 4 minutes (513 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>From time to time I notice a reoccurring post over at the Our Umbraco forum; how to display an image (from the Media section) in XSLT?</p>
+<p>A quick answer can be found on the Our Umbraco wiki for the <a href="http://our.umbraco.org/wiki/reference/umbracolibrary/getmedia">umbraco.library GetMedia</a> method.</p>
+<p>For most uses, the last example in the wiki works great. &nbsp;But I want to show you a “super safe” way of dealing with GetMedia in XSLT.</p>
+<p>Where I find a lot of the examples go wrong is that they make the assumption that a media node (XML) is returned from the GetMedia call, e.g.</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;xsl:value-of select="umbraco.library:GetMedia($currentPage/data[&#64;alias='mediaId'], 'false')/data[&#64;alias='umbracoFile']" /&gt;</pre>
+<p>If the ‘mediaId’ property didn’t contain either a numeric value or a valid media node id, then it would return <strong>null</strong> … meaning that the following “<strong>/data</strong>” would throw an Exception! (Displaying “<em>Error parsing XSLT file</em>” message on the front-end.) &nbsp;Not what you or your users want to see!</p>
+<p>In order to consider any user inputs, like media IDs not being selected, or even a referenced media node is deleted in the back-office, here is the “super safe” approach:</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;xsl:template match="/"&gt;
+	&lt;xsl:variable name="mediaId" select="number($currentPage/data[&#64;alias='mediaId'])" /&gt;
+	&lt;xsl:if test="$mediaId &gt; 0"&gt;
+		&lt;xsl:variable name="mediaNode" select="umbraco.library:GetMedia($mediaId, 0)" /&gt;
+		&lt;xsl:if test="count($mediaNode/data) &gt; 0"&gt;
+			&lt;xsl:if test="string($mediaNode/data[&#64;alias='umbracoFile']) != ''"&gt;
+				&lt;img src="{$mediaNode/data[&#64;alias='umbracoFile']}" alt="[image]"&gt;
+					&lt;xsl:if test="string($mediaNode/data[&#64;alias='umbracoHeight']) != ''"&gt;
+						&lt;xsl:attribute name="height"&gt;
+							&lt;xsl:value-of select="$mediaNode/data[&#64;alias='umbracoHeight']" /&gt;
+						&lt;/xsl:attribute&gt;
+					&lt;/xsl:if&gt;
+					&lt;xsl:if test="string($mediaNode/data[&#64;alias='umbracoWidth']) != ''"&gt;
+						&lt;xsl:attribute name="width"&gt;
+							&lt;xsl:value-of select="$mediaNode/data[&#64;alias='umbracoWidth']" /&gt;
+						&lt;/xsl:attribute&gt;
+					&lt;/xsl:if&gt;
+				&lt;/img&gt;
+			&lt;/xsl:if&gt;
+		&lt;/xsl:if&gt;
+	&lt;/xsl:if&gt;
+&lt;/xsl:template&gt;</pre>
+<p>Here’s what happens:</p>
+<ol>
+<li>The “mediaId” is pulled from a property of the “currentPage” and cast as a number. &nbsp;Optionally the “mediaId” could be passed in via a macro parameter, or somewhere else?</li>
+<li>The first condition checks the the “mediaId” is numeric, and greater-than zero.</li>
+<li>The “mediaId” is passed through to “GetMedia”, along with the <em>false</em> flag to only pull-back the required node (not it’s children, for Folder media items).</li>
+<li>We check if the media node has any child “data” elements – which contain the data about the image/media.</li>
+<li>Then we check if the “umbracoFile” property has any data – if not, then there is no point displaying an image.</li>
+<li>There are extra conditions for the “height” and “width” properties – these are optional.</li>
+</ol>
+<p>Personally, I add an “altText” property to the Image media-type … and use that in the XSLT – again this is optional, but strongly recommended!</p>
+<p>I can see how this “super safe” approach is overkill – especially compared with a single line of XSLT … but from my experience, it’s better to be safe than sorry – especially when dealing with user data-input – your assumptions and expectations of how users will use the system aren’t always correct!</p>
+<p><strong><span style="text-decoration:underline;">Update:</span></strong> OK, I agree the extra “if” statements are overkill… so here’s a condensed version – assuming that the “umbracoHeight” and “umbracoWidth” properties are always there…</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;xsl:template match="/"&gt;
+	&lt;xsl:variable name="mediaId" select="number($currentPage/data[&#64;alias='mediaId'])" /&gt;
+	&lt;xsl:if test="$mediaId &gt; 0"&gt;
+		&lt;xsl:variable name="mediaNode" select="umbraco.library:GetMedia($mediaId, 0)" /&gt;
+		&lt;xsl:if test="count($mediaNode/data) &gt; 0 and string($mediaNode/data[&#64;alias='umbracoFile']) != ''"&gt;
+			&lt;img src="{$mediaNode/data[&#64;alias='umbracoFile']}" alt="[image]" height="{$mediaNode/data[&#64;alias='umbracoHeight']}" width="{$mediaNode/data[&#64;alias='umbracoWidth']}" /&gt;
+		&lt;/xsl:if&gt;
+	&lt;/xsl:if&gt;
+&lt;/xsl:template&gt;</pre>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/code/" rel="tag" class="p-category">code</a>, <a href="/tag/getmedia/" rel="tag" class="p-category">GetMedia</a>, <a href="/tag/snippet/" rel="tag" class="p-category">snippet</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/xslt/" rel="tag" class="p-category">XSLT</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2009/11/30/how-to-use-umbraco-library-getmedia-in-xslt/">https://leekelleher.com/2009/11/30/how-to-use-umbraco-library-getmedia-in-xslt/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to best embed a WMV video clip? | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="I hate to admit it, but I&#x2019;m stuck&#x2026; I&#x2019;m trying to figure out how to best embed a WMV video clip in a web-page, so that it works cross-browser (and cross-platform). Even after all my years of web-development, I&#x2019;m still confused to which browser supports which tag &#x2026; nested &amp;lt;embed&amp;gt; tags in &amp;lt;object&amp;gt; tags &#x2026; it gets messy! I&#x2019;m as equally confused with the Class ID attribute: &#x201C;CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6&#x201D; &#x2013; surely that can&#x2019;t be the same&amp;#8230;">
+	<meta name="keywords" content="browser,code,embed,html,platform,video,wmv">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/06/09/how-to-best-embed-a-wmv-video-clip/">
+	<meta name="twitter:title" property="og:title" content="How to best embed a WMV video clip?">
+	<meta name="twitter:description" property="og:description" content="I hate to admit it, but I&#x2019;m stuck&#x2026; I&#x2019;m trying to figure out how to best embed a WMV video clip in a web-page, so that it works cross-browser (and cross-platform). Even after all my years of web-development, I&#x2019;m still confused to which browser supports which tag &#x2026; nested &amp;lt;embed&amp;gt; tags in &amp;lt;object&amp;gt; tags &#x2026; it gets messy! I&#x2019;m as equally confused with the Class ID attribute: &#x201C;CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6&#x201D; &#x2013; surely that can&#x2019;t be the same&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/06/09/how-to-best-embed-a-wmv-video-clip/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">How to best embed a WMV video clip?</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/06/09/how-to-best-embed-a-wmv-video-clip/"><time datetime="2008-06-09T15:56&#x2B;01:00" class="dt-published">09/06/2008</time></a>.</span>
+				<span>Estimated read time: under a minute (227 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>I hate to admit it, but I’m stuck… I’m trying to figure out how to best embed a WMV video clip in a web-page, so that it works cross-browser (and cross-platform).</p>
+<p>Even after all my years of web-development, I’m still confused to which browser supports which tag … nested <code>&lt;embed&gt;</code> tags in <code>&lt;object&gt;</code> tags … <em>it gets messy!</em></p>
+<p>I’m as equally confused with the Class ID attribute: “<code>CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6</code>” – surely that can’t be the same across all browsers/platforms?!</p>
+<p><a href="http://www.alistapart.com/articles/byebyeembed/">A List Apart article</a> discusses dropping the <code>&lt;embed&gt;</code> tag. Which sounds like a good idea to me. The HTML looks <em>so</em> much better… MIME types all the way baby!!</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;object type="video/x-ms-wmv" data="/media/video.wmv" width="320" height="260"&gt;
+	&lt;param name="src" value="/media/video.wmv" /&gt;
+	&lt;param name="autostart" value="0" /&gt;
+	&lt;param name="controller" value="1" /&gt;
+&lt;/object&gt;
+</pre>
+<p>I tested this on Firefox 2.0 and IE7 on Vista, and IE6 and Safari on XP – all fine, so far so good! When I ask my client to test the page on their Mac … <strong>it’s no good!</strong> The videos just wouldn’t load! <em>Hmphf!</em></p>
+<p>So does anyone know of a simple way of embedding a WMV video clip that works cross-browser/platform? Please let me know, I’d be very a happy developer!</p>
+<p>Otherwise, I’m so close to using the beastly code that comes from the “<a href="http://cit.ucsf.edu/embedmedia/step1.php">Embedded Media HTML Generator</a>” … <em>help me please!</em> ;-)</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/browser/" rel="tag" class="p-category">browser</a>, <a href="/tag/code/" rel="tag" class="p-category">code</a>, <a href="/tag/embed/" rel="tag" class="p-category">embed</a>, <a href="/tag/html/" rel="tag" class="p-category">HTML</a>, <a href="/tag/platform/" rel="tag" class="p-category">platform</a>, <a href="/tag/video/" rel="tag" class="p-category">video</a>, <a href="/tag/wmv/" rel="tag" class="p-category">wmv</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/06/09/how-to-best-embed-a-wmv-video-clip/">https://leekelleher.com/2008/06/09/how-to-best-embed-a-wmv-video-clip/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

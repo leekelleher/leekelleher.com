@@ -1,0 +1,129 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Manipulate XSLTsearch | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="When developing websites with Umbraco, I always use the XSLTsearch package to handle the search solution. As well as being easy and quick to install, it is customisable and very fast in searching content nodes. As much as I love XSLTsearch, the one dilemma I always face is having to modify the HTML output that is generated. &amp;nbsp;Given the way I work; with a much better front-end developer providing the mark-up; I am faced with&amp;#8230;">
+	<meta name="keywords" content="umbraco,xslt,xsltsearch">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2012/02/21/manipulate-xsltsearch/">
+	<meta name="twitter:title" property="og:title" content="Manipulate XSLTsearch">
+	<meta name="twitter:description" property="og:description" content="When developing websites with Umbraco, I always use the XSLTsearch package to handle the search solution. As well as being easy and quick to install, it is customisable and very fast in searching content nodes. As much as I love XSLTsearch, the one dilemma I always face is having to modify the HTML output that is generated. &amp;nbsp;Given the way I work; with a much better front-end developer providing the mark-up; I am faced with&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2012/02/21/manipulate-xsltsearch/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Manipulate XSLTsearch</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2012/02/21/manipulate-xsltsearch/"><time datetime="2012-02-21T22:25&#x2B;00:00" class="dt-published">21/02/2012</time></a>.</span>
+				<span>Estimated read time: 7 minutes (848 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>When developing websites with <a href="http://umbraco.codeplex.com">Umbraco</a>, I always use the <a href="http://our.umbraco.org/projects/website-utilities/xsltsearch">XSLTsearch</a> package to handle the search solution. As well as being easy and quick to install, it is <a href="http://blog.percipientstudios.com/2009/4/7/customizing-xsltsearch.aspx">customisable</a> and very fast in searching content nodes.</p>
+<p>As much as I love XSLTsearch, the one dilemma I always face is having to modify the HTML output that is generated. &nbsp;Given the way I work; with a much better front-end developer providing the mark-up; I am faced with shoehorning my HTML into the XSLTsearch template.</p>
+<p>In many cases this is fine and acceptable. However how to handle bugfixes and overall improvements to XSLTsearch when they may be released? Having to retro-fit these into my forked/modified/hacked version is an unwanted headache. (Also having learnt from past experiences in open-source development, you <span style="text-decoration: underline;"><strong><a href="http://drupal.org/best-practices/do-not-hack-core">do not hack the core</a></strong></span>!)</p>
+<p>So how can we separate our desired mark-up from the logic/core of XSLTsearch? (without modifying XSLTsearch itself!)</p>
+<hr>
+<p>Now we all know that the beauty of XSLT is in its ability to transform one flavour of XML into another flavour of XML; whether this be XHTML, RSS, etc. The XML is processed and returned. With this in mind, we can alter our perception of the output from XSLTsearch as a data-source, rather than HTML output.</p>
+<p>Reviewing the XSLTsearch source, skipping over all the variable declarations, the root template runs a couple of conditions on the <strong>$search</strong> and <strong>$source</strong> parameters, then ultimately calls a template named “<strong>search</strong>” – passing through a parameter called “<strong>items</strong>” containing an XPath for the selected node-set.</p>
+<p>Using a separate XSLT file, we can import “<em>XSLTsearch.xslt</em>” and override its templates with our own – this is done by using the “<strong><a href="http://www.edankert.com/transforms/xslt.template-priority.html">priority</a></strong>” attribute on our <em>xsl:template</em>. From here we can make our own call to the “search” template and pass through any XPath we desire in the “items” parameter.</p>
+<p>To do this…</p>
+<ol>
+<li>Create a new XSLT file called “<em>SearchResults.xslt</em>” – you can do this either from your Umbraco back-office or on directly on the file-system (in the <em>/xslt</em> directory).</li>
+<li>Find the macro for XSLTsearch, (via the Umbraco back-office), change the “Use XSLT file” to “<em>SearchResults.xslt</em>” (e.g. the one you’ve just created).</li>
+<li>Copy-n-paste the following snippet, (or get <a href="https://gist.github.com/1879072">the full XSLT from my gist</a>):</li>
+</ol>
+<pre><code class="language-xml"><span style="color:#0000FF;">&lt;?</span><span style="color:#A31515;">xml</span> <span style="color:#FF0000;">version</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">1.0</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">encoding</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">UTF-8</span><span style="color:#000000;">"</span><span style="color:#0000FF;">?&gt;</span>
+&lt;!DOCTYPE xsl:stylesheet [
+	&lt;!ENTITY nbsp "&amp;#x00A0;"&gt;
+]&gt;
+<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">stylesheet</span>
+	<span style="color:#FF0000;">version</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">1.0</span><span style="color:#000000;">"</span>
+	<span style="color:#FF0000;">xmlns:xsl</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">http://www.w3.org/1999/XSL/Transform</span><span style="color:#000000;">"</span>
+	<span style="color:#FF0000;">xmlns:msxml</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">urn:schemas-microsoft-com:xslt</span><span style="color:#000000;">"</span>
+	<span style="color:#FF0000;">xmlns:umbraco.library</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">urn:umbraco.library</span><span style="color:#000000;">"</span>
+	<span style="color:#FF0000;">xmlns:PS.XSLTsearch</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">urn:PS.XSLTsearch</span><span style="color:#000000;">"</span>
+	<span style="color:#FF0000;">exclude-result-prefixes</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">msxml umbraco.library PS.XSLTsearch</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+	<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">import</span> <span style="color:#FF0000;">href</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">XSLTsearch.xslt</span><span style="color:#000000;">"</span><span style="color:#0000FF;">/&gt;</span>
+
+	<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">template</span> <span style="color:#FF0000;">match</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">/</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">priority</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">2</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+		<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">variable</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">searchResults</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+			<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">call-template</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">search</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+				<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">with-param</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">items</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">$currentPage/ancestor-or-self::*[&#64;level = 1]</span><span style="color:#000000;">"</span><span style="color:#0000FF;">/&gt;</span>
+			<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">call-template</span><span style="color:#0000FF;">&gt;</span>
+		<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">variable</span><span style="color:#0000FF;">&gt;</span>
+		<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">variable</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">results</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">msxml:node-set($searchResults)</span><span style="color:#000000;">"</span><span style="color:#0000FF;">/&gt;</span>
+
+		<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xmp</span><span style="color:#0000FF;">&gt;</span>
+			<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">copy-of</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">$results</span><span style="color:#000000;">"</span><span style="color:#0000FF;">/&gt;</span>
+		<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xmp</span><span style="color:#0000FF;">&gt;</span>
+
+	<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">template</span><span style="color:#0000FF;">&gt;</span>
+
+<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">stylesheet</span><span style="color:#0000FF;">&gt;</span>
+
+</code></pre>
+<p><em>This is a snippet for my blog post, to get my full customised XSLT example, see here:</em>&nbsp;<a href="https://gist.github.com/1879072">https://gist.github.com/1879072</a></p>
+<p>So, what has just happened?</p>
+<p>We’ve included an import reference for the unmodified XSLTsearch file. Our root template (match=”/”) is given a priority of 2; this tells the XSLT processor that our template takes a higher priority that XSLTsearch’s original template.</p>
+<p>Inside our template we declare a variable named “searchResults” (you can call this whatever you like), the value of this will be the output from XSLTsearch’s template named “search”, passing in the “items” parameter.</p>
+<p>It is important to point out that the value of the “searchResults” variable will be a <strong>result tree fragment</strong>, meaning we can’t use it as we would a regular XML node-set. This usually causes headaches for developers – it’s generally at the point when they want to throw their laptop out of the window and pledge allegiance&nbsp;to the <a href="http://razorempire.com/">Razor Empire</a>. So to resolve this, we need the follow-up variable called “result” – this uses a native extension method to convert the fragment back into a proper node-set.</p>
+<p>Once we have our “$results” variable, we can manipulate this however we like. &nbsp;On a side note, do read the Pimp My XSLT article on “<a href="http://pimpmyxslt.com/articles/wysiwyg/">Transforming WYSIWYG output with XSLT</a>“.</p>
+<p>My use of the &lt;<a href="http://www.w3.org/TR/REC-html32#xmp">xmp</a>&gt; tag is for debug purposes only … <em>yes, yes, I know it has been deprecated since HTML 3.2, but as long as browsers support it, I’ll use it … and no, I’ve never ever used it on a production website.</em></p>
+<p>From here you can do an xsl:apply-templates on the $result node-set and manipulate the search results however you desire.</p>
+<pre><code class="language-xml"><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">apply-templates</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">$results/div</span><span style="color:#000000;">"</span> <span style="color:#0000FF;">/&gt;</span>
+
+</code></pre>
+<hr>
+<p>Another advantage of taking this approach is to be able to manipulate the XPath expression of the “items” parameter.</p>
+<p>Let’s say that you only wanted to search against your news articles; we could modify the XPath expression to something like this…</p>
+<pre><code class="language-xml"><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">with-param</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">items</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">$currentPage/ancestor-or-self::*[&#64;level = 1]/descendant::NewsArticle[&#64;isDoc]</span><span style="color:#000000;">"</span><span style="color:#0000FF;">/&gt;</span>
+
+</code></pre>
+<p><em>This XPath navigates all the way up the tree to the homepage node (level 1), then back down collecting <span style="text-decoration: underline;">all</span> the ‘NewsArticle’ nodes.</em></p>
+<p>Or how’s about &nbsp;something more advanced? We would like only news articles published in the last 30 days.</p>
+<pre><code class="language-xml"><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">with-param</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">items</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">$currentPage/ancestor-or-self::*[&#64;level = 1]/descendant::NewsArticle[&#64;isDoc and umbraco.library:DateGreaterThanOrEqualToday(umbraco.library:DateAdd(&#64;createDate, 'd', 30))]</span><span style="color:#000000;">"</span><span style="color:#0000FF;">/&gt;</span>
+
+</code></pre>
+<hr>
+<p>In summary, once you are able to change your perspective that the output from an XSLT is still XML, which you can manipulate and transform further – you have complete control over your desired mark-up.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/xslt/" rel="tag" class="p-category">XSLT</a>, <a href="/tag/xsltsearch/" rel="tag" class="p-category">XSLTsearch</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2012/02/21/manipulate-xsltsearch/">https://leekelleher.com/2012/02/21/manipulate-xsltsearch/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

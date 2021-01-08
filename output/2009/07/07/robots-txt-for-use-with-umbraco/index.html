@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Robots.txt for use with Umbraco | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="I originally posted this over at the Our Umbraco community wiki. [Robots.txt for use with Umbraco] I am only posting it on my blog as a cross-reference. The Our Umbraco wiki version will evolve with the community&#x2019;s experience and knowledge. The Robots Exclusion Protocol has been around for many years, yet there are a lot of web-developers who are unaware of the reasons for having a robots.txt file in the root of their websites. There&amp;#8230;">
+	<meta name="keywords" content="robots.txt,seo,umbraco">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2009/07/07/robots-txt-for-use-with-umbraco/">
+	<meta name="twitter:title" property="og:title" content="Robots.txt for use with Umbraco">
+	<meta name="twitter:description" property="og:description" content="I originally posted this over at the Our Umbraco community wiki. [Robots.txt for use with Umbraco] I am only posting it on my blog as a cross-reference. The Our Umbraco wiki version will evolve with the community&#x2019;s experience and knowledge. The Robots Exclusion Protocol has been around for many years, yet there are a lot of web-developers who are unaware of the reasons for having a robots.txt file in the root of their websites. There&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2009/07/07/robots-txt-for-use-with-umbraco/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Robots.txt for use with Umbraco</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2009/07/07/robots-txt-for-use-with-umbraco/"><time datetime="2009-07-07T17:10&#x2B;01:00" class="dt-published">07/07/2009</time></a>.</span>
+				<span>Estimated read time: 2 minutes (279 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p><em>I originally posted this over at the Our Umbraco community wiki. [<a href="http://our.umbraco.org/wiki/reference/umbraco-best-practices/robotstxt-for-use-with-umbraco">Robots.txt for use with Umbraco</a>] I am only posting it on my blog as a cross-reference. The Our Umbraco wiki version will evolve with the community’s experience and knowledge.</em></p>
+<p>The Robots Exclusion Protocol has been around for many years, yet there are a lot of web-developers who are unaware of the reasons for having a robots.txt file in the root of their websites.</p>
+<p>There have been many rumours around whether the bigger search engine crwalers (i.e. Googlebot) consider your website amateurish if you didn’t have a robots.txt – and if handled badly, could lead to your site being invisible on SERPs.</p>
+<p>If you are happy for a crawler to crawl/index all of your website’s content, then you can use the following:</p>
+<pre class="brush: bash; title: ; notranslate" title="">User-agent: *
+Disallow:</pre>
+<p>However, when using Umbraco to power my websites, it is preferable to define which folders are accessible by the crawler. Personally, I would not like to see the contents of my <code>/umbraco/</code> folder to be returned in Google’s SERPs.</p>
+<p>Here is an example of the robots.txt that I have used on several Umbraco-powered websites.</p>
+<pre class="brush: bash; title: ; notranslate" title=""># robots.txt for Umbraco
+User-agent: *
+Disallow: /aspnet_client/
+Disallow: /bin/
+Disallow: /config/
+Disallow: /css/
+Disallow: /data/
+Disallow: /scripts/
+Disallow: /umbraco/
+Disallow: /umbraco_client/
+Disallow: /usercontrols/
+Disallow: /xslt/</pre>
+<p>From my perspective, there is no reason for a search engine crawler to be crawling/indexing files from any of the above folders – you may have a different perspective, to which you can amend your robots.txt accordingly.</p>
+<p>For more information about the robots.txt standard, please refer to the official website: <a href="http://www.robotstxt.org/robotstxt.html">http://www.robotstxt.org/robotstxt.html</a></p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/robots.txt/" rel="tag" class="p-category">Robots.txt</a>, <a href="/tag/seo/" rel="tag" class="p-category">SEO</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2009/07/07/robots-txt-for-use-with-umbraco/">https://leekelleher.com/2009/07/07/robots-txt-for-use-with-umbraco/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

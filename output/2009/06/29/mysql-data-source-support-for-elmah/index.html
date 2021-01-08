@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MySql data-source support for ELMAH | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Following on from my last post (a couple of months ago) about Integrating ELMAH with Umbraco, I received a comment if it was possible for ELMAH to use MySQL as a back-end data-source. After a few emails back and forth between myself and Rajiv, (as well as Rajiv&#x2019;s requests over at the ELMAH support group), the advice was to simpily develop some code that implemented the ErrorLog class, (making use of the 3 core methods:&amp;#8230;">
+	<meta name="keywords" content=".net,c#,code,elmah,error handling,exception,mysql">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2009/06/29/mysql-data-source-support-for-elmah/">
+	<meta name="twitter:title" property="og:title" content="MySql data-source support for ELMAH">
+	<meta name="twitter:description" property="og:description" content="Following on from my last post (a couple of months ago) about Integrating ELMAH with Umbraco, I received a comment if it was possible for ELMAH to use MySQL as a back-end data-source. After a few emails back and forth between myself and Rajiv, (as well as Rajiv&#x2019;s requests over at the ELMAH support group), the advice was to simpily develop some code that implemented the ErrorLog class, (making use of the 3 core methods:&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2009/06/29/mysql-data-source-support-for-elmah/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">MySql data-source support for ELMAH</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2009/06/29/mysql-data-source-support-for-elmah/"><time datetime="2009-06-29T12:28&#x2B;01:00" class="dt-published">29/06/2009</time></a>.</span>
+				<span>Estimated read time: 4 minutes (540 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Following on from my last post (a couple of months ago) about <a href="http://blog.leekelleher.com/2009/04/23/integrating-elmah-with-umbraco/">Integrating ELMAH with Umbraco</a>, I <a href="http://blog.leekelleher.com/2009/04/23/integrating-elmah-with-umbraco/#comment-182">received a comment</a> if it was possible for ELMAH to use MySQL as a back-end data-source.</p>
+<p>After a few emails back and forth between myself and Rajiv, (as well as <a href="http://groups.google.com/group/elmah/browse_thread/thread/33d2597ad0fd15cd">Rajiv’s requests over at the ELMAH support group</a>), the advice was to simpily develop some code that implemented the <code>ErrorLog</code> class, (making use of the 3 core methods: <code>Log</code>, <code>GetError</code> and <code>GetErrors</code>). Rajiv make a start with this code, but ran into a few problems, (mostly because he was trying to reference methods/properties that were internal to the core <code>Elmah.dll</code>).</p>
+<p>Given that I’d said it was quick and easy to develop this code, I best put my money (or time in this case) where my mouth was. Fifteen minutes later the code was written… and then another hour later, the code was tested and bugs fixed.</p>
+<p>For the MySQL connectivity, I used the <a href="http://dev.mysql.com/downloads/connector/net/6.0.html"><code>MySql.Data.MySqlClient</code> connector</a>. For the <code>MySqlErrorLog</code>, I followed the code/design patterns that <a href="http://www.raboof.com/" title="Atif Aziz">Atif</a> had used in both the core&nbsp;<code>SqlErrorLog</code> and <code>SQLiteErrorLog</code> classes.</p>
+<p>I have uploaded the Visual Studio (2008)&nbsp;solution to the <a href="http://groups.google.com/group/elmah/files">ELMAH support group file repo</a> (<a href="http://elmah.googlegroups.com/web/Elmah.MySql.zip">here is a direct link to the ZIP</a>) – you will need to compile the DLL from the solution. If you need a pre-compiled DLL, then <a href="http://leekelleher.com/contact">give me a shout</a>, I’ll sort something out.</p>
+<p>Once you have the compiled Elmah.MySql.dll, you will need to add following to your Web.config file:</p>
+<p>In your <code>&lt;elmah&gt;</code> section, change the <code>&lt;errorLog&gt;</code> to: (if you haven’t installed ELMAH before, <a href="http://code.google.com/p/elmah/wiki/WebBase">please see the WebBase</a>)</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;errorLog type="Elmah.MySqlErrorLog, Elmah.MySql" /&gt;
+</pre>
+<p>In the VS2008 solution, there is a script called MySql.sql – run this against your database to create the new table (called “elmah”) needed to log the errors/exceptions.</p>
+<p>Then add your MySql connection string in the <code>&lt;connectionStrings&gt;</code> section:</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;add name="ELMAH_MySql" connectionString="SERVER=localhost;DATABASE=elmah;USER=XXXX;PASSWORD=XXXX;" /&gt;
+</pre>
+<p>It is <strong>very</strong> important that you call the connection string “<code>ELMAH_MySql</code>” – as this is hard-coded in the backend. (Let me know if this is a problem, I think it could be moved to the <code>&lt;errorLog&gt;</code> section?)</p>
+<p>Once you have saved the changes to your Web.config, you are all set to use MySql as your ELMAH back-end data-source!</p>
+<p><strong><span style="text-decoration:underline;">Known issues:</span></strong></p>
+<ul>
+<li>The “Sequence” column in the “elmah” table should be auto-incremental, but it isn’t! (I don’t claim to know enough about MySql to have multiple auto-incremental columns) – any suggestions?</li>
+<li>The MySql connection string is hard-coded as “<code>ELMAH_MySql</code>“</li>
+<li>The code will only compile with .NET 2.0 and above (no support for .NET 1.0 or 1.1 – sorry)</li>
+</ul>
+<p>I have <a href="http://twitter.com/raboof/status/2076357031">mentioned to Atif</a> about the possibility of including MySql support to the ELMAH core – to which he is willing to do, only if I support it. Which I will be happy to do – but only if there is a need for it. &nbsp;So my suggestion would be, if you would like to see MySql support in the ELMAH core – then <a href="http://code.google.com/p/elmah/issues/list">raise a feature request on the ELMAH Google Code site</a>. Once it gains momentum, we’ll take it from there.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/.net/" rel="tag" class="p-category">.NET</a>, <a href="/tag/c-sharp/" rel="tag" class="p-category">C#</a>, <a href="/tag/code/" rel="tag" class="p-category">code</a>, <a href="/tag/elmah/" rel="tag" class="p-category">ELMAH</a>, <a href="/tag/error-handling/" rel="tag" class="p-category">Error Handling</a>, <a href="/tag/exception/" rel="tag" class="p-category">Exception</a>, <a href="/tag/mysql/" rel="tag" class="p-category">MySql</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2009/06/29/mysql-data-source-support-for-elmah/">https://leekelleher.com/2009/06/29/mysql-data-source-support-for-elmah/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

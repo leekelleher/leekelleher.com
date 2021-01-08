@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Running Umbraco from a USB drive | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="With the release of Umbraco 4.6 (Juno), users now have the option of using Microsoft&#x2019;s new embedded database engine, SQL CE 4. This means that you don&#x2019;t need to depend on using a database server (such as SQL Server [Express] or MySQL), you can run Umbraco exclusively from the file-system! Also recently released is IIS Express 7.5, (another Microsoft web technology, as part of their WebMatrix framework), which offers a lightweight version of IIS &#x2013;&amp;#8230;">
+	<meta name="keywords" content=".net,iis,iis express,sql,sql ce 4,umbraco,usb,webmatrix">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2011/01/15/umbraco-on-usb-usin-iis-express-and-sqlce4/">
+	<meta name="twitter:title" property="og:title" content="Running Umbraco from a USB drive">
+	<meta name="twitter:description" property="og:description" content="With the release of Umbraco 4.6 (Juno), users now have the option of using Microsoft&#x2019;s new embedded database engine, SQL CE 4. This means that you don&#x2019;t need to depend on using a database server (such as SQL Server [Express] or MySQL), you can run Umbraco exclusively from the file-system! Also recently released is IIS Express 7.5, (another Microsoft web technology, as part of their WebMatrix framework), which offers a lightweight version of IIS &#x2013;&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2011/01/15/umbraco-on-usb-usin-iis-express-and-sqlce4/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Running Umbraco from a USB drive</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2011/01/15/umbraco-on-usb-usin-iis-express-and-sqlce4/"><time datetime="2011-01-15T01:41&#x2B;00:00" class="dt-published">15/01/2011</time></a>.</span>
+				<span>Estimated read time: 4 minutes (550 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>With the release of <a href="http://umbraco.codeplex.com/releases/view/59025">Umbraco 4.6 (Juno)</a>, users now have the option of using Microsoft’s new embedded database engine, <a href="http://www.microsoft.com/downloads/en/details.aspx?FamilyID=0d2357ea-324f-46fd-88fc-7364c80e4fdb&amp;displaylang=en">SQL CE 4</a>. This means that you don’t need to depend on using a database server (such as SQL Server [Express] or MySQL), you can run Umbraco exclusively from the file-system!</p>
+<p>Also recently released is <a href="http://www.microsoft.com/web/gallery/install.aspx?appid=iisexpress">IIS Express 7.5</a>, (another Microsoft web technology, as part of their <a href="http://www.microsoft.com/web/webmatrix/">WebMatrix</a> framework), which offers a lightweight version of IIS – aimed at developers as a replacement for the Cassini web-server. &nbsp;One of the major features of IIS Express are that it can be launched straight from disk – it does not need to be registered/configured on the operating-system/machine.</p>
+<p>Now, this got me thinking… Would it be possible to run Umbraco from a USB drive? Well, guess what?</p>
+<blockquote class="twitter-tweet" width="500">
+  <p>
+    <a href="https://twitter.com/hashtag/umbraco?src=hash">#umbraco</a> 4.6.1 + IIS Express 7.5 + SQL CE 4 + USB key = Success!
+  </p>
+  
+  <p>
+    — Lee Kelleher (&#64;leekelleher) <a href="https://twitter.com/leekelleher/status/26060538500878337">January 14, 2011</a>
+  </p>
+</blockquote>
+<p>Best of all its very very easy to do… here’s how:</p>
+<ul>
+<li>Download and install IIS Express 7.5 and SQL CE 4 – the quickest and easiest way is to install <a href="http://www.microsoft.com/web/">WebMatrix</a>.</li>
+<li>Download <a href="http://umbraco.codeplex.com/releases/view/59025#DownloadId=197075">Umbraco 4.6.1</a> (latest version at the time of writing) and also the “<a href="http://umbraco.codeplex.com/releases/view/59025#DownloadId=197313">SQLCE4Umbraco.dll</a>” assembly.</li>
+<li>Copy the following to your USB drive:
+<ul>
+<li>Extract the Umbraco zip file, rename the “build” folder to something else – like “wwwroot”, then copy that to the USB.</li>
+<li>Copy over the “SQLCE4Umbraco.dll” into the “wwwroot\bin” directory.</li>
+<li>Copy the “IIS Express” directory (typically found at “C:\Program Files (x86)\IIS Express”) to the USB.</li>
+<li>Copy the SQL CE 4 binaries (typically found at “C:\Program Files (x86)\Microsoft SQL Server Compact Edition\v4.0\Private”)&nbsp;– also copy the “amd64” and “x86” sub-directories –&nbsp;to the “wwwroot\bin” on the USB drive.</li>
+</ul>
+</li>
+<li>Once everything is in place, you should have 2 root directories, “IIS Express” and “wwwroot”.</li>
+<li>Open up a command prompt, run the following command:</li>
+</ul>
+<pre class="brush: powershell; title: ; notranslate" title="">"E:\IIS Express\iisexpress.exe" /path:E:\wwwroot /port:8080</pre>
+<ul>
+<li>Open a new web-browser window, go to “http://localhost:8080”.</li>
+<li>If everything went to plan, the command prompt will display an output of all incoming requests.</li>
+<li>Back in the web-browser window, you should be prompted with the Umbraco installer wizard. &nbsp;If not, something went wrong! :-(</li>
+<li>Remember to used the SQL CE 4 database engine!!! (otherwise it wont be portable)</li>
+</ul>
+<p>Once I had successfully installed Umbraco, I tried out a few packages; e.g. <a href="http://our.umbraco.org/projects/backoffice-extensions/ucomponents">uComponents</a>, set up an MNTP data-type, which worked as expected! Great!</p>
+<p>After that I removed the USB drive; booted up my old laptop (Windows XP SP3) to see if it would still work. &nbsp;First try it failed! I didn’t have .NET 4.0 framework installed. &nbsp;Once I installed it, re-ran the command prompt – portable Umbraco worked as expected!</p>
+<p>One point to raise is that I did notice slower performance of the Umbraco back-office – which doesn’t surprise me – since I was using a fairly old USB drive, but still the lag wasn’t enough to be overly concerned about.</p>
+<p>Personally I see the portability of Umbraco to be very useful for client/customer demos/meetings… for any Umbraco developers who want to showcase their favourite CMS, now there is no excuse not to have a working copy in your pocket!</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/.net/" rel="tag" class="p-category">.NET</a>, <a href="/tag/iis/" rel="tag" class="p-category">IIS</a>, <a href="/tag/iis-express/" rel="tag" class="p-category">IIS Express</a>, <a href="/tag/sql/" rel="tag" class="p-category">sql</a>, <a href="/tag/sql-ce-4/" rel="tag" class="p-category">SQL CE 4</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/usb/" rel="tag" class="p-category">USB</a>, <a href="/tag/webmatrix/" rel="tag" class="p-category">WebMatrix</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2011/01/15/umbraco-on-usb-usin-iis-express-and-sqlce4/">https://leekelleher.com/2011/01/15/umbraco-on-usb-usin-iis-express-and-sqlce4/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

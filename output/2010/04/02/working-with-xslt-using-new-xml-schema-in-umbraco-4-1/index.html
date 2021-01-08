@@ -1,0 +1,120 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Working with XSLT using new XML schema in Umbraco 4.1 | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Most of the Umbraco community are aware that the XML schema in the upcoming Umbraco 4.1 release has changed. Instead of each document being a node element, the element name is the node-type alias, same with property values; they no longer use data elements with alias attributes.&amp;nbsp;Here is a quick example, comparing the old/legacy with the new: &amp;lt;node id=&quot;1066&quot; parentID=&quot;-1&quot; level=&quot;1&quot; nodeName=&quot;Home&quot; ... nodeTypeAlias=&quot;Homepage&quot; path=&quot;-1,1066&quot;&amp;gt; &amp;lt;data alias=&quot;bodyText&quot;&amp;gt;&amp;lt;![CDATA[&amp;lt;p&amp;gt;Welcome to my homepage.&amp;lt;/p&amp;gt;]]&amp;gt;&amp;lt;/data&amp;gt; &amp;lt;/node&amp;gt; &amp;lt;Homepage id=&quot;1066&quot; parentID=&quot;-1&quot; level=&quot;1&quot;&amp;#8230;">
+	<meta name="keywords" content="code,umbraco,xml,xslt">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2010/04/02/working-with-xslt-using-new-xml-schema-in-umbraco-4-1/">
+	<meta name="twitter:title" property="og:title" content="Working with XSLT using new XML schema in Umbraco 4.1">
+	<meta name="twitter:description" property="og:description" content="Most of the Umbraco community are aware that the XML schema in the upcoming Umbraco 4.1 release has changed. Instead of each document being a node element, the element name is the node-type alias, same with property values; they no longer use data elements with alias attributes.&amp;nbsp;Here is a quick example, comparing the old/legacy with the new: &amp;lt;node id=&quot;1066&quot; parentID=&quot;-1&quot; level=&quot;1&quot; nodeName=&quot;Home&quot; ... nodeTypeAlias=&quot;Homepage&quot; path=&quot;-1,1066&quot;&amp;gt; &amp;lt;data alias=&quot;bodyText&quot;&amp;gt;&amp;lt;![CDATA[&amp;lt;p&amp;gt;Welcome to my homepage.&amp;lt;/p&amp;gt;]]&amp;gt;&amp;lt;/data&amp;gt; &amp;lt;/node&amp;gt; &amp;lt;Homepage id=&quot;1066&quot; parentID=&quot;-1&quot; level=&quot;1&quot;&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2010/04/02/working-with-xslt-using-new-xml-schema-in-umbraco-4-1/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Working with XSLT using new XML schema in Umbraco 4.1</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2010/04/02/working-with-xslt-using-new-xml-schema-in-umbraco-4-1/"><time datetime="2010-04-02T14:31&#x2B;01:00" class="dt-published">02/04/2010</time></a>.</span>
+				<span>Estimated read time: 3 minutes (393 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Most of the Umbraco community are aware that the XML schema in the upcoming Umbraco 4.1 release has changed.</p>
+<p>Instead of each document being a node element, the element name is the node-type alias, same with property values; they no longer use data elements with alias attributes.&nbsp;Here is a quick example, comparing the old/legacy with the new:</p>
+<pre><code class="language-xml"><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">node</span> <span style="color:#FF0000;">id</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">1066</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">parentID</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">-1</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">level</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">1</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">nodeName</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">Home</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">...</span> <span style="color:#FF0000;">nodeTypeAlias</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">Homepage</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">path</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">-1,1066</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+	<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">data</span> <span style="color:#FF0000;">alias</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">bodyText</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span><span style="color:#0000FF;">&lt;![CDATA[</span><span style="color:#808080;">&lt;p&gt;Welcome to my homepage.&lt;/p&gt;</span><span style="color:#0000FF;">]]&gt;</span><span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">data</span><span style="color:#0000FF;">&gt;</span>
+<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">node</span><span style="color:#0000FF;">&gt;</span>
+
+</code></pre>
+<pre><code class="language-xml"><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">Homepage</span> <span style="color:#FF0000;">id</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">1066</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">parentID</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">-1</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">level</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">1</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">...</span> <span style="color:#FF0000;">nodeName</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">Home</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">path</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">-1,1066" isDoc="</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+    <span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">bodyText</span><span style="color:#0000FF;">&gt;</span><span style="color:#0000FF;">&lt;![CDATA[</span><span style="color:#808080;">&lt;p&gt;Welcome to my homepage.&lt;/p&gt;</span><span style="color:#0000FF;">]]&gt;</span><span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">bodyText</span><span style="color:#0000FF;">&gt;</span>
+<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">Homepage</span><span style="color:#0000FF;">&gt;</span>
+
+</code></pre>
+<p>Obviously for long-time Umbraco developers this will require a small shift in mindset, as we are way too familiar with writing XPath queries like;</p>
+<pre><code>$currentPage/descendant-or-self::node[string(data[&#64;alias='umbracoNaviHide']) &nbsp;!= '1']
+</code></pre>
+<p>… which will need to be rewritten to;</p>
+<pre><code>$currentPage/descendant-or-self::*[umbracoNaviHide&nbsp;!= '1']
+</code></pre>
+<p>Not that it's a difficult thing to change/update, but I can see a lot of questions being asked on the <a href="http://our.umbraco.org/">Our Umbraco forum</a>.</p>
+<p>Since there are a lot of existing Umbraco packages that use the current, (soon to be legacy) XML schema, it might be worthwhile making use of XSLT itself to convert the new back to the old – in order to keep the existing XSLT templates working. &nbsp;Here's a quick example:</p>
+<pre><code class="language-xml"><span style="color:#008000;">&lt;!-- ROOT element --&gt;</span>
+<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">template</span> <span style="color:#FF0000;">match</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">root</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+	<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">element</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">root</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+		<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">apply-templates</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">child::*</span><span style="color:#000000;">"</span> <span style="color:#0000FF;">/&gt;</span>
+	<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">element</span><span style="color:#0000FF;">&gt;</span>
+<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">template</span><span style="color:#0000FF;">&gt;</span>
+
+<span style="color:#008000;">&lt;!-- NODE elements --&gt;</span>
+<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">template</span> <span style="color:#FF0000;">match</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">*[count(&#64;isDoc) = 1]</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+	<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">element</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">node</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+		<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">attribute</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">nodeTypeAlias</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+			<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">value-of</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">local-name()</span><span style="color:#000000;">"</span><span style="color:#0000FF;">/&gt;</span>
+		<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">attribute</span><span style="color:#0000FF;">&gt;</span>
+		<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">copy-of</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&#64;&#64;*</span><span style="color:#000000;">"</span> <span style="color:#0000FF;">/&gt;</span>
+		<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">apply-templates</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">child::*</span><span style="color:#000000;">"</span> <span style="color:#0000FF;">/&gt;</span>
+	<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">element</span><span style="color:#0000FF;">&gt;</span>
+<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">template</span><span style="color:#0000FF;">&gt;</span>
+
+<span style="color:#008000;">&lt;!-- DATA elements --&gt;</span>
+<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">template</span> <span style="color:#FF0000;">match</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">*[count(parent::*) &gt; 0 and count(&#64;isDoc) = 0]</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+	<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">element</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">data</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+		<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">attribute</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">alias</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+			<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">value-of</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">local-name()</span><span style="color:#000000;">"</span><span style="color:#0000FF;">/&gt;</span>
+		<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">attribute</span><span style="color:#0000FF;">&gt;</span>
+		<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">copy-of</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">text()</span><span style="color:#000000;">"</span> <span style="color:#0000FF;">/&gt;</span>
+	<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">element</span><span style="color:#0000FF;">&gt;</span>
+<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">template</span><span style="color:#0000FF;">&gt;</span>
+
+</code></pre>
+<p>These templates would be used to transform the new schema/structure back to the old legacy schema/structure, like so:</p>
+<pre><code class="language-xml"><span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">variable</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">legacyFragment</span><span style="color:#000000;">"</span><span style="color:#0000FF;">&gt;</span>
+	<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">apply-templates</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">$currentPage/ancestor::root</span><span style="color:#000000;">"</span> <span style="color:#0000FF;">/&gt;</span>
+<span style="color:#0000FF;">&lt;/</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">variable</span><span style="color:#0000FF;">&gt;</span>
+<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">variable</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">legacyRoot</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">msxml:node-set($legacyFragment)/root</span><span style="color:#000000;">"</span> <span style="color:#0000FF;">/&gt;</span>
+<span style="color:#0000FF;">&lt;</span><span style="color:#A31515;">xsl</span><span style="color:#0000FF;">:</span><span style="color:#A31515;">variable</span> <span style="color:#FF0000;">name</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">legacyCurrentPage</span><span style="color:#000000;">"</span> <span style="color:#FF0000;">select</span><span style="color:#0000FF;">=</span><span style="color:#000000;">"</span><span style="color:#0000FF;">$legacyRoot/descendant-or-self::node[&#64;id = $currentPage/&#64;id]</span><span style="color:#000000;">"</span> <span style="color:#0000FF;">/&gt;</span>
+
+</code></pre>
+<p>Since you can't modify a variable's value in XSLT, it would be a case of replacing all the “$currentPage” references with “$legacyCurrentPage” (or whatever you decided to call it). But in all honesty, if you are going to start modifying your XSLT, then it would be better to refactor the XPath statements to use the new schema!</p>
+<p>Personally, I'm looking forward to using the new XML schema in Umbraco 4.1, the structure makes more sense from a semantic perspective – and I am told it will have performance gains on the XSLT processor.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/code/" rel="tag" class="p-category">code</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/xml/" rel="tag" class="p-category">XML</a>, <a href="/tag/xslt/" rel="tag" class="p-category">XSLT</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2010/04/02/working-with-xslt-using-new-xml-schema-in-umbraco-4-1/">https://leekelleher.com/2010/04/02/working-with-xslt-using-new-xml-schema-in-umbraco-4-1/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Umbraco: Ultimate Picker XSLT Example | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Chatting with Dan (my partner-in-code at Bodenko) about the Ultimate Picker data-type in Umbraco, we realised that we couldn&#x2019;t find any examples of how to use the data in XSLT. So obviously needing an excuse to write-up a new blog post, here we go. If you need a quick overview about the Ultimate Picker data-type, see Tim Geyssens&#x2019; blog post. For my example, using a default Umbraco install (with Runway), we will create a new&amp;#8230;">
+	<meta name="keywords" content="umbraco,xslt">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2009/09/08/umbraco-ultimate-picker-xslt-example/">
+	<meta name="twitter:title" property="og:title" content="Umbraco: Ultimate Picker XSLT Example">
+	<meta name="twitter:description" property="og:description" content="Chatting with Dan (my partner-in-code at Bodenko) about the Ultimate Picker data-type in Umbraco, we realised that we couldn&#x2019;t find any examples of how to use the data in XSLT. So obviously needing an excuse to write-up a new blog post, here we go. If you need a quick overview about the Ultimate Picker data-type, see Tim Geyssens&#x2019; blog post. For my example, using a default Umbraco install (with Runway), we will create a new&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2009/09/08/umbraco-ultimate-picker-xslt-example/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Umbraco: Ultimate Picker XSLT Example</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2009/09/08/umbraco-ultimate-picker-xslt-example/"><time datetime="2009-09-08T23:38&#x2B;01:00" class="dt-published">08/09/2009</time></a>.</span>
+				<span>Estimated read time: 6 minutes (755 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Chatting with Dan (my partner-in-code at <a href="http://bodenko.com/">Bodenko</a>) about the Ultimate Picker data-type in Umbraco, we realised that we couldn’t find any examples of how to use the data in XSLT. So obviously needing an excuse to write-up a new blog post, here we go.</p>
+<p>If you need a quick overview about the Ultimate Picker data-type, see <a href="http://www.nibble.be/?p=38">Tim Geyssens’ blog post</a>.</p>
+<p>For my example, using a default Umbraco install (with Runway), we will create a new data-type using the Ultimate Picker, (let’s call it “<em>Runway Textpage Picker</em>“), we select the ‘<strong>Database datatype</strong>‘ to be “Nvarchar”; the ‘<strong>Type</strong>‘ as a “List Box”; The ‘<strong>Parent nodeid</strong>‘ is “1048” and the ‘<strong>Document Alias</strong>‘ filter is “RunwayTextpage” – we also tick the ‘<strong>Show grandchildren</strong>‘ checkbox.</p>
+<div id="attachment_158" style="width: 160px" class="wp-caption aligncenter">
+  <a href="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-datatype.png"><img class="size-thumbnail wp-image-158 " title="UltimatePicker-DataType" src="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-datatype.png?w=150" alt="Ultimate Picker Data Type settings" width="150" height="112"></a>
+  
+  <p class="wp-caption-text">
+    Ultimate Picker Data Type settings
+  </p>
+</div>
+<p>Next, we will assign the new “<em>Runway Textpage Picker</em>”&nbsp;data-type to a property of the Runway Textpage, we will call it “<em>Related Content</em>“. For more information about working with document types, please refer to the our.umbraco.org wiki page, (<a href="http://our.umbraco.org/wiki/how-tos/working-with-document-types">Working with document types</a>).</p>
+<div id="attachment_160" style="width: 160px" class="wp-caption aligncenter">
+  <a href="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-doctype.png"><img class="size-thumbnail wp-image-160 " title="UltimatePicker-DocType" src="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-doctype.png?w=150" alt="Adding Ultimate Picker to a Document Type" width="150" height="112"></a>
+  
+  <p class="wp-caption-text">
+    Adding Ultimate Picker to a Document Type
+  </p>
+</div>
+<p>Once the document-type is saved, we move on to the ‘<strong>Content</strong>‘ section. Select any of the Runway Textpages. &nbsp;You should now see the ‘<em>Related Content</em>‘ property panel, containing a list of all the other Runway Textpages. &nbsp;To select multiple items, hold-down the CTRL (or Command on the Mac) button. &nbsp;When you have finished, click the&nbsp;‘<strong>Save and publish</strong>‘ button.</p>
+<div id="attachment_162" style="width: 160px" class="wp-caption aligncenter">
+  <a href="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-relatedcontent.png"><img class="size-thumbnail wp-image-162" title="UltimatePicker-RelatedContent" src="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-relatedcontent.png?w=150" alt="Selecting related content" width="150" height="112"></a>
+  
+  <p class="wp-caption-text">
+    Selecting related content
+  </p>
+</div>
+<p>For the next part we get to the real meat of this blog post… the XSLT!</p>
+<div id="attachment_163" style="width: 160px" class="wp-caption aligncenter">
+  <a href="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-createmacro.png"><img class="size-thumbnail wp-image-163 " title="UltimatePicker-CreateMacro" src="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-createmacro.png?w=150" alt="Create a new XSLT" width="150" height="112"></a>
+  
+  <p class="wp-caption-text">
+    Create a new XSLT
+  </p>
+</div>
+<p>Create a new XSLT called “<em>RelatedContent</em>” (without the .xslt extension), keep it ‘Clean’ and tick the ‘<strong>Create Macro</strong>‘ checkbox. &nbsp;Next a quick short-cut for you; copy-n-paste the following XSLT into the main editor window.</p>
+<div id="attachment_164" style="width: 160px" class="wp-caption aligncenter">
+  <a href="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-xslt.png"><img class="size-thumbnail wp-image-164" title="UltimatePicker-XSLT" src="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-xslt.png?w=150" alt="Copy-n-paste the XSLT" width="150" height="112"></a>
+  
+  <p class="wp-caption-text">
+    Copy-n-paste the XSLT
+  </p>
+</div>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE xsl:stylesheet [ &lt;!ENTITY nbsp "&nbsp;"&gt; ]&gt;
+&lt;xsl:stylesheet
+	version="1.0"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:msxml="urn:schemas-microsoft-com:xslt"
+	xmlns:umbraco.library="urn:umbraco.library"
+	exclude-result-prefixes="msxml umbraco.library"&gt;
+	&lt;xsl:output method="xml" omit-xml-declaration="yes"/&gt;
+
+	&lt;xsl:param name="currentPage"/&gt;
+
+	&lt;xsl:template match="/"&gt;
+		&lt;xsl:variable name="preNodes"&gt;
+					&lt;xsl:variable name="relatedContent" select="$currentPage/data[&#64;alias='RelatedContent']" /&gt;
+					&lt;xsl:variable name="nodeIds" select="umbraco.library:Split($relatedContent, ',')" /&gt;
+					&lt;xsl:for-each select="$nodeIds/value"&gt;
+						&lt;xsl:copy-of select="umbraco.library:GetXmlNodeById(.)"/&gt;
+					&lt;/xsl:for-each&gt;
+		&lt;/xsl:variable&gt;
+		&lt;xsl:variable name="nodes" select="msxml:node-set($preNodes)/node" /&gt;
+		&lt;xsl:if test="count($nodes) &gt; 0"&gt;
+&lt;div class="related-content"&gt;
+&lt;h3&gt;Related Content&lt;/h3&gt;
+&lt;ul&gt;
+					&lt;xsl:for-each select="$nodes"&gt;
+	&lt;li&gt;
+							&lt;a href="{umbraco.library:NiceUrl(&#64;id)}"&gt;
+								&lt;xsl:value-of select="&#64;nodeName" /&gt;
+							&lt;/a&gt;&lt;/li&gt;
+&lt;/xsl:for-each&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/xsl:if&gt;
+	&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</pre>
+<p>Here’s a quick explanation of what is happening in the XSLT. &nbsp;We are provided with a list of comma-separated nodeIds from the Ultimate Picker, which we need to parse/split – then pull back the XML node data, then we can transform it however we like!</p>
+<p>The way we do this is 2-tiered, first we must loop through the comma-separated list, pulling back the XML node for each nodeId, adding it to an XSLT variable. &nbsp;Doing this will cause the XSLT variable to be a fragmented node-tree, which means that we need to convert the node-tree fragment into a node-set. &nbsp;(*Note: there are a gazillion ways to skin a cat – suggestions are welcome – this method works for me).</p>
+<p>Once we have the complete XML node-set, we can transform into whatever HTML we &nbsp;like.</p>
+<p>Now that we are done with the XSLT, we can edit our template in the ‘<strong>Settings</strong>‘ section. Select the “<em>Runway Textpage</em>” template. Somewhere after the ‘<em>bodyText</em>‘ property item, click on the ‘Insert Macro’ button. &nbsp;From the ‘<strong>Choose a macro</strong>‘ drop-down, select the ‘<em>Related Content</em>‘ option – this will add the macro code to the template.</p>
+<div id="attachment_167" style="width: 160px" class="wp-caption aligncenter">
+  <a href="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-template.png"><img class="size-thumbnail wp-image-167" title="UltimatePicker-Template" src="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-template.png?w=150" alt="Insert the macro into the template" width="150" height="112"></a>
+  
+  <p class="wp-caption-text">
+    Insert the macro into the template
+  </p>
+</div>
+<p>Save the template and view the front-end page. We can now see the <em>Related Content</em> pages. Tada!</p>
+<div id="attachment_168" style="width: 310px" class="wp-caption aligncenter">
+  <a href="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-frontend.png"><img class="size-medium wp-image-168" title="UltimatePicker-FrontEnd" src="http://leekelleher.com/wordpress/wp-content/uploads/2009/09/ultimatepicker-frontend.png?w=300" alt="The end result! Related Content" width="300" height="225"></a>
+  
+  <p class="wp-caption-text">
+    The end result! Related Content
+  </p>
+</div>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/xslt/" rel="tag" class="p-category">XSLT</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2009/09/08/umbraco-ultimate-picker-xslt-example/">https://leekelleher.com/2009/09/08/umbraco-ultimate-picker-xslt-example/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

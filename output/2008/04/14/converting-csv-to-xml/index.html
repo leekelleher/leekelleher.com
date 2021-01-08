@@ -1,0 +1,69 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Converting CSV to XML | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="There&#x2019;s a bit a functionality on one of the projects that I&#x2019;m working on where I need to do a lookup. The data I&#x2019;ve been given is in an Excel spreadsheet &#x2013; which I needed to convert to XML (as ultimately the data will be stored in a CMS that handles XML better). I&#x2019;ve done a lot of projects where I need to convert XML to Excel (via CSV), but not many where I need&amp;#8230;">
+	<meta name="keywords" content="code,csv,excel,webdev,xml">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/04/14/converting-csv-to-xml/">
+	<meta name="twitter:title" property="og:title" content="Converting CSV to XML">
+	<meta name="twitter:description" property="og:description" content="There&#x2019;s a bit a functionality on one of the projects that I&#x2019;m working on where I need to do a lookup. The data I&#x2019;ve been given is in an Excel spreadsheet &#x2013; which I needed to convert to XML (as ultimately the data will be stored in a CMS that handles XML better). I&#x2019;ve done a lot of projects where I need to convert XML to Excel (via CSV), but not many where I need&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/04/14/converting-csv-to-xml/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Converting CSV to XML</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/04/14/converting-csv-to-xml/"><time datetime="2008-04-14T17:07&#x2B;01:00" class="dt-published">14/04/2008</time></a>.</span>
+				<span>Estimated read time: 2 minutes (257 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>There’s a bit a functionality on one of the projects that I’m working on where I need to do a lookup. The data I’ve been given is in an Excel spreadsheet – which I needed to convert to XML (as ultimately the data will be stored in a CMS that handles XML better).</p>
+<p>I’ve done a lot of projects where I need to convert XML to Excel (via CSV), but not many where I need to convert the other way.</p>
+<p>I first saved the Excel as an “XML Spreadsheet” – which spat out all sorts of extra MS Office namespaces, styles, etc. Which is fine if I want to re-open the data in Excel. But I wanted the data to be cleaner (and more semantic).</p>
+<p>I exported the Excel out as a CSV; then looked for a way to convert it to XML.</p>
+<p>Then I found this very useful web-app tool: <a href="http://www.creativyst.com/Prod/15/"><strong>CSV to XML Converter</strong> by Creativyst</a></p>
+<p>It did exactly what I needed! The tool has a 100Kb limit – which was great, because my CSV was 96Kb!</p>
+<p>The outputted XML was around 450Kb – which got me thinking… if a lot of developers use that tool the way I did – then that’s a lot of load on their web-server! Maybe that’s where the new <a href="http://code.google.com/appengine/">Google App Engine</a> could come in handy?! They have the processing power and bandwidth to handle high usage!</p>
+<p>I’d love to see other online text conversion utilities … you never know, maybe they could be all centralised on Google Apps?</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/code/" rel="tag" class="p-category">code</a>, <a href="/tag/csv/" rel="tag" class="p-category">CSV</a>, <a href="/tag/excel/" rel="tag" class="p-category">Excel</a>, <a href="/tag/webdev/" rel="tag" class="p-category">webdev</a>, <a href="/tag/xml/" rel="tag" class="p-category">XML</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/04/14/converting-csv-to-xml/">https://leekelleher.com/2008/04/14/converting-csv-to-xml/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

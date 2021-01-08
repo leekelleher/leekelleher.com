@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Convert XmlReader to String | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="I was in the middle of developing a member look-up AJAX function for an Umbraco project, when I ran into a slight problem, (confusion rather), about how to pull the XML back from SQL Server and return it to the browser (AJAX). The SQL statement was straight-forward, very simple, does a LIKE query against the members table, no problem there. Added &#x201C;FOR XML AUTO&#x201D; to return the result-set back as an XML data-type ... all&amp;#8230;">
+	<meta name="keywords" content="asp.net,c#,sql,stringbuilder,umbraco,xml,xmlreader">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2009/02/23/convert-xmlreader-to-string/">
+	<meta name="twitter:title" property="og:title" content="Convert XmlReader to String">
+	<meta name="twitter:description" property="og:description" content="I was in the middle of developing a member look-up AJAX function for an Umbraco project, when I ran into a slight problem, (confusion rather), about how to pull the XML back from SQL Server and return it to the browser (AJAX). The SQL statement was straight-forward, very simple, does a LIKE query against the members table, no problem there. Added &#x201C;FOR XML AUTO&#x201D; to return the result-set back as an XML data-type ... all&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2009/02/23/convert-xmlreader-to-string/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Convert XmlReader to String</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2009/02/23/convert-xmlreader-to-string/"><time datetime="2009-02-23T12:56&#x2B;00:00" class="dt-published">23/02/2009</time></a>.</span>
+				<span>Estimated read time: 2 minutes (286 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>I was in the middle of developing a member look-up AJAX function for an <a href="http://umbraco.org/">Umbraco</a> project, when I ran into a slight problem, (confusion rather), about how to pull the XML back from SQL Server and return it to the browser (AJAX).</p>
+<p>The SQL statement was straight-forward, very simple, does a LIKE query against the members table, no problem there. Added “FOR XML AUTO” to return the result-set back as an XML data-type ... all going well so far.</p>
+<p>Umbraco makes use of <a href="http://msdn.microsoft.com/en-us/library/cc309504.aspx">Microsoft Data Access Application Block</a>'s <a href="http://forums.asp.net/t/941983.aspx">SqlHelper</a> class, so I followed the same pattern.</p>
+<pre><code class="language-csharp"><span style="color:#0000FF;">string</span> sql = <span style="color:#A31515;">"SELECT n.id, n.text, m.Email, m.LoginName FROM cmsMember AS m INNER JOIN umbracoNode AS n ON m.nodeId = n.id WHERE n.text LIKE '%' + &#64;query + '%' FOR XML AUTO"</span>;
+XmlReader reader = SqlHelper.ExecuteXmlReader(connection, CommandType.Text, sql, <span style="color:#0000FF;">new</span> SqlParameter[] { <span style="color:#0000FF;">new</span> SqlParameter(<span style="color:#A31515;">"&#64;query"</span>, query) })
+
+</code></pre>
+<p>At first I tried to return the XML as a String by calling <code>XmlReader</code>'s <code>GetOuterXml()</code> method. But it returned nothing. After a lot of googling, (of <a href="http://www.velocityreviews.com/forums/t118219-read-or-convert-xml-file-to-a-string.html">converting an XmlReader to a String</a>), I found a suggestion of iterating through the <code>XmlReader</code>, appending the current node to a <code>StringBuilder</code>.</p>
+<p>Here's what I ended up with...</p>
+<pre><code class="language-csharp"><span style="color:#0000FF;">using</span> (SqlConnection connection = <span style="color:#0000FF;">new</span> SqlConnection(umbraco.GlobalSettings.DbDSN))
+{
+	<span style="color:#0000FF;">string</span> sql = <span style="color:#A31515;">"SELECT n.id, n.text, m.Email, m.LoginName FROM cmsMember AS m INNER JOIN umbracoNode AS n ON m.nodeId = n.id WHERE n.text LIKE '%' + &#64;query + '%' FOR XML AUTO"</span>;
+	<span style="color:#0000FF;">using</span> (XmlReader reader = SqlHelper.ExecuteXmlReader(connection, CommandType.Text, sql, <span style="color:#0000FF;">new</span> SqlParameter[] { <span style="color:#0000FF;">new</span> SqlParameter(<span style="color:#A31515;">"&#64;query"</span>, query) }))
+	{
+		<span style="color:#0000FF;">if</span> (reader != <span style="color:#0000FF;">null</span>)
+		{
+			StringBuilder sb = <span style="color:#0000FF;">new</span> StringBuilder();
+
+			<span style="color:#0000FF;">while</span> (reader.Read())
+				sb.AppendLine(reader.ReadOuterXml());
+
+			<span style="color:#0000FF;">return</span> sb.ToString();
+		}
+	}
+}
+
+<span style="color:#0000FF;">return</span> <span style="color:#0000FF;">string</span>.Empty;
+
+</code></pre>
+<p>I hope it helps... any improvements and suggestions are welcome!</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/asp.net/" rel="tag" class="p-category">ASP.NET</a>, <a href="/tag/c-sharp/" rel="tag" class="p-category">C#</a>, <a href="/tag/sql/" rel="tag" class="p-category">SQL</a>, <a href="/tag/stringbuilder/" rel="tag" class="p-category">StringBuilder</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/xml/" rel="tag" class="p-category">XML</a>, <a href="/tag/xmlreader/" rel="tag" class="p-category">XmlReader</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2009/02/23/convert-xmlreader-to-string/">https://leekelleher.com/2009/02/23/convert-xmlreader-to-string/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

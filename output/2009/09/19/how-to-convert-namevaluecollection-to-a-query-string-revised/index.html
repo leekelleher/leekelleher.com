@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to convert NameValueCollection to a (Query) String [Revised] | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Following on from a comment on my previous post about converting a NameValueCollection to a (query) string &#x2013; I have finally got around to revising my code snippet. &amp;nbsp;Now the method will handle same key multiple values, (it no longer comma-separates them). I have also added extra parameters so that you can define your own delimiter (since the HTTP specification says that you can use both ampersands &amp;amp; and semicolons ;) and there is an&amp;#8230;">
+	<meta name="keywords" content="asp.net,c#,code,querystring,revised,snippet">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2009/09/19/how-to-convert-namevaluecollection-to-a-query-string-revised/">
+	<meta name="twitter:title" property="og:title" content="How to convert NameValueCollection to a (Query) String [Revised]">
+	<meta name="twitter:description" property="og:description" content="Following on from a comment on my previous post about converting a NameValueCollection to a (query) string &#x2013; I have finally got around to revising my code snippet. &amp;nbsp;Now the method will handle same key multiple values, (it no longer comma-separates them). I have also added extra parameters so that you can define your own delimiter (since the HTTP specification says that you can use both ampersands &amp;amp; and semicolons ;) and there is an&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2009/09/19/how-to-convert-namevaluecollection-to-a-query-string-revised/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">How to convert NameValueCollection to a (Query) String [Revised]</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2009/09/19/how-to-convert-namevaluecollection-to-a-query-string-revised/"><time datetime="2009-09-20T00:08&#x2B;01:00" class="dt-published">20/09/2009</time></a>.</span>
+				<span>Estimated read time: under a minute (190 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Following on from a comment on my previous post about <a href="http://blog.leekelleher.com/2008/06/06/how-to-convert-namevaluecollection-to-a-query-string/#comment-148">converting a NameValueCollection to a (query) string</a> – I have finally got around to revising my code snippet. &nbsp;Now the method will handle same key multiple values, (it no longer comma-separates them).</p>
+<p>I have also added extra parameters so that you can define your own delimiter (since the <a href="http://en.wikipedia.org/wiki/Query_string#Structure">HTTP specification</a> says that you can use both ampersands <code>&amp;</code> and semicolons <code>;</code>) and there is an option for omitting keys with empty values.</p>
+<pre><code class="language-csharp"><span style="color:#808080;">///</span> <span style="color:#808080;">&lt;summary&gt;</span>
+<span style="color:#808080;">///</span><span style="color:#008000;"> Constructs a NameValueCollection into a query string.</span>
+<span style="color:#808080;">///</span> <span style="color:#808080;">&lt;/summary&gt;</span>
+<span style="color:#808080;">///</span> <span style="color:#808080;">&lt;remarks&gt;</span><span style="color:#008000;">Consider this method to be the opposite of "System.Web.HttpUtility.ParseQueryString"&lt;/remarks&gt;</span>
+<span style="color:#808080;">///</span> <span style="color:#808080;">&lt;param name="parameters"&gt;</span><span style="color:#008000;">The NameValueCollection&lt;/param&gt;</span>
+<span style="color:#808080;">///</span> <span style="color:#808080;">&lt;param name="delimiter"&gt;</span><span style="color:#008000;">The String to delimit the key/value pairs&lt;/param&gt;</span>
+<span style="color:#808080;">///</span> <span style="color:#808080;">&lt;returns&gt;</span><span style="color:#008000;">A key/value structured query string, delimited by the specified String&lt;/returns&gt;</span>
+<span style="color:#0000FF;">public</span> <span style="color:#0000FF;">static</span> String ConstructQueryString(NameValueCollection parameters, String delimiter, Boolean omitEmpty)
+{
+	<span style="color:#0000FF;">if</span> (String.IsNullOrEmpty(delimiter))
+		delimiter = <span style="color:#A31515;">"&amp;"</span>;
+
+	Char <span style="color:#0000FF;">equals</span> = <span style="color:#A31515;">'='</span>;
+	List&lt;String&gt; items = <span style="color:#0000FF;">new</span> List&lt;String&gt;();
+
+	<span style="color:#0000FF;">for</span> (<span style="color:#0000FF;">int</span> i = <span>0</span>; i &lt; parameters.Count; i++)
+	{
+		<span style="color:#0000FF;">foreach</span> (String value <span style="color:#0000FF;">in</span> parameters.GetValues(i))
+		{
+			Boolean addValue = (omitEmpty) ? !String.IsNullOrEmpty(value) : <span style="color:#0000FF;">true</span>;
+			<span style="color:#0000FF;">if</span> (addValue)
+				items.Add(String.Concat(parameters.GetKey(i), <span style="color:#0000FF;">equals</span>, HttpUtility.UrlEncode(value)));
+		}
+	}
+
+	<span style="color:#0000FF;">return</span> String.Join(delimiter, items.ToArray());
+}
+
+</code></pre>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/asp.net/" rel="tag" class="p-category">ASP.NET</a>, <a href="/tag/c-sharp/" rel="tag" class="p-category">C#</a>, <a href="/tag/code/" rel="tag" class="p-category">code</a>, <a href="/tag/querystring/" rel="tag" class="p-category">QueryString</a>, <a href="/tag/revised/" rel="tag" class="p-category">revised</a>, <a href="/tag/snippet/" rel="tag" class="p-category">snippet</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2009/09/19/how-to-convert-namevaluecollection-to-a-query-string-revised/">https://leekelleher.com/2009/09/19/how-to-convert-namevaluecollection-to-a-query-string-revised/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

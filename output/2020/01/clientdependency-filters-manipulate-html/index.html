@@ -1,0 +1,117 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Using ClientDependency Filters to manipulate HTML | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="On a recent Umbraco project, I needed to be able to manipulate the HTML contents before it was sent to the browser. Typically, on Umbraco projects you&#x27;d do whatever you need do within Razor templating, but in my case, I had to do after the entire page markup was built. (I won&#x27;t go into details, as the requirement is specific to my client project.) My initial thought for the solution was using a Request.Filter. I&#x27;d&amp;#8230;">
+	<meta name="keywords" content="umbraco,clientdependency,code">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2020/01/clientdependency-filters-manipulate-html/">
+	<meta name="twitter:title" property="og:title" content="Using ClientDependency Filters to manipulate HTML">
+	<meta name="twitter:description" property="og:description" content="On a recent Umbraco project, I needed to be able to manipulate the HTML contents before it was sent to the browser. Typically, on Umbraco projects you&#x27;d do whatever you need do within Razor templating, but in my case, I had to do after the entire page markup was built. (I won&#x27;t go into details, as the requirement is specific to my client project.) My initial thought for the solution was using a Request.Filter. I&#x27;d&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2020/01/clientdependency-filters-manipulate-html/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Using ClientDependency Filters to manipulate HTML</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2020/01/clientdependency-filters-manipulate-html/"><time datetime="2020-01-16T10:37&#x2B;00:00" class="dt-published">16/01/2020</time></a>.</span>
+				<span>Estimated read time: 3 minutes (441 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>On a recent Umbraco project, I needed to be able to manipulate the HTML contents before it was sent to the browser.</p>
+<p>Typically, on Umbraco projects you'd do whatever you need do within Razor templating, but in my case, I had to do after the entire page markup was built. <em>(I won't go into details, as the requirement is specific to my client project.)</em></p>
+<p>My initial thought for the solution was using a <code>Request.Filter</code>. I'd done this previously in my ASP.NET WebForms days - even open-sourced a packaged called <a href="https://our.umbraco.com/packages/website-utilities/safe-mail-link">Safe Mail Link</a> that utilised this approach, <em>(it would encode/protect any email addresses found in the markup)</em>. The guts of the <code>Request.Filter</code> came from <a href="https://weblog.west-wind.com/posts/2009/nov/13/capturing-and-transforming-aspnet-output-with-responsefilter">Rick Strahl's <code>ResponseFilterStream</code> blog post</a>.</p>
+<p>Given the original <code>ResponseFilterStream</code> code was originally posted over 10 years ago, <em>(wow!)</em> I wasn't sure whether the approach would work with latest Umbraco <em>(v8 is ASP.NET MVC 5)</em>. Turns out, it does!</p>
+<p>As I started to implement this approach, I recalled that the ClientDependency library <em>(which ships with Umbraco)</em> uses a <code>HttpModule</code> to manipulate the HTML output to insert references to its bundled CSS &amp; JS assets. So, thought it best to look at the source-code.</p>
+<p>...and as it happens, <a href="https://github.com/Shazwazza/ClientDependency/blob/v1.9.8/ClientDependency.Core/Module/ClientDependencyModule.cs"><code>ClientDependencyModule</code></a> has a lovely undocumented feature in there... its very own <a href="https://github.com/Shazwazza/ClientDependency/blob/v1.9.8/ClientDependency.Core/Module/IFilter.cs"><code>IFilter</code></a> interface.  This enables you to piggyback ClientDependency's <code>HttpModule</code> and manipulate the HTML with your own code!</p>
+<p>After <a href="https://github.com/Shazwazza/ClientDependency/blob/v1.9.8/ClientDependency.Core/Module/ClientDependencyModule.cs#L126-L142">a small bit of reverse-engineering</a>, <em>(I know, I know, it's all open-source ... so I mean "researching")</em>, I had a working prototype! Here's a reduced example (for Umbraco v8) ...</p>
+<pre><code class="language-csharp"><span style="color:#0000FF;">using</span> System.Configuration;
+<span style="color:#0000FF;">using</span> System.Web;
+<span style="color:#0000FF;">using</span> ClientDependency.Core.Config;
+<span style="color:#0000FF;">using</span> ClientDependency.Core.Module;
+<span style="color:#0000FF;">using</span> Umbraco.Core;
+<span style="color:#0000FF;">using</span> Umbraco.Web.Composing;
+
+<span style="color:#0000FF;">namespace</span> Umbraco.Community.Web
+{
+    <span style="color:#0000FF;">public</span> <span style="color:#0000FF;">class</span> UpdateHtmlExampleComposer : IUserComposer
+    {
+        <span style="color:#0000FF;">public</span> <span style="color:#0000FF;">void</span> Compose(Composition composition)
+        {
+            ClientDependencySettings.Instance.ConfigSection.Filters
+                .Add(<span style="color:#0000FF;">new</span> ProviderSettings(nameof(UpdateHtmlExampleFilter), <span style="color:#0000FF;">typeof</span>(UpdateHtmlExampleFilter).GetFullNameWithAssembly()));
+        }
+    }
+
+    <span style="color:#0000FF;">public</span> <span style="color:#0000FF;">class</span> UpdateHtmlExampleFilter : IFilter
+    {
+        <span style="color:#0000FF;">public</span> HttpContextBase CurrentContext { <span style="color:#0000FF;">get</span>; <span style="color:#0000FF;">private</span> <span style="color:#0000FF;">set</span>; }
+
+        <span style="color:#0000FF;">public</span> <span style="color:#0000FF;">bool</span> CanExecute()
+        {
+            <span style="color:#0000FF;">return</span> Current.UmbracoContext?.IsFrontEndUmbracoRequest == <span style="color:#0000FF;">true</span>;
+        }
+
+        <span style="color:#0000FF;">public</span> <span style="color:#0000FF;">void</span> SetHttpContext(HttpContextBase ctx) =&gt; CurrentContext = ctx;
+
+        <span style="color:#0000FF;">public</span> <span style="color:#0000FF;">string</span> UpdateOutputHtml(<span style="color:#0000FF;">string</span> html)
+        {
+            <span style="color:#008000;">// TODO: Do your HTML updates in here! </span>
+            <span style="color:#008000;">// ------------------------------------</span>
+            <span style="color:#008000;">//    o    o/    o     o/    o     o/  </span>
+            <span style="color:#008000;">//  //|   /|   //|    /|   //|    /|   </span>
+            <span style="color:#008000;">//   / \  / \   / \   / \   / \   / \  </span>
+            <span style="color:#008000;">// ------------------------------------</span>
+
+            <span style="color:#0000FF;">return</span> html
+                .Replace(<span style="color:#A31515;">"Headless"</span>, <span style="color:#A31515;">"Heartcore"</span>);
+        }
+
+        <span style="color:#008000;">// NOTE: If ClientDependency's MvcFilter is valid, then I'm cool with that.</span>
+        <span style="color:#0000FF;">public</span> <span style="color:#0000FF;">bool</span> ValidateCurrentHandler() =&gt; <span style="color:#0000FF;">true</span>;
+    }
+}
+
+</code></pre>
+<p>Examples of things you could do with this, could be: minify the HTML markup; inject external scripts before the closing <code>&lt;/body&gt;</code> tag, (e.g. <a href="https://instant.page/">instant.page</a>); protect/encode email address (a la <a href="https://our.umbraco.com/packages/website-utilities/safe-mail-link">Safe Mail Link</a>); or a super-quick way to rename a product across an entire website?</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/clientdependency/" rel="tag" class="p-category">ClientDependency</a>, <a href="/tag/code/" rel="tag" class="p-category">Code</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2020/01/clientdependency-filters-manipulate-html/">https://leekelleher.com/2020/01/clientdependency-filters-manipulate-html/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

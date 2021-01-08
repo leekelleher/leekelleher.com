@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>rel-tag-spaces dilemma | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Since I started using the Operator Firefox extension a couple of week ago, I&#x2019;ve found it to be a useful tool &#x2013; to quickly access microformatted content; such as Contact details and Tagspaces. Whilst I was testing it out on ReadySteadyBook, I noticed that the only tagspace was &#x201C;Blog.aspx&#x201C;, which seemed a bit weird. When I found the same problem on other websites, such as Amazon (example here) where the tagspace was &#x201C;ref=tag_dpp_cust_itdp_t&#x201C;. I thought&amp;#8230;">
+	<meta name="keywords" content="asp.net,firefox,iis,link,microformats,operator,readysteadybook,rel-tag,rel-tag-spaces,tag,tagspace">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2008/05/10/rel-tag-spaces-dilemma/">
+	<meta name="twitter:title" property="og:title" content="rel-tag-spaces dilemma">
+	<meta name="twitter:description" property="og:description" content="Since I started using the Operator Firefox extension a couple of week ago, I&#x2019;ve found it to be a useful tool &#x2013; to quickly access microformatted content; such as Contact details and Tagspaces. Whilst I was testing it out on ReadySteadyBook, I noticed that the only tagspace was &#x201C;Blog.aspx&#x201C;, which seemed a bit weird. When I found the same problem on other websites, such as Amazon (example here) where the tagspace was &#x201C;ref=tag_dpp_cust_itdp_t&#x201C;. I thought&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2008/05/10/rel-tag-spaces-dilemma/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">rel-tag-spaces dilemma</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2008/05/10/rel-tag-spaces-dilemma/"><time datetime="2008-05-10T13:08&#x2B;01:00" class="dt-published">10/05/2008</time></a>.</span>
+				<span>Estimated read time: 3 minutes (414 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Since I started using the <a href="https://addons.mozilla.org/firefox/addon/4106">Operator</a> Firefox extension a couple of week ago, I’ve found it to be a useful tool – to quickly access microformatted content; such as Contact details and Tagspaces.</p>
+<p>Whilst I was testing it out on <a href="http://www.readysteadybook.com/">ReadySteadyBook</a>, I noticed that the only tagspace was “<code>Blog.aspx</code>“, which seemed a bit weird. When I found the same problem on other websites, such as Amazon (<a href="http://www.amazon.com/gp/product/B000FI73MA/">example here</a>) where the tagspace was “<code>ref=tag_dpp_cust_itdp_t</code>“. I thought this was a bug, so <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=431708">I raised a ticket on Bugzilla</a>.</p>
+<p>… however, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=431708#c1">I was wrong!</a> <a href="http://www.kaply.com/">Michael Kaply</a> (the Operator developer) pointed me towards <a href="http://microformats.org/wiki/rel-tag#Tag_Spaces">the Tagspaces spec</a>.</p>
+<p>It seems that for a <a href="http://microformats.org/wiki/rel-tag">rel-tag</a> to be recognised as a tagspace it needs to have a specific URI structure:</p>
+<blockquote>
+<p>Tags are embedded in HTTP URIs in a well-defined manner so that the tag embedded in an HTTP URI can be mechanically extracted from that URI. Specifically, the last segment of the path portion of the URI (after the final “/” character) contains the tag value. For example, the URI: http://www.example.com/tags/foo contains the tag “foo”.</p>
+</blockquote>
+<p>This causes an issue for me. On <a href="http://www.readysteadybook.com/">ReadySteadyBook</a>, the site is built using ASP.NET (1.1) on a shared web hosting environment. This means that I have no control over how the web-server (IIS) handles the page requests. For legacy reasons, IIS is configured to only map URI that have ASP.NET extensions (e.g. <strong>.aspx</strong>, <strong>.ascx</strong>, <strong>.ashx</strong>, <strong>.asmx</strong>, etc) to handled by the .NET Framework. So any “fancy permalinks” that I want to use must have one of those extensions.</p>
+<p>At present, an example of a tagspace on ReadySteadyBook is: <code>http://www.readysteadybook.com/Blog.aspx?tag=poetry</code></p>
+<p>(The “Blog.aspx” page is quite complex, it can take all sorts of parameter to filter out it’s content – hence my reason to use the querystring)</p>
+<p>Even if I did pretty up the URI structure to not use the querystring, at most I could get it to this: <code>http://www.readysteadybook.com/blog/tag/poetry.aspx</code></p>
+<p>Unfortunately, that still wouldn’t pass the grade with the “Masters of the Microformats”! As the tag would be defined as “<code>poetry.aspx</code>“, rather than “<code>poetry</code>“. See my dilemma?</p>
+<p>Should I keep the rel-tag attribute on my tag links? or remove them because it conflicts with the current version of the rel-tag specification? (<a href="http://microformats.org/wiki/rel-tag-issues">For other issues with the rel-tag spec, go here.</a>)</p>
+<p>Alternatively, I could link them to an external tagspace, such as Technorati? <snarky><em>oooh, they’d like that wouldn’t they!?!</em></snarky> <a href="http://microformats.org/wiki/rel-tag-spaces">A list of external tagspaces can be found here.</a></p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/asp.net/" rel="tag" class="p-category">ASP.NET</a>, <a href="/tag/firefox/" rel="tag" class="p-category">firefox</a>, <a href="/tag/iis/" rel="tag" class="p-category">IIS</a>, <a href="/tag/link/" rel="tag" class="p-category">link</a>, <a href="/tag/microformats/" rel="tag" class="p-category">microformats</a>, <a href="/tag/operator/" rel="tag" class="p-category">Operator</a>, <a href="/tag/readysteadybook/" rel="tag" class="p-category">readysteadybook</a>, <a href="/tag/rel-tag/" rel="tag" class="p-category">rel-tag</a>, <a href="/tag/rel-tag-spaces/" rel="tag" class="p-category">rel-tag-spaces</a>, <a href="/tag/tag/" rel="tag" class="p-category">tag</a>, <a href="/tag/tagspace/" rel="tag" class="p-category">tagspace</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2008/05/10/rel-tag-spaces-dilemma/">https://leekelleher.com/2008/05/10/rel-tag-spaces-dilemma/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

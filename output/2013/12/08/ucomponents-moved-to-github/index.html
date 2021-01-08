@@ -1,0 +1,69 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>uComponents: Moved to GitHub | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Hey uComponents fans, a little status update on our version control repository move from CodePlex over to GitHub. We&#x2019;d been talking about moving over to GitHub for a long time, (even before Umbraco core moved over), but the timing was never right &#x2013; either we were in the middle of a major release or our day-job workloads were in high demand. &amp;nbsp;Luckily since our own v6.0.0 release, we have found the time to make the&amp;#8230;">
+	<meta name="keywords" content="codeplex,github,hg,mercurial,ucomponents,umbraco">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2013/12/08/ucomponents-moved-to-github/">
+	<meta name="twitter:title" property="og:title" content="uComponents: Moved to GitHub">
+	<meta name="twitter:description" property="og:description" content="Hey uComponents fans, a little status update on our version control repository move from CodePlex over to GitHub. We&#x2019;d been talking about moving over to GitHub for a long time, (even before Umbraco core moved over), but the timing was never right &#x2013; either we were in the middle of a major release or our day-job workloads were in high demand. &amp;nbsp;Luckily since our own v6.0.0 release, we have found the time to make the&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2013/12/08/ucomponents-moved-to-github/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">uComponents: Moved to GitHub</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2013/12/08/ucomponents-moved-to-github/"><time datetime="2013-12-08T22:38&#x2B;00:00" class="dt-published">08/12/2013</time></a>.</span>
+				<span>Estimated read time: 3 minutes (368 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Hey uComponents fans, a little status update on our version control repository move from CodePlex over to GitHub. We’d been talking about moving over to GitHub for a long time, (even before Umbraco core moved over), but the timing was never right – either we were in the middle of a major release or our day-job workloads were in high demand. &nbsp;Luckily since our own v6.0.0 release, we have found the time to make the move!</p>
+<p>The new repository is currently hosted on my personal account –&nbsp;<a href="https://github.com/leekelleher/uComponents">https://github.com/leekelleher/uComponents</a> – but once this has been stabilised, I will relocated it the main <a href="https://github.com/uComponents">uComponents organisation</a> account.</p>
+<p><strong><span style="text-decoration: underline;">Update:</span> The repository has now been moved to the organisation account:&nbsp;<a href="https://github.com/uComponents/uComponents">https://github.com/uComponents/uComponents</a></strong></p>
+<p>For those who are interested in how I migrated from our Mercurial (Hg) repository on CodePlex over to Git; we used <a href="http://hg-git.github.io/">the&nbsp;Hg-Git mercurial plugin</a> to handle the main bulk of the conversion. The initial set-up had some tricky parts, mostly around installing a specific version of Python (v2.6.6) and the&nbsp;Dulwich library (v0.8.0+). But once configured, it all works very well.</p>
+<p>The biggest issue I had was trying to map the commit authors with their corresponding GitHub accounts. There are various blog posts on how to generate an “<a href="https://github.com/schacon/hg-git#gitauthors">AUTHORS.TXT</a>” file that will map users/emails, but I ended up using the following Hg command to get a list of the authors from all the commits/changesets.</p>
+<pre class="brush: bash; gutter: false">hg log --template "{author} = {author} rn" &gt; AUTHORS.TXT</pre>
+<p>The output from this gave me a huge list of usernames/email addresses. &nbsp;I used a feature in Notepad++’s TextFX Tools to sort and de-duplicate the lines. &nbsp;From there I found the corresponding GitHub email addresses (this wasn’t pretty either – you’re on your own here). &nbsp;Then I wired up hg-git’s <a href="https://github.com/schacon/hg-git#gitauthors"><strong>git.author</strong></a> option to use the AUTHORS.TXT for the mapping.</p>
+<p>The rest of the move to GitHub has gone successfully. &nbsp;We still need to agree on a better branching structure/workflow, as the one we’ve been using for the past few years has worked well, we feel that it is off-putting to newcomers. &nbsp;We are currently looking at using <a href="http://nvie.com/posts/a-successful-git-branching-model/">git-flow</a>, but are still open to any other suggestions.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/codeplex/" rel="tag" class="p-category">CodePlex</a>, <a href="/tag/github/" rel="tag" class="p-category">GitHub</a>, <a href="/tag/hg/" rel="tag" class="p-category">Hg</a>, <a href="/tag/mercurial/" rel="tag" class="p-category">Mercurial</a>, <a href="/tag/ucomponents/" rel="tag" class="p-category">uComponents</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2013/12/08/ucomponents-moved-to-github/">https://leekelleher.com/2013/12/08/ucomponents-moved-to-github/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

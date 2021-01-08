@@ -1,0 +1,139 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bulk Photo Resizing with ImageProcessor | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="I&#x27;m currently on a month long holiday in Sri Lanka, taking a nice overdue break from work, (much respect to Rich for holding the Umbrella fort!). During my travels, I&#x27;ve been keeping a family blog - journal updates, add a few photos, etc. However the WiFi upload speeds at the various hotels we&#x27;ve been staying at have been painful slow; uploading a single photo (around 3Mb) to our blog or even Facebook is taking an&amp;#8230;">
+	<meta name="keywords" content="imageprocessor,c#,code">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2016/07/bulk-photo-resizing-with-imageprocessors/">
+	<meta name="twitter:title" property="og:title" content="Bulk Photo Resizing with ImageProcessor">
+	<meta name="twitter:description" property="og:description" content="I&#x27;m currently on a month long holiday in Sri Lanka, taking a nice overdue break from work, (much respect to Rich for holding the Umbrella fort!). During my travels, I&#x27;ve been keeping a family blog - journal updates, add a few photos, etc. However the WiFi upload speeds at the various hotels we&#x27;ve been staying at have been painful slow; uploading a single photo (around 3Mb) to our blog or even Facebook is taking an&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2016/07/bulk-photo-resizing-with-imageprocessors/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Bulk Photo Resizing with ImageProcessor</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2016/07/bulk-photo-resizing-with-imageprocessors/"><time datetime="2016-07-26T10:06&#x2B;01:00" class="dt-published">26/07/2016</time></a>.</span>
+				<span>Estimated read time: 3 minutes (448 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>I'm currently on a month long holiday in Sri Lanka, taking a nice overdue break from work, (much respect to Rich for holding the Umbrella fort!).</p>
+<p>During my travels, I've been keeping <a href="https://2016.lee-and-lucy.com">a family blog</a> - journal updates, add a few photos, etc. However the WiFi upload speeds at the various hotels we've been staying at have been painful slow; uploading a single photo (around 3Mb) to our blog or even Facebook is taking an age!</p>
+<p>I needed a way to resize the photos (and/or reduce the filesize). My first port of call was Photoshop, which is fine, but it was taking some time do manually resize each photo manually, (and I couldn't remember the way to bulk automate it). Given my limited bandwidth - and pressing travel itinerary, I didn't have the time to search for a decent solution.</p>
+<blockquote>
+<p>Since I posted a call for help on Facebook about this, <a href="http://imageresizer.codeplex.com/">Image Resizer for Windows</a> has been recommended a few times.</p>
+</blockquote>
+<p>Alas, the next stop on our itinerary was some eco-friendly place with no WiFi access... I just didn't have time or chance to download it.</p>
+<p>Whilst on the drive, I kept thinking about alternative solutions to this problem - <strong>how could I bulk resize my photos with the tools I've got to hand?</strong> Then I realised, I have <a href="http://imageprocessor.org/">ImageProcessor</a> on my laptop, (since it ships with Umbraco)!</p>
+<p>15 minutes later, I had this...</p>
+<pre><code class="language-csharp"><span style="color:#0000FF;">using</span> System;
+<span style="color:#0000FF;">using</span> System.Diagnostics;
+<span style="color:#0000FF;">using</span> System.Drawing;
+<span style="color:#0000FF;">using</span> System.IO;
+<span style="color:#0000FF;">using</span> ImageProcessor;
+
+<span style="color:#0000FF;">namespace</span> MyBulkPhotoResizer
+{
+    <span style="color:#0000FF;">class</span> Program
+    {
+        <span style="color:#0000FF;">const</span> <span style="color:#0000FF;">int</span> EXITCODE_ERROR = <span>2</span>;
+
+        <span style="color:#0000FF;">static</span> <span style="color:#0000FF;">void</span> Main(<span style="color:#0000FF;">string</span>[] args)
+        {
+            <span style="color:#0000FF;">var</span> stopwatch = <span style="color:#0000FF;">new</span> Stopwatch();
+            stopwatch.Start();
+
+            <span style="color:#0000FF;">using</span>(<span style="color:#0000FF;">var</span> factory = <span style="color:#0000FF;">new</span> ImageFactory(<span style="color:#0000FF;">true</span>))
+            {
+                <span style="color:#0000FF;">var</span> path = Directory.GetCurrentDirectory();
+                <span style="color:#0000FF;">var</span> pattern = <span style="color:#A31515;">"*.JPG"</span>;
+
+                <span style="color:#0000FF;">var</span> dir = <span style="color:#0000FF;">new</span> DirectoryInfo(path);
+                <span style="color:#0000FF;">var</span> files = dir.GetFiles(pattern);
+
+                <span style="color:#0000FF;">if</span> (files.Length == <span>0</span>)
+                {
+                    Console.WriteLine(<span style="color:#A31515;">"This directory does not contain any photos."</span>);
+                    Environment.Exit(EXITCODE_ERROR);
+                }
+
+                <span style="color:#0000FF;">var</span> resizedDir = Path.Combine(dir.FullName, <span style="color:#A31515;">"resized"</span>);
+
+                <span style="color:#0000FF;">if</span> (!Directory.Exists(resizedDir))
+                    Directory.CreateDirectory(resizedDir);
+
+                <span style="color:#0000FF;">foreach</span> (<span style="color:#0000FF;">var</span> file <span style="color:#0000FF;">in</span> files)
+                {
+                    <span style="color:#0000FF;">var</span> savedPath = Path.Combine(resizedDir, file.Name);
+
+                    <span style="color:#0000FF;">if</span> (File.Exists(savedPath))
+                    {
+                        Console.WriteLine(<span style="color:#A31515;">"This photo has already been resized: {0}"</span>, file.Name);
+                        <span style="color:#0000FF;">continue</span>;
+                    }
+
+                    factory
+                        .Load(file.FullName)
+                        .Resize(<span style="color:#0000FF;">new</span> Size(<span>1024</span>, <span>768</span>))
+                        .Save(savedPath);
+
+                    Console.WriteLine(<span style="color:#A31515;">"Resized photo: {0}"</span>, file.Name);
+                }
+            }
+
+            stopwatch.Stop();
+
+            Console.WriteLine();
+            Console.WriteLine(<span style="color:#A31515;">"It took {0} minutes, {1} seconds to resize all the photos."</span>, stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds);
+            Console.ReadLine();
+        }
+    }
+}
+
+</code></pre>
+<p><strong>Awesome</strong>, and developed at the backseat of a minibus, with no internet access!</p>
+<p>The beautiful part about using ImageProcessor is that it automatically detects the orientation and resizes accordingly, so the portrait photos are never squashed &amp; mangled.</p>
+<p><img src="/assets/media/bulk-photo-resizer-imageprocessor.jpg" alt="Bulk Photo Resizer with ImageProcessor"></p>
+<p>I think the best part of this is that you can achieve simple tasks with a little bit of code; even when you are in the middle of Sri Lanka!</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/imageprocessor/" rel="tag" class="p-category">ImageProcessor</a>, <a href="/tag/c-sharp/" rel="tag" class="p-category">C#</a>, <a href="/tag/code/" rel="tag" class="p-category">code</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2016/07/bulk-photo-resizing-with-imageprocessors/">https://leekelleher.com/2016/07/bulk-photo-resizing-with-imageprocessors/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

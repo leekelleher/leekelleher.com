@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>History of "Our.Umbraco.*" package names | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Have you ever looked in your /bin folder and wondered why a bunch of Umbraco package assemblies are prefixed with &quot;Our.Umbraco.&quot;? Let&#x27;s find out about the history of that naming convention!">
+	<meta name="keywords" content="umbraco,community,package,open source,umco">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2018/11/history-of-our-umbraco-package-names/">
+	<meta name="twitter:title" property="og:title" content="History of &quot;Our.Umbraco.*&quot; package names">
+	<meta name="twitter:description" property="og:description" content="Have you ever looked in your /bin folder and wondered why a bunch of Umbraco package assemblies are prefixed with &quot;Our.Umbraco.&quot;? Let&#x27;s find out about the history of that naming convention!">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/media/umb-collab.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2018/11/history-of-our-umbraco-package-names/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">History of "Our.Umbraco.*" package names</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2018/11/history-of-our-umbraco-package-names/"><time datetime="2018-11-27T10:50&#x2B;00:00" class="dt-published">27/11/2018</time></a>.</span>
+				<span>Estimated read time: 5 minutes (612 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p>Earlier this year, <a href="https://twitter.com/callumbwhyte/status/820641163334053889">Callum asked the question</a>…</p>
+<blockquote>
+<p>Can someone explain the history behind the "Our.Umbraco.X" naming convention for packages? It seems it's used by only a few now #umbraco</p>
+</blockquote>
+<p>I <a href="https://twitter.com/leekelleher/status/820727834536767488">replied at the time</a> - but felt an explanation longer than a couple of tweets would be nice, (and findable for future reference). I had a draft of this post sitting around for a while now, thought best to publish it!</p>
+<p><a href="https://www.flickr.com/photos/rikhelsen/6269167834/in/album-72157627950157764/" title="Umbraco community hacking"><img src="/assets/media/umb-collab.jpg" alt="IMG_4590"></a></p>
+<p>When I started to work with Umbraco, back in late 2007, my company was called <strong>Bodenko</strong>. When we developed any back-office features, they all ended up being bundled into a single project called <strong>"Bodenko.Umbraco"</strong> - this quickly became a dumping ground for all our extensions.</p>
+<p>After getting more involved with the community, asking a lot of questions on the forum - and starting to answer some of them, I thought that I should really open-source the packages we'd developed at Bodenko. Our first was the <a href="https://our.umbraco.com/packages/developer-tools/robotstxt-editor/"><strong>Robots.txt Editor</strong></a> (which is surprisingly still popular today - and with very little updates to the original codebase) … I named the assembly <strong>"Bodenko.Umbraco.RobotsTxtEditor"</strong>.</p>
+<p>In 2009, I'd parted ways with Bodenko to go as a solo freelancer, we dissolved the company. Around this time, I'd attended my first CodeGarden - where they'd launched the new forum… <strong>Our Umbraco</strong> - it was a very exciting time within the community. The Robots.txt Editor project was due a patch release (roll up of bug fixes), but when I reviewed the code, I felt that my old company name held little relevance to the package itself. There wasn't much point in using the package to "advertise" our old company and services. So, I looked to change it.</p>
+<p>My company name for my freelance work was called <strong>Vertino</strong>, I could have swapped it with that, but that didn't feel quite right either. Around the same time, I'd noticed there were a few other newly released packages that contained a name/reference to the company that developed them, and it somewhat felt a little <em>anti-community</em>.</p>
+<p>Rather than trying to come up with a new base part for my code's namespaces, I did a swap of <strong>"Bodenko"</strong> with <strong>"Our"</strong>. I still can't decide if that was a clever idea or I was being lazy - <em>probably the latter</em>.</p>
+<p>I never envisaged this as trying to start a convention, then as I got involved with other established Umbraco packages, e.g. <a href="https://our.umbraco.com/packages/developer-tools/config-tree/">Config Tree</a> and <a href="https://our.umbraco.com/packages/backoffice-extensions/google-maps-datatype/">Google Maps DataType</a>, with the agreement of their developers, we renamed the namespaces and assemblies over time.</p>
+<p>Ironically, we never changed the <a href="https://our.umbraco.com/packages/backoffice-extensions/ucomponents/">uComponents</a> namespace or assemblies - considering that at the time, that project was considered to be the <em>de facto</em> Umbraco community project.</p>
+<p>The idea was that these packages were <strong>made by the Umbraco community, for the Umbraco community</strong>.</p>
+<p>I didn't push this naming convention, but interestingly I noticed other package developers had started to use it. It had become an unspoken guideline.</p>
+<p>More recently, the packages that I've collaborated on with <a href="https://twitter.com/mattbrailsford">Matt Brailsford</a> have generally come from working together at my company <strong>Umbrella</strong> (where Matt has freelanced with us). However, when we started coding and setting up namespaces, if we used <strong>"Umbrella.Umbraco.*"</strong> it wouldn't feel quite right. We knew from the outset that certain back-office extensions had the potential to be released as fully-fledged Umbraco packages - we always start out with that mindset… <strong>"for the community"</strong>.</p>
+<p>So, if you ever look in your website's <code>/bin</code> folder and see a bunch of "Our.Umbraco.*" assemblies, then you now know they were developed with the community in mind and are a sign of thoughtful, well-crafted Umbraco packages.</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a>, <a href="/tag/community/" rel="tag" class="p-category">Community</a>, <a href="/tag/package/" rel="tag" class="p-category">Package</a>, <a href="/tag/open-source/" rel="tag" class="p-category">Open Source</a>, <a href="/tag/umco/" rel="tag" class="p-category">UMCO</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2018/11/history-of-our-umbraco-package-names/">https://leekelleher.com/2018/11/history-of-our-umbraco-package-names/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>

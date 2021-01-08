@@ -1,0 +1,117 @@
+﻿<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Integrating ELMAH with Umbraco | Lee Kelleher - Umbraco Consultant</title>
+	<meta name="description" content="Update: For the latest details on how to integrate ELMAH with Umbraco, please read the article over on the Our Umbraco wiki. I have a few Umbraco projects that have a lot of custom .NET code, mostly in they are in the form of user-controls and XSLT extensions. &amp;nbsp;As far as I&#x2019;m aware Umbraco doesn&#x2019;t have an extendable mechanism for exception handling and sending out notification emails, (there is the umbraco.BusinessLogic.Log, which writes to the&amp;#8230;">
+	<meta name="keywords" content="asp.net,elmah,error handling,exception,umbraco">
+	<meta name="generator" content="Wyam">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@leekelleher">
+	<meta name="twitter:url" property="og:url" content="https://leekelleher.com/2009/04/23/integrating-elmah-with-umbraco/">
+	<meta name="twitter:title" property="og:title" content="Integrating ELMAH with Umbraco">
+	<meta name="twitter:description" property="og:description" content="Update: For the latest details on how to integrate ELMAH with Umbraco, please read the article over on the Our Umbraco wiki. I have a few Umbraco projects that have a lot of custom .NET code, mostly in they are in the form of user-controls and XSLT extensions. &amp;nbsp;As far as I&#x2019;m aware Umbraco doesn&#x2019;t have an extendable mechanism for exception handling and sending out notification emails, (there is the umbraco.BusinessLogic.Log, which writes to the&amp;#8230;">
+	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
+	<link rel="alternate" href="https://leekelleher.com/feed/" type="application/rss+xml">
+	<link rel="canonical" href="https://leekelleher.com/2009/04/23/integrating-elmah-with-umbraco/">
+	<link rel="pingback" href="https://webmention.io/leekelleher.com/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/leekelleher.com/webmention">
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+	<header role="banner">
+		<p><a href="/" rel="home">Lee Kelleher</a></p>
+		<nav>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/now/">Now</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+<div>
+	<article class="h-entry">
+		<header>
+			<h1 class="p-name">Integrating ELMAH with Umbraco</h1>
+			<p class="meta">
+				<span>Posted on <a class="u-url" href="https://leekelleher.com/2009/04/23/integrating-elmah-with-umbraco/"><time datetime="2009-04-23T22:13&#x2B;01:00" class="dt-published">23/04/2009</time></a>.</span>
+				<span>Estimated read time: 5 minutes (667 words)</span>
+			</p>
+		</header>
+		<div class="e-content">
+			<p><strong><span style="text-decoration:underline;">Update:</span></strong> For the latest details on <a href="http://our.umbraco.org/wiki/how-tos/use-elmah-with-umbraco">how to integrate ELMAH with Umbraco</a>, please read the article over on the Our Umbraco wiki.</p>
+<p>I have a few <a href="http://umbraco.org/">Umbraco</a> projects that have a lot of custom .NET code, mostly in they are in the form of user-controls and XSLT extensions. &nbsp;As far as I’m aware Umbraco doesn’t have an extendable mechanism for exception handling and sending out notification emails, (there is the umbraco.BusinessLogic.Log, which writes to the umbracoLog table in the database, but that’s all).</p>
+<p>Initially I looked at <a href="http://blogs.thesitedoctor.co.uk/tim/2009/02/27/Advanced+Error+Reporting+In+Umbraco+DasBlog+And+Other+ASPNet+Sites.aspx">Tim Gaunt’s Advanced Error Reporting</a> – a great drop-in solution that does exactly what it says on the tin! &nbsp;Whilst reading the comments on Tim’s blog, <a href="http://www.prolificnotion.co.uk/">Simon Dingley</a> reminded me of the <a href="http://code.google.com/p/elmah/">ELMAH</a> project – which has been one of those web-applications that you keep meaning to try out, but never get around to.</p>
+<p><strong>What is ELMAH?</strong></p>
+<blockquote>
+<p>ELMAH (<a href="http://code.google.com/p/elmah/">Error Logging Modules and Handlers</a>) is an application-wide error logging facility that is completely pluggable. It can be dynamically added to a running ASP.NET web application, or even all ASP.NET web applications on a machine, without any need for re-compilation or re-deployment.</p>
+</blockquote>
+<p>So I decided to see how nicely it plays with Umbraco… the result, it plays very nicely indeed.</p>
+<p>If you are interested, here’s how…</p>
+<ol>
+<li>Download the latest ELMAH binary release (1.0 Beta 3 at the time of writing [<a href="http://elmah.googlecode.com/files/ELMAH-1.0-BETA3-bin.zip">direct link</a>]) from the Google Code project page. (<a href="http://code.google.com/p/elmah/">http://code.google.com/p/elmah/</a>)</li>
+<li>Extract the files from the ZIP.</li>
+<li>Select the DLLs from the “<code>/bin/</code>” folder, for Umbraco you’ll be using the DLL from “<code>/bin/net-2.0/Release/</code>“. &nbsp;For the benefit of this post, I decided to use the <a href="http://www.sqlite.org/">SQLite</a> option to store the error logs in a database. I could easily have used the SQL Server or <a href="http://www.vistadb.net/">VistaDB</a> options.</li>
+<li>Drop the DLLs into the “<code>/bin/</code>” folder of your Umbraco installation.</li>
+<li>Open the web.config of your Umbracoo installation and add the following lines:</li>
+</ol>
+<p>Add the following to your <code>&lt;configSections&gt;</code> section:</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;sectionGroup name="elmah"&gt;
+	&lt;section name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah"/&gt;
+	&lt;section name="errorLog" requirePermission="false" type="Elmah.ErrorLogSectionHandler, Elmah"/&gt;
+	&lt;section name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah"/&gt;
+	&lt;section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah"/&gt;
+&lt;/sectionGroup&gt;</pre>
+<p>Add the following just after the <code>&lt;/configSections&gt;</code> section:</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;elmah&gt;
+	&lt;security allowRemoteAccess="yes" /&gt;
+	&lt;errorLog type="Elmah.SQLiteErrorLog, Elmah" connectionStringName="ELMAH.SQLite" /&gt;
+	&lt;errorMail from="no-reply&#64;domain.com" to="webmaster&#64;domain.com" /&gt;
+&lt;/elmah&gt;</pre>
+<p>Add the following to your <code>&lt;connectionStrings&gt;</code> section, (if you have one, otherwise create one):</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;add name="ELMAH.SQLite" connectionString="Data Source=~/data/errors.s3db"/&gt;</pre>
+<p>In the <code>&lt;httpModules&gt;</code> section, add this:</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah"/&gt;
+&lt;add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah"/&gt;
+&lt;add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah"/&gt;</pre>
+<p>… and finally, in the <code>&lt;httpHandlers&gt;</code> section, add this:</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;add verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah"/&gt;</pre>
+<p>If you run into any trouble, there is a more detailed guide on <a href="http://code.google.com/p/elmah/wiki/DotNetSlackersArticle#Setting_it_up">Setting Up ELMAH</a> from DotNetSlackers.</p>
+<p>By now you should have ELMAH up and running. &nbsp;Open up your web-browser and go to http://localhost/elmah.axd, (obviously replace “localhost” with whatever your hostname is). You should see the ELMAH Error Log page. &nbsp;Since this is open to the public, <strong>you may want to secure it</strong>, see the <a href="http://code.google.com/p/elmah/wiki/SecuringErrorLogPages">Securing Error Log Pages</a> article for further details.</p>
+<p>The last part is to integrate the ELMAH Error Log page into the Umbraco back-end. &nbsp;I created a new user-control in the “/usercontrols/” folder called “ELMAH.ascx”, using the following HTML:</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;%&#64; Control Language="C#" %&gt;
+&lt;iframe height="98%" width="100%" scrolling="auto" src="elmah.axd" style="margin-top:5px;"&gt;&lt;/iframe&gt;</pre>
+<p>Then in the “<code>/config/Dashboard.config</code>” configuration file, I added a new section for the developer area.</p>
+<pre class="brush: xml; title: ; notranslate" title="">&lt;section&gt;
+	&lt;areas&gt;
+		&lt;area&gt;developer&lt;/area&gt;
+	&lt;/areas&gt;
+	&lt;tab caption="Error Logging Modules and Handlers for ASP.NET"&gt;
+		&lt;control&gt;/usercontrols/ELMAH.ascx&lt;/control&gt;
+	&lt;/tab&gt;
+&lt;/section&gt;</pre>
+<p>Now in the Umbraco back-end the developer area looks like this.</p>
+<p style="text-align:center;">
+  <a href="/wordpress/wp-content/uploads/2009/04/umbraco-development-2009-04-23-19-26-30.png"><img class="size-medium wp-image-118 aligncenter" title="ELMAH in Umbraco" src="/wordpress/wp-content/uploads/2009/04/umbraco-development-2009-04-23-19-26-30.png?w=300" alt="ELMAH in Umbraco" width="300" height="225"></a>
+</p>
+<p>I have been very impressed with how well ELMAH functions. &nbsp;Aside from the essential email notifications, the RSS feeds are a great bonus!</p>
+
+		</div>
+		<aside>
+			<p class="tags"><span>Tags:</span> <a href="/tag/asp.net/" rel="tag" class="p-category">ASP.NET</a>, <a href="/tag/elmah/" rel="tag" class="p-category">ELMAH</a>, <a href="/tag/error-handling/" rel="tag" class="p-category">Error Handling</a>, <a href="/tag/exception/" rel="tag" class="p-category">Exception</a>, <a href="/tag/umbraco/" rel="tag" class="p-category">Umbraco</a></p>
+			<p class="meta"><span>Permalink:</span> <a class="u-url" href="https://leekelleher.com/2009/04/23/integrating-elmah-with-umbraco/">https://leekelleher.com/2009/04/23/integrating-elmah-with-umbraco/</a></p>
+		</aside>
+	</article>
+</div></main>
+	<footer role="contentinfo">
+		<div>
+			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
+			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
+		</div>
+	</footer>
+	<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+</body>
+</html>
