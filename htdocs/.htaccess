@@ -249,6 +249,8 @@ Redirect 410 /2007/11/22/how-many-html-elements-can-you-name-in-5-minutes/
 # BEGIN HTTPS Redirect
 <IfModule mod_rewrite.c>
 RewriteEngine On
+RewriteCond %{HTTP_HOST} !^localhost [NC]
+RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
@@ -349,6 +351,7 @@ Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
 Header set X-Content-Type-Options nosniff
 Header always append X-Frame-Options SAMEORIGIN
 Header set X-XSS-Protection "1; mode=block"
+Header always set Content-Security-Policy "upgrade-insecure-requests"
 </IfModule>
 # END Security Headers
 
