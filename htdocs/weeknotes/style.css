@@ -119,7 +119,8 @@ sub, sup {
     margin: 0 0 0.1em;
 }
 
-.entry-future .entry-title {
+.entry-future .entry-title,
+.entry-future .entry-title a {
     color: #9e9e9e;
 }
 
