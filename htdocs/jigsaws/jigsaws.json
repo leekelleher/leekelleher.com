@@ -1,4 +1,22 @@
 [{
+	"name": "Getting Away From It All (part 2 of 3)",
+	"img": "24428329-2.jpg",
+	"pieces": "1000",
+	"brand": "Studio",
+	"notes": "Took about 5 hours with Lucy."
+}, {
+	"name": "Getting Away From It All (part 1 of 3)",
+	"img": "24428329-1.jpg",
+	"pieces": "500",
+	"brand": "Studio",
+	"notes": "Took about 2 hours, alone."
+}, {
+	"name": "Getting Away From It All (part 3 of 3)",
+	"img": "24428329-3.jpg",
+	"pieces": "500",
+	"brand": "Studio",
+	"notes": "Took about 2 hours, alone."
+}, {
 	"name": "Brighton Bound",
 	"img": "5012269030174.jpg",
 	"pieces": "500",
@@ -13,7 +31,7 @@
 }, {
 	"name": "Balloon Festival",
 	"img": "5052089274396.jpg",
-	"pieces": "1500",
+	"pieces": "500",
 	"brand": "Corner Piece",
 	"notes": "Took about 3 hours with Lucy."
 }, {

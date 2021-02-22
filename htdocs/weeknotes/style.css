@@ -90,6 +90,22 @@ img {
     max-width: 100%;
 }
 
+details {
+	background-color: var(--litetone);
+	padding: 1em;
+	margin: 0 0 1.5em;
+}
+
+details > summary {
+	cursor: pointer;
+	font-size: 1.6rem;
+    line-height: 1.5em;
+}
+
+details > summary + p {
+	margin-top: 1em;
+}
+
 figcaption {
     font-size: 1.3em;
 }

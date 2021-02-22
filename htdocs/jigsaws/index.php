@@ -15,7 +15,7 @@
 		<p>Here are a selection:</p>
 <?php foreach($jigsaws as $jigsaw): ?>
 		<figure>
-			<img src="<?=$jigsaw['img']?>" alt="<?=$jigsaw['name']?>">
+			<a href="<?=$jigsaw['img']?>"><img src="<?=$jigsaw['img']?>" alt="<?=$jigsaw['name']?>"></a>
 			<figcaption><?=$jigsaw['name']?> <?=$jigsaw['pieces']?> pieces. <?=$jigsaw['notes'] != '' ? $jigsaw['notes'] : $jigsaw['brand']?></figcaption>
 		</figure>
 <?php endforeach; ?>

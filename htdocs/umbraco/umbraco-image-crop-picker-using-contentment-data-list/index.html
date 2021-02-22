@@ -1,0 +1,82 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Umbraco Image Crop Picker using Contentment Data List</title>
+	<link rel="stylesheet" href="github-markdown-lite.css">
+	<style>body {box-sizing: border-box;min-width: 200px;max-width: 980px;margin: 0 auto;padding: 45px;}</style>
+</head>
+<body>
+	<article class="markdown-body">
+        <header>
+			<h1>Umbraco Image Crop Picker using Contentment Data List</h1>
+			<time datetime="2021-02-11T12:00:00.000Z">Thursday 11<sup>th</sup> February 2021</time>
+			<hr>
+        </header>
+
+        <div role="main">
+
+            <p>A couple of weeks ago, <a href="https://dev.to/zajkowskimarcin">Marcin Zajkowski</a> and <a href="https://dev.to/aochmann">Adrian Ochmann</a> announced the release of their new Umbraco package, <a href="https://our.umbraco.com/packages/backoffice-extensions/image-crop-picker/">Image Crop Picker</a>.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Just released an updated (v2.0.0) version of my Image Crop Picker package for <a href="https://twitter.com/hashtag/umbraco?src=hash&amp;ref_src=twsrc%5Etfw">#umbraco</a>. Thanks <a href="https://twitter.com/AdrianOchmann?ref_src=twsrc%5Etfw">@AdrianOchmann</a> for the amazing contrib! Documentation needs to be updated, but it&#39;s there for you all on Our / NuGet / Github if you want to use it and test it.<a href="https://t.co/TPZAiYHCW5">https://t.co/TPZAiYHCW5</a> <a href="https://t.co/JyupCbovU0">pic.twitter.com/JyupCbovU0</a></p>&mdash; Marcin Zajkowski (@zajkowskimarcin) <a href="https://twitter.com/zajkowskimarcin/status/1354821151541710850?ref_src=twsrc%5Etfw">January 28, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>The <strong>Image Crop Picker</strong> is a property-editor that enables a specific image crop to be selected from the configuration of a Image Cropper data-type. This can be useful for when a content-editor needs control over which crop is used for rendering an image.</p>
+
+<p>The package has releases for both Umbraco v7 and v8, and has plans to extend the functionality in future releases. If it suits your needs, then please use it. 👍</p>
+
+<p>Now what does this all have to do with my <a href="https://our.umbraco.com/packages/backoffice-extensions/contentment/">Contentment</a> package? Since developing the <a href="https://github.com/leekelleher/umbraco-contentment/blob/develop/docs/editors/data-list.md"><strong>Data List</strong></a> property-editor, whenever I see another package use a dropdown-list, checkbox-list or radiobutton-list, I can't shake the concept of separating the data-source from the list-editor.</p>
+
+<p>So with the the <strong>Image Crop Picker</strong> package, I wondered - <em>Could that be achieved as a custom Data Source?</em> 🤔</p>
+
+<p>It would need a way to select a pre-configured Image Cropper data-type, then get all the crop definitions from that data-type... <em>Yeah, why not!</em></p>
+
+<p>🕙🕚🕛 <strong>TL;DR,</strong> If you want to skip the explanation and see the code, it is available this gist: <a href="https://gist.github.com/leekelleher/5c0abddb3246185ce0ba50a99975e310"><code>UmbracoImageCropDataListSource.cs</code></a></p>
+
+<p>To do this, I needed to define the crops in my own <strong>Image Cropper</strong> data-type. <em>I opted to copy Marcin's examples.</em></p>
+
+<p><a href="image-cropper-config.png" class="article-body-image-wrapper"><img src="image-cropper-config.png" alt="Image Cropper data-type configuration" loading="lazy"></a></p>
+
+<p>Next, once I had the code (<a href="https://gist.github.com/leekelleher/5c0abddb3246185ce0ba50a99975e310">from the gist</a>) in place, I could create my custom <strong>Data List</strong> data-type.</p>
+
+<p><a href="data-list-image-crops-data-source.png" class="article-body-image-wrapper"><img src="data-list-image-crops-data-source.png" alt="Data List data-type with Umbraco Image Crops as the data-source" loading="lazy"></a></p>
+
+<p>The configuration for the data-source needs to select a pre-configured <strong>Image Cropper</strong> data-type.</p>
+
+<p><a href="data-list-image-crops-config-01.png" class="article-body-image-wrapper"><img src="data-list-image-crops-config-01.png" alt="Umbraco Image Crops data-source configuration" loading="lazy"></a></p>
+
+<p>For this UI, I opted to use the Item Picker editor, I thought it would be a nicer UI, in case have numerous Image Cropper data-types. This could have easily been done with a dropdown-list.</p>
+
+<p><a href="data-list-image-crops-config-02.png" class="article-body-image-wrapper"><img src="data-list-image-crops-config-02.png" alt="Umbraco Image Crops data-source, select an Image Cropper data-type" loading="lazy"></a></p>
+
+<p><a href="data-list-image-crops-config-03.png" class="article-body-image-wrapper"><img src="data-list-image-crops-config-03.png" alt="Umbraco Image Crops data-source, selected Image Cropper data-type" loading="lazy"></a></p>
+
+<p>Once selected, you can configure the list-editor you would like to use. For this example, I chose a radiobutton-list.</p>
+
+<p>You can then save the Data List data-type and add it to your document-type.</p>
+
+<p>On your content page, it will be displayed like so...</p>
+
+<p><a href="image-crop-picker-editor.png" class="article-body-image-wrapper"><img src="image-crop-picker-editor.png" alt="image-crop-picker-editor" loading="lazy"></a></p>
+
+<p>Of course, if you prefer a different list-editor - say a dropdown-list, or enable multiple selections with a checkbox-list or Item Picker, you can do that.</p>
+
+<p>Here is the Umbraco Image Crops data-source code in full...</p>
+
+<script src="https://gist.github.com/leekelleher/5c0abddb3246185ce0ba50a99975e310.js"></script>
+
+<p><em>If people think it would be interesting for me to break down and explain the code in more detail, please let me know. I'm happy to do so, just didn't want to do it unwarranted.</em></p>
+
+<hr>
+
+<p>🔌 <em>Plugs and begging...</em> 🙏<br>
+If you already use the Contentment package, please remember to give it a vote-up on the Our Umbraco project page: <a href="https://our.umbraco.com/packages/backoffice-extensions/contentment/">https://our.umbraco.com/packages/backoffice-extensions/contentment/</a></p>
+
+<p>If you use my open-source Umbraco packages on commercial projects and want to say thanks - consider becoming a sponsor: <a href="https://github.com/sponsors/leekelleher">https://github.com/sponsors/leekelleher</a> ❤</p>
+
+
+        </div>
+
+      </article>
+</body>
+</html>
