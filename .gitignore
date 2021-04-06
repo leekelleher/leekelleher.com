@@ -1,2 +1,4 @@
 *.orig
 /htdocs/mp3/tremor/*
+/htdocs/.admin/
+/htdocs/_data/
