@@ -2,6 +2,7 @@
 <html lang="en" prefix="og: http://ogp.me/ns#">
 <head>	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<title>Using ClientDependency Filters to manipulate HTML | Lee Kelleher - Umbraco Consultant</title>
 	<meta name="description" content="On a recent Umbraco project, I needed to be able to manipulate the HTML contents before it was sent to the browser. Typically, on Umbraco projects you&#x27;d do whatever you need do within Razor templating, but in my case, I had to do after the entire page markup was built. (I won&#x27;t go into details, as the requirement is specific to my client project.) My initial thought for the solution was using a Request.Filter. I&#x27;d&amp;#8230;">
 	<meta name="keywords" content="umbraco,clientdependency,code">
@@ -108,7 +109,7 @@
 		<div>
 			<p>For any feedback, comments or questions, feel free to ask me via <a href="/contact/">my contact page</a>, on <a href="https://twitter.com/leekelleher" rel="me">Twitter</a>, or on <a href="https://github.com/leekelleher" rel="me">GitHub</a>.</p>
 			<p>Be notified of new posts, <a href="/feed/">subscribe to my RSS feed</a>.</p>
-			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2021</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
+			<p class="h-card">All content by <a rel="me" class="p-name u-url" href="https://leekelleher.com">Lee Kelleher</a> (<span>&copy; 2006-2020</span>) and licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en_GB" title="Creative Commons Attribution-ShareAlike 4.0 International ">Creative Commons</a>. All code snippets are licensed under the <a rel="license" href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
 			<p>This website is statically generated using <a href="https://wyam.io">Wyam</a>. All code and content for this blog is available as <a href="https://github.com/leekelleher/leekelleher.com">open source on GitHub</a>.</p>
 		</div>
 	</footer>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<items>
+	<item name="Ready" value="value1" icon="icon-stop-alt color-red" description="One for the money." />
+	<item name="Steady" value="value2" icon="icon-stop-alt color-orange" description="Three to get ready. Now go, cat, go." />
+	<item name="Go!" value="value3" icon="icon-stop-alt color-green" description="Two for the show." />
+</items>

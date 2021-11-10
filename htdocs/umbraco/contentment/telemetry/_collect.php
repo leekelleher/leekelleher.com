@@ -12,6 +12,14 @@ if ($json == null || $json == '') {
 	exit('The request body is empty.');
 }
 
+if (isset($json['contentmentVersion']) && strpos($json['contentmentVersion'], '-') !== false) {
+	exit('Rejecting non-production versions of Contentment.');
+}
+
+if (isset($json['umbracoVersion']) && strpos($json['umbracoVersion'], '-') !== false) {
+	exit('Rejecting non-production versions of Umbraco.');
+}
+
 try {
 
 	$db = new PDO("sqlite:".__DIR__."/_telemetry.sqlite");
@@ -24,9 +32,23 @@ try {
 	"contentmentVersion"	TEXT
 ) */
 
-	$qry = $db->prepare('INSERT INTO dataTypes (dataType, editorAlias, umbracoId, umbracoVersion, contentmentVersion) VALUES (?, ?, ?, ?, ?)');
-	$qry->execute(array($json['dataType'], $json['editorAlias'], $json['umbracoId'], $json['umbracoVersion'], $json['contentmentVersion']));
+	$query = $db->prepare('INSERT INTO dataTypes (dataType, editorAlias, umbracoId, umbracoVersion, contentmentVersion) VALUES (?, ?, ?, ?, ?)');
+	$query->execute(array($json['dataType'], $json['editorAlias'], $json['umbracoId'], $json['umbracoVersion'], $json['contentmentVersion']));
+	
+	if (isset($json['dataTypeConfig']) && is_array($json['dataTypeConfig'])) {
+		
+/* CREATE TABLE "dataTypeConfig" (
+	"dataType"	TEXT COLLATE NOCASE,
+	"key"	TEXT COLLATE NOCASE,
+	"value"	TEXT COLLATE NOCASE
+) */
 
+		foreach ($json['dataTypeConfig'] as $key => $value) {
+			$query2 = $db->prepare('INSERT INTO dataTypeConfig (dataType, key, value) VALUES (?, ?, ?)');
+			$query2->execute(array($json['dataType'], $key, $value));
+		}
+	}
+	
 } catch (Exception $ex) {
 
 	exit($ex->getMessage());
