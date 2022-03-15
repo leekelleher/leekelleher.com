@@ -9,7 +9,7 @@
 	
 	$date = new DateTime();
 	
-	$title = 'Lee Kelleher\'s #weeknotes for '.$year.($selectedWeek > 0 ? ' Week '.$_GET['week'] : '');
+	$title = 'Lee Kelleher\'s #weeknotes for '.$year.($selectedWeek > 0 ? ' Week '.$selectedWeek : '');
 ?><!doctype html>
 <html lang="en" prefix="og: http://ogp.me/ns#">
 <head>    
@@ -25,7 +25,7 @@
 	<meta name="twitter:description" property="og:description" content="Weekly notes and updates from Lee Kelleher">
 	<meta name="twitter:image" property="og:image" content="https://leekelleher.com/assets/img/nxnw_300x300.jpg">
 	<link rel="alternate" href="https://leekelleher.com/weeknotes/feed/" type="application/rss+xml">
-	<link rel="canonical" href="https://leekelleher.com/weeknotes/<?=$year.($selectedWeek > 0 ? '/W'.$_GET['week'] : '')?>/">
+	<link rel="canonical" href="https://leekelleher.com/weeknotes/<?=$year.($selectedWeek > 0 ? '/W'.$selectedWeek : '')?>/">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400&display=swap">
     <link rel="stylesheet" href="/weeknotes/style.css">
@@ -49,7 +49,7 @@
 				<p class="entry-date"><?=$date->format('F j, Y')?> to <?=$date->modify('+6 days')->format('F j, Y')?></p>
 				<?php $filename = $year.'/'.$date->format('o-W').'.html'; if(file_exists($filename)) include_once $filename; ?>
 			</article>
-		<?php else: $currentWeek = intval(date('W')); $lastWeek = $currentWeek - 1; ?>
+		<?php else: $currentWeek = 52; $lastWeek = $currentWeek - 0; ?>
 		<?php for ($week = $currentWeek; $week >= 1; $week--): $date->setISODate($year, $week); ?>
 			<article id="W<?=$date->format('W')?>" class="entry <?php if ($week > $lastWeek) { echo 'entry-future'; } else if ($week == $lastWeek) { echo 'entry-latest'; } ?>">
 				<h1 class="entry-title"><a href="W<?=$date->format('W')?>/" rel="bookmark">Week <?=$date->format('W')?></a></h1>
