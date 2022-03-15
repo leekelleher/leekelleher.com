@@ -80,11 +80,13 @@ ORDER BY
 		'CodeEditor' => [ 'name' => 'Code Editor', 'url' => '/blob/develop/docs/editors/code-editor.md' ],
 		'ContentBlocks' => [ 'name' => 'Content Blocks', 'url' => '/blob/develop/docs/editors/content-blocks.md' ],
 		'DataList' => [ 'name' => 'Data List', 'url' => '/blob/develop/docs/editors/data-list.md' ],
+		'EditorNotes' => [ 'name' => 'Editor Notes', 'url' => '/blob/develop/docs/editors/editor-notes.md' ],
 		'IconPicker' => [ 'name' => 'Icon Picker', 'url' => '/blob/develop/docs/editors/icon-picker.md' ],
 		'Notes' => [ 'name' => 'Notes', 'url' => '/blob/develop/docs/editors/notes.md' ],
 		'NumberInput' => [ 'name' => 'Number Input', 'url' => '/blob/develop/docs/editors/number-input.md' ],
 		'RenderMacro' => [ 'name' => 'Render Macro', 'url' => '/blob/develop/docs/editors/render-macro.md' ],
 		'TemplatedLabel' => [ 'name' => 'Templated Label', 'url' => '/blob/develop/docs/editors/templated-label.md' ],
+		'TextboxList' => [ 'name' => 'Textbox List', 'url' => '/blob/develop/docs/editors/textbox-list.md' ],
 		'TextInput' => [ 'name' => 'Text Input', 'url' => '/blob/develop/docs/editors/text-input.md' ],
 	];
 	

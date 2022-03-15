@@ -20,6 +20,14 @@ if (isset($json['umbracoVersion']) && strpos($json['umbracoVersion'], '-') !== f
 	exit('Rejecting non-production versions of Umbraco.');
 }
 
+if (strlen($json['umbracoVersion']) == 46) {
+	$json['umbracoVersion'] = substr($json['umbracoVersion'], 0, 5);
+}
+
+if (isset($json['umbracoId']) && $json['umbracoId'] == '00000000-0000-0000-0000-000000000000') {
+	exit('Rejecting development instances of Umbraco.');
+}
+
 try {
 
 	$db = new PDO("sqlite:".__DIR__."/_telemetry.sqlite");
