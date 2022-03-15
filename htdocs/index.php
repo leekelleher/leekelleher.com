@@ -16,7 +16,6 @@
 	$page->header->title = 'Lee Kelleher';
 	$page->header->nav = [
 		(object)[ 'name' => 'About', 'url' => '/about/' ],
-		(object)[ 'name' => 'Weeknotes', 'url' => '/weeknotes/' ],
 		(object)[ 'name' => 'Contact', 'url' => '/contact/' ],
 	];
 	
@@ -29,14 +28,20 @@
 			<h2>Hello</h2>
 			<p>Hiya, welcome to my personal website.</p>
 			<p>I'm still in the process of reconstruction my website, although I say that, it'll probably remain in a constant state of flux.</p>
-			<p>This year (2021, so far) I've been <a href="/weeknotes/">journaling my weeknotes</a>, if you would like to have a read?</p>
+			<p>Last year (2021) I'd <a href="/weeknotes/">journaled my weeknotes</a>, if you would like to have a read?</p>
 			
 			<h2>Posts archive by year and month</h2>
 			<ol class="years">
 				<li>
+					<a href="#">2022</a>
+					<ol class="months">
+						<li><em>Nothing written yet!</em></li>
+					</ol>
+				</li>
+				<li>
 					<a href="/weeknotes/2021/">2021</a>
 					<ol class="months">
-						<li>Weeknotes ongoing&hellip;</li>
+						<li><a href="/weeknotes/2021/" title="52 weeknotes posted during 2021">52 weeknotes</a></li>
 					</ol>
 				</li>
 				<li>

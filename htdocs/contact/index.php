@@ -13,7 +13,6 @@
 	$page->header->nav = [
 		(object)[ 'name' => 'Home', 'url' => '/' ],
 		(object)[ 'name' => 'About', 'url' => '/about/' ],
-		(object)[ 'name' => 'Weeknotes', 'url' => '/weeknotes/' ],
 		(object)[ 'name' => 'Contact', 'url' => '/contact/' ],
 	];
 	
