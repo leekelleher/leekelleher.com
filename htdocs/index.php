@@ -26,9 +26,9 @@
 	<main>
 		<article>
 			<h2>Hello</h2>
-			<p>Hiya, welcome to my personal website.</p>
-			<p>I'm still in the process of reconstruction my website, although I say that, it'll probably remain in a constant state of flux.</p>
-			<p>Last year (2021) I'd <a href="/weeknotes/">journaled my weeknotes</a>, if you would like to have a read?</p>
+			<p>Hiya, welcome to my personal website. Always under construction, in a permanent state of flux.</p>
+			<p>Last year (2021), I <a href="/weeknotes/">journaled my weeknotes</a>, if you are curious?</p>
+			<p>This year (2022), so far, I am taking a career break, making time for myself and seeking new opportunities.</p>
 			
 			<h2>Posts archive by year and month</h2>
 			<ol class="years">

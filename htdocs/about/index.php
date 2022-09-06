@@ -24,7 +24,8 @@
 			<div class="e-content">
 				<p>Hello, I'm Lee Kelleher, welcome to my website.</p>
 				<p>Quick bio: born in Liverpool, raised around north-west England. Lived abroad, in Sri Lanka and Spain. Current hobbies are <a href="https://github.com/leekelleher">writing code</a> and <a href="https://thedysfunctions.uk">playing bass guitar in a band</a>. Before kids, I did a bit of <a href="https://www.lee-and-lucy.com">travelling around</a>, made a few <a href="https://www.youtube.com/user/vertino">short films</a>, and even dabbled in writing a <a href="http://www.lulu.com/spotlight/vertino">comic book</a>.</p>
-				<p>Professionally, I build websites using Umbraco CMS. I co-founded <a href="https://umbrellainc.co.uk">Umbrella, an Umbraco consultancy agency</a>, I've been awarded an <a href="https://umbraco.com">Umbraco</a> MVP a few times, (between 2010 through to 2021. x11), and I've developed <a href="https://our.umbraco.com/members/leekelleher/#created">numerous Umbraco packages/projects</a>.</p>
+				<!--<p>Professionally, I build websites using Umbraco CMS. I co-founded <a href="https://umbrellainc.co.uk">Umbrella, an Umbraco consultancy agency</a>, I've been awarded an <a href="https://umbraco.com">Umbraco</a> MVP a few times, (between 2010 through to 2021. x11), and I've developed <a href="https://our.umbraco.com/members/leekelleher/#created">numerous Umbraco packages/projects</a>.</p>-->
+				<p>Professionally, I am currently on hiatus from my commercial Umbraco services. Although I am still involved with Umbraco at a community-level, having been awarded an <a href="https://umbraco.com">Umbraco</a> MVP a several times, (between 2010 through to 2022. x12), and I've developed <a href="https://our.umbraco.com/members/leekelleher/#created">numerous Umbraco packages/projects</a>.</p>
 			</div>
 		</article>
 	</main>
